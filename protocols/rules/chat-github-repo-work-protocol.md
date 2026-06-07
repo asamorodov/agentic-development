@@ -1,6 +1,6 @@
 # Протокол работы ChatGPT с репозиторием через GitHub-интеграцию
 
-Этот протокол описывает, как ChatGPT работает с репозиторием через GitHub-интеграцию, когда доступна запись в репозиторий. Он отвечает за прямое чтение и запись файлов в GitHub-репозитории из чата. Это не протокол Codex-задачи и не протокол Codex worktree/session.
+Этот протокол описывает, как ChatGPT работает с репозиторием через GitHub-интеграцию, когда доступна запись в репозиторий. Он отвечает за прямое чтение и запись файлов в GitHub-репозитории из чата, а также за альтернативный режим подготовки архива изменений, когда прямой commit из чата не нужен или неудобен. Это не протокол Codex-задачи и не протокол Codex worktree/session.
 
 Если ChatGPT не может записать в репозиторий, используется `protocols/rules/chat-codex-transfer-protocol.md`: чат готовит patch/import material, а Codex применяет его позже.
 
@@ -12,7 +12,8 @@ ChatGPT используется для:
 - обновления `work/discourse.md`;
 - точечных правок `/project`, `/protocols`, `/site-spec`;
 - подготовки небольших рабочих документов в `/work`;
-- commit'ов малых текстовых изменений, когда пользователь явно разрешил запись.
+- подготовки архива изменений для ручного применения;
+- commit'ов малых текстовых изменений, когда пользователь явно просит закоммитить результат.
 
 Тяжёлые изменения в `/content`, `/site`, массовые правки, сборка сайта, проверки, большие diff and PR-work по умолчанию передаются Codex.
 
@@ -34,11 +35,51 @@ ChatGPT используется для:
 
 `work/discourse.md` нельзя заменять кратким summary, commit messages, prompt-файлами или памятью текущего chat-thread.
 
+## Режим результата
+
+По умолчанию для задач, которые создают или меняют несколько рабочих документов, ChatGPT работает в archive handoff mode: формирует архив изменений, а не пишет файлы в GitHub. Это снижает количество UI approval prompts and lets the user apply or commit the result manually.
+
+Archive handoff mode включается по умолчанию, если пользователь не просит прямо закоммитить результат. Он также явно включается фразами вроде:
+
+```text
+результат в архив
+без коммита
+подготовь архив изменений
+подготовь patch/import material
+```
+
+В archive handoff mode верхняя папка архива должна быть `work/`, чтобы результат можно было перенести в рабочую ветку простым копированием. Пример структуры:
+
+```text
+work/
+  reports/
+    SDLC_ARTIFACT_COVERAGE_AUDIT.md
+    AGENTIC_FRAMEWORKS_COVERAGE_AUDIT.md
+    PLAN_PATCH_RECOMMENDATIONS.md
+  decisions/
+    PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md
+  discourse.md
+  APPLY_NOTES.md
+  COMMIT_MESSAGE.txt
+```
+
+`APPLY_NOTES.md` должен объяснять, какие файлы создать или заменить, какие документы были прочитаны, какие проверки выполнены, and what remains for human approval. `COMMIT_MESSAGE.txt` должен содержать рекомендуемый commit message / anchor.
+
+Direct commit mode используется только когда пользователь явно просит закоммитить результат. Обычная формула:
+
+```text
+закоммить в <branch-name-or-description>
+```
+
+Название ветки может быть неточным. Если оно не совпадает с точным именем ветки, ChatGPT должен попытаться найти подходящую ветку по названию or description/context. Если есть несколько правдоподобных веток, если confidence низкий, or if the target branch cannot be determined reliably, ChatGPT не должен коммитить and must ask for clarification.
+
 ## Создание новых файлов
 
-Новые рабочие документы, drafts, audits, reports, intermediate plans, comparison texts and task-local notes создаются в репозитории, по умолчанию в папке `/work` целевой ветки.
+В direct commit mode новые рабочие документы, drafts, audits, reports, intermediate plans, comparison texts and task-local notes создаются в репозитории, по умолчанию в папке `/work` целевой ветки.
 
-Не создавать новый значимый рабочий документ только внутри ответа чата, если этот документ должен участвовать в дальнейшей работе. Ответ чата может объяснять, что создано, но рабочая копия документа должна быть файлом в репозитории.
+В archive handoff mode те же документы создаются внутри локального архива с верхней папкой `work/`, а не через GitHub write actions.
+
+Не создавать новый значимый рабочий документ только внутри ответа чата, если этот документ должен участвовать в дальнейшей работе. Ответ чата может объяснять, что создано, но рабочая копия документа должна быть либо файлом в репозитории, либо файлом внутри архива изменений.
 
 Файл создаётся вне `/work` только если задача явно состоит в создании постоянного документа проекта: например, файла в `/project`, `/protocols`, `/site-spec` или `/content`, и пользователь разрешил такую запись.
 
@@ -46,13 +87,13 @@ Task-local reports, audits and proposed decisions по умолчанию соз
 
 ## Изменение существующих файлов
 
-Для Markdown/protocol documents preferred mode is whole-file editing: прочитать полный UTF-8 файл из нужной ветки, подготовить полный итоговый текст and upload the complete replacement with current blob `sha`. Если полный файл не помещается в контекст or итоговый текст нельзя уверенно восстановить, передать задачу Codex or подготовить patch/import material instead of doing fragile line-only editing.
+Для Markdown/protocol documents preferred mode is whole-file editing: прочитать полный UTF-8 файл из нужной ветки, подготовить полный итоговый текст and upload the complete replacement with current blob `sha` in direct commit mode, or place the complete replacement file into the archive in archive handoff mode. Если полный файл не помещается в контекст or итоговый текст нельзя уверенно восстановить, передать задачу Codex or подготовить patch/import material instead of doing fragile line-only editing.
 
-По умолчанию существующий документ меняется через commit новой версии того же файла, а не через создание копии вида `file_v2.md`, `file_new.md`, `file_after.md` внутри чата или репозитория.
+По умолчанию существующий документ меняется через новую версию того же файла, а не через создание копии вида `file_v2.md`, `file_new.md`, `file_after.md` внутри чата или репозитория.
 
-Перед обновлением существующего файла ChatGPT должен прочитать файл из нужной ветки и получить текущий `sha`. GitHub Contents API требует текущий blob SHA при обновлении существующего файла; без этого можно перетереть чужую правку.
+Перед обновлением существующего файла в direct commit mode ChatGPT должен прочитать файл из нужной ветки и получить текущий `sha`. GitHub Contents API требует текущий blob SHA при обновлении существующего файла; без этого можно перетереть чужую правку.
 
-Стандартный режим для существенных документов:
+Стандартный режим для существенных документов в direct commit mode:
 
 ```text
 один изменяемый документ = один commit
@@ -80,7 +121,7 @@ work: update approved-ai-sdlc-plan.md — stage-0.5-audit-plan
 protocols: update chat-github-repo-work-protocol.md — commit-anchored-revisions
 ```
 
-В финальном ответе ChatGPT указывает commit SHA and anchor.
+В финальном ответе ChatGPT указывает commit SHA and anchor. В archive handoff mode ChatGPT указывает suggested anchor and places it into `work/COMMIT_MESSAGE.txt`.
 
 ## Старые версии
 
@@ -90,7 +131,7 @@ protocols: update chat-github-repo-work-protocol.md — commit-anchored-revision
 
 ## Обновление дискурса
 
-Если работа изменила ход текущей задачи, ChatGPT должен обновить `work/discourse.md` в репозитории до финального ответа или явно сказать, что запись невозможна, и дать точный patch.
+Если работа изменила ход текущей задачи, ChatGPT должен обновить `work/discourse.md` в репозитории до финального ответа or include the updated `work/discourse.md` in the archive handoff. Если запись невозможна, ChatGPT должен явно сказать это and give exact patch/import material.
 
 Обновление дискурса выполняется по правилам:
 
@@ -98,7 +139,7 @@ protocols: update chat-github-repo-work-protocol.md — commit-anchored-revision
 protocols/rules/discourse-maintenance-rules.md
 ```
 
-Для ChatGPT это особенно важно: смысловые выводы не должны оставаться только в ответе чата. Если они нужны для дальнейшей работы, они должны попасть в репозиторий.
+Для ChatGPT это особенно важно: смысловые выводы не должны оставаться только в ответе чата. Если они нужны для дальнейшей работы, они должны попасть в репозиторий or into the archive prepared for repository import.
 
 ## Прямая запись в main
 
@@ -115,11 +156,12 @@ ChatGPT должен остановиться и запросить подтве
 - правка затрагивает SPDD/Gas Town seeds;
 - требуется merge в `main`;
 - старая версия файла не может быть надёжно определена по commit/discourse anchor;
+- целевая ветка для direct commit mode не может быть надёжно определена;
 - нужные документы из `/work` не удаётся прочитать перед ответом.
 
-## Итог ChatGPT-ответа после записи
+## Итог ChatGPT-ответа после записи или архива
 
-После записи ChatGPT сообщает:
+После direct commit mode ChatGPT сообщает:
 
 1. Ветку.
 2. Commit SHA.
@@ -129,4 +171,13 @@ ChatGPT должен остановиться и запросить подтве
 6. Как обновлён `work/discourse.md`.
 7. Какие вопросы остались открытыми.
 
-Если запись не выполнялась, финальный ответ должен явно сказать, что изменений в репозитории нет.
+После archive handoff mode ChatGPT сообщает:
+
+1. Ссылку на архив.
+2. Список файлов внутри `work/`.
+3. Suggested commit anchor / message.
+4. Какие документы из репозитория or `/work` были прочитаны.
+5. Как представлен `work/discourse.md`: обновлённый файл, patch, or not changed.
+6. Какие вопросы остались открытыми.
+
+Если ни запись, ни архив не выполнялись, финальный ответ должен явно сказать, что изменений в репозитории нет and archive was not produced.
