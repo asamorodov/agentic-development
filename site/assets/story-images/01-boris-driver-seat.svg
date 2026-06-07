@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="540" viewBox="0 0 900 540" role="img" aria-labelledby="title desc">
+<title id="title">01-boris-driver-seat.svg</title>
+<desc id="desc">Source Mermaid from How I Use Claude Code, Staying in the Driver’s Seat: Claude proposes changes -&gt; I evaluate each item -&gt; accept/modify/skip/override -&gt; refined implementation scope.</desc>
+<style>
+  .bg { fill: #f8fafc; }
+  .box { fill: #ffffff; stroke: #334155; stroke-width: 2; rx: 14; }
+  .box-green { fill: #dcfce7; stroke: #22c55e; stroke-width: 2; rx: 14; }
+  .box-red { fill: #fee2e2; stroke: #ef4444; stroke-width: 2; rx: 14; }
+  .box-purple { fill: #ede9fe; stroke: #8b5cf6; stroke-width: 2; rx: 14; }
+  .diamond { fill: #ffffff; stroke: #334155; stroke-width: 2; }
+  .label { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 18px; fill: #0f172a; font-weight: 650; }
+  .small { font-size: 15px; fill: #475569; font-weight: 600; }
+  .edge { stroke: #334155; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+  .edge-red { stroke: #ef4444; stroke-width: 2.2; fill: none; marker-end: url(#arrow-red); }
+  .edge-green { stroke: #16a34a; stroke-width: 2.2; fill: none; marker-end: url(#arrow-green); }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#334155" /></marker>
+  <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ef4444" /></marker>
+  <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#16a34a" /></marker>
+</defs>
+<rect class="bg" x="0" y="0" width="900" height="540" />
+<rect class="box" x="340" y="40" width="220" height="70" rx="14" />
+<text class="label" x="450.0" y="69.0" text-anchor="middle" dominant-baseline="middle">Claude proposes</text>
+<text class="label" x="450.0" y="92.0" text-anchor="middle" dominant-baseline="middle">changes</text>
+<path class="edge" d="M450,110 L450,150" />
+<rect class="box-purple" x="340" y="150" width="220" height="70" rx="14" />
+<text class="label" x="450.0" y="179.0" text-anchor="middle" dominant-baseline="middle">I evaluate</text>
+<text class="label" x="450.0" y="202.0" text-anchor="middle" dominant-baseline="middle">each item</text>
+<path class="edge" d="M450,220 L175,275" />
+<rect class="box" x="90" y="275" width="170" height="75" rx="14" />
+<text class="label" x="175.0" y="306.5" text-anchor="middle" dominant-baseline="middle">Accept</text>
+<text class="label" x="175.0" y="329.5" text-anchor="middle" dominant-baseline="middle">as-is</text>
+<path class="edge" d="M175,350 L450,420" />
+<path class="edge" d="M450,220 L385,275" />
+<rect class="box" x="300" y="275" width="170" height="75" rx="14" />
+<text class="label" x="385.0" y="306.5" text-anchor="middle" dominant-baseline="middle">Modify</text>
+<text class="label" x="385.0" y="329.5" text-anchor="middle" dominant-baseline="middle">approach</text>
+<path class="edge" d="M385,350 L450,420" />
+<path class="edge" d="M450,220 L595,275" />
+<rect class="box" x="510" y="275" width="170" height="75" rx="14" />
+<text class="label" x="595.0" y="306.5" text-anchor="middle" dominant-baseline="middle">Skip /</text>
+<text class="label" x="595.0" y="329.5" text-anchor="middle" dominant-baseline="middle">remove</text>
+<path class="edge" d="M595,350 L450,420" />
+<path class="edge" d="M450,220 L805,275" />
+<rect class="box" x="720" y="275" width="170" height="75" rx="14" />
+<text class="label" x="805.0" y="306.5" text-anchor="middle" dominant-baseline="middle">Override</text>
+<text class="label" x="805.0" y="329.5" text-anchor="middle" dominant-baseline="middle">technical choice</text>
+<path class="edge" d="M805,350 L450,420" />
+<rect class="box-green" x="300" y="420" width="300" height="70" rx="14" />
+<text class="label" x="450.0" y="449.0" text-anchor="middle" dominant-baseline="middle">Refined</text>
+<text class="label" x="450.0" y="472.0" text-anchor="middle" dominant-baseline="middle">implementation scope</text>
+
+</svg>

@@ -1,0 +1,13 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+
+# Dependency/build caches if the site later gets a generator
+node_modules/
+.cache/
+.vite/
+
+# Local scratch space
+work/scratch/

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="620" viewBox="0 0 1320 620" role="img" aria-labelledby="title desc">
+  <title id="title">Beads as dependency-aware task graph memory for agents</title>
+  <desc id="desc">Local explanatory diagram based on the Beads README.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M2,2 L10,6 L2,10 Z" fill="#334155"/></marker>
+    <marker id="dashArrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M2,2 L10,6 L2,10 Z" fill="#64748b"/></marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+    <style>
+      text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill:#0f172a; }
+      .title { font-size:30px; font-weight:760; }
+      .subtitle { font-size:16px; fill:#475569; }
+      .node { filter:url(#shadow); stroke-width:2; }
+      .ready { fill:#dcfce7; stroke:#16a34a; }
+      .blocked { fill:#fee2e2; stroke:#dc2626; }
+      .claimed { fill:#e0f2fe; stroke:#0284c7; }
+      .done { fill:#f1f5f9; stroke:#64748b; }
+      .memory { fill:#fef3c7; stroke:#d97706; }
+      .label { font-size:18px; font-weight:700; }
+      .small { font-size:13px; fill:#475569; }
+      .cmd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13px; fill:#334155; }
+      .line { stroke:#334155; stroke-width:3; fill:none; marker-end:url(#arrow); }
+      .dash { stroke:#64748b; stroke-width:3; fill:none; stroke-dasharray:8 8; marker-end:url(#dashArrow); }
+      .legendBox { fill:#ffffff; stroke:#cbd5e1; stroke-width:2; rx:16; }
+    </style>
+  </defs>
+  <rect width="1320" height="620" fill="#ffffff"/>
+  <text class="title" x="54" y="58">Beads: граф задач как внешняя память агента</text>
+  <text class="subtitle" x="54" y="86">Задачи, зависимости, claim-состояние и долговременные заметки превращают очередь работы в структурированный объект.</text>
+
+  <circle class="node done" cx="236" cy="278" r="66"/>
+  <text class="label" x="236" y="270" text-anchor="middle">BD-101</text>
+  <text class="small" x="236" y="295" text-anchor="middle">done</text>
+
+  <circle class="node ready" cx="490" cy="210" r="72"/>
+  <text class="label" x="490" y="203" text-anchor="middle">BD-126</text>
+  <text class="small" x="490" y="229" text-anchor="middle">ready</text>
+
+  <circle class="node claimed" cx="744" cy="278" r="76"/>
+  <text class="label" x="744" y="270" text-anchor="middle">BD-132</text>
+  <text class="small" x="744" y="296" text-anchor="middle">claimed by agent</text>
+
+  <circle class="node blocked" cx="996" cy="210" r="72"/>
+  <text class="label" x="996" y="203" text-anchor="middle">BD-140</text>
+  <text class="small" x="996" y="229" text-anchor="middle">blocked</text>
+
+  <circle class="node ready" cx="996" cy="412" r="66"/>
+  <text class="label" x="996" y="405" text-anchor="middle">BD-147</text>
+  <text class="small" x="996" y="430" text-anchor="middle">ready</text>
+
+  <path class="line" d="M297 260 C343 236, 378 224, 418 218"/>
+  <path class="line" d="M560 228 C610 244, 642 256, 671 265"/>
+  <path class="line" d="M817 260 C866 238, 900 224, 925 217"/>
+  <path class="dash" d="M963 352 C934 322, 880 301, 820 286"/>
+
+  <rect class="legendBox" x="82" y="458" width="366" height="104" rx="16"/>
+  <text class="cmd" x="112" y="492">bd ready</text>
+  <text class="small" x="204" y="492">показать задачи без блокеров</text>
+  <text class="cmd" x="112" y="522">bd update --claim</text>
+  <text class="small" x="280" y="522">закрепить задачу за агентом</text>
+
+  <rect class="node memory" x="512" y="454" width="278" height="112" rx="20"/>
+  <text class="label" x="651" y="492" text-anchor="middle">Memory notes</text>
+  <text class="cmd" x="548" y="523">bd remember</text>
+  <text class="small" x="548" y="548">устойчивые факты и решения</text>
+
+  <rect class="legendBox" x="858" y="458" width="386" height="104" rx="16"/>
+  <text class="cmd" x="888" y="492">bd dep add</text>
+  <text class="small" x="990" y="492">явные зависимости между задачами</text>
+  <text class="cmd" x="888" y="522">bd prime</text>
+  <text class="small" x="986" y="522">контекст для следующего агента</text>
+</svg>

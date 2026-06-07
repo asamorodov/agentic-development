@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="430" viewBox="0 0 1100 430" role="img" aria-labelledby="title desc">
+<title id="title">01-boris-slop-creep.svg</title>
+<desc id="desc">Source Mermaid from Slop Creep: Feature Request -&gt; Agent writes solution -&gt; Looks fine in isolation -&gt; Ships -&gt; next feature loops back, while codebase decays.</desc>
+<style>
+  .bg { fill: #f8fafc; }
+  .box { fill: #ffffff; stroke: #334155; stroke-width: 2; rx: 14; }
+  .box-green { fill: #dcfce7; stroke: #22c55e; stroke-width: 2; rx: 14; }
+  .box-red { fill: #fee2e2; stroke: #ef4444; stroke-width: 2; rx: 14; }
+  .box-purple { fill: #ede9fe; stroke: #8b5cf6; stroke-width: 2; rx: 14; }
+  .diamond { fill: #ffffff; stroke: #334155; stroke-width: 2; }
+  .label { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 18px; fill: #0f172a; font-weight: 650; }
+  .small { font-size: 15px; fill: #475569; font-weight: 600; }
+  .edge { stroke: #334155; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+  .edge-red { stroke: #ef4444; stroke-width: 2.2; fill: none; marker-end: url(#arrow-red); }
+  .edge-green { stroke: #16a34a; stroke-width: 2.2; fill: none; marker-end: url(#arrow-green); }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#334155" /></marker>
+  <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ef4444" /></marker>
+  <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#16a34a" /></marker>
+</defs>
+<rect class="bg" x="0" y="0" width="1100" height="430" />
+<rect class="box" x="80" y="70" width="170" height="70" rx="14" />
+<text class="label" x="165.0" y="99.0" text-anchor="middle" dominant-baseline="middle">Feature</text>
+<text class="label" x="165.0" y="122.0" text-anchor="middle" dominant-baseline="middle">Request</text>
+<rect class="box" x="330" y="70" width="210" height="70" rx="14" />
+<text class="label" x="435.0" y="99.0" text-anchor="middle" dominant-baseline="middle">Agent writes</text>
+<text class="label" x="435.0" y="122.0" text-anchor="middle" dominant-baseline="middle">solution</text>
+<rect class="box" x="620" y="70" width="200" height="70" rx="14" />
+<text class="label" x="720.0" y="99.0" text-anchor="middle" dominant-baseline="middle">Looks fine</text>
+<text class="label" x="720.0" y="122.0" text-anchor="middle" dominant-baseline="middle">in isolation</text>
+<rect class="box" x="900" y="70" width="100" height="70" rx="14" />
+<text class="label" x="950.0" y="105.0" text-anchor="middle" dominant-baseline="middle">Ships</text>
+<rect class="box" x="580" y="260" width="190" height="70" rx="14" />
+<text class="label" x="675.0" y="289.0" text-anchor="middle" dominant-baseline="middle">Next feature</text>
+<text class="label" x="675.0" y="312.0" text-anchor="middle" dominant-baseline="middle">request</text>
+<rect class="box-red" x="870" y="260" width="170" height="70" rx="14" />
+<text class="label" x="955.0" y="289.0" text-anchor="middle" dominant-baseline="middle">Codebase</text>
+<text class="label" x="955.0" y="312.0" text-anchor="middle" dominant-baseline="middle">decays</text>
+<path class="edge" d="M250,105 L330,105" />
+<path class="edge" d="M540,105 L620,105" />
+<path class="edge" d="M820,105 L900,105" />
+<path class="edge" d="M950,140 L675,260" />
+<path class="edge" d="M580,295 L435,140" />
+<path class="edge-red" d="M950,140 L955,260" />
+
+</svg>
