@@ -44,3 +44,18 @@ Codex, получив такой transfer packet, должен:
 ## Что не делать
 
 Не считать transfer packet новым source of truth после применения. После применения актуальное состояние должно быть в файлах репозитория, прежде всего в `work/discourse.md` and relevant project/protocol files.
+
+## Archive overlay как основной переносимый формат
+
+Если результат ChatGPT должен быть применён к рабочей ветке без прямого commit из чата, предпочтительный формат — archive overlay.
+
+Правила:
+
+- top-level folders match repository paths: `work/`, `protocols/`, `project/`, `content/` when needed;
+- for task-local work use `work/` top-level;
+- for long files include full replacement if full snapshot was provided;
+- keep overlays cumulative until user provides new snapshot or says changes were committed;
+- include `work/APPLY_NOTES.md`, `work/COMMIT_MESSAGE.txt`, `work/CHECKS.json`;
+- if the overlay changes task direction, include updated full `work/discourse.md` when possible.
+
+Codex applying archive overlay must treat it as repository file changes, not as chat summary.

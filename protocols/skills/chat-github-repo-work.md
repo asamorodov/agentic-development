@@ -2,13 +2,17 @@
 
 ## Когда применять
 
-Применяйте этот skill, когда ChatGPT работает напрямую с GitHub-репозиторием через GitHub-интеграцию: читает файлы, создаёт новые рабочие документы, обновляет существующие файлы, коммитит изменения and reports commit anchors.
+Применяйте этот skill, когда ChatGPT работает с Git-репозиторием из чата:
+
+- через GitHub-интеграцию;
+- через snapshot/archive overlay;
+- через подготовку файлов для последующего ручного commit or Codex application.
 
 Этот skill не предназначен для Codex task/worktree execution. Для Codex используйте `protocols/skills/codex-task-work.md`.
 
 ## Что прочитать
 
-Перед содержательным ответом или записью в репозиторий прочитайте:
+Перед содержательным ответом or записью в репозиторий прочитайте:
 
 ```text
 AGENTS.md
@@ -16,24 +20,52 @@ project/repository-structure.md
 protocols/rules/chat-github-repo-work-protocol.md
 ```
 
-Если задача относится к текущей рабочей ветке или `/work`, обязательно прочитайте:
+Если задача относится к текущей рабочей ветке or `/work`, обязательно прочитайте:
 
 ```text
 work/discourse.md
 ```
 
-Затем оцените файлы в корне `/work` и прочитайте нужные. Если неясно, какие документы нужны, прочитайте все релевантные текстовые документы из `/work`, а не угадывайте по названиям.
+Затем оцените файлы в корне `/work` and прочитайте нужные. Если неясно, какие документы нужны, прочитайте все релевантные текстовые документы из `/work`, а не угадывайте по названиям.
 
 ## Как работать
 
-Работайте по `protocols/rules/chat-github-repo-work-protocol.md`.
+Работайте по:
 
-Новые рабочие документы создавайте в репозитории, по умолчанию в `/work`, а не внутри ответа чата.
+```text
+protocols/rules/chat-github-repo-work-protocol.md
+```
 
-Существующие документы обновляйте как новую версию того же файла через commit. Стандарт для существенных документов: один изменяемый документ — один commit. Каждый commit должен иметь понятный anchor.
+Для многофайловых задач default mode — **archive overlay**, not direct commit.
 
-Если работа меняет ход задачи, обновите `work/discourse.md` отдельным завершающим commit по `protocols/rules/discourse-maintenance-rules.md`.
+Direct commit mode используется только по явной просьбе пользователя:
+
+```text
+закоммить в <branch-name-or-description>
+```
+
+Для archive overlay:
+
+- если пользователь дал full snapshot, работайте с файлами локально;
+- для длинных файлов используйте full-file replacement in overlay;
+- каждый новый overlay делайте кумулятивным until new snapshot or commit point;
+- включайте `work/APPLY_NOTES.md`, `work/COMMIT_MESSAGE.txt`, `work/CHECKS.json`;
+- давайте подробный отчёт в чате.
+
+Новые рабочие документы создавайте в `/work` inside overlay or repository. Persistent protocol/project changes go to `/protocols`, `/project`, `/site-spec` or `/content` only after human gate.
+
+Если работа меняет ход задачи, обновите `work/discourse.md` по `protocols/rules/discourse-maintenance-rules.md`.
 
 ## Итог
 
-В финальном ответе укажите ветку, commit SHA, anchors, изменённые файлы, прочитанные `/work`-документы и как был обновлён дискурс. Если запись не выполнялась, явно скажите, что изменений в репозитории нет.
+В финальном ответе укажите:
+
+- режим: archive overlay or direct commit;
+- ветку or snapshot base;
+- ссылку на архив or commit SHA;
+- список изменённых файлов;
+- suggested commit anchor;
+- как обновлён discourse;
+- что делать дальше.
+
+Если запись/архив не выполнялись, явно скажите, что изменений нет.

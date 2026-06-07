@@ -131,3 +131,222 @@ GSD and BMAD не должны автоматически стать deep anchor
 После этого уточнения `discourse.md` должен оставаться однородным: поворот за поворотом, с embedded filenames where they matter. Он не заменяет `source-precedence.md`, `approved-ai-sdlc-plan.md`, seed files and protocols. Он объясняет, почему эти файлы появились, как они связаны с решениями и какие ходы нельзя случайно откатить.
 
 Codex, продолжая работу, должен начинать не с немедленного writing. Логика последнего поворота ведёт к тому, что сначала нужно прочитать `discourse.md`, `source-precedence.md`, `approved-ai-sdlc-plan.md`, `theory-source-map-ai-driven-sdlc.md`, `anchor-case-baseline-restore-rule.md`, `baseline-restore-rule.md`, `anchor-seed-spdd-old-site.md`, `anchor-seed-gas-town-old-site.md`, `codex-first-task-prompt.md`, `workflow-stages.md`, `case-dossier-protocol.md`, `anti-catalog-audit.md`, `anti-degradation-audit.md` and `source-depth-audit.md`; затем выполнить Stage 0 / Stage 0.5, проверить входные материалы, провести coverage audits по SDLC artifacts and agentic frameworks, предложить plan patch recommendations, остановиться на human gate, и только после этого строить skeleton `Theoretical_synthesis_rebuilt.md`, dossiers for SPDD, Gas Town, specification cluster, SWE-chat/Programming by Chat, policy/governance cluster, GSD/BMAD/frameworks, and draft chapters with anti-catalog and anti-degradation checks.
+
+## Stage 0.5 как coverage audit через snapshot archive
+
+После перехода к работе через репозиторий пользователь уточнил, что следующий шаг должен быть не writing глав, а `SDLC artifact and agentic framework coverage audit`, ранее запланированный как Stage 0.5. Ветка для текущей задачи: `work/theory-ai-sdlc-rebuild`. Эта стадия проверяет не стиль будущей теории, а полноту архитектуры до writing: какие SDLC artifacts и agentic frameworks уже учтены, какие только подразумеваются, а какие выпали.
+
+Сначала Stage 0.5 был сделан через GitHub connector и archive handoff, но это выявило ограничение: длинные файлы вроде `work/discourse.md` неудобно и рискованно восстанавливать из connector output, потому что чтение длинных файлов требует chunked-read и может обрезаться. Пользователь справедливо отметил, что вручную применять patch для дискурса неудобно. После этого режим был изменён: пользователь предоставил `git.zip` как snapshot ветки с папками `work/`, `content/`, `project/`, `protocols/`, а ChatGPT должен работать с полными локальными файлами и возвращать overlay archive с верхней папкой `work/`. Это сохраняет archive handoff как default mode, но снимает проблему ручного patching: если в snapshot есть полный `work/discourse.md`, ответный архив должен содержать полный обновлённый `work/discourse.md`, а не только patch.
+
+Перед audit были прочитаны репозиторные правила и рабочие документы: `AGENTS.md`, `project/repository-structure.md`, `project/source-precedence.md`, `project/branching-and-task-model.md`, `protocols/skills/chat-github-repo-work.md`, `protocols/rules/chat-github-repo-work-protocol.md`, `protocols/rules/discourse-maintenance-rules.md`, а также ключевые документы из `work`: `approved-ai-sdlc-plan.md`, `theory-source-map-ai-driven-sdlc.md`, `old-site-headings.md`, `old-site-theoretical-synthesis-baseline.md`, `expanded-quarry-headings.md`, `specification-cluster-deep-plan.md`, `approved-decisions.md`, `anchor-case-baseline-restore-rule.md`, `source-depth-audit.md`, `anti-catalog-audit.md`, `case-dossier-protocol.md`, `open-questions.md` and `codex-first-task-prompt.md`.
+
+Результаты audit представлены в overlay archive с файлами:
+
+- `work/reports/SDLC_ARTIFACT_COVERAGE_AUDIT.md`;
+- `work/reports/AGENTIC_FRAMEWORKS_COVERAGE_AUDIT.md`;
+- `work/reports/PLAN_PATCH_RECOMMENDATIONS.md`;
+- `work/decisions/PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md`;
+- `work/discourse.md`;
+- `work/APPLY_NOTES.md`;
+- `work/COMMIT_MESSAGE.txt`;
+- `work/CHECKS.json`.
+
+Главный результат audit: approved AI-driven SDLC plan остаётся правильной master architecture, но перед drafting нужен patch. План силён в intent/specification zone, SPDD, Spec Kit/Kiro/TDAD/Constitutional SDD, Gas Town, evidence and governance. Слабые зоны: decision provenance (`ADR`, RFC/design proposal), lifecycle-tail artifacts (release plan, rollback plan, migration plan, runbook, incident report, postmortem, changelog, dependency/deprecation policy), security/provenance artifacts (threat model, security review, audit log, provenance record), ownership artifacts (`CODEOWNERS`, ownership map) and process/framework layer (GSD, BMAD, Reversa, OpenSpec, Spec Kitty).
+
+Важный поворот: GSD and BMAD не должны автоматически стать deep anchors, но их нельзя оставлять вне плана. Они показывают process layer, отличающийся и от SPDD/Spec Kit specification layer, и от Codex/GitHub/Claude platform layer. GSD полезен как lightweight context-engineering / spec-driven loop around context rot, fresh-context subagents, `STATE.md`, `CONTEXT.md`, Discuss → Plan → Execute → Verify → Ship. BMAD полезен как role-based agile AI-driven methodology with specialized agents and guided workflows. Их место предварительно видится в Part VI/VII как medium-deep process-framework layer, но promotion to deep anchor or new top-level part требует human gate.
+
+Audit также предложил proposed ADR `work/decisions/PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md`. Его смысл: перед writing нужно явно признать SDLC artifacts first-class design objects and add process/framework coverage. `work/approved-ai-sdlc-plan.md` не должен меняться автоматически; сначала пользователь должен утвердить `work/reports/PLAN_PATCH_RECOMMENDATIONS.md` and proposed ADR.
+
+## Stage 0.6 как трёхэтапный добор источников по слабым зонам
+
+После Stage 0.5 audit пользователь уточнил, что следующий source expansion должен идти не одним поиском, а повторными “честными” этапами: для каждой слабой зоны — три разных формулировки поиска. Это важно, потому что один query легко притягивает только один тип материала: academic papers, официальные docs, vendor posts or already-known names. Новый режим должен был проверить слабые зоны с разных сторон и оставить явные следы поиска.
+
+Для этого был создан блок `work/source-expansion/stage_0_6/`. В нём каждая тема получила три пары файлов `step_XX_prompt.md` / `step_XX_results.md`. Темы: `decision_provenance`, `agentic_frameworks`, `lifecycle_tail`, `security_provenance`, `ownership_completion_right`.
+
+По decision provenance поиск подтвердил, что ADR/RFC/design rationale нужно добавлять не как мелкую документационную деталь, а как отдельный слой decision provenance. Практические ADR sources дают форму context/decision/consequences; empirical and LLM/ADR papers показывают, что decision records могут быть drafted and checked with LLMs, но не заменяют человеческое архитектурное суждение. Это усилило рекомендацию добавить ADR/RFC/design proposal в Part III/VI/XII.
+
+По agentic frameworks поиск уточнил место GSD and BMAD. Spec Kit остаётся deep specification regime in Part V, но GSD and BMAD относятся к process/framework layer. GSD полезен как context-engineering and externalized-state loop; BMAD — как role-based agile AI-driven methodology. OpenSpec/Agent Spec and AgentSPEX показывают отдельную линию declarative agent/workflow specifications, но пока не становятся deep anchors. Этот материал закреплён в `work/source-expansion/stage_0_6/agentic_frameworks/` and summarized in `work/reports/TARGETED_SOURCE_EXPANSION_REPORT.md`.
+
+По lifecycle tail поиск подтвердил, что Part XII нельзя оставлять только как warning about debt. Release notes/changelog, release traceability, rollback, runbooks, incident reports, postmortems, dependency and deprecation policy are concrete lifecycle artifacts. Они не все требуют deep treatment, но должны быть видимы, иначе AI-driven SDLC всё равно фактически заканчивается на merge/review.
+
+По security/provenance поиск усилил связку threat model → security review → audit log → provenance record. Agentic threat modeling sources like MATRA/ASTRIDE, SLSA/provenance materials, OpenSSF/Snyk/MCP security sources show that agentic SDLC needs security artifacts around tools, permissions, prompts, provenance and boundaries, not only final code review.
+
+По ownership поиск подтвердил, что completion right should be materialized through artifacts like CODEOWNERS, ownership map, review routing and protected branch/review policies. Existing Part XI has strong conceptual framing, but needs these concrete project interfaces.
+
+Результаты Stage 0.6 не меняют `work/approved-ai-sdlc-plan.md` напрямую. Они усиливают `work/reports/PLAN_PATCH_RECOMMENDATIONS.md` and `work/decisions/PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md`. Перед drafting пользователь должен решить, принимать ли этот patch and whether to create dossiers for ADR, GSD, BMAD, Reversa, lifecycle-tail artifacts and security/provenance artifacts.
+
+## Stage 0.7 как второй круг поиска по новым слабым местам
+
+После Stage 0.6 пользователь зафиксировал два операционных правила для работы через архивы. Во-первых, каждый следующий `work`-архив должен быть кумулятивным: содержать все предыдущие изменения, пока пользователь не даст новый полный snapshot или не скажет, что сделал commit. Во-вторых, отчёт в чате должен быть подробнее, потому что читать вывод здесь быстрее, чем каждый раз открывать все файлы архива.
+
+Смысловой следующий шаг появился из Stage 0.6: анализ источников сам выявил новые слабые места. Недостаточно было просто подтвердить ADR/GSD/BMAD/lifecycle-tail/security/ownership. Нужно было проверить second-order gaps: codebase readiness and context file quality, API/data contracts, agent workflow specifications, delivery safety and decision enforcement. Для этого был создан новый блок `work/source-expansion/stage_0_7/`, снова с тремя честными поисковыми этапами на каждую тему.
+
+По `codebase_readiness` поиск показал, что проект как интерфейс агента должен включать не только `AGENTS.md` and context files, but also codebase readiness: tests, feedback loops, metrics, CI and observability. Особенно важны источники про Agent READMEs, developer-provided context, AGENTS.md evaluation and AI Codebase Maturity Model. Они показывают, что context files могут быть полезны, но могут и вредить, если становятся шумной or outdated configuration.
+
+По `contracts_and_interfaces` проявился новый artifact gap: API contracts, data contracts, contract tests and schema evolution. Это не то же самое, что SPDD/specification. Контракты задают границы интеграции, совместимости and data meaning. Для AI-driven SDLC это важно, потому что generated code может проходить functional tests and still violate preconditions, schema compatibility or consumer expectations.
+
+По `workflow_specification` поиск уточнил process-as-artifact layer. AgentSPEX, Open Agent Specification and declarative agent workflow languages показывают, что можно специфицировать не только feature behavior, но и сам agent workflow: control flow, state, branching, verification, logging, portability. Эти источники пока не deep anchors, но они усиливают необходимость отдельного process/framework layer рядом с GSD/BMAD.
+
+По `delivery_safety` поиск подтвердил, что lifecycle tail должен включать operational control artifacts: feature flags, canary rollout, migration plan, rollback plan, runbook, schema migration and release notes. Это важно, чтобы теория не заканчивалась на merge/review. AI-driven SDLC должен доходить до production and recovery, иначе он остаётся code-centric despite lifecycle framing.
+
+По `decision_enforcement` поиск усилил ADR layer. LLMs can draft architectural decisions and design rationales, but not at human-level reliability; they can also help detect explicit code-inferable ADR violations, while implicit/deployment/organizational decisions remain human/context-dependent. Это превращает ADR из “документа о прошлом решении” в possible compliance/evidence target.
+
+Результаты Stage 0.7 представлены в `work/reports/TARGETED_SOURCE_EXPANSION_STAGE_0_7_REPORT.md` and `work/reports/PLAN_PATCH_RECOMMENDATIONS_STAGE_0_7.md`. Эти файлы дополняют, а не заменяют `work/reports/SDLC_ARTIFACT_COVERAGE_AUDIT.md`, `work/reports/AGENTIC_FRAMEWORKS_COVERAGE_AUDIT.md`, `work/reports/PLAN_PATCH_RECOMMENDATIONS.md` and `work/decisions/PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md`. `work/approved-ai-sdlc-plan.md` всё ещё не изменялся: сначала нужно human approval patch recommendations.
+
+## Stage 0.8 как третий круг поиска: traceability, supply chain, secrets, observability and human review
+
+После Stage 0.7 стало видно, что список слабых зон ещё не исчерпан. Второй круг источников показал codebase readiness, contracts, workflow specifications, delivery safety and decision enforcement, но из них естественно вышли новые artifact clusters: traceability, SBOM/dependency inventory, secret handling, agent observability and human review capacity. Пользователь подтвердил, что каждый поиск должен идти в три честных этапа с разными формулировками. Поэтому был создан `work/source-expansion/stage_0_8/`.
+
+По `requirements_traceability` поиск подтвердил, что traceability link / traceability matrix — отдельный SDLC artifact. Это не specification, не test plan and not ADR. Traceability connects requirement → design/spec → implementation → test/evidence → release/use. LLM-specific sources like TraceLLM and requirements-traceability augmentation show that models can help recover trace links, but only as semi-automated support with human validation. Это усиливает, а не отменяет необходимость traceability artifacts.
+
+По `supply_chain_sbom` поиск показал, что SBOM/dependency/license inventory нужно добавить к lifecycle tail. SPDX, CycloneDX, CISA/NTIA minimum elements and NIST SSDF-like sources make SBOM a supply-chain artifact. Но empirical studies warn that SBOM tooling has consistency, accuracy, license metadata, privacy, hidden-package and maintenance problems. Поэтому SBOM нельзя описывать как solved compliance checkbox; это living artifact with quality/freshness/trustworthiness requirements.
+
+По `secrets_and_sensitive_data` поиск выделил agent-specific risk: secrets can leak not only through committed code, but through agent skills, logs, stdout, MCP configs, prompt injection and local credentials. `Credential Leakage in LLM Agent Skills` особенно важен, потому что показывает leakage patterns that require joint analysis of code and natural language. Для AI-driven SDLC это значит: secret scanning, credential inventory and sensitive context boundary должны стать явными artifacts/gates.
+
+По `observability_and_agent_traces` поиск усилил Part VIII. OpenTelemetry GenAI conventions, AgentTrace, AgentSight, failure-aware observability and TRACES show that agent observability is not just “logs”. It includes structured traces across prompts, tool calls, state changes, environment effects, evidence availability, loops, budget pressure and safety drift. Agent trace / GenAI span / tool-call log становятся evidence/provenance artifacts.
+
+По `human_review_and_devex` поиск вернул внимание к человеческой стороне lifecycle. SPACE/DevEx frameworks, DORA, Human-AI code review studies, agentic review vision and longitudinal AI coding assistant studies show that AI shifts work toward supervisory engineering and verification. Human review is not a ceremonial final gate. It is scarce capacity, knowledge transfer and contextual judgment. More generated code can increase activity while worsening cognitive load or review bottlenecks.
+
+Stage 0.8 добавил `work/reports/TARGETED_SOURCE_EXPANSION_STAGE_0_8_REPORT.md` and `work/reports/PLAN_PATCH_RECOMMENDATIONS_STAGE_0_8.md`. Он не меняет `work/approved-ai-sdlc-plan.md` напрямую. Теперь patch перед drafting должен учитывать не только ADR/GSD/BMAD/lifecycle-tail/security/ownership, но также traceability, SBOM/dependency/license inventory, secrets/sensitive context, agent observability and human review capacity.
+
+## Stage 0.9 как добор источников для единого замысла
+
+После Stage 0.8 пользователь указал на две проблемы. Первая — языковая: в рабочих отчётах стало слишком много английского языка там, где достаточно нормального русского технического текста. Перед продолжением были перечитаны `protocols/rules/language-style-rules.md`, `protocols/rules/russian-language.md`, `protocols/rules/terminology-and-translation.md`, `protocols/rules/human-technical-style.md`, `protocols/rules/english-source-handling.md` and `protocols/rules/source-and-provenance.md`. Это привело к правилу для следующих отчётов: английским остаются названия файлов, инструментов, статей, команд and точные имена, а объяснения, выводы and рекомендации пишутся по-русски.
+
+Вторая проблема была содержательной. После Stage 0.5–0.8 список важных артефактов стал очень большим. Если просто добавить ADR, GSD, BMAD, контракты, трассируемость, SBOM, секреты, наблюдаемость, ownership, feature flags and runbooks, теория снова может стать неоднородной коллекцией. Поэтому Stage 0.9 был сделан как добор источников не “ещё по одной теме”, а по источникам, которые помогают связать артефакты в единый замысел.
+
+Для Stage 0.9 создана папка `work/source-expansion/stage_0_9/`. Как и раньше, каждая тема прошла три честных поисковых этапа: `step_01_prompt.md`, `step_01_results.md`, `step_02_prompt.md`, `step_02_results.md`, `step_03_prompt.md`, `step_03_results.md`.
+
+По `flow_and_platform` проверялись value stream, Team Topologies, platform engineering and software catalog. Главный вывод: артефакт должен попадать в теорию только если он помогает потоку изменения пройти дальше: от намерения к контексту, от контекста к исполнению, от исполнения к свидетельствам, от свидетельств к ревью, от ревью к праву завершения, от завершения к сопровождению. Platform/golden path/catalog sources useful not as new deep cases, but as a way to connect context, ownership, environment and checks.
+
+По `reproducible_environment` проверялись dev containers, Codespaces, reproducible builds, Nix/Bazel/hermetic builds and attestable builds. Вывод: Part VIII needs runnable/reproducible environment as artifact. Агенту недостаточно читать репозиторий. Он должен иметь среду, где проверки можно воспроизвести and evidence можно доверять.
+
+По `policy_as_code` проверялись Open Policy Agent, Conftest, Kyverno, InSpec, compliance-as-code, ARPaCCino and policy-as-type materials. Вывод: исполняемые политики связывают governance and environment. Они могут автоматизировать часть ограничений, но сами требуют тестов, ревью and сопровождения. Это должно быть medium artifact, not deep anchor.
+
+По `prompt_context_lifecycle` проверялись prompt artifacts, prompt evolution, promptware engineering, ChainForge and context engineering. Вывод: SPDD остаётся сильнейшим методом, но более общий риск шире: запросы, шаблоны запросов, context files and agent instructions становятся поддерживаемыми артефактами. Они нуждаются в versioning, validation, regression checks and retirement.
+
+По `artifact_graph` проверялись traceability graph, code property graph, LLM-assisted architecture traceability and software catalog. Вывод: чтобы избежать новой коллекции, автору нужно держать внутреннюю модель artifact graph. Не обязательно делать отдельную часть про граф, но важно показывать связи: требования, спецификации, ADR, контракты, тесты, трассы, PR, владельцы and release artifacts должны образовывать связанный lifecycle, а не список тем.
+
+Stage 0.9 добавил `work/reports/TARGETED_SOURCE_EXPANSION_STAGE_0_9_REPORT.md` and `work/reports/PLAN_PATCH_RECOMMENDATIONS_STAGE_0_9.md`. Эти документы не меняют `work/approved-ai-sdlc-plan.md` напрямую. Они уточняют, как вписать уже найденные слабые зоны в единую рамку, чтобы теория осталась связным текстом, а не перечнем правильных источников.
+
+## Consolidated patch после Stage 0.5–0.9
+
+После Stage 0.9 стало ясно, что дальнейший широкий поиск источников надо остановить. Источников уже достаточно не только для выявления отдельных дыр, но и для понимания интеграционного риска: если просто добавить все найденные артефакты, теория снова станет каталогом. Поэтому следующим шагом стал не Stage 0.10, а сведение результатов Stage 0.5–0.9 в один проект patch к `work/approved-ai-sdlc-plan.md`.
+
+Для этого создан `work/reports/CONSOLIDATED_PLAN_PATCH_AFTER_STAGE_0_5_TO_0_9.md`. Он не меняет approved plan напрямую. Его задача — показать, какие изменения нужно внести в архитектурный план после всех audit/source-expansion стадий. Главная формула patch: AI-driven SDLC остаётся master architecture, но теперь нужно явно добавить слой связанных артефактов. Артефакт попадает в основную теорию не потому, что он “важен в SDLC”, а потому что переносит программное изменение через одну из границ жизненного цикла: намерение, контекст, исполнение, свидетельства, ревью, право завершения, сопровождение and learning.
+
+Также обновлён `work/decisions/PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md`. Ранняя версия ADR фиксировала только Stage 0.5 findings. Новая версия включает Stage 0.6–0.9: decision provenance, process/framework layer, lifecycle-tail artifacts, security/provenance, traceability, contracts, SBOM, secrets, observability, review capacity, platform/catalog surfaces, reproducible environment and policy-as-code. ADR остаётся proposed: он требует human approval before `work/approved-ai-sdlc-plan.md` can be updated.
+
+Добавлен `work/reports/CONSOLIDATED_PATCH_DECISION_GUIDE.md`, чтобы не заставлять пользователя перечитывать все промежуточные search files. В нём три варианта: принять patch полностью, принять частично, либо отложить и начать drafting. Рекомендация — принять patch частично, но не минимально: внести основные artifact classes, не создавать новые top-level parts, не делать новые deep anchors, and create only selected dossiers/notes before skeleton.
+
+Это важный поворот процесса: дальнейшая работа должна перейти от поиска к архитектурной фиксации. Пока пользователь не утвердит consolidated patch, не нужно переписывать главы and не нужно менять `work/approved-ai-sdlc-plan.md`. После утверждения следующий шаг — обновить approved plan, затем создать выбранные dossiers/notes, и только потом переходить к skeleton/drafting.
+
+## Подробный patch после повторного перечитывания корпуса
+
+После consolidated patch пользователь попросил ещё раз перечитать все доступные материалы, в первую очередь новые найденные источники, но также старую теорию из `content/Theoretical_synthesis.md`, последнюю expanded/quarry теорию, `content/Cross_story_synthesis.md` and all 12 stories. Пользователь отдельно указал, что patch должен быть намного подробнее, потому что именно на этом этапе доступны все данные источников.
+
+Повторное чтение подтвердило, что проблема уже не в нехватке источников. Старая теория сильна композицией: она ведёт от удачного запроса к рабочей среде, дальше к контексту, SPDD, обвязке, Gas Town, свидетельствам and ответственности. Expanded quarry силён материалом, но опасен формой: он снова тянет в каталог кейсов. Cross-story synthesis and stories показывают практическую сторону: research, plan, sandbox, worktrees, skills, hooks, PR, external memory, review package and human attention. Новые источники Stage 0.5–0.9 добавили много недостающих артефактов, но именно поэтому появился риск неоднородной коллекции.
+
+Для фиксации нового понимания создан `work/reports/DETAILED_CONSOLIDATED_PLAN_PATCH_AFTER_FULL_REREAD.md`. Его главный ход: сгруппировать все новые артефакты в пять классов, а не добавлять их по одному. Эти классы: артефакты намерения и решения; артефакты состояния задачи и проекта; артефакты среды исполнения и ограничений; артефакты свидетельства и проверки; артефакты завершения and lifecycle tail. Это позволяет сохранить главный замысел AI-driven SDLC как прохождение программного изменения через связанные артефакты, управляемые среды and права завершения.
+
+Также создан `work/reports/SOURCE_TO_PLAN_MAPPING_AFTER_FULL_REREAD.md`, который связывает старую теорию, expanded quarry, Cross-story synthesis, 12 stories and Stage 0.5–0.9 sources with the proposed plan patch. Создан `work/reports/LANGUAGE_AND_STYLE_REPAIR_NOTE.md`, потому что пользователь указал на деградацию языка из-за чрезмерного английского. Дальнейшие плановые документы должны писать объяснения и выводы по-русски, оставляя английский для точных имён источников, инструментов, файлов and команд.
+
+`work/decisions/PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md` дополнен addendum: найденные артефакты нужно группировать по функции в жизненном цикле, а не переносить в план списком. Новый файл `work/reports/DETAILED_PATCH_DECISION_GUIDE.md` предлагает принять patch в этом виде, но с ограничителями: не добавлять новые top-level parts, не создавать новых deep anchors, не раздувать Part XII, создать только selected dossiers/notes, а затем перейти к skeleton.
+
+## Stage 0.12 как проверка двух оставшихся сильных кандидатов: architecture quality and test data
+
+После подробного consolidated patch пользователь указал на два оставшихся кандидата на важный пропуск: architecture quality / fitness functions and test data / test environments. Это были не мелкие темы. Они похожи на ADR по типу риска: их легко растворить между specification, CI, tests and review, хотя они несут отдельный инженерный смысл. Поэтому было решено выполнить ещё один targeted source expansion, но только по этим двум темам. Каждая тема снова прошла три честных поисковых этапа с разными формулировками.
+
+Для этого создана папка `work/source-expansion/stage_0_12/`. Внутри две темы: `architecture_quality/` and `test_data_environments/`, в каждой `step_01_prompt.md`, `step_01_results.md`, `step_02_prompt.md`, `step_02_results.md`, `step_03_prompt.md`, `step_03_results.md`.
+
+По `architecture_quality` поиск подтвердил, что это отдельный слой между ADR, specification and tests. ATAM and quality attribute scenario sources показывают, что архитектура оценивается через качества, сценарии, tradeoffs, sensitivity points and risks. Fitness functions and architecture tests add executable side: some architecture constraints can be checked continuously. ArchUnit gives a concrete example: dependency, layer and cycle rules can run as tests. AI-specific architecture evaluation sources show that LLMs can support scenario/risk analysis, but not replace human architectural judgment. Вывод: architecture quality / fitness functions deserve a named medium-high subsection, probably inside Part X, with links to Part III, Part VIII and Part XII.
+
+По `test_data_environments` поиск подтвердил, что test data and test environment are not support details. Test data management is creation, preparation, control and distribution of data for testing; test environments provide validated, stable and usable surfaces for executing scenarios; service virtualization and Testcontainers-style dependencies as code make unavailable or hard dependencies testable. AI-specific test-generation sources add a sharper risk: the same agentic/LLM machinery can generate code, tests, test data and then interpret results. Therefore evidence can become circular unless test data source, oracle source and environment identity are visible. Вывод: test data / test environments / oracle independence deserve a named medium-high subsection in Part X, with support in Part VIII and Part XII.
+
+Stage 0.12 adds `work/reports/TARGETED_SOURCE_EXPANSION_STAGE_0_12_REPORT.md`, `work/reports/PLAN_PATCH_RECOMMENDATIONS_STAGE_0_12.md` and `work/reports/RESIDUAL_GAP_REGISTER_AFTER_STAGE_0_12.md`. The residual gap register states that the strong remaining gaps are now visible: architecture quality / fitness functions and test data / test environments should be patched, but they do not require new top-level parts. Lower-risk residual items remain as short/source-map candidates: cost/token economics, privacy/data classification beyond secrets, legal/IP/generated-code provenance, user-facing docs/support artifacts, accessibility/i18n, performance engineering details and chaos/resilience testing details.
+
+This means broad source search should now stop unless the user explicitly reopens it. The next proper step is human approval of the expanded patch and then updating `work/approved-ai-sdlc-plan.md`.
+
+## Интеграция Stage 0.12 в consolidated patch
+
+После поиска по `architecture_quality` and `test_data_environments` пользователь попросил поправить сам patch достижениями Stage 0.12. Это было сделано не как новый широкий поиск, а как интеграция двух подтверждённых residual gaps into existing consolidated patch.
+
+Обновлён `work/reports/DETAILED_CONSOLIDATED_PLAN_PATCH_AFTER_FULL_REREAD.md`: добавлен раздел `Интеграция Stage 0.12`, где architecture quality / fitness functions and test data / test environments распределены по пяти классам артефактов and по частям будущего плана. Для architecture quality добавлены quality attribute scenario, architecture constraint, fitness function, architecture test, architecture drift and stale fitness functions. Для test data добавлены test data source, fixture/seed state, controlled test environment, service virtualization, test dependencies as code, oracle provenance and independent validation of generated tests.
+
+Обновлены `work/reports/DETAILED_PATCH_DECISION_GUIDE.md`, `work/reports/CONSOLIDATED_PLAN_PATCH_AFTER_STAGE_0_5_TO_0_9.md` and `work/decisions/PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md`. Добавлен `work/reports/PATCH_INTEGRATION_CHECKLIST_AFTER_STAGE_0_12.md`, чтобы при последующем обновлении `work/approved-ai-sdlc-plan.md` не потерять эти две зоны.
+
+Главное решение Stage 0.12: architecture quality and test data/environment layers are accepted as real patch items. Они должны получить named medium-high subsections, likely inside Part X, with links to Parts III, VIII and XII. They do not create new top-level parts and do not become deep anchors.
+
+## Применение consolidated patch к approved plan
+
+Пользователь утвердил detailed consolidated patch and asked to apply it, but before applying to reread internal and external sources and work informed. На этой стадии source expansion was not reopened broadly. Вместо этого были подняты and used the accumulated internal and external source materials from Stage 0.5–0.12, old theory baseline, expanded quarry, Cross-story synthesis, 12 stories and protocol rules.
+
+Patch был применён к `work/approved-ai-sdlc-plan.md`. Документ теперь имеет статус v4. Верхняя архитектура AI-driven SDLC сохраняется, но добавлен слой связанных артефактов: intent/decision, task/project state, execution constraints, evidence/review, completion/lifecycle tail. SPDD, deep specification zone and Gas Town retain their roles. Architecture quality / fitness functions and test data / test environments are now accepted as named medium-high subsections, primarily in Part X with bridges to Parts III, VIII and XII.
+
+Принято решение ADR-0007: создан `work/decisions/ADR-0007-sdlc-artifact-and-framework-coverage.md`. Старый `work/decisions/PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md` marked as superseded. Это фиксирует, что Stage 0.5–0.12 patch принят как архитектурное решение.
+
+После обновления проведён аудит качества нового плана: `work/reports/UPDATED_PLAN_QUALITY_AUDIT.md`. Вердикт: pass with watchpoints. План стал сильнее и полнее, но теперь главный риск — не новые пропуски, а перегруз Parts VI–XII and possible return to catalog structure. Самые важные watchpoints: Part X must stay governed by evidence needs, Part XII must remain controlled lifecycle tail, source map now lags behind Stage 0.6–0.12 sources, and final prose needs Russian language pass.
+
+## Selected dossiers после утверждения плана v4
+
+После применения consolidated patch and принятия `work/approved-ai-sdlc-plan.md` v4 следующий шаг был не writing глав, а selected dossiers/notes. Это следует из самого v4: новые слои стали видимыми, но перед skeleton and drafting нужно зафиксировать их роли, артефакты, failure modes and placement.
+
+Созданы dossiers/notes в `work/dossiers/`: `ADR_DECISION_PROVENANCE_DOSSIER.md`, `GSD_BMAD_PROCESS_FRAMEWORKS_DOSSIER.md`, `CODEBASE_READINESS_AND_CONTEXT_FILES_NOTE.md`, `API_DATA_CONTRACTS_AND_TRACEABILITY_NOTE.md`, `EXECUTION_CONTROL_SURFACES_NOTE.md`, `ARCHITECTURE_QUALITY_AND_FITNESS_FUNCTIONS_NOTE.md`, `TEST_DATA_ENVIRONMENTS_AND_ORACLES_NOTE.md`, `EVIDENCE_PACKAGE_TAXONOMY_NOTE.md`, `LIFECYCLE_TAIL_ARTIFACTS_NOTE.md`, `OWNERSHIP_AND_COMPLETION_ARTIFACTS_NOTE.md`.
+
+Эти файлы не являются финальной прозой and not a replacement for deep SPDD/Gas Town baseline dossiers. Their role is to prevent v4 plan from remaining abstract and to keep Parts VI–XII from turning into a catalog. Отдельно создан `work/reports/SELECTED_DOSSIERS_CREATED.md` and `work/reports/SELECTED_DOSSIERS_QUALITY_AUDIT.md`.
+
+Аудит dossiers дал verdict `PASS WITH NEXT-STEP DEPENDENCIES`: dossiers достаточны для skeleton v4, но не для полного writing SPDD/Gas Town or detailed Part V. Следующий правильный шаг после этих notes — skeleton v4, not full chapter drafting.
+
+## Перепроверка структуры Parts VI–XII перед skeleton
+
+После создания selected dossiers пользователь вернулся к watchpoints из аудита v4: Parts VI–XII могут распухнуть, Part X может стать энциклопедией тестирования, Part XII — эксплуатационным handbook. Пользователь согласился, что главы нельзя строить по одному кейсу or artifact per subsection, and asked whether structure should be reworked starting from Part VI. Также был поднят вопрос, могут ли GSD/BMAD become deep anchor or comparative deep case, and whether other case pairs/trios can help hold coherence.
+
+Для этого созданы `work/reports/STRUCTURAL_COHERENCE_ALTERNATIVES_FOR_PARTS_VI_XII.md`, `work/reports/COMPARATIVE_DEEP_CASES_AUDIT.md` and `work/reports/STRUCTURAL_RECOMMENDATION_BEFORE_SKELETON_V4.md`.
+
+Были проверены три честных варианта. Первый — conservative lifecycle rewrite: top-level части v4 остаются, but internal headings become lifecycle tensions instead of artifact labels. Второй — compressed flow after Part V: headings become more reader-facing and some flow is tightened. Third — comparative deep-slice structure: chapters built around case comparisons. Итог: использовать первый вариант как основу skeleton v4, borrowing titles from the second and local comparative subchapters from the third. Top-level approved part list пока не менять.
+
+По GSD/BMAD вывод: they should not become standalone deep anchors now. Но они заслуживают medium-deep comparative section in Part VII under `Когда процесс становится устанавливаемым артефактом`. Их полезно сравнить with Spec Kit and Gas Town: Spec Kit как specification toolkit, GSD как lightweight context/process loop, BMAD как role-based guided process, Gas Town как full organizational environment. Это сравнение может быть нешаблонным and useful, but only if it remains tied to lifecycle question.
+
+Также выявлены другие сравнительные пары/тройки: SPDD/Spec Kit/Kiro; two TDADs; Harness/Sandvault/platform tools; SWE-chat/Programming by Chat/How Coding Agents Fail; architecture fitness/contract tests/test data; SASE/open-source policies/CODEOWNERS; SBOM/provenance/agent trace/audit log; incident/postmortem/stale ADR/context cleanup. Рекомендация: использовать их inside parts, not as new top-level structure. Следующий правильный артефакт — `work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md`.
+
+## Skeleton v4 с максимальным использованием сравнительных подглав
+
+Пользователь принял структурную рекомендацию перед skeleton and отдельно подчеркнул, что сравнительные главы/подглавы могут стать “жемчужиной” синтеза: это не простое цитирование источника, а место, где модель может сделать собственную полезную сравнительную работу. Поэтому skeleton v4 был создан не как прямое копирование `work/approved-ai-sdlc-plan.md`, а как читательская структура, где Parts VI–XII строятся вокруг жизненных напряжений, а сильные сравнения встроены локально.
+
+Создан `work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md`. Он сохраняет верхние части v4, но внутренние headings для Parts VI–XII формулирует не как список артефактов, а как вопросы: что агент должен знать; как выбрать режим делегирования; как действие становится ограниченным and воспроизводимым; что именно должно быть доказано; кто имеет право завершить; как изменение возвращается в среду.
+
+Сравнительные подглавы встроены по максимуму, но не как новая top-level архитектура. В Part II используется сравнение SWE-chat / Programming by Chat / How Coding Agents Fail. В Part V — SPDD / Spec Kit / Kiro / Constitutional SDD and отдельное сравнение двух TDAD. В Part VII — Spec Kit / GSD / BMAD / Gas Town как спектр “process as artifact”. В Part VIII — Harness / Sandvault / platform agents. В Part X — architecture fitness / contract tests / test data as evidence beyond tests. В Part XI — SASE / open-source policies / CODEOWNERS. В Part XII — incident / stale ADR / context cleanup as feedback forms.
+
+Создан `work/reports/SKELETON_V4_QUALITY_AUDIT.md`. Вердикт: `PASS WITH DEEP-DOSSIER DEPENDENCIES`. Skeleton решает главный риск каталогизации, но перед writing нужны part-specific deep dossiers: SPDD baseline dossier, Gas Town baseline dossier, detailed specification cluster dossier, empirical anchor dossier for Part II and completion-right dossier for Part XI.
+
+## Methodology depth contract and skeleton rebuild
+
+После skeleton v4 пользователь сформулировал важное опасение: если не сделать Kiro, Constitutional SDD, Spec Kit, GSD and BMAD deep anchors like SPDD/Gas Town, они могут получить только одну обзорную подглаву and become useless for the user's learning purpose. Было принято новое различение: роль в архитектуре теории не равна глубине изложения. Методология может не быть deep anchor, но всё равно требовать protected depth.
+
+Для фиксации создан `work/reports/METHODOLOGY_DEPTH_CONTRACT.md`. В нём введён статус `protected methodology profile`. Этот статус получили Spec Kit, Kiro Specs, Constitutional SDD, оба TDAD, GSD / Open GSD and BMAD Method. Для каждого protected profile обязательны: problem, workflow, artifacts, context, roles, human gates, validation, lifecycle tail, strengths, failure modes, contrasts, and theory/Handbook split. Одного размывчатого overview теперь недостаточно.
+
+Принято `work/decisions/ADR-0008-protected-methodology-profiles.md`. В `work/approved-ai-sdlc-plan.md` добавлен methodology depth contract addendum. Skeleton rebuilt accordingly: `work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md` now contains protected specification methodology profiles in Part V and protected process methodology profiles in Part VII. Comparative syntheses are mandatory, not optional. Part V must compare SPDD / Spec Kit / Kiro / TDAD / Constitutional SDD. Part VII must compare Spec Kit / GSD / BMAD / Reversa / OpenSpec / AgentSPEX / Gas Town.
+
+Создан `work/reports/SKELETON_REBUILT_UNDER_METHODOLOGY_DEPTH_CONTRACT.md`. Следующий шаг перед writing Parts V and VII: create methodology dossiers for Spec Kit, Kiro, Constitutional SDD, TDAD, GSD and BMAD, then comparative synthesis reports. This should prevent the “mentioned but not understood” failure mode.
+
+## Подготовка Codex к Stage 0.19: protected methodology dossiers
+
+После введения methodology depth contract пользователь спросил, где лучше делать долгие повторные проходы по методологиям — здесь или в Codex. Было решено, что архитектурные решения and human gates лучше остаются в чате, но повторяемые многофайловые проходы по источникам, dossiers and anti-shallow audits лучше выполнять в Codex. Причина: Codex видит worktree, может читать длинные файлы локально, создавать много pass files, обновлять ledgers/checks and не заставляет пользователя работать через постоянные архивы.
+
+Чтобы Codex не получил свободную задачу “сам всё пойми и напиши”, создан `work/protocols/METHODOLOGY_DOSSIER_PASS_PROTOCOL.md`. Он задаёт для каждой protected methodology шесть обязательных проходов: source inventory, workflow reconstruction, artifact and gate map, missing detail pass, comparative pass, anti-shallow audit. Финальные dossiers создаются только после этих проходов.
+
+Создан `work/prompts/STAGE_0_19_METHOD_PROFILES_CODEX_TASK.md` — основной prompt для Codex Stage 0.19. Он требует создать dossiers for Spec Kit, Kiro, Constitutional SDD, TDAD, GSD and BMAD, plus comparative synthesis reports. Он запрещает писать финальные главы or менять approved plan.
+
+Также создана первая проверочная задача `work/prompts/FIRST_CODEX_READINESS_CHECK_TASK.md`. Её цель — убедиться, что Codex видит репозиторий, читает `work/discourse.md`, понимает approved plan v4, ADR-0007, ADR-0008, methodology depth contract, skeleton v4, selected dossiers and source expansion materials. Она должна создать readiness reports, но не должна начинать Stage 0.19. Это проверка, что Codex готов решать сложные задачи и не потеряет смысловую траекторию.
+
+Создан `work/reports/CODEX_METHODOLOGY_STAGE_HANDOFF.md`, где зафиксирован порядок: сначала readiness check, затем Stage 0.19. Это должно защитить переход от чата к Codex от прежней ошибки — формально правильного исполнения неправильной задачи.
+
+## Обновление persistent протоколов работы ChatGPT с Git-репозиторием
+
+После подготовки Codex Stage 0.19 пользователь отметил, что накопились изменения в самой практике работы чата с репозиторием. Хотя текущая ветка ведётся через архивы, это всё равно работа с Git-репозиторием, и правила нужно перенести из локальных решений в persistent `/protocols`, чтобы потом смержить их в `main`.
+
+На этой основе обновлены `protocols/rules/chat-github-repo-work-protocol.md`, `protocols/skills/chat-github-repo-work.md` and `protocols/rules/chat-codex-transfer-protocol.md`.
+
+В протоколе теперь явно закреплены два режима: direct commit mode and archive overlay mode. Archive overlay mode становится default for multi-file chat work. Зафиксированы правила snapshot input, работы с длинными файлами, full-file replacement, кумулятивных архивов, top-level repository folders in overlay, required `work/APPLY_NOTES.md`, `work/COMMIT_MESSAGE.txt`, `work/CHECKS.json`, and detailed chat reports. Direct commit mode теперь используется только по явной фразе пользователя `закоммить в <branch-name-or-description>`.
+
+Также закреплено, что если пользователь предоставляет full snapshot, `work/discourse.md` должен возвращаться как полный обновлённый файл, а не patch. Patch допустим only when full file was not safely read. Для persistent protocol changes теперь есть правило: сначала human gate, затем изменение `/protocols`, with discourse update when part of active branch.
