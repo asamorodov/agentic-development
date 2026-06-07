@@ -1,0 +1,18 @@
+{
+  "version": "v5",
+  "handoff_docs_present": true,
+  "prompts_present": true,
+  "key_inputs_present": true,
+  "legacy_transition_unique_manifest_present": true,
+  "reports_drafts_passes_ready": true,
+  "no_nested_AGENTS_md": true,
+  "site_docs_local_links_resolve": true,
+  "site_docs_missing_local_link_count": 0,
+  "start_here_present": true,
+  "current_and_cases_dirs_ready": true,
+  "agents_routes_to_start_here": true,
+  "theory_prompts_use_repo_paths": true,
+  "semantic_transfer_prompt_present": true,
+  "seed_dir_ready": true,
+  "current_cases_seeds_dirs_ready": true
+}

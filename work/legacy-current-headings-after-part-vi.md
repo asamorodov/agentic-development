@@ -1,0 +1,242 @@
+# Headings snapshot
+
+- L1: # Агентская разработка как карта текущих течений
+  - L11: ## Часть I. Как читать карту течений
+    - L20: ### Зачем нужна отдельная теоретическая часть
+    - L32: ### Что эта карта должна дать читателю {#what-the-map-should-give-reader}
+    - L40: ### Источник в карте — это тип сигнала, а не украшение ссылкой {#source-as-signal-type}
+    - L48: ### Что считать течением, а что считать примером {#what-counts-as-current}
+    - L56: ### Отрицательная граница тоже является материалом карты {#negative-boundary-as-map-material}
+    - L64: ### Течение, контур и режим — разные уровни карты
+    - L74: ### Как пользоваться уровнями карты без лишней иерархии {#theory-map-levels-without-overhead}
+    - L84: ### Модель стала достаточно сильной, чтобы проблема переместилась наружу
+    - L104: ### Почему новый материал должен быть плотным, а не просто “современным” {#new-material-density-principle}
+    - L112: ### Эмпирическая оговорка: агент ускоряет не любую систему {#ai-does-not-accelerate-every-system}
+    - L124: ### Как читать эмпирические исследования без ложной уверенности {#how-to-read-empirical-studies-without-false-certainty}
+    - L132: ### Эмпирический источник надо читать через его поверхность наблюдения {#empirical-source-observation-surface}
+    - L142: ### Что не должно попасть в карту как самостоятельная часть {#what-should-not-become-separate-part}
+    - L148: ### Что уже работает, что вероятно усилится, а что пока рано нормировать {#51-chto-uzhe-rabotaet-chto-veroyatno-usilitsya-a-chto-poka-rano-normirovat}
+  - L162: ## Часть II. Реальные сессии, PR и изменение работы разработчика
+    - L168: ### Агентская сессия как последовательность действий
+    - L176: ### Что видно в полной трассе агентской сессии {#full-agent-session-trace}
+    - L186: ### Трасса сессии — это пакет свидетельств, а не стенограмма чата {#session-trace-as-evidence-package}
+    - L194: ### Выживание кода как отдельный фильтр {#code-survival-as-filter}
+    - L202: ### Pushback как наблюдаемый сигнал качества взаимодействия {#pushback-as-observable-signal}
+    - L210: ### Ограничение SWE-chat: сессия видна, но не вся инженерная работа {#swe-chat-limitations}
+    - L218: ### Постепенная спецификация и короткие коррекции
+    - L224: ### Progressive specification не отменяет план, но объясняет, когда план появляется {#progressive-specification-and-plan}
+    - L232: ### Постепенная спецификация должна оставлять состояние, иначе она снова становится шумом {#progressive-specification-must-leave-state}
+    - L240: ### Делегирование диагностики, понимания и проверки {#delegating-diagnosis-comprehension-validation}
+    - L248: ### Контекстная инъекция и переговоры об автономии {#context-injection-and-autonomy-negotiation}
+    - L256: ### Постепенная спецификация как нормальная форма работы {#progressive-specification-as-normal-form}
+    - L266: ### Рассогласование видно по вмешательствам разработчика
+    - L276: ### Семь форм рассогласования и почему они не сводятся к “модель ошиблась” {#seven-misalignment-forms}
+    - L286: ### Рассогласование как цена несовпадения рабочей модели агента и проекта {#misalignment-as-model-project-mismatch}
+    - L294: ### Effort cost и trust cost как реальные расходы процесса {#effort-and-trust-costs}
+    - L302: ### Inaccurate self-reporting как отдельный сбой {#inaccurate-self-reporting-as-failure}
+    - L310: ### Рассогласование должно возвращаться в рабочую систему {#misalignment-must-feed-back-into-system}
+    - L318: ### Агентский PR как отдельная поверхность
+    - L328: ### PR сообщает не только код, но и форму работы агента {#pr-communicates-agent-work}
+    - L338: ### PR lifecycle как место, где агентская работа становится социальной {#pr-lifecycle-social-surface}
+    - L346: ### Описание PR как часть результата агента {#pr-description-as-agent-result}
+    - L354: ### Описание PR тоже должно проверяться, потому что оно становится интерфейсом ревью {#pr-description-must-be-verified}
+    - L364: ### Результат агента может закончиться до merge, но не исчезнуть {#agent-output-before-merge}
+    - L370: ### Почему часть агентского результата не становится кодом проекта
+    - L378: ### Полезный результат сессии не всегда является кодом, но это надо фиксировать {#useful-session-output-not-always-code}
+    - L386: ### Изменение работы разработчика: от создания к направлению и проверке
+    - L396: ### Надзорная инженерная работа имеет собственную стоимость {#supervisory-engineering-cost}
+  - L406: ## Часть III. Контуры владения, акторы и право завершения
+    - L412: ### Агент как участник процесса, но не владелец результата
+    - L420: ### Актор не равен исполнителю команды {#actor-not-command-executor}
+    - L428: ### Роль агента надо описывать через артефакты, иначе акторность становится риторикой {#agent-role-through-artifacts}
+    - L438: ### Двусторонние артефакты вместо неформального чата
+    - L446: ### Почему SASE важен именно как карта ролей и артефактов {#why-sase-matters-as-role-artifact-map}
+    - L454: ### BriefingScript, LoopScript и MentorScript как разные типы общения {#briefing-loop-mentor-scripts}
+    - L462: ### Consultation Request Pack: агент должен уметь спрашивать, а не только исполнять {#consultation-request-pack}
+    - L470: ### Merge-Readiness Pack: готовность должна доказываться, а не декларироваться {#merge-readiness-pack}
+    - L478: ### Пакеты запроса и пакеты готовности как новая форма инженерной коммуникации {#consultation-and-readiness-packs}
+    - L488: ### Три контура владения
+    - L500: ### Три контура отличаются не масштабом, а устройством ответственности {#three-contours-responsibility}
+    - L510: ### Локальный контур: человек может держать больше неявного состояния {#local-contour-implicit-state}
+    - L518: ### Платформенный контур: свобода агента покупается инфраструктурой {#platform-contour-buys-autonomy-with-infrastructure}
+    - L526: ### Платформенная автономия покупается инфраструктурой, а не верой в модель {#platform-autonomy-as-infrastructure-product}
+    - L536: ### Внешний контур: входящий поток может быть полезным кодом и всё равно вредной нагрузкой {#external-contour-review-burden}
+    - L544: ### Кто платит за проверку {#who-pays-for-verification}
+    - L552: ### Раскрытие использования AI не переносит право завершения {#disclosure-does-not-transfer-completion-right}
+    - L560: ### Право завершения как отдельный объект проектирования {#completion-right-as-design-object}
+    - L568: ### Право завершения
+    - L578: ### Операционная инициативность и право слияния расходятся {#operational-agency-vs-merge-governance}
+    - L586: ### Опыт участника проекта меняет проверку агентского результата {#core-peripheral-agent-use}
+    - L594: ### `Human in the loop` слишком слабая формула {#41-human-in-the-loop-slishkom-slabaya-formula}
+    - L609: ### Человеческое внимание нужно ставить в точки максимального рычага {#42-chelovecheskoe-vnimanie-nuzhno-stavit-v-tochki-maksimalnogo-rychaga}
+    - L617: ### Человек остаётся владельцем того, что нельзя свести к датчику {#43-chelovek-ostaetsya-vladeltsem-togo-chto-nelzya-svesti-k-datchiku}
+    - L631: ### Подтверждение как граница ответственности {#21-podtverzhdenie-kak-granitsa-otvetstvennosti}
+    - L646: ### Автономия — не свойство модели, а договор с окружением {#45-avtonomiya-ne-svoystvo-modeli-a-dogovor-s-okruzheniem}
+    - L656: ### Область действия и чрезмерная инициативность {#46-oblast-deystviya-i-chrezmernaya-initsiativnost}
+  - L666: ## Часть IV. Локальная палитра режимов работы
+    - L674: ### Локальный режим выбирается по задаче, а не по вкусу к инструменту
+    - L687: ### Лёгкий разговорный режим: контроль остаётся внутри человека
+    - L699: ### Работа в незнакомом участке: сначала карта, потом изменение
+    - L711: ### План до кода: когда первая неверная карта дорого стоит
+    - L723: ### Исследование кодом: агент производит проверяемый артефакт
+    - L735: ### Браузерный цикл: когда файлового чтения недостаточно
+    - L747: ### Проверка до исправления: багфикс начинается с сигнала сбоя
+    - L757: ### PR-сопровождение: локальная работа продолжается после `push`
+    - L769: ### Внешняя память задачи: защита не только агента, но и человека
+    - L783: ### Песочница, права и рабочие деревья решают разные задачи {#47-pesochnitsa-prava-i-rabochie-derevya-reshayut-raznye-zadachi}
+    - L804: ### Навыки, хуки и скрипты: ремонтировать повторяемый сбой, а не украшать процесс
+    - L818: ### Простые инструменты и код против тяжёлой инструментальной поверхности
+    - L830: ### Подготовка до запуска агента: когда контекст надо собрать заранее
+    - L840: ### Как выбирать локальный режим
+    - L854: ### Последняя граница локальной палитры
+  - L860: ## Часть V. Спецификации, SPDD и артефакты намерения
+    - L873: ### Хороший запрос больше не является единицей управления процессом
+    - L889: ### Долговременный контекст, спецификация и передача состояния — разные вещи {#9-dolgovremennyy-kontekst-spetsifikatsiya-i-peredacha-sostoyaniya-raznye-veschi}
+    - L909: ### Почему спецификационный слой выделяется отдельно {#spec-layer-why-separate}
+    - L926: ### Семейство спецификационных режимов: spec-first, spec-anchored и spec-as-source {#spec-family-spec-first-anchored-source}
+    - L939: ### Спецификация, план, конституция и передача состояния — разные артефакты {#spec-plan-constitution-handoff}
+    - L951: ### Артефакт намерения: prompt как delivery artifact {#10-artefakt-namereniya-spdd-spetsifikatsiya-i-proverka-samoy-tseli}
+    - L970: ### Что SPDD добавляет к SDD и почему это не просто spec-first {#spdd-adds-to-sdd}
+    - L986: ### OpenSPDD: когда метод получает командный слой {#openspdd-command-layer}
+    - L998: ### Spec Kit: конституция, требования, план, задачи и реализация {#spec-kit-constitution-spec-plan-tasks}
+    - L1011: ### Kiro: `requirements.md`, `design.md`, `tasks.md` и режимы применения {#kiro-requirements-design-tasks}
+    - L1024: ### Constitutional SDD: когда ограничения безопасности становятся частью спецификации {#constitutional-sdd-security-constraints}
+    - L1035: ### TDAD: поведение агента как проверяемый артефакт {#tdad-agent-behavior-as-artifact}
+    - L1048: ### Шесть стадий SPDD: распределённое подтверждение намерения {#spdd-six-step-workflow}
+    - L1071: ### Story shaping: сырое требование ещё не является входом для Canvas {#spdd-story-shaping}
+    - L1084: ### Analysis context: strategic clarity до implementation detail {#spdd-analysis-context}
+    - L1100: ### REASONS Canvas: intent, design, execution, governance {#spdd-reasons-canvas-intent-design-execution-governance}
+    - L1119: ### Три core skills SPDD: Abstraction First, Alignment, Iterative Review {#spdd-three-core-skills}
+    - L1131: ### Generate code: модель реализует locked intent, а не ищет решение заново {#spdd-generate-locked-intent}
+    - L1141: ### Проверяемые свидетельства: API tests до глубокого code review {#spdd-validation-review-evidence}
+    - L1162: ### Logic correction, prompt-update и sync: два направления обратной связи {#spdd-prompt-update-sync}
+    - L1182: ### Unit tests: последний safety net, а не первый источник смысла {#spdd-unit-tests-after-stabilization}
+    - L1192: ### Asset integrity: prompt version должен соответствовать code commit {#spdd-asset-integrity}
+    - L1209: ### Где SPDD окупается: ROI, upfront cost и fit table {#spdd-fit-and-roi}
+    - L1237: ### Hotfixes и production signal: governance можно отложить, но нельзя выбросить {#spdd-hotfix-production-signal}
+    - L1249: ### Roadmap SPDD: от expert craft к organization-level asset system {#spdd-roadmap-decision-memory}
+    - L1265: ### Сопротивление SPDD: variance, model drift, spec-as-source и предел человеческого суждения {#spdd-resistance-boundaries-and-spec-as-source}
+    - L1281: ### Mise en Place: подготовка контекста до запуска агентов {#mise-en-place-preparation-before-agents}
+    - L1294: ### Structured workflow вместо свободной спецификации: Roast и граница SPDD {#structured-workflow-vs-specification}
+    - L1309: ### Как выбирать спецификационный режим {#choosing-specification-mode}
+    - L1325: ### Как спецификационная линия проявляется в корпусе историй {#specification-line-in-stories}
+    - L1331: ### Где спецификационный подход может мешать {#specification-approach-can-hurt}
+  - L1343: ## Часть VI. Среда агента: интерфейс, обвязка, контекст и инструменты
+    - L1350: ### Агент как петля, а не одноразовый ответ
+    - L1368: ### Agent-computer interface: интерфейс как часть качества агента {#agent-computer-interface}
+    - L1383: ### Гранулярность действия: интерфейс должен помогать маленьким обратимым шагам {#aci-action-granularity}
+    - L1393: ### Ошибка должна возвращаться как рабочий сигнал, а не как длинный шум {#aci-error-signal}
+    - L1401: ### “Агент = модель + обвязка” — полезная, но неполная формула {#4-agent-model-obvyazka-poleznaya-no-nepolnaya-formula}
+    - L1428: ### Обвязка как среда выполнения: обязанности, а не набор украшений {#harness-runtime-substrate}
+    - L1441: ### Одиннадцать обязанностей обвязки: что именно должно быть спроектировано {#harness-eleven-responsibilities}
+    - L1449: ### Уровни зрелости обвязки: от финального patch к проверяемому эпизоду {#harness-levels-episode-package}
+    - L1457: ### Инструментальные поверхности: что интерфейс делает видимым и что прячет {#tool-surfaces}
+    - L1473: ### Claude Code как пример: маленькая петля и большая система вокруг неё {#claude-code-design-space}
+    - L1485: ### Claude Code показывает, что CLI-агент уже является системой, а не одной командой {#claude-code-cli-as-system}
+    - L1493: ### Права, песочница и подтверждения: разные элементы одной границы {#permissions-sandbox-approvals-boundary}
+    - L1501: ### Контекст — не окно, а рабочее состояние {#6-kontekst-ne-okno-a-rabochee-sostoyanie}
+    - L1528: ### Операции над контекстом: записать, выбрать, сжать, изолировать {#context-operations-write-select-compress-isolate}
+    - L1542: ### Коллапс контекста и эволюционирующие инструкции {#context-collapse-evolving-playbooks}
+    - L1552: ### Контекстная инженерия в coding-agent: где живёт знание проекта {#coding-agent-context-engineering}
+    - L1560: ### Постоянный контекст должен быть оглавлением, а не складом инструкций {#persistent-context-as-index}
+    - L1570: ### Конфигурационный долг: правила тоже устаревают {#configuration-debt}
+    - L1578: ### Контекстные интерфейсы: кто решает, что загрузить {#7-kontekstnye-interfeysy-kto-reshaet-chto-zagruzit}
+    - L1601: ### Конфигурация агентских инструментов: что уже стало обычной практикой {#agentic-tool-configuration}
+    - L1614: ### Восемь механизмов конфигурации: context files уже победили, но это только начало {#eight-configuration-mechanisms}
+    - L1622: ### Кодовая база как контекстный интерфейс {#8-kodovaya-baza-kak-kontekstnyy-interfeys}
+    - L1641: ### Проект как обучающая среда для агента {#project-as-agent-learning-environment}
+    - L1651: ### Обвязка регулирует не “модель вообще”, а конкретное состояние кодовой базы {#11-obvyazka-reguliruet-ne-model-voobsche-a-konkretnoe-sostoyanie-kodovoy-bazy}
+    - L1662: ### Направляющие и датчики {#12-napravlyayuschie-i-datchiki}
+    - L1678: ### Качество надо держать левее {#13-kachestvo-nado-derzhat-levee}
+    - L1693: ### Поддерживаемость, архитектура и поведение проверяются по-разному {#14-podderzhivaemost-arhitektura-i-povedenie-proveryayutsya-po-raznomu}
+    - L1711: ### Пригодность проекта к обвязке {#15-prigodnost-proekta-k-obvyazke}
+    - L1725: ### Среда сама подталкивает агента к правильному {#16-sreda-sama-podtalkivaet-agenta-k-pravilnomu}
+    - L1735: ### Шаблоны и топологии: уменьшение разнообразия как способ контроля {#17-shablony-i-topologii-umenshenie-raznoobraziya-kak-sposob-kontrolya}
+    - L1753: ### Навыки как процедурные артефакты с жизненным циклом {#skills-lifecycle-procedural-artifacts}
+    - L1768: ### Progressive disclosure: skill должен открываться по необходимости {#skills-progressive-disclosure}
+    - L1776: ### Жизненный цикл навыка: представить, получить, выбрать, изменить {#skills-lifecycle}
+    - L1784: ### Навыки, хуки и подагенты {#18-navyki-huki-i-podagenty}
+    - L1813: ### Агенту нужен не только чат, но и среда выполнения {#19-agentu-nuzhen-ne-tolko-chat-no-i-sreda-vypolneniya}
+    - L1828: ### Поток работы как объект {#20-potok-raboty-kak-obekt}
+    - L1841: ### Долгоживущая задача требует восстановления, а не только памяти {#22-dolgozhivuschaya-zadacha-trebuet-vosstanovleniya-a-ne-tolko-pamyati}
+    - L1856: ### Большая часть сложности агентской системы находится не в модели {#23-bolshaya-chast-slozhnosti-agentskoy-sistemy-nahoditsya-ne-v-modeli}
+    - L1872: ### Наблюдаемость: след агентской работы должен быть инженерным артефактом {#agent-observability-episode-package}
+    - L1883: ### Пакет эпизода: что надо сохранить после работы агента {#episode-package-contents}
+    - L1891: ### Наблюдаемость контекста: нужно видеть не только tool calls {#context-observability}
+    - L1899: ### Самоизменяющаяся обвязка: проверяемые изменения вместо стихийного самоулучшения {#observability-driven-harness-evolution}
+    - L1911: ### Агентский маховик: агент помогает улучшать среду, но не должен владеть ею {#44-agentskiy-mahovik-agent-pomogaet-uluchshat-sredu-no-ne-dolzhen-vladet-eyu}
+    - L1924: ### MCP как расширение границы доверия {#48-mcp-kak-rasshirenie-granitsy-doveriya}
+    - L1941: ### Code execution with MCP: иногда инструмент лучше представить как код, а не как список tool definitions {#code-execution-with-mcp}
+    - L1949: ### Три границы доверия в MCP: клиент, сервер, downstream-система {#mcp-trust-boundaries}
+  - L1959: ## Часть VII. Организационные и многоагентные рабочие системы
+    - L1969: ### Почему организационный режим нельзя выводить из локальной сессии
+    - L1977: ### Spotify Honk: фоновый PR-поток внутри уже существующей платформы
+    - L1995: ### Stripe Minions: промышленный one-shot PR-поток и вопрос о публичной фактуре
+    - L2003: ### Shopify Roast: структура рабочего процесса вместо свободного roaming agent
+    - L2015: ### Quix / Klaus Kode: детерминированная оболочка вокруг агента
+    - L2025: ### Armin Ronacher: простой код как противоядие от тяжёлой инструментальной поверхности
+    - L2031: ### Task graph и внешняя память: когда рабочего процесса уже недостаточно
+    - L2047: ### Граф задач как внешняя память агента {#24-graf-zadach-kak-vneshnyaya-pamyat-agenta}
+    - L2055: ### Gas Town: многоагентная организация с ролями, но не без трения
+    - L2085: ### Anthropic parallel Claudes: дорогой край автономного параллелизма
+    - L2095: ### Multi-agent research system: когда параллельность действительно естественна
+    - L2101: ### Cognition и спор вокруг multi-agent architectures
+    - L2109: ### MetaMorph и file-lock-параллелизм как переносимый минимальный паттерн
+    - L2115: ### Как выбирать между платформой, рабочим процессом, графом задач и multi-agent режимом
+    - L2127: ### Нужно ли делить эту часть на две
+    - L2138: ### Вывод для будущего dev-process
+    - L2146: ### Редакторская проверка после структурного насыщения
+  - L2152: ## Часть VIII. Проверка, ревью, бенчмарки и долгосрочное качество
+    - L2158: ### Агенту нельзя верить на слово, но и человека нельзя превращать в ручной линтер {#34-agentu-nelzya-verit-na-slovo-no-i-cheloveka-nelzya-prevraschat-v-ruchnoy-lint}
+    - L2168: ### Надёжность вывода: почему уверенность агента не равна правоте {#output-reliability}
+      - L2177: #### Developer pushback как источник знания о сбое
+      - L2186: #### Что доказывают зелёные тесты
+      - L2192: #### Как отличать найденный баг от бага, созданного тестом
+      - L2198: #### Надёжность вывода и внешний контекст
+      - L2204: #### Когда выводу можно доверять достаточно
+    - L2211: ### Доказательство работы зависит от типа задачи {#35-dokazatelstvo-raboty-zavisit-ot-tipa-zadachi}
+    - L2237: ### Benchmark evidence тоже имеет область применимости {#benchmark-evidence-scope}
+    - L2250: ### Поведенческая проверка остаётся слабым местом {#36-povedencheskaya-proverka-ostaetsya-slabym-mestom}
+    - L2268: ### Логирование и наблюдаемость нельзя оставлять текстовой просьбе {#37-logirovanie-i-nablyudaemost-nelzya-ostavlyat-tekstovoy-prosbe}
+    - L2291: ### Наблюдаемость агента отличается от наблюдаемости продукта {#agent-observability-not-product-observability}
+    - L2304: ### Комментарии ревью — это сигналы, а не команды {#38-kommentarii-revyu-eto-signaly-a-ne-komandy}
+      - L2314: #### PR — это коммуникационный артефакт, а не упаковка diff
+    - L2326: ### Свидетельства должны быть пригодны для следующего шага {#39-svidetelstva-dolzhny-byt-prigodny-dlya-sleduyuschego-shaga}
+      - L2349: #### Evidence package не должен быть гладким summary
+      - L2355: #### Intent debt и verification debt
+    - L2362: ### Эмпирические предупреждения: скорость генерации не равна качеству {#40-empiricheskie-preduprezhdeniya-skorost-generatsii-ne-ravna-kachestvu}
+    - L2378: ### Практический вывод: проверка должна менять среду {#part-viii-practical-conclusion}
+  - L2389: ## Часть IX. Внешняя граница: open source, происхождение вклада, безопасность и право отказа
+    - L2399: ### Жёсткая линия: происхождение важнее потенциальной пользы
+    - L2411: ### LLVM: ревью-время, обучение и “extractive contribution”
+    - L2423: ### Linux Kernel и Ghostty: человек остаётся сертифицирующим субъектом
+    - L2435: ### Governance бывает неловким: Gentoo и Debian
+    - L2447: ### Право закрыть автоматизированный вклад: scikit-learn, FastAPI и GNOME Shell Extensions
+    - L2457: ### Foundation-level policies: disclosure без снятия ответственности
+    - L2469: ### Security reports: когда шум похож на полезный сигнал
+    - L2479: ### Эмпирический слой: не вся активность становится полезным вкладом
+    - L2489: ### Когда кейс должен остаться в главе, а когда уйти в карту источников
+    - L2497: ### Вывод для карты течений
+  - L2503: ## Заключение. Что из карты должно перейти в практику
+    - L2507: ### Как пользоваться картой без превращения её в методологию
+    - L2513: ### Что реальные сессии добавляют к общей картине
+    - L2519: ### SPDD задаёт эталон глубины, но не единственную норму
+    - L2525: ### Что уже стало рабочей реальностью
+    - L2531: ### Агент может действовать, но не должен владеть завершением
+    - L2537: ### Проверка и внешний контур задают предел расширения
+    - L2543: ### Что пока не стоит нормировать
+    - L2549: ### Локальные режимы остаются нужными, но требуют явных условий
+    - L2555: ### Практический вывод для Handbook {#52-prakticheskiy-handbook-dolzhen-stat-kartoy-vybora-rezhima}
+    - L2565: ### Статус новых источник-кейсов
+    - L2571: ### Итоговая рамка {#53-itogovaya-ramka}
+  - L2577: ## Карта источников {#54-karta-istochnikov}
+    - L2581: ### Новые источник-кейсы Итерации 3
+      - L2585: #### Spotify Honk
+      - L2595: #### Anthropic parallel Claudes
+      - L2604: #### Open-source AI policy cluster
+    - L2616: ### Основные теоретические источники
+    - L2631: ### Agent-first / agent-loop / context engineering
+    - L2647: ### Skills, subagents and agent system architecture
+    - L2656: ### Gas Town / Beads / многоагентная рабочая среда
+    - L2665: ### Безопасность, область действия и наблюдаемость
+    - L2676: ### Эмпирические предупреждения и организационный слой
