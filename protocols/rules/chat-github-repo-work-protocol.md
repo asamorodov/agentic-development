@@ -42,7 +42,11 @@ ChatGPT используется для:
 
 Файл создаётся вне `/work` только если задача явно состоит в создании постоянного документа проекта: например, файла в `/project`, `/protocols`, `/site-spec` или `/content`, и пользователь разрешил такую запись.
 
+Task-local reports, audits and proposed decisions по умолчанию создаются внутри `/work`, например `work/reports/...` and `work/decisions/...`. Если такой документ предлагает изменение утверждённой архитектуры, source precedence or baseline restore rule, ChatGPT должен сохранить рекомендацию в `/work` and stop for human gate instead of editing authoritative project files directly.
+
 ## Изменение существующих файлов
+
+Для Markdown/protocol documents preferred mode is whole-file editing: прочитать полный UTF-8 файл из нужной ветки, подготовить полный итоговый текст and upload the complete replacement with current blob `sha`. Если полный файл не помещается в контекст or итоговый текст нельзя уверенно восстановить, передать задачу Codex or подготовить patch/import material instead of doing fragile line-only editing.
 
 По умолчанию существующий документ меняется через commit новой версии того же файла, а не через создание копии вида `file_v2.md`, `file_new.md`, `file_after.md` внутри чата или репозитория.
 
