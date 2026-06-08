@@ -1,1 +1,1 @@
-protocols: update chat repo archive overlay workflow — cumulative-overlay
+work: add source accumulation automation modules and debug prompts — cumulative-overlay

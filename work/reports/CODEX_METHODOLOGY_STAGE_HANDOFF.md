@@ -1,49 +1,40 @@
 # Codex methodology stage handoff
 
-Дата: 2026-06-07  
-Статус: рабочая записка для перехода Stage 0.19 в Codex.
+Дата: 2026-06-08  
+Статус: обновлено после разделения общего протокола и prompt для методологических досье.
 
-## Что создано
+## Новая структура
 
-Добавлены:
+Общий протокол источникового пополнения документов:
 
 ```text
-work/protocols/METHODOLOGY_DOSSIER_PASS_PROTOCOL.md
-work/prompts/STAGE_0_19_METHOD_PROFILES_CODEX_TASK.md
-work/prompts/FIRST_CODEX_READINESS_CHECK_TASK.md
+work/protocols/SOURCE_ACCUMULATION_DOCUMENT_PROTOCOL.md
 ```
+
+Prompt-спецификация для методологических досье:
+
+```text
+work/prompts/METHODOLOGY_DOSSIER_SOURCE_ACCUMULATION_PROMPT.md
+```
+
+Старые файлы `work/protocols/METHODOLOGY_DOSSIER_PASS_PROTOCOL.md` and `work/prompts/STAGE_0_19_METHOD_PROFILES_CODEX_TASK.md` помечены как superseded.
 
 ## Как использовать
 
-Сначала запустить в Codex:
+Сначала запустить проверку готовности:
 
 ```text
 work/prompts/FIRST_CODEX_READINESS_CHECK_TASK.md
 ```
 
-Если Codex вернёт `READY` or `READY_WITH_WARNINGS` без критических missing documents, затем запускать:
+Затем внешний запуск должен передавать Codex явное `{имя документа}`, `{название методологии}` and при необходимости `{номер прохода}` вместе с prompt:
 
 ```text
-work/prompts/STAGE_0_19_METHOD_PROFILES_CODEX_TASK.md
+work/prompts/METHODOLOGY_DOSSIER_SOURCE_ACCUMULATION_PROMPT.md
 ```
 
-## Почему readiness check нужен
+## Главное правило
 
-Stage 0.19 сложный: Codex должен работать не с одной главой, а с большим корпусом решений, протоколов and source expansions. До запуска методологических dossiers нужно убедиться, что Codex:
+Общий протокол не знает о досье. Он описывает работу с любым документом, который накапливает источникозависимый материал.
 
-- видит документы;
-- понимает ход работы;
-- понимает protected methodology profiles;
-- понимает, что нельзя писать главы;
-- понимает human gates;
-- понимает языковые правила.
-
-## Что будет считаться хорошим результатом Stage 0.19
-
-- все pass files созданы;
-- all protected methodology dossiers created;
-- comparative synthesis reports created;
-- anti-shallow audit passes;
-- `work/discourse.md` updated;
-- `work/CHECKS.json` updated;
-- no final theory chapters written.
+Prompt по методологическому досье не дублирует шаги протокола. Он только уточняет, какие детали методологии нужно искать и как понимать качество досье.

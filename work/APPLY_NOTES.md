@@ -317,3 +317,99 @@ work/reports/CHAT_REPO_WORKFLOW_PROTOCOL_UPDATE.md
 ```
 
 This archive includes both `work/` and `protocols/` top-level folders.
+
+
+## Stage 0.23 source accumulation protocol rewrite
+
+This overlay rewrites the source-accumulation protocol and methodology dossier prompt from scratch.
+
+New files:
+
+```text
+work/protocols/SOURCE_ACCUMULATION_DOCUMENT_PROTOCOL.md
+work/prompts/METHODOLOGY_DOSSIER_SOURCE_ACCUMULATION_PROMPT.md
+work/reports/SOURCE_ACCUMULATION_PROTOCOL_REWRITE.md
+```
+
+Superseded files:
+
+```text
+work/protocols/METHODOLOGY_DOSSIER_PASS_PROTOCOL.md
+work/prompts/STAGE_0_19_METHOD_PROFILES_CODEX_TASK.md
+```
+
+Updated files:
+
+```text
+work/prompts/FIRST_CODEX_READINESS_CHECK_TASK.md
+work/reports/CODEX_METHODOLOGY_STAGE_HANDOFF.md
+work/discourse.md
+work/CHECKS.json
+work/COMMIT_MESSAGE.txt
+```
+
+
+## Stage 0.24 simplified source accumulation protocol
+
+This v20 cumulative overlay simplifies the general source accumulation protocol and methodology dossier prompt.
+
+Updated files:
+
+```text
+work/protocols/SOURCE_ACCUMULATION_DOCUMENT_PROTOCOL.md
+work/prompts/METHODOLOGY_DOSSIER_SOURCE_ACCUMULATION_PROMPT.md
+work/protocols/METHODOLOGY_DOSSIER_PASS_PROTOCOL.md
+work/prompts/STAGE_0_19_METHOD_PROFILES_CODEX_TASK.md
+work/reports/SOURCE_ACCUMULATION_PROTOCOL_SIMPLIFIED.md
+work/discourse.md
+work/CHECKS.json
+work/COMMIT_MESSAGE.txt
+```
+
+
+## Stage 0.25 source accumulation cleanup
+
+This v21 cumulative overlay cleans up the source accumulation protocol and methodology dossier prompt.
+
+Updated files:
+
+```text
+work/protocols/SOURCE_ACCUMULATION_DOCUMENT_PROTOCOL.md
+work/prompts/METHODOLOGY_DOSSIER_SOURCE_ACCUMULATION_PROMPT.md
+work/reports/SOURCE_ACCUMULATION_PROTOCOL_CLEANUP.md
+work/discourse.md
+work/CHECKS.json
+work/COMMIT_MESSAGE.txt
+```
+
+Illustration logic was intentionally left unchanged.
+
+
+## Stage 0.26 source accumulation automation modules
+
+This v22 cumulative overlay adds TS modules and prompts for source accumulation automation.
+
+Added/updated:
+
+```text
+work/automation/package.json
+work/automation/tsconfig.json
+work/automation/README.md
+work/automation/src/args.ts
+work/automation/src/codex-exec.ts
+work/automation/src/pass-artifacts.ts
+work/automation/src/path-utils.ts
+work/automation/src/prompt-renderer.ts
+work/automation/src/run-source-loop.ts
+work/automation/src/run-state.ts
+work/prompts/DEBUG_SOURCE_ACCUMULATION_PROMPT.md
+work/prompts/SOURCE_ACCUMULATION_CONTROLLER_PROMPT.md
+work/prompts/TEST_SOURCE_ACCUMULATION_CONTROLLER_PROMPT.md
+work/protocols/SOURCE_ACCUMULATION_DOCUMENT_PROTOCOL.md
+work/reports/SOURCE_ACCUMULATION_AUTOMATION_MODULES.md
+work/discourse.md
+work/CHECKS.json
+work/COMMIT_MESSAGE.txt
+```
+
+The TS layer intentionally does not store a document/topic queue. It executes one document. Parallel per-document orchestration is delegated to the Codex controller prompt and subagents.
