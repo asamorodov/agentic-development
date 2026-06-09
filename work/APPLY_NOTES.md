@@ -413,3 +413,28 @@ work/COMMIT_MESSAGE.txt
 ```
 
 The TS layer intentionally does not store a document/topic queue. It executes one document. Parallel per-document orchestration is delegated to the Codex controller prompt and subagents.
+
+
+## Stage 0.27 Codex SDK probe
+
+This cumulative overlay adds an SDK backend probe after the nested `codex exec` test failed with `Access is denied` / `spawn EPERM`.
+
+Updated files:
+
+```text
+work/prompts/CODEX_SDK_PROBE_PROMPT.md
+work/automation/src/sdk-probe.ts
+work/automation/package.json
+work/reports/CODEX_SDK_PROBE_PLAN.md
+work/discourse.md
+work/CHECKS.json
+work/COMMIT_MESSAGE.txt
+```
+
+Run in Codex by using:
+
+```text
+work/prompts/CODEX_SDK_PROBE_PROMPT.md
+```
+
+The probe does not touch real dossiers.

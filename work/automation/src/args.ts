@@ -1,5 +1,8 @@
+import { findRepoRootSync } from "./path-utils.js";
+
 export type Mode = "fresh" | "continue";
 export type FreshAction = "stub" | "delete";
+export type Backend = "sdk" | "cli";
 
 export interface LoopOptions {
   repoRoot: string;
@@ -13,6 +16,7 @@ export interface LoopOptions {
   freshAction: FreshAction;
   runId: string;
   workerId?: string;
+  backend: Backend;
   codexBin: string;
   sandbox: "read-only" | "workspace-write" | "danger-full-access";
   askForApproval: "untrusted" | "on-request" | "never";
@@ -40,7 +44,8 @@ function makeRunId(): string {
 
 export function parseArgs(argv: string[]): LoopOptions {
   const opts: Partial<LoopOptions> = {
-    repoRoot: process.cwd(),
+    repoRoot: findRepoRootSync(process.cwd()),
+    backend: "sdk",
     codexBin: "codex",
     sandbox: "workspace-write",
     askForApproval: "never",
@@ -75,6 +80,11 @@ export function parseArgs(argv: string[]): LoopOptions {
         if (value !== "stub" && value !== "delete") throw new Error(`--fresh-action must be stub or delete: ${value}`);
         opts.freshAction = value; i++; break;
       }
+      case "--backend": {
+        const value = readValue(argv, i, arg) as Backend;
+        if (value !== "sdk" && value !== "cli") throw new Error(`--backend must be sdk or cli: ${value}`);
+        opts.backend = value; i++; break;
+      }
       case "--run-id": opts.runId = readValue(argv, i, arg); i++; break;
       case "--worker-id": opts.workerId = readValue(argv, i, arg); i++; break;
       case "--codex-bin": opts.codexBin = readValue(argv, i, arg); i++; break;
@@ -108,21 +118,26 @@ export function parseArgs(argv: string[]): LoopOptions {
   return {
     repoRoot: opts.repoRoot!, promptPath: opts.promptPath, docPath: opts.docPath, topic: opts.topic,
     minPass: opts.minPass, maxPass: opts.maxPass, startPass: opts.startPass, mode: opts.mode!, freshAction: opts.freshAction!,
-    runId: opts.runId ?? makeRunId(), workerId: opts.workerId, codexBin: opts.codexBin!, sandbox: opts.sandbox!,
-    askForApproval: opts.askForApproval!, model: opts.model, dryRun: opts.dryRun!, skipGitRepoCheck: opts.skipGitRepoCheck!,
-    extraCodexArgs: opts.extraCodexArgs ?? []
+    runId: opts.runId ?? makeRunId(), workerId: opts.workerId, backend: opts.backend!,
+    codexBin: opts.codexBin!, sandbox: opts.sandbox!, askForApproval: opts.askForApproval!, model: opts.model,
+    dryRun: opts.dryRun!, skipGitRepoCheck: opts.skipGitRepoCheck!, extraCodexArgs: opts.extraCodexArgs ?? []
   };
 }
 
 function printHelpAndExit(): never {
   console.log(`Usage:
-  npx tsx work/automation/src/run-source-loop.ts \\
-    --prompt work/prompts/DEBUG_SOURCE_ACCUMULATION_PROMPT.md \\
-    --doc work/automation/debug/DEBUG_DOC.md \\
-    --topic "Debug topic DEBUG_STOP_NOW" \\
-    --min-pass 2 \\
-    --max-pass 4 \\
+  work\\automation\\run-source-loop.cmd ^
+    --backend sdk ^
+    --prompt work/prompts/DEBUG_SOURCE_ACCUMULATION_PROMPT.md ^
+    --doc work/automation/debug/DEBUG_DOC.md ^
+    --topic "Debug topic DEBUG_STOP_NOW" ^
+    --min-pass 2 ^
+    --max-pass 4 ^
     --mode fresh
+
+Inside Codex tasks, use --backend sdk and run with escalated/network access.
+Outside Codex, --backend cli remains available as a fallback.
+Do not run npm install inside work/automation.
 `);
   process.exit(0);
 }

@@ -1,1 +1,1 @@
-work: add source accumulation automation modules and debug prompts — cumulative-overlay
+work: add Codex SDK probe for nested execution backend — cumulative-overlay

@@ -1,4 +1,4 @@
-# Prompt: тест запуска source accumulation automation
+# Prompt: тест запуска source accumulation automation через SDK backend
 
 Этот prompt проверяет связку:
 
@@ -6,13 +6,19 @@
 управляющий Codex prompt
 → worker-subagent
 → TS-loop
-→ codex exec
+→ Codex SDK backend
 → debug prompt
 → pass-артефакты
 → should_stop
 ```
 
 Он не должен трогать реальные методологические досье.
+
+## Важное условие
+
+Настоящий тест должен запускаться с network/escalated доступом. Не выполнять `npm install` inside `work/automation`; использовать только `.cmd` wrappers из `work/automation`.
+
+Без такого доступа SDK probe уже падал на запросе к API. Не надо сначала запускать обычный sandbox-вариант: если network/escalated доступ недоступен, остановись и верни `FAIL`.
 
 ## Что нужно сделать
 
@@ -49,6 +55,7 @@ min_pass = 2
 max_pass = 4
 mode = fresh
 fresh_action = stub
+backend = sdk
 ```
 
 Так как тема содержит `DEBUG_STOP_NOW`, debug prompt будет писать `should_stop=yes` на каждом проходе. Оркестратор должен выполнить обязательные 2 прохода и остановиться после второго прохода.
@@ -58,7 +65,8 @@ fresh_action = stub
 Перед настоящим запуском выполнить dry-run для одного документа:
 
 ```bash
-npx tsx work/automation/src/run-source-loop.ts \
+work\automation\run-source-loop.cmd \
+  --backend sdk \
   --prompt work/prompts/DEBUG_SOURCE_ACCUMULATION_PROMPT.md \
   --doc work/automation/debug/DEBUG_ALPHA.md \
   --topic "Debug Alpha DEBUG_STOP_NOW" \
@@ -73,6 +81,18 @@ npx tsx work/automation/src/run-source-loop.ts \
 
 Проверить, что prompt-файлы для проходов собраны.
 
+Dry-run не требует SDK API call.
+
+## Потом SDK preflight
+
+С network/escalated доступом выполнить:
+
+```bash
+work\automation\sdk-probe.cmd --run-id <run_id>-preflight
+```
+
+Если preflight не проходит, не запускать worker-subagents.
+
 ## Потом настоящая проверка
 
 Запустить два worker-subagents параллельно, по одному на документ.
@@ -80,7 +100,8 @@ npx tsx work/automation/src/run-source-loop.ts \
 Каждый worker должен выполнить:
 
 ```bash
-npx tsx work/automation/src/run-source-loop.ts \
+work\automation\run-source-loop.cmd \
+  --backend sdk \
   --prompt work/prompts/DEBUG_SOURCE_ACCUMULATION_PROMPT.md \
   --doc <debug_doc> \
   --topic "<debug_topic>" \
@@ -89,9 +110,7 @@ npx tsx work/automation/src/run-source-loop.ts \
   --mode fresh \
   --fresh-action stub \
   --run-id <run_id> \
-  --worker-id <worker_id> \
-  --sandbox workspace-write \
-  --ask-for-approval never
+  --worker-id <worker_id>
 ```
 
 ## Что проверить после запуска
@@ -126,11 +145,12 @@ work/automation/runs/<run_id>/DEBUG_BETA/logs/
 
 ```text
 dry-run: ok / failed
-nested codex exec: ok / failed
+sdk preflight: ok / failed
+sdk backend: ok / failed
 subagents: ok / failed
 should_stop after min_pass: ok / failed
 debug docs:
 logs:
 ```
 
-Если вложенный `codex exec` не запускается из worker-subagent, не чинить реальные досье. Честно зафиксировать ограничение.
+Если SDK backend не запускается с network/escalated доступом, не чинить реальные досье. Честно зафиксировать ограничение.

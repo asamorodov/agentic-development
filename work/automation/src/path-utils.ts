@@ -1,4 +1,5 @@
 import path from "node:path";
+import { existsSync } from "node:fs";
 import { mkdir, stat } from "node:fs/promises";
 
 export function padPass(passNumber: number): string {
@@ -16,9 +17,24 @@ export function safeDocName(docPath: string): string {
     .replace(/^_+|_+$/g, "") || "document";
 }
 
+export function findRepoRootSync(startDir: string): string {
+  let current = path.resolve(startDir);
+
+  while (true) {
+    if (existsSync(path.join(current, ".git"))) return current;
+    if (existsSync(path.join(current, "project", "repository-structure.md")) && existsSync(path.join(current, "work"))) return current;
+
+    const parent = path.dirname(current);
+    if (parent === current) {
+      throw new Error(`Cannot find repository root from ${startDir}. Pass --repo-root explicitly.`);
+    }
+    current = parent;
+  }
+}
+
 export function resolveInsideRepo(repoRoot: string, userPath: string): string {
   const resolvedRoot = path.resolve(repoRoot);
-  const resolvedPath = path.resolve(resolvedRoot, userPath);
+  const resolvedPath = path.isAbsolute(userPath) ? path.resolve(userPath) : path.resolve(resolvedRoot, userPath);
   const relative = path.relative(resolvedRoot, resolvedPath);
   if (relative.startsWith("..") || path.isAbsolute(relative)) {
     throw new Error(`Path is outside repo root: ${userPath}`);
@@ -28,6 +44,10 @@ export function resolveInsideRepo(repoRoot: string, userPath: string): string {
 
 export function toRepoRelative(repoRoot: string, absolutePath: string): string {
   return path.relative(path.resolve(repoRoot), path.resolve(absolutePath)).replaceAll(path.sep, "/");
+}
+
+export function toPortableAbsolute(absolutePath: string): string {
+  return path.resolve(absolutePath).replaceAll(path.sep, "/");
 }
 
 export async function ensureDir(dirPath: string): Promise<void> {

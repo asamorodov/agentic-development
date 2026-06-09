@@ -1,4 +1,4 @@
-# Prompt: запуск пополнения документов через subagents и TS-loop
+# Prompt: запуск пополнения документов через subagents и SDK-backed TS-loop
 
 Этот prompt используется в Codex как управляющий слой.
 
@@ -30,10 +30,25 @@ BMAD Method.
 3. сопоставить темы с точными путями документов;
 4. если сопоставление неуверенное — спросить пользователя;
 5. если сопоставление уверенное — сохранить trace сопоставления;
-6. запустить по одному worker-subagent на документ;
-7. каждый worker должен запустить TS-loop только для своего документа;
-8. дождаться завершения worker-subagents;
-9. вернуть короткий итог и пути к логам.
+6. убедиться, что SDK-backend доступен в режиме с network/escalated доступом;
+7. запустить по одному worker-subagent на документ;
+8. каждый worker запускает TS-loop только для своего документа;
+9. дождаться завершения worker-subagents;
+10. вернуть короткий итог и пути к логам.
+
+## Важное ограничение backend
+
+Для запуска изнутри Codex использовать только:
+
+```text
+--backend sdk
+```
+
+Не использовать nested `codex exec` как backend внутри Codex-задачи. Он уже проверенно падал с `Access is denied` / `spawn EPERM`.
+
+SDK-backend требует network/escalated доступ. Если такой доступ нельзя получить, остановиться и честно сообщить ограничение. Не запускать worker-ов в обычном sandbox, если уже известно, что SDK-запросы к API там падают.
+
+CLI-backend остаётся только для внешнего терминала или CI, где `codex exec` запускается не изнутри Codex-задачи.
 
 ## Что читать перед сопоставлением
 
@@ -43,6 +58,7 @@ BMAD Method.
 work/discourse.md
 work/protocols/SOURCE_ACCUMULATION_DOCUMENT_PROTOCOL.md
 указанный пользователем prompt пополнения
+work/reports/CODEX_SDK_PROBE_RESULT.md — если есть
 ```
 
 Если для сопоставления тем с файлами нужны планы или reports, прочитать их точечно.
@@ -62,6 +78,7 @@ minPass
 maxPass
 workerId
 confidence
+backend = sdk
 ```
 
 Если `confidence` не высокий, не запускать worker по этой теме. Сначала спросить пользователя.
@@ -75,10 +92,23 @@ work/automation/runs/{run_id}/resolved-targets.csv
 CSV должен иметь колонки:
 
 ```text
-worker_id,topic,doc,prompt,mode,min_pass,max_pass,fresh_action
+worker_id,topic,doc,prompt,mode,min_pass,max_pass,fresh_action,backend
 ```
 
 Это не ручная очередь пользователя, а trace того, что управляющий слой понял перед запуском.
+
+## SDK preflight
+
+Перед запуском worker-ов проверить:
+
+```text
+не существует work/automation/node_modules/ после cleanup
+work\automation\sdk-probe.cmd --run-id <run_id>-preflight
+```
+
+Запуск preflight должен идти с network/escalated доступом.
+
+Если preflight не проходит, не запускать worker-subagents.
 
 ## Запуск worker-subagents
 
@@ -97,7 +127,8 @@ worker_id,topic,doc,prompt,mode,min_pass,max_pass,fresh_action
 Worker должен выполнить только команду вида:
 
 ```bash
-npx tsx work/automation/src/run-source-loop.ts \
+work\automation\run-source-loop.cmd \
+  --backend sdk \
   --prompt <prompt> \
   --doc <doc> \
   --topic "<topic>" \
@@ -106,9 +137,7 @@ npx tsx work/automation/src/run-source-loop.ts \
   --mode <mode> \
   --fresh-action <fresh_action> \
   --run-id <run_id> \
-  --worker-id <worker_id> \
-  --sandbox workspace-write \
-  --ask-for-approval never
+  --worker-id <worker_id>
 ```
 
 Worker не должен сам пополнять документ, кроме как через этот TS-loop.
@@ -144,11 +173,16 @@ work/automation/runs/{run_id}/{worker_id}/logs/
 
 ## Режим fresh
 
-Если пользователь просит “с нуля”, передай worker `--mode fresh`.
+Если пользователь просит “с нуля”, передай worker:
 
-TS-loop сам сделает backup старого документа и pass-артефактов в свой run-каталог и затем пересоздаст документ.
+```text
+--mode fresh
+--fresh-action stub
+```
 
-Не удаляй файлы вручную в управляющем слое.
+TS-loop сам сделает backup старого документа and pass-артефактов в свой run-каталог and затем пересоздаст документ с нулевого stub. Если документа ещё нет, TS-loop создаст его.
+
+Не удаляй and не создавай файлы вручную в управляющем слое.
 
 ## Тестовый режим
 
@@ -176,3 +210,19 @@ run_id
 какие упали
 где смотреть resolved-targets.csv, status.json и logs
 ```
+
+
+## Node tools hygiene
+
+Не выполнять `npm install` inside `work/automation`.
+
+Для запуска использовать только wrappers:
+
+```text
+workutomation
+un-source-loop.cmd
+workutomation\sdk-probe.cmd
+```
+
+Они устанавливают нужные Node packages outside repository under `%LOCALAPPDATA%gentic-development-source-automation
+ode` or `%TEMP%` fallback. `work/automation/node_modules/` не должен создаваться and не должен попадать в рабочие изменения.

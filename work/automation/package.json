@@ -3,10 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "run-source-loop": "tsx src/run-source-loop.ts"
-  },
-  "devDependencies": {
-    "tsx": "^4.20.0",
-    "typescript": "^5.9.0"
+    "run-source-loop": "node -e \"console.error('Use work/automation/run-source-loop.cmd from the repository root. Do not run npm install inside work/automation.'); process.exit(1)\"",
+    "sdk-probe": "node -e \"console.error('Use work/automation/sdk-probe.cmd from the repository root. Do not run npm install inside work/automation.'); process.exit(1)\""
   }
 }
