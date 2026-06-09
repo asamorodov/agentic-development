@@ -4,6 +4,12 @@
 
 Это рабочее методологическое досье по Spec Kit. Его задача — сохранить фактуру источников для будущего текста сайта: порядок работы, команды, файлы, артефакты, места человеческого решения, проверки, ограничения и неудобные детали. Досье не является финальной главой и не должно сглаживать Spec Kit до общей формулы “сначала спецификация, потом код”.
 
+## Краткая рабочая карта
+
+Spec Kit в этом досье лучше читать не как один CLI и не как набор slash-команд, а как несколько слоёв одного SDD-процесса. Нижний слой — стандартная цепочка `specify → plan → tasks → implement`, где каждый шаг производит Markdown-артефакт для следующего шага. Над ней находятся integrations, которые высаживают этот процесс в разные AI coding agents. Ещё выше появляются workflows, presets и extensions: workflows делают процесс возобновляемой многошаговой оркестрацией с gates; presets меняют шаблоны, команды и терминологию; extensions добавляют domain-specific commands, external tool integrations и quality gates [Workflows](https://github.github.com/spec-kit/reference/workflows.html), [Presets](https://github.github.com/spec-kit/reference/presets.html), [Extensions](https://github.github.com/spec-kit/reference/extensions.html).
+
+Эта карта важна для будущей теории: Spec Kit уже не сводится к «спецификация перед кодом». Его текущая поверхность показывает, как spec-first процесс превращается в настраиваемую инфраструктуру разработки: с каталогами, приоритетами resolution, human gates, возобновляемыми runs и риском supply-chain / override confusion.
+
 ## Роль в AI-driven SDLC
 
 Spec Kit позиционирует себя как toolkit для Spec-Driven Development: разработка начинается с описания того, что нужно построить, проходит через структурированные фазы и только затем передаётся AI coding agent для реализации [документация Spec Kit](https://github.github.com/spec-kit/). В терминах будущей теории это соседний спецификационный режим: он переносит центр тяжести из одноразового запроса в цепочку версионируемых Markdown-артефактов.
@@ -120,6 +126,10 @@ Catalog management у workflows тоже влияет на provenance проце
 
 Во всех core command templates есть общий механизм extension hooks: команда ищет `.specify/extensions.yml`, читает ключи вида `hooks.before_specify`, `hooks.after_plan`, `hooks.before_implement`, фильтрует `enabled: false`, различает optional и mandatory hooks и для mandatory hook выводит `EXECUTE_COMMAND` [specify.md](https://raw.githubusercontent.com/github/spec-kit/main/templates/commands/specify.md) [plan.md](https://raw.githubusercontent.com/github/spec-kit/main/templates/commands/plan.md) [implement.md](https://raw.githubusercontent.com/github/spec-kit/main/templates/commands/implement.md). При этом сами templates не интерпретируют непустые `condition`; условие оставлено HookExecutor implementation [specify.md](https://raw.githubusercontent.com/github/spec-kit/main/templates/commands/specify.md). Это важная неудобная деталь: расширяемость есть, но её фактическая надёжность зависит от того, как конкретная integration исполняет `EXECUTE_COMMAND` и hook protocol.
 
+Source-opening уточнение: workflow layer делает Spec Kit ближе к маленькому orchestrator, а не только к командам. `specify workflow run <source>` может запускать workflow из catalog id, URL или локального YAML-файла; run state получает `run_id`, `workflow_id`, `status`, `current_step_id`, а `specify workflow resume <run_id>` продолжает paused/failed run с того места, где он остановился [Workflows](https://github.github.com/spec-kit/reference/workflows.html). Встроенный пример `Full SDD Cycle` прямо содержит review gates после `specify` и `plan`: `review-spec` и `review-plan` могут approve/reject, а reject aborts workflow. Это показывает, что human checkpoint в Spec Kit может быть не только дисциплиной пользователя, но и элементом YAML workflow.
+
+Ещё одна важная техническая деталь: `--json` у `workflow run` / `resume` печатает machine-readable outcome на stdout, а прогресс шагов уходит в stderr. Для будущего Handbook это означает, что Spec Kit workflows можно встраивать в automation without parsing rich terminal prose, но нужно отдельно обрабатывать stderr как operational log [Workflows](https://github.github.com/spec-kit/reference/workflows.html).
+
 ## Артефакты и файлы
 
 Основные артефакты:
@@ -156,6 +166,10 @@ Catalog management у workflows тоже влияет на provenance проце
 - `src/specify_cli/integrations/base.py` и `src/specify_cli/integrations/__init__.py` — Python-слой реестра integrations. `IntegrationBase` задаёт `key`, `config`, `registrar_config`, `context_file`, `invoke_separator`, `multi_install_safe`, построение нативного вызова команды и установку command files; `__init__.py` регистрирует встроенные integrations в `INTEGRATION_REGISTRY` [src/specify_cli/integrations/base.py](https://raw.githubusercontent.com/github/spec-kit/main/src/specify_cli/integrations/base.py) [AGENTS.md в github/spec-kit](https://raw.githubusercontent.com/github/spec-kit/main/AGENTS.md).
 
 Репозиторий `github/spec-kit` физически показывает устройство инструмента: `integrations`, `templates`, `extensions`, `presets`, `workflows`, `src/specify_cli` [github/spec-kit](https://github.com/github/spec-kit). Для будущего текста это полезно как доказательство, что Spec Kit — не только методологическая статья, но CLI, шаблоны, интеграции, расширения и workflow engine.
+
+Presets и extensions добавляют отдельный слой resolution, который может менять фактический файл, читаемый командой. В presets project-local overrides `.specify/templates/overrides/` имеют highest precedence, затем идут installed presets, installed extensions и core templates `.specify/templates/`; resolution делается per file, а `specify preset resolve <name>` показывает, какой файл победил [Presets](https://github.github.com/spec-kit/reference/presets.html). Это сильная, но потенциально опасная деталь: два проекта с одинаковой командой `/speckit.plan` могут фактически читать разные `plan-template.md`, если у них разные presets / overrides.
+
+Extensions живут в `.specify/extensions/<ext>/`, могут иметь project config, local overrides и environment variables; config merge идёт от extension defaults к project config, затем local override и env vars [Extensions](https://github.github.com/spec-kit/reference/extensions.html). Поэтому extensions не стоит описывать просто как “плагины”: они могут менять команды, шаблоны и quality gates, а также вводить локальные конфигурационные состояния, которые не очевидны по одному Markdown-файлу спецификации.
 
 ## Где живёт контекст
 
@@ -331,7 +345,13 @@ Spec Kit явно отделяет продуктовую спецификаци
 
 Двадцатый риск — глобальные или внешние командные поверхности хуже видны в обычном diff. Если integration вроде `Hermes` использует `~/.hermes/skills/`, а `generic` пишет команды в произвольный каталог, ревью репозитория может не показать полный набор инструкций, которые реально читает агент [Supported AI Coding Agent Integrations](https://github.github.com/spec-kit/reference/integrations.html). Это особенно важно для командной работы и воспроизводимости: два разработчика могут иметь одинаковые `specs/` и `.specify/`, но разные глобальные skills или разные `--commands-dir`.
 
-## Что должно попасть в теорию
+Source-opening pass добавил отдельный риск upgrade/override. Upgrade guide прямо предупреждает, что `specify init --here --force` сейчас может перезаписать `.specify/memory/constitution.md`; workaround — заранее сохранить constitution и восстановить после upgrade. Тот же guide отдельно предупреждает, что custom scripts/templates in `.specify/scripts/` and `.specify/templates/` can be overwritten, а у IDE-based agents после upgrade могут появиться duplicate slash commands, которые нужно удалить вручную [Upgrade Guide](https://github.github.com/spec-kit/upgrade.html). Для методологии это важно: Spec Kit делает процесс воспроизводимым через файлы, но эти же файлы становятся mutable infrastructure, которую можно случайно сбросить при обновлении.
+
+Ещё один риск связан с presets/extensions: чем больше process behavior переносится в catalogs, priorities и local overrides, тем сложнее понять, какой именно процесс исполнил агент. Для аудита недостаточно сохранить `spec.md` и `plan.md`; нужно сохранять версию Spec Kit, integration, активные presets/extensions, priority order и project-local overrides.
+
+## Аналитические заметки предыдущих проходов
+
+### Что должно попасть в теорию
 
 В теории Spec Kit стоит описывать не как “пример хорошего prompt”, а как спецификационный конвейер, где каждый Markdown-артефакт становится входом следующего шага: constitution, spec, clarify/checklist, plan, tasks, analyze, implement.
 
@@ -359,7 +379,7 @@ Spec Kit явно отделяет продуктовую спецификаци
 
 Нужно уточнить, что этот слой работает на нескольких платформах. PowerShell-варианты сохраняют общий Spec Kit-порядок, но вводят отдельные условия: сравнение путей без учёта регистра на Windows, обработку gitflow-префикса ветки, `.ps1`-флаги и зависимость некоторых путей композиции presets от Python/PyYAML [scripts/powershell/common.ps1](https://raw.githubusercontent.com/github/spec-kit/main/scripts/powershell/common.ps1). В теории это помогает не сводить Spec Kit к Unix-ориентированной CLI-истории.
 
-## Что лучше уйдёт в Handbook / Fieldbook
+### Что лучше уйдёт в Handbook / Fieldbook
 
 В Handbook подойдут практические рецепты:
 
@@ -405,6 +425,13 @@ Spec Kit явно отделяет продуктовую спецификаци
 - проект, где integration запускается через переопределённый binary или extra args, и команда должна проверить env variables перед тем, как объяснять сбой содержанием `spec.md` или `plan.md`.
 
 ## Источники
+
+### Дополнительный источникный срез chat source-pass
+
+- `reference/workflows.html` — раскрыт как слой возобновляемой оркестрации с `run`, `resume`, `status`, `--json`, YAML steps и review gates.
+- `reference/presets.html` — раскрыт как слой переопределения templates/commands/scripts через priority stack: project-local overrides, presets, extensions, core.
+- `reference/extensions.html` — раскрыт как слой domain-specific commands, external integrations, quality gates и конфигураций `.specify/extensions/<ext>/`.
+- `upgrade.html` — добавлен как источник практических рисков: перезапись constitution/templates/scripts и duplicate slash commands после upgrade.
 
 - [GitHub Spec Kit Documentation](https://github.github.com/spec-kit/) — первичный обзор и вход в документацию. Даёт позиционирование, базовую цепочку `Spec -> Plan -> Tasks -> Implement`, список integrations, extensions, presets и организационные свойства. Ограничение: это главная витрина проекта, поэтому формулировки оптимистичны.
 - [github/spec-kit](https://github.com/github/spec-kit) — первичный репозиторий. Нужен для команд, README-порядка работы, структуры проекта и видимой материальной организации (`integrations`, `templates`, `extensions`, `presets`, `workflows`, `src/specify_cli`). Ограничение: README может меняться быстрее, чем стабильная методологическая трактовка.

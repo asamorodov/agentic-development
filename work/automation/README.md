@@ -160,3 +160,44 @@ work/automation/runs/<run-id>/<worker-id>/status.json
 ## Важное ограничение
 
 TS-loop проверяет, что дочерний запуск создал обязательные pass-артефакты. Если их нет, запуск падает. Это намеренно: отсутствие pass-артефактов означает, что prompt не выполнил контракт одного прохода.
+
+## Story dossier source accumulation
+
+Для досье будущих историй использовать отдельный prompt:
+
+```text
+work/prompts/STORY_DOSSIER_SOURCE_ACCUMULATION_PROMPT.md
+```
+
+И wrapper:
+
+```cmd
+work\automation\run-story-dossier-loop.cmd ^
+  --backend sdk ^
+  --doc work/story_dossiers/SHOPIFY_ROAST_STORY_DOSSIER.md ^
+  --topic "Shopify Roast" ^
+  --run-id story-dossiers-001 ^
+  --worker-id SHOPIFY_ROAST_STORY_DOSSIER
+```
+
+Wrapper вызывает обычный `run-source-loop.cmd` and задаёт:
+
+```text
+prompt = work/prompts/STORY_DOSSIER_SOURCE_ACCUMULATION_PROMPT.md
+min_pass = 10
+max_pass = 20
+mode = fresh
+fresh_action = stub
+```
+
+Для параллельного запуска всех шести кандидатных историй использовать controller prompt:
+
+```text
+work/prompts/RUN_STORY_DOSSIERS_SOURCE_ACCUMULATION.md
+```
+
+Story dossiers должны лежать separately from methodology dossiers:
+
+```text
+work/story_dossiers/
+```

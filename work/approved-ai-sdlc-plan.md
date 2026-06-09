@@ -1141,9 +1141,11 @@ The final theory must include comparative syntheses:
 3. Evidence methods: TDAD / contract tests / architecture fitness / test data / agent traces.
 4. Completion/governance: SASE / open-source policies / CODEOWNERS / audit-provenance.
 
-### 8.5. Required methodology dossiers before writing Parts V and VII
+### 8.5. Готовность материала перед написанием Частей V и VII
 
-Before writing Part V or Part VII, create:
+Части V и VII пишутся по скелетону, а не как сборка заранее готовых будущих документов. Досье и сравнительные отчёты служат материалом готовности: они дают фактуру, источники, технические детали, ограничения и проверочные вопросы, но сами не являются черновыми главами сайта.
+
+Перед написанием Части V или Части VII нужно проверить, хватает ли материала в текущих досье и сравнительных отчётах:
 
 ```text
 work/dossiers/SPEC_KIT_METHOD_DOSSIER.md
@@ -1156,4 +1158,13 @@ work/reports/SPECIFICATION_METHODS_COMPARATIVE_SYNTHESIS.md
 work/reports/PROCESS_METHODS_COMPARATIVE_SYNTHESIS.md
 ```
 
-No writing of methodology sections before these dossiers exist.
+Если профиль не проходит правило защищённого методологического профиля, следующий шаг — дополнительный проход по досье или источникам. Нельзя закрывать слабое место гладкой теоретической прозой поверх недостаточной фактуры. При этом не нужно создавать отдельные “документы будущей теории” до начала письма: теория, технический атлас, Handbook и Fieldbook будут написаны по скелетону и на основе материала, накопленного в `/work`.
+
+### 8.6. Патч скелетона v4.2
+
+Скелетон v4.2 сохраняет архитектуру v4.1 и сравнительные главы, но уточняет четыре границы:
+
+1. ADR получает статус защищённого профиля архитектурного решения внутри Части III. Он не становится третьим deep anchor, но требует раскрытия Nygard, MADR, статусов, reconstructed ADR, operational projection и confirmation.
+2. Истории остаются первым разделом сайта. Теория использует их как фактические якоря и не пересказывает сами истории.
+3. Технический атлас — это приложение по тяжёлым методологическим досье: SPDD, Spec Kit, Kiro Specs, Constitutional SDD, TDAD, GSD / Open GSD, BMAD Method, Gas Town / Beads и ADR. Он не является атласом концепций и не должен забирать из теории концептуальное объяснение.
+4. Готовность к письму формулируется как проверка достаточности материала. Если фактуры мало, сначала проводится проход по источникам или досье; если материала достаточно, пишется глава по скелетону.

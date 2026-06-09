@@ -1,1 +1,3 @@
-work: add Codex SDK probe for nested execution backend — cumulative-overlay
+work: prepare Russian language normalization prompts
+
+Add a language-only lower prompt and a Codex controller prompt for running 5–20 new normalization passes over active dossiers and three new stories. Keep style normalization and source accumulation out of scope.
