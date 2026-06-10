@@ -1,3 +1,7 @@
-work: prepare Russian language normalization prompts
+Run Russian language normalization over dossiers and new stories
 
-Add a language-only lower prompt and a Codex controller prompt for running 5–20 new normalization passes over active dossiers and three new stories. Keep style normalization and source accumulation out of scope.
+- normalize active work/dossiers documents to Russian-language rules
+- normalize stories 13, 14 and 15 without source accumulation or style rewrite
+- preserve commands, paths, URLs, names, source titles and stable technical terms
+- create pass artifacts under passes/<safeDocName>
+- add russian language normalization run report and controller checks

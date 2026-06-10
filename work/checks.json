@@ -1,47 +1,194 @@
 {
-  "status": "PASS",
-  "base_snapshot": "git(5).zip",
-  "created_at": "2026-06-09T22:02:38.888210+00:00",
-  "task": "prepare-russian-language-normalization-prompts",
-  "files_created_or_updated": [
-    "work/prompts/RUSSIAN_LANGUAGE_NORMALIZATION_PROMPT.md",
-    "work/prompts/RUN_RUSSIAN_LANGUAGE_NORMALIZATION.md",
-    "work/reports/RUSSIAN_LANGUAGE_NORMALIZATION_PROMPT_PREP.md",
-    "work/discourse.md",
-    "work/APPLY_NOTES.md",
-    "work/COMMIT_MESSAGE.txt",
-    "work/checks.json"
-  ],
-  "lower_prompt_reads_only": [
-    "target document supplied by run-source-loop",
-    "protocols/rules/russian-language.md"
-  ],
-  "target_scope": {
-    "dossiers": 10,
-    "new_stories": 3,
-    "excluded": [
-      "work/story_dossiers/",
-      "content/stories/01_*.md through 12_*.md",
-      "work/dossiers/BMAD_METHOD_DOSSIER_COMPARISON_SNAPSHOT_2026_06_08.md",
-      "reports, pass snapshots, theory chapters"
+  "status": "PASS_WITH_MANUAL_REVIEW_NOTE",
+  "run_id": "russian-language-normalization-2026-06-10-0109",
+  "task": "russian-language-normalization",
+  "created_at": "2026-06-10T01:09:00+03:00",
+  "controller_prompt": "work/prompts/RUN_RUSSIAN_LANGUAGE_NORMALIZATION.md",
+  "child_prompt": "work/prompts/RUSSIAN_LANGUAGE_NORMALIZATION_PROMPT.md",
+  "language_protocol": "protocols/rules/russian-language.md",
+  "scope": {
+    "target_count": 13,
+    "dossier_count": 10,
+    "story_count": 3,
+    "missing_count": 0
+  },
+  "preflight": {
+    "initial": "PASS",
+    "resume_preflights": [
+      "russian-language-normalization-2026-06-10-0109-resume-preflight: PASS",
+      "russian-language-normalization-2026-06-10-0109-resume2-preflight: PASS",
+      "russian-language-normalization-2026-06-10-0109-resume3-preflight: PASS"
     ]
   },
-  "run_parameters": {
-    "mode": "continue",
-    "fresh": false,
-    "new_passes_per_document_min": 5,
-    "new_passes_per_document_max": 20,
-    "absolute_pass_number_note": "controller must compute start_pass=last_pass+1, min_pass=last_pass+5, max_pass=last_pass+20 per document"
+  "dry_run": {
+    "status": "PASS",
+    "documents": [
+      "work/dossiers/SPEC_KIT_METHOD_DOSSIER.md",
+      "content/stories/13_armin_ronacher_pi_minimal_agent_harness_reconstruction_connected.md"
+    ]
   },
-  "checks_performed": [
-    "work/checks.json validated with python json.tool",
-    "zip integrity check",
-    "grep for internal informal process nickname in new prompt/report files"
+  "documents": [
+    {
+      "doc": "work/dossiers/ADR_METHOD_DOSSIER.md",
+      "worker_id": "ADR_METHOD_DOSSIER_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false
+    },
+    {
+      "doc": "work/dossiers/BMAD_METHOD_DOSSIER.md",
+      "worker_id": "BMAD_METHOD_DOSSIER_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false,
+      "note": "Aggregate status.json absent after shell timeout; pass artifacts complete."
+    },
+    {
+      "doc": "work/dossiers/CONSTITUTIONAL_SDD_DOSSIER.md",
+      "worker_id": "CONSTITUTIONAL_SDD_DOSSIER_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false,
+      "note": "Aggregate status.json absent after timeout/shutdown; pass artifacts complete."
+    },
+    {
+      "doc": "work/dossiers/GAS_TOWN_METHOD_DOSSIER.md",
+      "worker_id": "GAS_TOWN_METHOD_DOSSIER_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false
+    },
+    {
+      "doc": "work/dossiers/GSD_METHOD_DOSSIER.md",
+      "worker_id": "GSD_METHOD_DOSSIER_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 6,
+      "new_pass_count": 6,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false
+    },
+    {
+      "doc": "work/dossiers/KIRO_SPECS_DOSSIER.md",
+      "worker_id": "KIRO_SPECS_DOSSIER_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false,
+      "note": "Aggregate status.json absent after shell timeout; pass artifacts complete."
+    },
+    {
+      "doc": "work/dossiers/PERSISTENT_WORK_GRAPH_MECHANISM_DOSSIER.md",
+      "worker_id": "PERSISTENT_WORK_GRAPH_MECHANISM_DOSSIER_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false,
+      "note": "Pass 05 appeared after worker timeout; stale process stopped after artifacts existed."
+    },
+    {
+      "doc": "work/dossiers/SPDD_METHOD_DOSSIER.md",
+      "worker_id": "SPDD_METHOD_DOSSIER_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "manual-review-needed",
+      "manual_review_needed": true,
+      "note": "Intermediate pass reported repairing encoding-glitch consequences; final pass artifacts exist."
+    },
+    {
+      "doc": "work/dossiers/SPEC_KIT_METHOD_DOSSIER.md",
+      "worker_id": "SPEC_KIT_METHOD_DOSSIER_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false
+    },
+    {
+      "doc": "work/dossiers/TDAD_COMPARATIVE_DOSSIER.md",
+      "worker_id": "TDAD_COMPARATIVE_DOSSIER_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false,
+      "note": "Stale process stopped after pass 05 appeared."
+    },
+    {
+      "doc": "content/stories/13_armin_ronacher_pi_minimal_agent_harness_reconstruction_connected.md",
+      "worker_id": "ARMIN_RONACHER_STORY_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false
+    },
+    {
+      "doc": "content/stories/14_stripe_minions_enterprise_agentic_platform_reconstruction_connected.md",
+      "worker_id": "STRIPE_MINIONS_STORY_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false
+    },
+    {
+      "doc": "content/stories/15_shopify_roast_executable_ai_workflow_reconstruction_connected.md",
+      "worker_id": "SHOPIFY_ROAST_STORY_LANGUAGE",
+      "last_pass_before_run": 0,
+      "start_pass": 1,
+      "last_pass_after_run": 5,
+      "new_pass_count": 5,
+      "should_stop": "yes",
+      "status": "completed-stopped",
+      "manual_review_needed": false
+    }
   ],
+  "infrastructure_checks": {
+    "work_automation_passes_absent": true,
+    "work_automation_work_absent": true,
+    "work_automation_node_modules_absent": true,
+    "work_automation_package_lock_absent": true
+  },
   "not_performed": [
-    "did not run language normalization workers",
-    "did not edit target dossiers or stories",
-    "did not perform style normalization",
-    "did not perform source accumulation"
-  ]
+    "source accumulation",
+    "style rewrite",
+    "theory rewrite",
+    "full human semantic diff review of every document"
+  ],
+  "report": "work/reports/RUSSIAN_LANGUAGE_NORMALIZATION_RUN_REPORT.md"
 }
