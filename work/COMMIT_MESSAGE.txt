@@ -1,7 +1,7 @@
-Run Russian language normalization over dossiers and new stories
+Repair Russian terminology in dossiers and new stories
 
-- normalize active work/dossiers documents to Russian-language rules
-- normalize stories 13, 14 and 15 without source accumulation or style rewrite
-- preserve commands, paths, URLs, names, source titles and stable technical terms
-- create pass artifacts under passes/<safeDocName>
-- add russian language normalization run report and controller checks
+- add terminology and anti-calque repair queue
+- normalize obvious Russian/English hybrids across 10 dossiers and 3 stories
+- perform SPDD-specific language sanity pass after prior review note
+- lightly repair stories 13–15 without rewriting structure or sources
+- preserve raw URLs; repair previously calqued SPDD local link targets
