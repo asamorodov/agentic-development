@@ -1,68 +1,32 @@
-# Apply notes — terminology and anti-calque repair pass
+# Apply notes
 
-Base snapshot: user-uploaded `git(8).zip`.
+Generated cumulative overlay for A10 second repair and free-pass/process diagnosis.
 
-This overlay contains a targeted terminology and anti-calque repair pass for the same 13 documents that were processed by the Russian language normalization run. It is **not** a new source accumulation pass, not a stylistic rewrite, and not a theoretical restructuring.
+Changed/added:
 
-## Files to replace
+- `work/theory-writing/fragments/A10_mode_selection_map.md`
+- `work/theory-writing/fragments/A10_mode_selection_matrix.md`
+- `work/theory-writing/fragments/A10_decision_stress_tests.md`
+- `work/theory-writing/fragments/A10_source_usage.md`
+- `work/theory-writing/fragments/A10_open_questions.md`
+- `work/theory-writing/fragments/A10_degradation_and_duplication_audit.md`
+- `work/theory-writing/target-group-plans/A10_MODE_SELECTION_MAP_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/reports/A10_SECOND_REPAIR_AND_FREE_PASS_DIAGNOSIS_REPORT.md`
+- `protocols/rules/fragment-defect-analysis-and-repair.md`
+- `work/protocols/THEORY_WRITING_PROMPT_QUEUE_PROTOCOL.md`
+- `work/prompts/TARGET_GROUP_PLAN_TEMPLATE.md`
+- `work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md`
+- `START.md`
+- `work/discourse.md`
+- `work/theory-writing/WORKING_DOCUMENTS_MAP.md`
+- `work/APPLY_NOTES.md`
+- `work/COMMIT_MESSAGE.txt`
+- `work/checks.json`
 
-Dossiers:
 
-```text
-work/dossiers/ADR_METHOD_DOSSIER.md
-work/dossiers/BMAD_METHOD_DOSSIER.md
-work/dossiers/CONSTITUTIONAL_SDD_DOSSIER.md
-work/dossiers/GAS_TOWN_METHOD_DOSSIER.md
-work/dossiers/GSD_METHOD_DOSSIER.md
-work/dossiers/KIRO_SPECS_DOSSIER.md
-work/dossiers/PERSISTENT_WORK_GRAPH_MECHANISM_DOSSIER.md
-work/dossiers/SPDD_METHOD_DOSSIER.md
-work/dossiers/SPEC_KIT_METHOD_DOSSIER.md
-work/dossiers/TDAD_COMPARATIVE_DOSSIER.md
-```
+## C5 result integration and A10 sync
 
-Stories:
-
-```text
-content/stories/13_armin_ronacher_pi_minimal_agent_harness_reconstruction_connected.md
-content/stories/14_stripe_minions_enterprise_agentic_platform_reconstruction_connected.md
-content/stories/15_shopify_roast_executable_ai_workflow_reconstruction_connected.md
-```
-
-Reports and task files:
-
-```text
-work/reports/LANGUAGE_TERMINOLOGY_REPAIR_QUEUE.md
-work/reports/LANGUAGE_TERMINOLOGY_REPAIR_PASS_REPORT.md
-work/reports/SPDD_LANGUAGE_SANITY_PASS_REPORT.md
-work/reports/STORIES_13_15_LANGUAGE_EDITORIAL_PASS_REPORT.md
-work/discourse.md
-work/APPLY_NOTES.md
-work/COMMIT_MESSAGE.txt
-work/checks.json
-```
-
-## What changed
-
-- Mechanical hybrids such as `prompt-файл`, `источникный срез`, `ИИ-native graph`, `бизнес-prompt`, `Задачи-gate`, `трассируемость-risk`, `область-gate` were repaired.
-- In ordinary Russian prose, `AI-driven SDLC` was normalized to `SDLC с ИИ`, and `AI-агент` / `AI-система` were normalized to `ИИ-агент` / `ИИ-система`.
-- SPDD received a separate sanity pass: visible `Unit tests` / `unit-тесты` text was normalized to `модульные тесты`, and previously calqued local link targets were restored to the actual story filename and corpus anchors.
-- Three new stories received a small editorial repair pass only for mechanical language artifacts.
-
-## Checks performed
-
-```text
-python -m json.tool work/checks.json
-Markdown link target comparison against git(8).zip for all 13 documents
-Raw URL comparison against git(8).zip for all 13 documents
-Known-bad-pattern scan after repair
-unzip -t final overlay archive
-```
-
-Raw URLs remain unchanged. Markdown link targets are unchanged except for deliberate SPDD local-link repair: Jesse Vincent story path, `#spdd-six-step-workflow`, and `#spdd-unit-tests-after-stabilization`.
-
-## Human gates
-
-- This pass deliberately does not replace a future stylistic pass.
-- The terminology queue should be reviewed before it becomes a permanent protocol.
-- Dossiers remain quarry/source material, not final public theory prose.
+- Imported C5 result fragment and companion files into `work/theory-writing/fragments/`.
+- Stored result archive service files under `work/theory-writing/reports/c5-result-import/`.
+- Evaluated C5 against its target-group plan and repaired stale A10 sync status after A10 became available.
+- Added `C5_RESULT_INTEGRATION_EVALUATION_REPAIR_REPORT.md`.

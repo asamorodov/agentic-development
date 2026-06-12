@@ -49,3 +49,8 @@ Codex should not be allowed to “just rewrite the theory.” Its role is contro
 ## 10. Human role
 
 The human owner keeps architectural decisions and semantic gates. Human work should not be reduced to manually launching repeated passes or checking file counts.
+
+
+## 11. Technical atlas is чтение от конкретной концепции
+
+Технический атлас больше не трактуется как узкое приложение для технических деталей. Он становится концептуально-техническим слоем: самостоятельным набором статей с опорой на источники по конкретным концепциям и методологиям. Контролируемое повторение с теорией допустимо, если нужно для самостоятельного понимания статьи атласа. Теория остаётся поперечным SDLC-синтезом; атлас даёт путь чтения от конкретной концепции и не должен становиться ни копией общей теории, ни складом несвязанных деталей.

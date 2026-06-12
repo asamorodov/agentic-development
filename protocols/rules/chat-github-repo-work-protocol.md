@@ -146,13 +146,22 @@ site-spec/
 
 Archive overlay должен содержать только новые or изменённые файлы, unless user asks for full rebuilt snapshot.
 
-### Cumulative archive rule
+### Baseline and cumulative archive rule
 
-Если пользователь не дал новый full snapshot and не сказал, что уже сделал commit, каждый следующий `work` archive / overlay должен быть **кумулятивным**: включать все предыдущие изменения текущей chat-work chain.
+Базовая линия для archive overlay определяется только двумя событиями:
 
-Цель: пользователь может применить последний архив одним overlay without manually applying prior patches.
+1. пользователь загрузил новый полный repo snapshot / `git.zip`;
+2. пользователь явно сказал, что изменения применены, закоммичены или что новое состояние нужно считать базой.
 
-При новом full snapshot or explicit commit point ChatGPT должен сменить base and начать новую cumulative chain.
+Assistant-generated overlay, delta-zip, промежуточный архив результата или кэш-пакет не становятся новым baseline автоматически. ChatGPT не должен молча распаковывать предыдущий собственный overlay и считать его исходным состоянием следующей дельты.
+
+Каждый archive overlay должен быть собран относительно текущего пользовательского baseline или явно названной commit/apply-точки. В итоговом сообщении и `work/APPLY_NOTES.md` нужно назвать эту базу.
+
+Кумулятивность — это режим упаковки, а не перенос baseline. Если пользователь не дал новый full snapshot and не сказал, что уже сделал commit, и текущий архив должен заменить предыдущие результаты этой chat-work chain, он должен быть **кумулятивным относительно той же базовой линии**: включать все ранее принятые изменения, но вычисляться как итоговое состояние от пользовательского baseline, not as patch-on-patch поверх assistant-generated overlay.
+
+Если пользователь просит узкую дельту по одной новой правке, ChatGPT может вернуть некумулятивный overlay только для этой правки, но должен явно сказать, что архив не включает прежние uncommitted overlays and applying it alone will not reproduce the whole current chain.
+
+При новом full snapshot or explicit commit/apply point ChatGPT должен сменить base and начать новую chain.
 
 ### Full-file replacement
 
