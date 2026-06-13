@@ -1,7 +1,1 @@
-Integrate C5 result and sync with A10
-
-- Import C5 fragment and companion outputs
-- Store C5 result service files under reports/c5-result-import
-- Evaluate C5 against concept-first atlas goal
-- Repair stale A10 sync status now that A10 exists
-- Add C5 integration/evaluation/repair report
+theory: add post-atlas skeleton v5 and chapter package routing

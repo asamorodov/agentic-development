@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">Gas Town: pressure-to-mechanism stack</title>
+  <desc id="desc">A synthetic diagram showing how different operational pressures in multi-agent coding work require mechanisms such as durable work state, roles, queues, recovery, observability and human verdict.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbfaf7; }
+      .title { font: 700 32px system-ui, -apple-system, Segoe UI, sans-serif; fill: #1f2933; }
+      .subtitle { font: 400 17px system-ui, -apple-system, Segoe UI, sans-serif; fill: #52606d; }
+      .h { font: 700 18px system-ui, -apple-system, Segoe UI, sans-serif; fill: #1f2933; }
+      .cell { fill: #ffffff; stroke: #9aa5b1; stroke-width: 1.4; rx: 18; }
+      .cell2 { fill: #f4f7fb; stroke: #7b8794; stroke-width: 1.4; rx: 18; }
+      .cell3 { fill: #fff8e8; stroke: #a27c2c; stroke-width: 1.4; rx: 18; }
+      .label { font: 600 15px system-ui, -apple-system, Segoe UI, sans-serif; fill: #243b53; }
+      .small { font: 400 14px system-ui, -apple-system, Segoe UI, sans-serif; fill: #334e68; }
+      .arrow { stroke: #52606d; stroke-width: 2.2; fill: none; marker-end: url(#arrowhead); }
+      .rowline { stroke: #d9e2ec; stroke-width: 1; }
+      .note { font: 500 14px system-ui, -apple-system, Segoe UI, sans-serif; fill: #52606d; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#52606d" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="820"/>
+  <text class="title" x="60" y="56">От давления к механизму Gas Town</text>
+  <text class="subtitle" x="60" y="86">Каждый слой появляется не ради терминологии, а потому что предыдущий способ управления перестаёт держать ответственность.</text>
+
+  <text class="h" x="88" y="138">Давление</text>
+  <text class="h" x="462" y="138">Механизм</text>
+  <text class="h" x="872" y="138">Что становится решаемым</text>
+
+  <g transform="translate(60,160)">
+    <g transform="translate(0,0)">
+      <rect class="cell" x="0" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="22" y="29">Работа растворена</text>
+      <text class="small" x="22" y="52">в чатах, ветках, логах</text>
+      <text class="small" x="22" y="70">и памяти человека</text>
+      <path class="arrow" d="M333 41 H388"/>
+      <rect class="cell2" x="400" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="422" y="29">Устойчивый рабочий объект</text>
+      <text class="small" x="422" y="52">bead, graph, dependency,</text>
+      <text class="small" x="422" y="70">claim, gate, prime</text>
+      <path class="arrow" d="M733 41 H788"/>
+      <rect class="cell3" x="800" y="0" width="300" height="82" rx="18"/>
+      <text class="label" x="822" y="29">Видно состояние работы</text>
+      <text class="small" x="822" y="52">что готово, взято,</text>
+      <text class="small" x="822" y="70">заблокировано или ждёт</text>
+    </g>
+
+    <g transform="translate(0,100)">
+      <rect class="cell" x="0" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="22" y="29">Исполнителей становится много</text>
+      <text class="small" x="22" y="52">разные сессии, worktrees,</text>
+      <text class="small" x="22" y="70">ветки и ожидания</text>
+      <path class="arrow" d="M333 41 H388"/>
+      <rect class="cell2" x="400" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="422" y="29">Роли жизненного цикла</text>
+      <text class="small" x="422" y="52">Mayor, Polecat, Witness,</text>
+      <text class="small" x="422" y="70">Refinery, Deacon, Dogs</text>
+      <path class="arrow" d="M733 41 H788"/>
+      <rect class="cell3" x="800" y="0" width="300" height="82" rx="18"/>
+      <text class="label" x="822" y="29">Разделены функции</text>
+      <text class="small" x="822" y="52">принять, исполнить,</text>
+      <text class="small" x="822" y="70">наблюдать, слить, очистить</text>
+    </g>
+
+    <g transform="translate(0,200)">
+      <rect class="cell" x="0" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="22" y="29">Готовой работы больше,</text>
+      <text class="small" x="22" y="52">чем ёмкости среды,</text>
+      <text class="small" x="22" y="70">review и merge queue</text>
+      <path class="arrow" d="M333 41 H388"/>
+      <rect class="cell2" x="400" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="422" y="29">Queue, scheduler,</text>
+      <text class="small" x="422" y="52">pressure checks,</text>
+      <text class="small" x="422" y="70">backpressure</text>
+      <path class="arrow" d="M733 41 H788"/>
+      <rect class="cell3" x="800" y="0" width="300" height="82" rx="18"/>
+      <text class="label" x="822" y="29">Появляется право</text>
+      <text class="small" x="822" y="52">не запускать ещё одного</text>
+      <text class="small" x="822" y="70">исполнителя прямо сейчас</text>
+    </g>
+
+    <g transform="translate(0,300)">
+      <rect class="cell" x="0" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="22" y="29">Сессии умирают,</text>
+      <text class="small" x="22" y="52">сжимаются, меняют модель</text>
+      <text class="small" x="22" y="70">или возвращаются позже</text>
+      <path class="arrow" d="M333 41 H388"/>
+      <rect class="cell2" x="400" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="422" y="29">Recovery hooks, marker,</text>
+      <text class="small" x="422" y="52">handoff, bd prime,</text>
+      <text class="small" x="422" y="70">обновление контекста</text>
+      <path class="arrow" d="M733 41 H788"/>
+      <rect class="cell3" x="800" y="0" width="300" height="82" rx="18"/>
+      <text class="label" x="822" y="29">Продолжается работа,</text>
+      <text class="small" x="822" y="52">а не конкретное окно</text>
+      <text class="small" x="822" y="70">или последняя стенограмма</text>
+    </g>
+
+    <g transform="translate(0,400)">
+      <rect class="cell" x="0" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="22" y="29">Шум скрывает сбои</text>
+      <text class="small" x="22" y="52">и человек не может читать</text>
+      <text class="small" x="22" y="70">все терминалы</text>
+      <path class="arrow" d="M333 41 H388"/>
+      <rect class="cell2" x="400" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="422" y="29">Problems view, dashboard,</text>
+      <text class="small" x="422" y="52">telemetry, heartbeat,</text>
+      <text class="small" x="422" y="70">service agents</text>
+      <path class="arrow" d="M733 41 H788"/>
+      <rect class="cell3" x="800" y="0" width="300" height="82" rx="18"/>
+      <text class="label" x="822" y="29">Видны состояния</text>
+      <text class="small" x="822" y="52">вмешательства, а не весь</text>
+      <text class="small" x="822" y="70">низкоуровневый поток</text>
+    </g>
+
+    <g transform="translate(0,500)">
+      <rect class="cell" x="0" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="22" y="29">Результаты копятся</text>
+      <text class="small" x="22" y="52">быстрее, чем их можно</text>
+      <text class="small" x="22" y="70">проверять и принимать</text>
+      <path class="arrow" d="M333 41 H388"/>
+      <rect class="cell2" x="400" y="0" width="320" height="82" rx="18"/>
+      <text class="label" x="422" y="29">Human verdict, merge,</text>
+      <text class="small" x="422" y="52">release gates, risk</text>
+      <text class="small" x="422" y="70">ownership</text>
+      <path class="arrow" d="M733 41 H788"/>
+      <rect class="cell3" x="800" y="0" width="300" height="82" rx="18"/>
+      <text class="label" x="822" y="29">Ответственность остаётся</text>
+      <text class="small" x="822" y="52">отдельной от действия</text>
+      <text class="small" x="822" y="70">агента</text>
+    </g>
+  </g>
+
+  <text class="note" x="60" y="786">Схема не является исходным скриншотом Gas Town. Это редакционная карта аргумента статьи: от насыщения ручного управления к необходимым организационным механизмам.</text>
+</svg>

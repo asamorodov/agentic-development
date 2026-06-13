@@ -1,32 +1,31 @@
-# Apply notes
+# APPLY NOTES — Post-Atlas Spine and Skeleton Update
 
-Generated cumulative overlay for A10 second repair and free-pass/process diagnosis.
+Base: user-uploaded full repository snapshot `git(10).zip`.
 
-Changed/added:
+This overlay is cumulative with the accepted Atlas filesystem state already represented in `all_atlas_articles_filesystem_overlay.zip`, and adds the post-atlas spine/skeleton update.
 
-- `work/theory-writing/fragments/A10_mode_selection_map.md`
-- `work/theory-writing/fragments/A10_mode_selection_matrix.md`
-- `work/theory-writing/fragments/A10_decision_stress_tests.md`
-- `work/theory-writing/fragments/A10_source_usage.md`
-- `work/theory-writing/fragments/A10_open_questions.md`
-- `work/theory-writing/fragments/A10_degradation_and_duplication_audit.md`
-- `work/theory-writing/target-group-plans/A10_MODE_SELECTION_MAP_TARGET_GROUP_PLAN.md`
-- `work/theory-writing/reports/A10_SECOND_REPAIR_AND_FREE_PASS_DIAGNOSIS_REPORT.md`
-- `protocols/rules/fragment-defect-analysis-and-repair.md`
-- `work/protocols/THEORY_WRITING_PROMPT_QUEUE_PROTOCOL.md`
-- `work/prompts/TARGET_GROUP_PLAN_TEMPLATE.md`
-- `work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md`
-- `START.md`
-- `work/discourse.md`
-- `work/theory-writing/WORKING_DOCUMENTS_MAP.md`
-- `work/APPLY_NOTES.md`
-- `work/COMMIT_MESSAGE.txt`
-- `work/checks.json`
+Changed / created files:
 
+```text
+START.md
+work/discourse.md
+work/theory-writing/WORKING_DOCUMENTS_MAP.md
+work/theory-writing/fragments/00_spine_map.md
+work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md
+work/theory-writing/CORE_NODES_WRITING_PLAN.md
+work/theory-writing/reports/POST_ATLAS_SOURCE_ROUTING_MAP.md
+work/theory-writing/reports/POST_ATLAS_EXTERNAL_DISCOVERY_NEEDS.md
+work/theory-writing/reports/POST_ATLAS_HEAVY_CHAPTER_PACKAGE_BLUEPRINT.md
+work/theory-writing/reports/POST_ATLAS_SKELETON_ANTI_DEGRADATION_AUDIT.md
+work/theory-writing/reports/POST_ATLAS_SPINE_AND_SKELETON_UPDATE_REPORT.md
+```
 
-## C5 result integration and A10 sync
+Not changed:
 
-- Imported C5 result fragment and companion files into `work/theory-writing/fragments/`.
-- Stored result archive service files under `work/theory-writing/reports/c5-result-import/`.
-- Evaluated C5 against its target-group plan and repaired stale A10 sync status after A10 became available.
-- Added `C5_RESULT_INTEGRATION_EVALUATION_REPAIR_REPORT.md`.
+- Atlas article texts.
+- Atlas target plans/packages.
+- Dossiers.
+- A/B/C fragment texts.
+- Style protocols.
+
+Recommended commit message: `theory: add post-atlas skeleton v5 and chapter package routing`.

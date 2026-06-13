@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520" role="img" aria-labelledby="title desc">
+<title id="title">Design Decision Gate: ADR до слияния PR</title>
+<desc id="desc">Локальная визуальная выдержка по GitHub gh-aw workflow.</desc>
+<rect x="0" y="0" width="1000" height="520" fill="#ffffff"/>
+<rect x="24" y="24" width="952" height="472" rx="18" fill="#f9fafb" stroke="#374151" stroke-width="1.5"/>
+<text x="54" y="70" font-size="26" font-weight="700" fill="#111827">Design Decision Gate: ADR до слияния PR</text>
+<text x="54" y="103" font-size="14" font-weight="normal" fill="#6b7280">Локальная визуальная выдержка по GitHub gh-aw workflow.</text>
+<rect x="60" y="135" width="260" height="110" rx="14" fill="#fff" stroke="#374151" stroke-width="1"/>
+<text x="78" y="169" font-size="17" font-weight="700" fill="#111827">Prefetched PR evidence</text>
+<text x="78" y="199" font-size="13" font-weight="normal" fill="#374151">pr.json, pr-files.json, pr.diff</text>
+<text x="78" y="217" font-size="13" font-weight="normal" fill="#374151">design-gate-config.yml</text>
+<text x="78" y="235" font-size="13" font-weight="normal" fill="#374151">adr-prefetch-summary.json</text>
+<rect x="370" y="135" width="260" height="110" rx="14" fill="#fff" stroke="#374151" stroke-width="1"/>
+<text x="388" y="169" font-size="17" font-weight="700" fill="#111827">Deterministic checks</text>
+<text x="388" y="199" font-size="13" font-weight="normal" fill="#374151">implementation label</text>
+<text x="388" y="217" font-size="13" font-weight="normal" fill="#374151">&gt;100 additions in business dirs</text>
+<text x="388" y="235" font-size="13" font-weight="normal" fill="#374151">custom config when present</text>
+<rect x="680" y="135" width="260" height="110" rx="14" fill="#fff" stroke="#374151" stroke-width="1"/>
+<text x="698" y="169" font-size="17" font-weight="700" fill="#111827">ADR search</text>
+<text x="698" y="199" font-size="13" font-weight="normal" fill="#374151">PR body, branch files, linked issues</text>
+<text x="698" y="217" font-size="13" font-weight="normal" fill="#374151">does an ADR already exist?</text>
+<rect x="220" y="305" width="260" height="110" rx="14" fill="#fff" stroke="#374151" stroke-width="1"/>
+<text x="238" y="339" font-size="17" font-weight="700" fill="#111827">Draft or block</text>
+<text x="238" y="369" font-size="13" font-weight="normal" fill="#374151">if missing: draft ADR</text>
+<text x="238" y="387" font-size="13" font-weight="normal" fill="#374151">or comment / block merge</text>
+<rect x="535" y="305" width="260" height="110" rx="14" fill="#fff" stroke="#374151" stroke-width="1"/>
+<text x="553" y="339" font-size="17" font-weight="700" fill="#111827">Human completion</text>
+<text x="553" y="369" font-size="13" font-weight="normal" fill="#374151">LLM prepares evidence</text>
+<text x="553" y="387" font-size="13" font-weight="normal" fill="#374151">decision still needs review</text>
+<line x1="54" y1="456" x2="946" y2="456" stroke="#e5e7eb" stroke-width="1"/>
+<text x="54" y="484" font-size="12" font-weight="normal" fill="#6b7280">Источник: github/gh-aw, “Design Decision Gate” workflow.</text>
+</svg>

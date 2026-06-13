@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="664" viewBox="0 0 1180 664">
+<style>text{font-family:Arial,Helvetica,sans-serif;} .title{font-size:30px;font-weight:700;fill:#111} .sub{font-size:17px;fill:#555} .h{font-size:18px;font-weight:700;fill:#222} .c{font-size:17px;fill:#222} .small{font-size:15px;fill:#444} .box{fill:#fff;stroke:#d0d7de;stroke-width:1.2}.head{fill:#f6f8fa;stroke:#d0d7de;stroke-width:1.2}.accent{fill:#eef6ff;stroke:#8bb9e8;stroke-width:1.2}</style>
+<rect x="0" y="0" width="1180" height="664" fill="#ffffff"/>
+<text x="34" y="44" class="title">OpenSPDD /spdd-sync: обратная синхронизация</text>
+<text x="34" y="72" class="sub">Локальная визуальная выдержка по мотивам шаблона OpenSPDD /spdd-sync</text>
+<rect x="34" y="100" width="330" height="84" class="head"/>
+<text x="48" y="125" class="h">Flow</text>
+<rect x="364" y="100" width="390" height="84" class="head"/>
+<text x="378" y="125" class="h">Design → code</text>
+<rect x="754" y="100" width="390" height="84" class="head"/>
+<text x="768" y="125" class="h">/spdd-generate implements the</text>
+<text x="768" y="145" class="h">structured prompt</text>
+<rect x="34" y="184" width="330" height="84" class="box"/>
+<text x="48" y="209" class="c">After review</text>
+<rect x="364" y="184" width="390" height="84" class="box"/>
+<text x="378" y="209" class="c">Code → design</text>
+<rect x="754" y="184" width="390" height="84" class="box"/>
+<text x="768" y="209" class="c">/spdd-sync compares implementation</text>
+<text x="768" y="229" class="c">with Canvas</text>
+<rect x="34" y="268" width="330" height="84" class="box"/>
+<text x="48" y="293" class="c">High priority</text>
+<rect x="364" y="268" width="390" height="84" class="box"/>
+<text x="378" y="293" class="c">Operations</text>
+<rect x="754" y="268" width="390" height="84" class="box"/>
+<text x="768" y="293" class="c">Method signatures, logic steps,</text>
+<text x="768" y="313" class="c">validation and error handling often</text>
+<text x="768" y="333" class="c">change</text>
+<rect x="34" y="352" width="330" height="84" class="box"/>
+<text x="48" y="377" class="c">High priority</text>
+<rect x="364" y="352" width="390" height="84" class="box"/>
+<text x="378" y="377" class="c">Entities / Structure</text>
+<rect x="754" y="352" width="390" height="84" class="box"/>
+<text x="768" y="377" class="c">Class fields, relationships, packages</text>
+<text x="768" y="397" class="c">and dependencies must match reality</text>
+<rect x="34" y="436" width="330" height="84" class="box"/>
+<text x="48" y="461" class="c">Medium / low</text>
+<rect x="364" y="436" width="390" height="84" class="box"/>
+<text x="378" y="461" class="c">Norms / Safeguards / Requirements</text>
+<rect x="754" y="436" width="390" height="84" class="box"/>
+<text x="768" y="461" class="c">Update only when conventions,</text>
+<text x="768" y="481" class="c">constraints or business behavior</text>
+<text x="768" y="501" class="c">really changed</text>
+<rect x="34" y="520" width="330" height="84" class="box"/>
+<text x="48" y="545" class="c">Output</text>
+<rect x="364" y="520" width="390" height="84" class="box"/>
+<text x="378" y="545" class="c">Prompt Sync Plan</text>
+<rect x="754" y="520" width="390" height="84" class="box"/>
+<text x="768" y="545" class="c">Plan updates before editing the</text>
+<text x="768" y="565" class="c">prompt; preserve structure and detail</text>
+</svg>

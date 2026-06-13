@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="706" viewBox="0 0 1180 706">
+<style>text{font-family:Arial,Helvetica,sans-serif;} .title{font-size:30px;font-weight:700;fill:#111} .sub{font-size:17px;fill:#555} .h{font-size:18px;font-weight:700;fill:#222} .c{font-size:17px;fill:#222} .small{font-size:15px;fill:#444} .box{fill:#fff;stroke:#d0d7de;stroke-width:1.2}.head{fill:#f6f8fa;stroke:#d0d7de;stroke-width:1.2}.accent{fill:#eef6ff;stroke:#8bb9e8;stroke-width:1.2}</style>
+<rect x="0" y="0" width="1180" height="706" fill="#ffffff"/>
+<text x="34" y="44" class="title">OpenSPDD: обычный план и REASONS Canvas</text>
+<text x="34" y="72" class="sub">Локальная визуальная выдержка по мотивам OpenSPDD README</text>
+<rect x="34" y="100" width="330" height="78" class="head"/>
+<text x="48" y="125" class="h">Problem</text>
+<rect x="364" y="100" width="390" height="78" class="head"/>
+<text x="378" y="125" class="h">Typical Plan Documents</text>
+<rect x="754" y="100" width="390" height="78" class="head"/>
+<text x="768" y="125" class="h">REASONS Canvas</text>
+<rect x="34" y="178" width="330" height="78" class="box"/>
+<text x="48" y="203" class="c">Nature</text>
+<rect x="364" y="178" width="390" height="78" class="box"/>
+<text x="378" y="203" class="c">Task list</text>
+<rect x="754" y="178" width="390" height="78" class="box"/>
+<text x="768" y="203" class="c">Design contract</text>
+<rect x="34" y="256" width="330" height="78" class="box"/>
+<text x="48" y="281" class="c">Constraints</text>
+<rect x="364" y="256" width="390" height="78" class="box"/>
+<text x="378" y="281" class="c">None — AI improvises freely</text>
+<rect x="754" y="256" width="390" height="78" class="box"/>
+<text x="768" y="281" class="c">Explicit — Norms define how,</text>
+<text x="768" y="301" class="c">Safeguards define what not to do</text>
+<rect x="34" y="334" width="330" height="78" class="box"/>
+<text x="48" y="359" class="c">Detail level</text>
+<rect x="364" y="334" width="390" height="78" class="box"/>
+<text x="378" y="359" class="c">High-level: “Create BillingService”</text>
+<rect x="754" y="334" width="390" height="78" class="box"/>
+<text x="768" y="359" class="c">Precise: method signatures,</text>
+<text x="768" y="379" class="c">parameters, error handling, DI</text>
+<text x="768" y="399" class="c">patterns</text>
+<rect x="34" y="412" width="330" height="78" class="box"/>
+<text x="48" y="437" class="c">Traceability</text>
+<rect x="364" y="412" width="390" height="78" class="box"/>
+<text x="378" y="437" class="c">Docs do not update with code</text>
+<rect x="754" y="412" width="390" height="78" class="box"/>
+<text x="768" y="437" class="c">/spdd-sync enables reverse sync</text>
+<rect x="34" y="490" width="330" height="78" class="box"/>
+<text x="48" y="515" class="c">Validation</text>
+<rect x="364" y="490" width="390" height="78" class="box"/>
+<text x="378" y="515" class="c">“done when complete”</text>
+<rect x="754" y="490" width="390" height="78" class="box"/>
+<text x="768" y="515" class="c">Exact error messages and HTTP status</text>
+<text x="768" y="535" class="c">codes in Safeguards</text>
+<rect x="34" y="568" width="330" height="78" class="box"/>
+<text x="48" y="593" class="c">Dependencies</text>
+<rect x="364" y="568" width="390" height="78" class="box"/>
+<text x="378" y="593" class="c">AI infers dependencies</text>
+<rect x="754" y="568" width="390" height="78" class="box"/>
+<text x="768" y="593" class="c">Operations define strict execution</text>
+<text x="768" y="613" class="c">order</text>
+</svg>

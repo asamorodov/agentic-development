@@ -1,8 +1,43 @@
+
+# Post-Atlas active source routing
+
+Статус на 2026-06-13: concept-first Атлас завершён как baseline из 10 статей. Активный скелетон для следующих глав:
+
+```text
+work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md
+```
+
+`THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md` остаётся историческим baseline и источником сравнения, но новые chapter packages должны стартовать от V5.
+
+Главная иерархия источников для глав:
+
+```text
+00_spine_map / Skeleton V5 / CORE plan — композиция и термины
+A/B/C-фрагменты — уже проделанный синтез
+статьи Атласа — concept-first baseline
+Dossiers — gap-check, source restoration, failure modes и visual/source queues
+External sources — content discovery там, где внутреннего материала недостаточно, плюс provenance/assets
+Stories — адресные практические якоря
+```
+
+Сопутствующие post-atlas карты:
+
+```text
+work/theory-writing/reports/POST_ATLAS_SOURCE_ROUTING_MAP.md
+work/theory-writing/reports/POST_ATLAS_EXTERNAL_DISCOVERY_NEEDS.md
+work/theory-writing/reports/POST_ATLAS_HEAVY_CHAPTER_PACKAGE_BLUEPRINT.md
+work/theory-writing/reports/POST_ATLAS_SKELETON_ANTI_DEGRADATION_AUDIT.md
+```
+
+Правило: главы не пишутся напрямую из досье и не пересказывают Атлас. Сначала section contract, затем A/B/C и Атлас, затем dossier gap-check, затем external discovery только там, где этого требуют content gaps.
+
+---
+
 # Карта рабочих документов проекта AI-driven SDLC
 
 Статус: рабочая карта документов для подготовки теоретического раздела, технического атласа, Handbook и Fieldbook.  
-Дата: 2026-06-11.  
-Основание: текущий репозиторий, `work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md` v4.3-PWG, методологические досье, story-dossiers, отчёты, протоколы и принятые решения.
+Дата: 2026-06-13.  
+Основание: текущий репозиторий, `work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md`, завершённый concept-first Атлас, A/B/C-фрагменты, методологические досье, story-dossiers, отчёты, протоколы и принятые решения.
 
 ## Назначение
 
@@ -14,8 +49,8 @@
 
 ```text
 Публичные истории дают фактический корпус.
-Досье дают source-backed quarry.
-Скелетон и планы задают композицию.
+Досье дают source-backed quarry и gap-check после чтения Атласа.
+Скелетон V5, `00_spine_map` и CORE plan задают композицию.
 ADRs фиксируют решения.
 Reports и audits помогают не потерять материал и не повторить старые ошибки.
 Automation logs не являются источником теории, если только не анализируется сам процесс автоматизации.
@@ -106,14 +141,14 @@ content/stories/15_shopify_roast_executable_ai_workflow_reconstruction_connected
 
 # 2. Главные управляющие документы
 
-## 2.1. План, скелетон and current writing control
+## 2.1. План, скелетон и текущий writing control
 
 Файлы:
 
 ```text
 START.md
 work/approved-ai-sdlc-plan.md
-work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md
+work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md
 work/theory-writing/CORE_NODES_WRITING_PLAN.md
 work/theory-writing/WORKING_DOCUMENTS_MAP.md
 work/discourse.md
@@ -123,7 +158,7 @@ work/discourse.md
 
 - `START.md` является корневым входным файлом для восстановления контекста нового чата или среза репозитория: он указывает, какие документы читать первыми. Он не заменяет `work/discourse.md` и не отменяет протокольное сопровождение после нетривиальной сессии.
 - `approved-ai-sdlc-plan.md` задаёт утверждённую общую рамку AI-driven SDLC и текущий scope.
-- `THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md` является основной структурой будущей теоретической главы.
+- `THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md` является основной структурой будущей теоретической главы.
 - `CORE_NODES_WRITING_PLAN.md` задаёт порядок написания несущих узлов и глав.
 - `WORKING_DOCUMENTS_MAP.md` объясняет, какие документы использовать и как.
 - `work/discourse.md` хранит смысловую непрерывность текущей ветки работы. Перед крупными writing-pass его нужно читать, но не использовать как первичный источник фактов вместо досье и историй. Если сессия меняет рабочую траекторию, процесс или роль документов, дискурс нужно обновлять в том же overlay.
@@ -324,7 +359,7 @@ work/reports/STORIES_13_15_LANGUAGE_EDITORIAL_PASS_REPORT.md
 Использование:
 
 - `russian-language.md` обязателен для языкового прохода.
-- `human-technical-style.md` и `language-style-rules.md` использовать только в отдельном стилевом проходе, не смешивать с writing-pass.
+- `human-technical-style.md` и `language-style-rules.md` использовать только в отдельных языково-стилевых проходах, не смешивать с writing-pass. Для больших atlas article packages после content/source/visual/concept reinforcement идут два языковых прохода, затем общие repair/editorial проходы, затем `style defect audit`, `selective natural rewrite` и отдельный guarded final style pass. Стилевой протокол должен калибровать вкус, а не работать как исполняемый чек-лист тотального переписывания.
 - `LANGUAGE_TERMINOLOGY_REPAIR_QUEUE.md` использовать как словарь анти-калек для досье и историй.
 - Отчёты языковой нормализации не являются источниками теории; они нужны для контроля качества текста.
 
@@ -537,7 +572,7 @@ work/automation/runs/**/status.json
 Перед написанием первых несущих узлов читать:
 
 ```text
-work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md
+work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md
 work/theory-writing/CORE_NODES_WRITING_PLAN.md
 work/theory-writing/WORKING_DOCUMENTS_MAP.md
 work/approved-ai-sdlc-plan.md
@@ -1044,7 +1079,7 @@ START.md
 protocols/rules/theory-rebuild-rules.md
 work/protocols/THEORY_WRITING_PROMPT_QUEUE_PROTOCOL.md
 work/prompts/TARGET_GROUP_PLAN_TEMPLATE.md
-work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md
+work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md
 work/approved-ai-sdlc-plan.md
 work/approved-decisions.md
 work/decisions/ADR-0009-skeleton-v4-2-story-boundary-and-technical-atlas.md
@@ -1246,11 +1281,11 @@ work/theory-writing/reports/A10_PACKAGE_MANUFACTORY_AND_C5_BLOCKER_REPORT.md
 work/theory-writing/ATLAS_ARTICLE_PACKAGE_BLUEPRINT.md
 ```
 
-Роль: blueprint для будущих target-group plans больших concept-first статей технического атласа. Он фиксирует, что статьи атласа не должны строиться по короткой очереди обычных A/B/C-фрагментов: базовая форма — 25 рабочих проходов плюс финальная проверка, без внутренних ограничений объёма, с пятью source-depth pass-ами, двумя свободными проходами добора материала, visual asset passes, concept reinforcement, тремя общими редакторскими проходами, public/article structure pass, companion sync, языковыми и стилевыми проходами.
+Роль: blueprint для будущих target-group plans больших concept-first статей технического атласа. Он фиксирует, что статьи атласа не должны строиться по короткой очереди обычных A/B/C-фрагментов: текущая базовая форма — 26 рабочих проходов плюс финальная проверка, без внутренних ограничений объёма, с пятью source-depth pass-ами, двумя свободными проходами добора материала, visual asset passes, concept reinforcement, двумя языковыми проходами, тремя общими редакторскими проходами, public/article structure / entry-sequence pass, companion sync, `style defect audit`, `selective natural rewrite` и guarded final human technical style pass.
 
 Ключевые решения:
 
-- источник должен разворачиваться в текст, а не заменяться конспектом;
+- источник должен разворачиваться в основной текст, а не заменяться конспектом или ledger-отчётностью;
 - внешние источники разрешены, особенно для поиска реальных изображений, screenshots, diagrams and source-specific details;
 - локальные релевантные assets вставляются в статью как `<img>` даже если тяжёлые файлы не включены в package context;
 - внешние реальные изображения ставятся inline как candidates и выносятся в нижний раздел `Внешние изображения для asset-pass` / external image queue;
@@ -1418,3 +1453,259 @@ work/theory-writing/fragments/A10_decision_stress_tests.md
 ```
 
 Current C5 status: `ready_with_known_debts / A10 synced`.
+
+### 2026-06-12 — Atlas article target-plan manufactury results
+
+Imported completed manufactury result from `ATLAS_ARTICLE_TARGET_PLAN_MANUFACTORY_RESULT.zip`.
+
+Created/updated atlas article target plans:
+
+```text
+work/atlas/target-group-plans/spdd_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/target-group-plans/spec_kit_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/target-group-plans/kiro_specs_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/target-group-plans/constitutional_sdd_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/target-group-plans/tdad_comparative_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/target-group-plans/adr_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/target-group-plans/gsd_open_gsd_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/target-group-plans/bmad_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/target-group-plans/persistent_work_graph_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/target-group-plans/gas_town_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+```
+
+Control matrices and reports:
+
+```text
+work/atlas/plans/ATLAS_ARTICLE_TARGET_PLAN_READINESS_MATRIX.md
+work/atlas/plans/ATLAS_ARTICLE_BOUNDARY_MATRIX.md
+work/atlas/plans/ATLAS_ARTICLE_TARGET_PLANS_MANUFACTORY_REPORT.md
+work/atlas/plans/reports/ATLAS_ARTICLE_TARGET_PLANS_IMPORT_EVALUATION_REPAIR_REPORT.md
+work/atlas/plans/reports/manufactury-result-import/
+```
+
+Post-import repair closed stale default C5/A10 sync debts and added `Prompt-record manifest for package builder` to each target plan. The plans are not article texts and not executor packages; they are article-writing package specifications ready for manual review before package manufacture.
+
+
+### 2026-06-12 — ADR atlas article plan repair and package
+
+Repaired ADR article target plan:
+
+```text
+work/atlas/target-group-plans/adr_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+```
+
+Built self-contained article-writing executor package:
+
+```text
+work/atlas/packages/adr_method_ATLAS_ARTICLE.zip
+```
+
+Repair/package report:
+
+```text
+work/atlas/plans/reports/adr_method_PLAN_REPAIR_AND_PACKAGE_REPORT.md
+```
+
+Package status: ready for execution after manual review. The package bundles exact read-only inputs from the target plan and expands P01–P25 + Final into separate gated records.
+
+## 2026-06-12 visual image-candidate rule update
+
+- `work/atlas/target-group-plans/*_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md` — все планы статей атласа обновлены: visual passes должны читать основной dossier image-candidate section, ставить inline external-real placeholders и вести disposition для каждого кандидата из досье.
+- `work/theory-writing/ATLAS_ARTICLE_PACKAGE_BLUEPRINT.md` — общий blueprint статей атласа теперь включает dossier image-candidate disposition rule; после SPDD/Gas Town сравнений откатывает hard dossier-completeness and section-local enrichment logic к мягкому `Фактура без coverage-бюрократии`; после Gas Town style regression использует `style defect audit`, `selective natural rewrite` и guarded final style.
+- `protocols/rules/visual-assets-and-figures.md` — правило для `Кандидаты на иллюстрации` / `image candidates` в досье.
+- `work/theory-writing/ATLAS_ARTICLE_TARGET_PLAN_MANUFACTORY_PLAN.md` — future plan-manufactury runs должны создавать планы, которые сохраняют это visual rule.
+- `work/atlas/packages/adr_method_ATLAS_ARTICLE.zip` — пересобранный self-contained ADR article package с обновлённым visual block.
+- `work/atlas/plans/reports/ATLAS_ARTICLE_IMAGE_CANDIDATE_RULE_REPAIR_REPORT.md` — отчёт о правке и проверке.
+
+### 2026-06-12 — SPDD atlas article target-plan second repair
+
+Updated target plan:
+
+```text
+work/atlas/target-group-plans/spdd_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+```
+
+Updated SPDD plan reports/control files:
+
+```text
+work/atlas/plans/reports/spdd_method_PLAN_SECOND_REPAIR_REPORT.md
+work/atlas/plans/reports/spdd_method_target_plan_manufacture_report.md
+work/atlas/plans/reports/spdd_method_S05_readiness_stamp.md
+work/atlas/plans/ATLAS_ARTICLE_BOUNDARY_MATRIX.md
+work/atlas/plans/ATLAS_ARTICLE_TARGET_PLAN_MANUFACTORY_LEDGER.md
+work/atlas/plans/ATLAS_ARTICLE_TARGET_PLANS_MANUFACTORY_REPORT.md
+```
+
+No SPDD article-writing package was built in this step. The current SPDD plan is `ready_for_package_manufacture_after_manual_review` and should be reviewed before package manufacture.
+
+
+- `work/atlas/plans/reports/DOSSIER_BACKED_COMPLETENESS_RULE_UPDATE_REPORT.md` — отчёт о системном усилении atlas article plans: досье как основная база статьи, coverage/disposition, transfer-audit, final dossier completeness check.
+
+
+### 2026-06-12 — SPDD atlas article package
+
+`work/atlas/packages/spdd_method_ATLAS_ARTICLE.zip` — self-contained package для написания concept-first статьи атласа `spdd_method` (`SPDD / OpenSPDD`). Пересобран после style-protocol softening и technical-anchoring softening. Содержит 27 gated records (`P01`–`P26` + `Final`) и точные bundled read-only inputs. Текст статьи ещё не выполнен.
+
+`work/atlas/plans/reports/spdd_method_PACKAGE_MANUFACTORY_REPORT.md` — отчёт о сборке и smoke-test.
+
+
+### 2026-06-12 — Persistent Work Graph atlas plan/package
+
+`work/atlas/target-group-plans/persistent_work_graph_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md` — repaired target plan for the PWG/Beads core concept atlas article. The plan now centers durable work state, Beads as mechanism anchor, boundaries with Gas Town/durable execution/issue trackers, and transfer to the multi-pass document workflow.
+
+`work/atlas/packages/persistent_work_graph_ATLAS_ARTICLE.zip` — self-contained article-writing package built from the repaired plan.
+
+`work/atlas/plans/reports/persistent_work_graph_PLAN_REPAIR_AND_PACKAGE_REPORT.md` and `persistent_work_graph_PACKAGE_MANUFACTORY_REPORT.md` — repair and package reports.
+
+
+### Gas Town atlas package update — 2026-06-13
+
+- `work/atlas/target-group-plans/gas_town_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md` — Gas Town-specific atlas article plan aligned with the current softened blueprint. It now uses P01–P26 + Final: rollback-like `dossier inventory` instead of hard coverage matrix, no repeated `transfer-audit` checks in P04–P08, soft technical anchoring for key Gas Town claims, language passes before general repair/editorial, entry-sequence pass, companion sync, `style defect audit`, `selective natural rewrite`, and guarded final human technical style.
+- `work/atlas/packages/gas_town_ATLAS_ARTICLE.zip` — self-contained executor package rebuilt from that plan; contains 27 gated records (`P01`–`P26` + `Final`) and exact bundled read-only inputs. The article itself has not been executed.
+- `work/atlas/plans/reports/gas_town_PLAN_REPAIR_AND_PACKAGE_REPORT.md` — earlier repair/package report.
+- `work/atlas/plans/reports/gas_town_PACKAGE_MANUFACTORY_REPORT.md` — earlier package manufactury checks.
+- `work/atlas/plans/reports/gas_town_TECHNICAL_ANCHORING_ALIGNMENT_AND_PACKAGE_REPORT.md` — current alignment/rebuild report.
+
+
+### 2026-06-12 — remaining atlas article packages
+
+`work/atlas/target-group-plans/spec_kit_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md`, `kiro_specs_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md`, `constitutional_sdd_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md`, `tdad_comparative_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md`, `gsd_open_gsd_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md`, `bmad_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md` — repaired article-specific plans for concept-first atlas articles.
+
+`work/atlas/packages/spec_kit_method_ATLAS_ARTICLE.zip`, `kiro_specs_ATLAS_ARTICLE.zip`, `constitutional_sdd_ATLAS_ARTICLE.zip`, `tdad_comparative_ATLAS_ARTICLE.zip`, `gsd_open_gsd_ATLAS_ARTICLE.zip`, `bmad_method_ATLAS_ARTICLE.zip` — self-contained packages for writing these atlas articles.
+
+`work/atlas/plans/reports/REMAINING_ATLAS_PLANS_REPAIR_AND_PACKAGE_REPORT.md` — summary report and smoke-test evidence.
+
+
+## Экспериментальный SPDD package без dossier-completeness hard gate
+
+- `work/atlas/target-group-plans/experiments/spdd_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN_rollback_dossier_completeness.md` — variant target-plan для контрольного SPDD-запуска. Не заменяет canonical SPDD target-plan.
+- `work/atlas/packages/spdd_method_ATLAS_ARTICLE_rollback_dossier_completeness.zip` — self-contained экспериментальный package для сравнения с canonical SPDD article package.
+- `work/atlas/plans/reports/spdd_method_ROLLBACK_DOSSIER_COMPLETENESS_EXPERIMENT_PACKAGE_REPORT.md` — отчёт о создании и проверке экспериментального пакета.
+
+
+### 2026-06-12 — style decompression rule and Gas Town package rebuild
+
+Обновлены рабочие правила для atlas article packages после сравнения SPDD-вариантов до/после отката dossier-completeness hard gate. Действующее решение: не возвращать жёсткую `coverage matrix / relevant but untransferred` бюрократию как центральный gate. Вместо неё blueprint использует main-text-first перенос фактуры, section-local enrichment checks и мягкий entry-sequence pass.
+
+Стилевой протокол `protocols/rules/human-technical-style.md` расширен правилом о смысловых свёртках и псевдотерминах: искусственные двух-/трёхсловные формулы нужно разворачивать в нормальное русское объяснение, а не заменять новым псевдотермином. Для больших atlas article packages хвост теперь: два языковых прохода → три общих repair/editorial прохода → entry-sequence/public structure → companion sync → два style-decompression прохода → guarded final human technical style pass. Финальный стиль сохраняет право улучшать тон и ритм, но не сжимает раскрытый смысл обратно.
+
+Пересобран только Gas Town package: `work/atlas/packages/gas_town_ATLAS_ARTICLE.zip`. Остальные atlas target plans и packages в этой дельте не менялись. Отчёт: `work/atlas/plans/reports/gas_town_STYLE_DECOMPRESSION_BLUEPRINT_REPAIR_AND_PACKAGE_REPORT.md`.
+
+## 2026-06-12 — Gas Town atlas package language-before-repair correction
+
+- `work/theory-writing/ATLAS_ARTICLE_PACKAGE_BLUEPRINT.md` теперь задаёт для больших atlas article packages порядок: content/source/visual/concept reinforcement → два языковых прохода → три общих repair/editorial прохода → entry-sequence/public structure → companion sync → style defect audit → selective natural rewrite → guarded final human technical style pass → Final.
+- `work/atlas/target-group-plans/gas_town_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md` приведён к этому порядку. В Gas Town plan `P17`–`P18` — language passes, `P19`–`P21` — general repair/editorial, `P22` — entry-sequence, `P23` — companion sync, `P24`–`P25` — semantic decompression, `P26` — guarded final style.
+- `work/atlas/packages/gas_town_ATLAS_ARTICLE.zip` пересобран после коррекции. Package содержит `P01`–`P26 + Final`, 27 records; payload order and first/second runner transitions checked.
+- Другие atlas target plans/packages этой правкой не изменялись.
+- Отчёт: `work/atlas/plans/reports/gas_town_LANGUAGE_BEFORE_REPAIR_BLUEPRINT_CORRECTION_REPORT.md`.
+
+## 2026-06-12 — Gas Town latest result comparison
+
+`work/atlas/plans/reports/gas_town_LATEST_RESULT_COMPARISON_REPORT.md` — сравнительный отчёт по двум выполненным Gas Town packages:
+
+- `gas_town_ATLAS_ARTICLE_completed_package` — предыдущий результат до отката/смягчения hard dossier-completeness direction;
+- `gas_town_result_package_completed` — результат после последних blueprint/plan corrections: language-before-repair, soft main-text-first enrichment, two semantic-decompression passes, guarded final style.
+
+Главный вывод: последние изменения улучшили problem-first вход и локальную стилистическую декомпрессию, но финальный текст стал короче и более table-driven. Для самой Gas Town статьи предыдущий результат лучше как structural/factual base; последний результат лучше как donor для вступления, стиля, диагностических деталей и отдельных limits fragments. Для blueprint/plan нужен дополнительный мягкий guardrail: title/object preservation, no silent article compression, mechanism-anchor preservation and checkpoint snapshots around style/decompression tail.
+
+
+### 2026-06-13 — SPDD plan and atlas style tail softened after Gas Town regression
+
+После сравнения Gas Town результатов пользователь указал, что два decompression-pass-а сняли часть явных псевдотерминов, но местами ухудшили русский синтаксис: вместо нечеловеческих словосочетаний появились тяжёлые протокольные конструкции. Рабочий вывод: проблема не решается усилением запретов. Стилевой протокол должен быть калибровкой вкуса, а не исполняемым чек-листом тотального разворачивания.
+
+Изменены:
+
+```text
+protocols/rules/human-technical-style.md
+protocols/rules/language-style-rules.md
+work/theory-writing/ATLAS_ARTICLE_PACKAGE_BLUEPRINT.md
+work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md
+START.md
+work/atlas/target-group-plans/spdd_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/plans/reports/spdd_method_STYLE_PROTOCOL_BLUEPRINT_AND_PLAN_SOFTENING_REPORT.md
+```
+
+Новая базовая схема atlas style tail: `P24 — style defect audit`, `P25 — selective natural rewrite`, `P26 — guarded final human technical style pass`. `human-technical-style.md` теперь фиксирует не только смысловые свёртки и псевдотермины, но и обратный дефект — механическое разворачивание нормальной мысли в длинную протокольную конструкцию.
+
+SPDD target plan позже обновлён повторно: hard coverage/disposition gate and main-text-first / section-local enrichment checks заменены на rollback-like dossier inventory и мягкий technical anchoring. `P17`–`P18` — языковые проходы; `P19`–`P21` — общие редакторские проходы; `P22` — entry-sequence/public structure; `P23` — companion sync; `P24`–`P26` — новый стилевой хвост. SPDD executor package пересобран после этой правки.
+
+
+### 2026-06-13 — SPDD technical-anchoring softening and package rebuild
+
+- `work/theory-writing/ATLAS_ARTICLE_PACKAGE_BLUEPRINT.md` — после последней правки откатывает hard dossier-completeness / section-local enrichment logic к `Фактура без coverage-бюрократии`: ключевые тезисы должны иметь технические опоры, если без них раздел становится общей прозой; ledger/image/open questions не заменяют основной текст.
+- `work/atlas/target-group-plans/spdd_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md` — обновлённый SPDD target plan: rollback-like dossier inventory, no coverage matrix, no repeated section-local enrichment checks in P04–P08, мягкий technical anchoring in P03/P08/P09/Final, current language-before-repair order and style audit/selective rewrite tail.
+- `work/atlas/packages/spdd_method_ATLAS_ARTICLE.zip` — пересобранный self-contained package для `spdd_method`, 27 gated records (`P01`–`P26` + `Final`).
+- `work/atlas/plans/reports/spdd_method_TECHNICAL_ANCHORING_SOFTENING_AND_PACKAGE_REPORT.md` — отчёт о правке blueprint/SPDD plan и проверках package.
+
+### 2026-06-13 — ADR and PWG packages aligned with current technical-anchoring blueprint
+
+- `work/atlas/target-group-plans/adr_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md` — aligned with the current softened atlas blueprint: no hard coverage matrix, rollback-like dossier inventory, soft technical anchoring for ADR decision status / confirmation / replacement / AI-ADR research / executable projections, language passes before repair, style defect audit → selective natural rewrite → guarded final style.
+- `work/atlas/target-group-plans/persistent_work_graph_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md` — aligned with the same blueprint: no hard coverage matrix, no repeated transfer-audit in P04–P08, soft technical anchoring for durable work state, Beads command/state anchors and document-process transfer, current language-before-repair and style-tail order.
+- `work/atlas/packages/adr_method_ATLAS_ARTICLE.zip` — rebuilt self-contained executor package; 27 gated records (`P01`–`P26` + `Final`).
+- `work/atlas/packages/persistent_work_graph_ATLAS_ARTICLE.zip` — rebuilt self-contained executor package; 27 gated records (`P01`–`P26` + `Final`).
+- `work/atlas/plans/reports/adr_pwg_TECHNICAL_ANCHORING_ALIGNMENT_AND_PACKAGES_REPORT.md` — report for the plan alignment, package rebuild and checks.
+
+These package rebuilds do not execute the article-writing packages and do not create final article files under `work/atlas/articles/`. The remaining six atlas packages may still predate the current technical-anchoring/style-tail blueprint unless rebuilt separately.
+
+
+### 2026-06-13 — all canonical atlas article plans aligned with accepted blueprint
+
+All ten canonical atlas article target plans under `work/atlas/target-group-plans/` now follow the accepted technical-anchoring/style-tail blueprint. The last aligned set was:
+
+- `work/atlas/target-group-plans/spec_kit_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md`
+- `work/atlas/target-group-plans/kiro_specs_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md`
+- `work/atlas/target-group-plans/constitutional_sdd_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md`
+- `work/atlas/target-group-plans/tdad_comparative_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md`
+- `work/atlas/target-group-plans/gsd_open_gsd_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md`
+- `work/atlas/target-group-plans/bmad_method_ATLAS_ARTICLE_TARGET_GROUP_PLAN.md`
+
+Their rebuilt executor packages are:
+
+- `work/atlas/packages/spec_kit_method_ATLAS_ARTICLE.zip`
+- `work/atlas/packages/kiro_specs_ATLAS_ARTICLE.zip`
+- `work/atlas/packages/constitutional_sdd_ATLAS_ARTICLE.zip`
+- `work/atlas/packages/tdad_comparative_ATLAS_ARTICLE.zip`
+- `work/atlas/packages/gsd_open_gsd_ATLAS_ARTICLE.zip`
+- `work/atlas/packages/bmad_method_ATLAS_ARTICLE.zip`
+
+The current canonical atlas package shape is `P01`–`P26 + Final`: source/content passes, visual passes, concept reinforcement, two language passes, three general repair/editorial passes, entry-sequence, companion sync, style defect audit, selective natural rewrite, guarded final human technical style, and final verification. Do not reintroduce hard dossier coverage / `relevant but untransferred` gates unless the user explicitly reopens that decision.
+
+Report: `work/atlas/plans/reports/remaining_atlas_TECHNICAL_ANCHORING_ALIGNMENT_AND_PACKAGES_REPORT.md`.
+
+
+### 2026-06-13 — patched anchor atlas articles included in filesystem
+
+Accepted patched atlas article results now present under `work/atlas/articles/`:
+
+- `work/atlas/articles/spdd_method.md` — SPDD v4 article with user-edited patch: three SPDD human skills, `/spdd-reverse`, numeric billing anchors, and localized OpenSPDD source-excerpt assets.
+- `work/atlas/articles/persistent_work_graph.md` — PWG v4 article with local patch: `bd ready` / `bd blocked`, durable gate fields, `bd prime` as compact restart context, and source-state transitions.
+- `work/atlas/articles/gas_town.md` — Gas Town v4 article with user-edited patch: problem-state vocabulary and local source-excerpt SVG assets for Yegge Figure 5 / Figure 6.
+- `work/atlas/articles/adr_method.md` — ADR v4 article with local patch: localized source-excerpt SVG assets for Nygard, MADR, AWS lifecycle and Design Decision Gate; generated/reconstructed ADR remains candidate evidence until human acceptance.
+
+Companion files live next to each article using the same article prefix: `_source_usage.md`, `_source_transfer_ledger.md`, `_image_plan.md`, `_external_image_queue.md`, `_open_questions.md`, `_theory_links.md`, readiness/report files and patch reports where applicable. These articles are accepted local patch results, not new blueprint/plan changes.
+
+Filesystem inclusion report for the latest ADR inclusion: `work/atlas/plans/reports/adr_method_PATCHED_ARTICLE_FILESYSTEM_INCLUSION_REPORT.md`.
+
+---
+
+# 6. Atlas article outputs
+
+Текущие включённые результаты atlas articles находятся в:
+
+```text
+work/atlas/articles/spdd_method.md
+work/atlas/articles/persistent_work_graph.md
+work/atlas/articles/gas_town.md
+work/atlas/articles/adr_method.md
+work/atlas/articles/spec_kit_method.md
+work/atlas/articles/kiro_specs.md
+work/atlas/articles/constitutional_sdd.md
+work/atlas/articles/tdad_comparative.md
+work/atlas/articles/gsd_open_gsd.md
+work/atlas/articles/bmad_method.md
+```
+
+Статус: десять canonical atlas article outputs включены в файловую систему. SPDD, PWG, Gas Town и ADR включены как patched anchor articles; оставшиеся шесть включены из latest completed packages. Для всех статей сохраняются companion-файлы рядом с основным `.md`: source usage, source transfer ledger, image plan, external image queue, open questions, theory links, degradation/duplication audit and readiness reports where provided by the package.
+
+Заголовок `Вопрос читателя` больше не используется в article headings; текущая формула — `О чём эта статья`.
+

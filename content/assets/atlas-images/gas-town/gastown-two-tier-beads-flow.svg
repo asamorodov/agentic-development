@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Gas Town Two-Tier Beads Flow</title>
+  <desc id="desc">Source-derived local diagram showing town-level and rig-level Beads flows, based on Steve Yegge's Figure 6 description in Welcome to Gas Town.</desc>
+  <rect width="1200" height="650" fill="#fffaf0"/>
+  <text x="50" y="58" font-size="28" font-weight="700" fill="#111827">Two-Tier Beads Flow</text>
+  <text x="50" y="88" font-size="15" fill="#4b5563">Локальная выдержка по Figure 6 из “Welcome to Gas Town”: два слоя Beads — координация town и работа rig.</text>
+
+  <rect x="55" y="130" width="430" height="405" rx="24" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>
+  <text x="85" y="178" font-size="25" font-weight="700" fill="#92400e">Town-level work</text>
+  <text x="85" y="205" font-size="15" fill="#92400e">HQ / Mayor / orchestration</text>
+  <text x="90" y="250" font-size="18" font-weight="400" fill="#111827">• town mail and messages</text>
+<text x="90" y="282" font-size="18" font-weight="400" fill="#111827">• patrols and service loops</text>
+<text x="90" y="314" font-size="18" font-weight="400" fill="#111827">• releases and cross-rig waves</text>
+<text x="90" y="346" font-size="18" font-weight="400" fill="#111827">• routing between rigs</text>
+<text x="90" y="378" font-size="18" font-weight="400" fill="#111827">• human-facing coordination</text>
+
+  <rect x="715" y="130" width="430" height="405" rx="24" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+  <text x="745" y="178" font-size="25" font-weight="700" fill="#1d4ed8">Rig-level work</text>
+  <text x="745" y="205" font-size="15" fill="#1d4ed8">project / repository / implementation</text>
+  <text x="750" y="250" font-size="18" font-weight="400" fill="#111827">• features and bug fixes</text>
+<text x="750" y="282" font-size="18" font-weight="400" fill="#111827">• Polecats and Crew</text>
+<text x="750" y="314" font-size="18" font-weight="400" fill="#111827">• hooks and molecules</text>
+<text x="750" y="346" font-size="18" font-weight="400" fill="#111827">• MR / merge queue</text>
+<text x="750" y="378" font-size="18" font-weight="400" fill="#111827">• local checks and project state</text>
+
+  <rect x="512" y="245" width="168" height="170" rx="22" fill="#ffffff" stroke="#6b7280" stroke-width="2"/>
+  <text x="552" y="285" font-size="20" font-weight="700" fill="#111827">Routing</text>
+  <text x="540" y="322" font-size="16" font-weight="400" fill="#374151">prefixes</text>
+<text x="540" y="346" font-size="16" font-weight="400" fill="#374151">bd- / hq-</text>
+<text x="540" y="370" font-size="16" font-weight="400" fill="#374151">project ids</text>
+<text x="540" y="394" font-size="16" font-weight="400" fill="#374151">routes.jsonl</text>
+
+  <path d="M485 315 C525 315 525 315 512 315" stroke="#6b7280" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M680 315 C715 315 715 315 715 315" stroke="#6b7280" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M715 380 C675 430 520 430 485 380" stroke="#6b7280" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-dasharray="9 7"/>
+
+  <rect x="210" y="565" width="780" height="48" rx="14" fill="#f3f4f6" stroke="#d1d5db"/>
+  <text x="235" y="596" font-size="16" fill="#374151">Смысл для статьи: Gas Town — не один список задач, а среда с разными слоями состояния и адресации.</text>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#6b7280"/>
+    </marker>
+  </defs>
+</svg>

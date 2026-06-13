@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520" role="img" aria-labelledby="title desc">
+<title id="title">MADR: от факторов решения к подтверждению</title>
+<desc id="desc">Локальная визуальная выдержка по полному MADR template.</desc>
+<rect x="0" y="0" width="1000" height="520" fill="#ffffff"/>
+<rect x="24" y="24" width="952" height="472" rx="18" fill="#f9fafb" stroke="#374151" stroke-width="1.5"/>
+<text x="54" y="70" font-size="26" font-weight="700" fill="#111827">MADR: от факторов решения к подтверждению</text>
+<text x="54" y="103" font-size="14" font-weight="normal" fill="#6b7280">Локальная визуальная выдержка по полному MADR template.</text>
+<rect x="60" y="135" width="260" height="115" rx="14" fill="#fff" stroke="#374151" stroke-width="1"/>
+<text x="78" y="169" font-size="17" font-weight="700" fill="#111827">Front matter</text>
+<text x="78" y="199" font-size="13" font-weight="normal" fill="#374151">status, date</text>
+<text x="78" y="217" font-size="13" font-weight="normal" fill="#374151">decision-makers</text>
+<text x="78" y="235" font-size="13" font-weight="normal" fill="#374151">consulted / informed</text>
+<rect x="370" y="135" width="260" height="115" rx="14" fill="#fff" stroke="#374151" stroke-width="1"/>
+<text x="388" y="169" font-size="17" font-weight="700" fill="#111827">Decision Drivers</text>
+<text x="388" y="199" font-size="13" font-weight="normal" fill="#374151">факторы и силы</text>
+<text x="388" y="217" font-size="13" font-weight="normal" fill="#374151">которые делают выбор архитектурным</text>
+<rect x="680" y="135" width="260" height="115" rx="14" fill="#fff" stroke="#374151" stroke-width="1"/>
+<text x="698" y="169" font-size="17" font-weight="700" fill="#111827">Considered Options</text>
+<text x="698" y="199" font-size="13" font-weight="normal" fill="#374151">варианты решения</text>
+<text x="698" y="217" font-size="13" font-weight="normal" fill="#374151">не только выбранный путь</text>
+<rect x="60" y="300" width="260" height="115" rx="14" fill="#fff" stroke="#374151" stroke-width="1"/>
+<text x="78" y="334" font-size="17" font-weight="700" fill="#111827">Decision Outcome</text>
+<text x="78" y="364" font-size="13" font-weight="normal" fill="#374151">выбранный вариант</text>
+<text x="78" y="382" font-size="13" font-weight="normal" fill="#374151">обоснование выбора</text>
+<rect x="370" y="300" width="260" height="115" rx="14" fill="#fff" stroke="#374151" stroke-width="1"/>
+<text x="388" y="334" font-size="17" font-weight="700" fill="#111827">Confirmation</text>
+<text x="388" y="364" font-size="13" font-weight="normal" fill="#374151">как проверить соответствие</text>
+<text x="388" y="382" font-size="13" font-weight="normal" fill="#374151">review, test, ArchUnit, contract</text>
+<rect x="680" y="300" width="260" height="115" rx="14" fill="#fff" stroke="#374151" stroke-width="1"/>
+<text x="698" y="334" font-size="17" font-weight="700" fill="#111827">Pros and Cons</text>
+<text x="698" y="364" font-size="13" font-weight="normal" fill="#374151">плюсы, минусы, neutral</text>
+<text x="698" y="382" font-size="13" font-weight="normal" fill="#374151">цена выбора остаётся видимой</text>
+<line x1="54" y1="456" x2="946" y2="456" stroke="#e5e7eb" stroke-width="1"/>
+<text x="54" y="484" font-size="12" font-weight="normal" fill="#6b7280">Источник: MADR, “Full template”.</text>
+</svg>

@@ -113,7 +113,7 @@ work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md
 work/theory-writing/ATLAS_ARTICLE_PACKAGE_BLUEPRINT.md
 ```
 
-Такие пакеты не используют укороченную стандартную writing-очередь. По умолчанию они строятся как 25 рабочих проходов плюс финальная проверка, с несколькими source-depth pass-ами, двумя свободными проходами добора материала, отдельным visual asset layer, concept reinforcement, тремя общими редакторскими проходами и последующей языково-стилевой доводкой.
+Такие пакеты не используют укороченную стандартную writing-очередь. По умолчанию они строятся по текущему atlas blueprint: 26 рабочих проходов плюс финальная проверка, с несколькими source-depth pass-ами, двумя свободными проходами добора материала, отдельным visual asset layer, concept reinforcement, двумя языковыми проходами, тремя общими редакторскими проходами, public/article structure и companion sync, style defect audit, selective natural rewrite и guarded final human technical style pass.
 
 Для atlas article package нельзя задавать внутренний лимит объёма. Внешние источники разрешены, особенно для восстановления первоисточников и реальных image candidates. Локальные релевантные assets должны вставляться в статью; внешние реальные изображения фиксируются как candidates для будущего asset-pass, а не заменяются синтетическими схемами.
 

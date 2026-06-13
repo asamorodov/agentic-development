@@ -1,15 +1,26 @@
 {
-  "checks_passed": true,
-  "overlay_type": "cumulative_from_original_git_zip",
-  "operation": "C5 result integration, evaluation, and A10 sync repair",
-  "c5_target_outputs_present": true,
-  "c5_figures": {
-    "open": 0,
-    "close": 0,
-    "img": 0
-  },
-  "c5_a10_sync_pending_absent_except_historical_audit_note": true,
-  "a10_outputs_available_for_c5_sync": true,
-  "service_files_stored_under_reports": true,
-  "report": "work/theory-writing/reports/C5_RESULT_INTEGRATION_EVALUATION_REPAIR_REPORT.md"
+  "baseline": "git(10).zip",
+  "scope": "remaining canonical atlas target plans and packages",
+  "canonical_target_plans_checked": 10,
+  "remaining_plans_aligned": [
+    "spec_kit_method",
+    "kiro_specs",
+    "constitutional_sdd",
+    "tdad_comparative",
+    "gsd_open_gsd",
+    "bmad_method"
+  ],
+  "packages_rebuilt": [
+    "spec_kit_method_ATLAS_ARTICLE.zip",
+    "kiro_specs_ATLAS_ARTICLE.zip",
+    "constitutional_sdd_ATLAS_ARTICLE.zip",
+    "tdad_comparative_ATLAS_ARTICLE.zip",
+    "gsd_open_gsd_ATLAS_ARTICLE.zip",
+    "bmad_method_ATLAS_ARTICLE.zip"
+  ],
+  "package_unzip_test": "passed for all six",
+  "runner_smoke_test": "first and second transitions passed for all six",
+  "payload_records": "27 records per package: P01-P26 + Final",
+  "tail_order": "P17/P18 language, P19-P21 editorial, P22 entry, P23 companion, P24 style defect audit, P25 selective rewrite, P26 guarded final style",
+  "hard_coverage_gate": "not present in canonical plan prompts as P03 coverage matrix / repeated transfer-audit"
 }

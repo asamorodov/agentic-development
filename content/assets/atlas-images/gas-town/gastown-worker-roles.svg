@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" viewBox="0 0 1200 740" role="img" aria-labelledby="title desc">
+  <title id="title">Gas Town Worker Roles</title>
+  <desc id="desc">Source-derived local map of Gas Town worker roles, based on Steve Yegge's Figure 5 and the surrounding role descriptions.</desc>
+  <rect width="1200" height="740" fill="#fbf7ef"/>
+  <text x="50" y="58" font-size="28" font-weight="700" fill="#111827">Gas Town’s Worker Roles</text>
+  <text x="50" y="88" font-size="15" fill="#4b5563">Локальная выдержка по Figure 5 из “Welcome to Gas Town”: роли читаются как функции жизненного цикла.</text>
+
+  <rect x="485" y="130" width="230" height="88" rx="24" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>
+  <text x="535" y="166" font-size="23" font-weight="700" fill="#92400e">Overseer</text>
+  <text x="522" y="194" font-size="15" fill="#92400e">human decision owner</text>
+
+  <rect x="462" y="285" width="276" height="98" rx="22" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+  <text x="535" y="322" font-size="23" font-weight="700" fill="#1d4ed8">Mayor</text>
+  <text x="500" y="350" font-size="15" fill="#1d4ed8">human interface, convoys, summaries</text>
+
+  <rect x="70" y="235" width="280" height="110" rx="20" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="98" y="273" font-size="22" font-weight="700" fill="#047857">Crew</text>
+  <text x="98" y="302" font-size="15" fill="#047857">long-lived coding agents</text>
+  <text x="98" y="328" font-size="15" fill="#047857">design / context-heavy work</text>
+
+  <rect x="850" y="235" width="280" height="110" rx="20" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="878" y="273" font-size="22" font-weight="700" fill="#047857">Polecats</text>
+  <text x="878" y="302" font-size="15" fill="#047857">ephemeral rig workers</text>
+  <text x="878" y="328" font-size="15" fill="#047857">isolated worktrees / MR candidates</text>
+
+  <rect x="70" y="455" width="280" height="116" rx="20" fill="#f3e8ff" stroke="#7e22ce" stroke-width="2"/>
+  <text x="98" y="493" font-size="22" font-weight="700" fill="#6b21a8">Witness</text>
+  <text x="98" y="522" font-size="15" fill="#6b21a8">watches stuck workers</text>
+  <text x="98" y="548" font-size="15" fill="#6b21a8">nudges / handoff / recovery</text>
+
+  <rect x="462" y="455" width="276" height="116" rx="20" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="500" y="493" font-size="22" font-weight="700" fill="#b91c1c">Refinery</text>
+  <text x="500" y="522" font-size="15" fill="#b91c1c">merge queue and rebase pressure</text>
+  <text x="500" y="548" font-size="15" fill="#b91c1c">returns candidates or escalates</text>
+
+  <rect x="850" y="455" width="280" height="116" rx="20" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="878" y="493" font-size="22" font-weight="700" fill="#0369a1">Deacon / Dogs</text>
+  <text x="878" y="522" font-size="15" fill="#0369a1">patrols, plugins, hygiene</text>
+  <text x="878" y="548" font-size="15" fill="#0369a1">service work for the fleet</text>
+
+  <path d="M600 218 L600 285" stroke="#6b7280" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M462 335 C395 325 385 290 350 290" stroke="#6b7280" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M738 335 C805 325 815 290 850 290" stroke="#6b7280" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M210 345 L210 455" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M600 383 L600 455" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M990 345 L990 455" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="130" y="640" width="940" height="48" rx="14" fill="#f3f4f6" stroke="#d1d5db"/>
+  <text x="158" y="671" font-size="16" fill="#374151">Смысл для статьи: роли важны не как глоссарий, а как распределение работы между входом, исполнением, наблюдением, слиянием и обслуживанием.</text>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#6b7280"/>
+    </marker>
+  </defs>
+</svg>
