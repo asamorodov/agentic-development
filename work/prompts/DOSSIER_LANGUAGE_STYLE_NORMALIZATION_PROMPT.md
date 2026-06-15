@@ -6,6 +6,7 @@
 
 ```text
 protocols/rules/language-style-rules.md
+protocols/rules/conceptual-translation-glossary.md
 protocols/rules/russian-language.md
 protocols/rules/english-source-handling.md
 protocols/rules/terminology-and-translation.md

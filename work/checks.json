@@ -1,26 +1,23 @@
 {
-  "baseline": "git(10).zip",
-  "scope": "remaining canonical atlas target plans and packages",
-  "canonical_target_plans_checked": 10,
-  "remaining_plans_aligned": [
-    "spec_kit_method",
-    "kiro_specs",
-    "constitutional_sdd",
-    "tdad_comparative",
-    "gsd_open_gsd",
-    "bmad_method"
+  "changed_files": [
+    "work/theory-writing/chapters/VI_context_working_state_interface.md",
+    "content/assets/theory-images/vi-project-interface-agent.png",
+    "content/assets/theory-images/vi-route-selection.png",
+    "content/assets/theory-images/vi-skills-procedure.png",
+    "content/assets/theory-images/vi-mcp-server-interface.png",
+    "content/assets/theory-images/vi-subagents-orchestration.png",
+    "content/assets/theory-images/vi-hooks-lifecycle.png",
+    "work/theory-writing/reports/CHAPTER_VI_FIGURE_INTEGRATION_REPORT.md",
+    "work/discourse.md",
+    "work/theory-writing/WORKING_DOCUMENTS_MAP.md",
+    "work/APPLY_NOTES.md",
+    "work/COMMIT_MESSAGE.txt",
+    "work/CHECKS.json"
   ],
-  "packages_rebuilt": [
-    "spec_kit_method_ATLAS_ARTICLE.zip",
-    "kiro_specs_ATLAS_ARTICLE.zip",
-    "constitutional_sdd_ATLAS_ARTICLE.zip",
-    "tdad_comparative_ATLAS_ARTICLE.zip",
-    "gsd_open_gsd_ATLAS_ARTICLE.zip",
-    "bmad_method_ATLAS_ARTICLE.zip"
+  "state_files_updated": [
+    "work/discourse.md",
+    "work/theory-writing/WORKING_DOCUMENTS_MAP.md",
+    "work/APPLY_NOTES.md"
   ],
-  "package_unzip_test": "passed for all six",
-  "runner_smoke_test": "first and second transitions passed for all six",
-  "payload_records": "27 records per package: P01-P26 + Final",
-  "tail_order": "P17/P18 language, P19-P21 editorial, P22 entry, P23 companion, P24 style defect audit, P25 selective rewrite, P26 guarded final style",
-  "hard_coverage_gate": "not present in canonical plan prompts as P03 coverage matrix / repeated transfer-audit"
+  "notes": "Integrated six local images into chapter VI and added them under content/assets/theory-images."
 }

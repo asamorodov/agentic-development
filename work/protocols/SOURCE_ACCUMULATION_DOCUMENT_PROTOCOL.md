@@ -27,6 +27,7 @@
 
 ```text
 protocols/rules/language-style-rules.md
+protocols/rules/conceptual-translation-glossary.md
 protocols/rules/russian-language.md
 protocols/rules/terminology-and-translation.md
 protocols/rules/human-technical-style.md

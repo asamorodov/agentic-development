@@ -9,12 +9,14 @@ work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md
 
 `THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md` остаётся историческим baseline и источником сравнения, но новые chapter packages должны стартовать от V5.
 
+Статус после языко-стилевого прохода: активный Skeleton V5 вычитан локально по последним правилам Атласа; структура и источник решений не менялись.
+
 Главная иерархия источников для глав:
 
 ```text
 00_spine_map / Skeleton V5 / CORE plan — композиция и термины
 A/B/C-фрагменты — уже проделанный синтез
-статьи Атласа — concept-first baseline
+Atlas articles — concept-first baseline
 Dossiers — gap-check, source restoration, failure modes и visual/source queues
 External sources — content discovery там, где внутреннего материала недостаточно, плюс provenance/assets
 Stories — адресные практические якоря
@@ -26,12 +28,25 @@ Stories — адресные практические якоря
 work/theory-writing/reports/POST_ATLAS_SOURCE_ROUTING_MAP.md
 work/theory-writing/reports/POST_ATLAS_EXTERNAL_DISCOVERY_NEEDS.md
 work/theory-writing/reports/POST_ATLAS_HEAVY_CHAPTER_PACKAGE_BLUEPRINT.md
+work/theory-writing/reports/POST_ATLAS_CHAPTER_TARGET_PLAN_BLUEPRINT_PROPOSAL.md
 work/theory-writing/reports/POST_ATLAS_SKELETON_ANTI_DEGRADATION_AUDIT.md
 ```
 
 Правило: главы не пишутся напрямую из досье и не пересказывают Атлас. Сначала section contract, затем A/B/C и Атлас, затем dossier gap-check, затем external discovery только там, где этого требуют content gaps.
 
 ---
+
+
+## Post-Atlas global routing layer
+
+Создан repo-level target-group plan:
+
+```text
+work/theory-writing/target-group-plans/POST_ATLAS_GLOBAL_CORPUS_ROUTING_TARGET_GROUP_PLAN.md
+```
+
+Этот план не self-contained: он рассчитан на запуск в корне развёрнутого репозитория. Его задача — подготовить общие карты для будущих chapter target plans: scope глав, маршрутизацию Атласа, A/B/C-фрагментов, досье, историй, внешнего discovery и visual candidates. Он не пишет главы и не заменяет per-chapter blueprint.
+
 
 # Карта рабочих документов проекта AI-driven SDLC
 
@@ -56,13 +71,15 @@ Reports и audits помогают не потерять материал и н�
 Automation logs не являются источником теории, если только не анализируется сам процесс автоматизации.
 ```
 
-## Правило базовой линии для рабочих delta/overlay
+## Правило базовой линии и формы рабочих delta/overlay
 
 Все рабочие дельты по этой ветке должны собираться относительно последнего полного архива репозитория, который пользователь загрузил в чат, или относительно состояния после явного сообщения пользователя, что изменения применены/закоммичены. Assistant-generated overlay archives не являются новой базой сами по себе.
 
 Если следующий архив должен заменить предыдущие результаты текущей цепочки, он может быть кумулятивным, но кумулятивность считается от той же пользовательской базовой линии. Нельзя молча строить новую дельту поверх предыдущего assistant-generated overlay и выдавать это за состояние репозитория.
 
 Если дельта намеренно узкая и не включает предыдущие незакоммиченные overlay, это нужно прямо написать в `work/APPLY_NOTES.md` и финальном ответе.
+
+Форма архива такая же важная, как baseline: delta/overlay archive должен быть root-shaped. Внутри zip должны лежать repository-relative paths (`START.md`, `AGENTS.md`, `work/...`, `protocols/...`), а не дополнительная папка-обёртка с именем overlay или задачи.
 
 ---
 
@@ -348,10 +365,12 @@ work/dossier-passes/tdad-comparative/
 protocols/rules/russian-language.md
 protocols/rules/language-style-rules.md
 protocols/rules/terminology-and-translation.md
+protocols/rules/conceptual-translation-glossary.md
 protocols/rules/human-technical-style.md
 work/reports/RUSSIAN_LANGUAGE_NORMALIZATION_RUN_REPORT.md
 work/reports/LANGUAGE_TERMINOLOGY_REPAIR_QUEUE.md
 work/reports/LANGUAGE_TERMINOLOGY_REPAIR_PASS_REPORT.md
+work/reports/CONCEPTUAL_TRANSLATION_RETROFIT_AND_PROTOCOL_LANGUAGE_NOTE.md
 work/reports/SPDD_LANGUAGE_SANITY_PASS_REPORT.md
 work/reports/STORIES_13_15_LANGUAGE_EDITORIAL_PASS_REPORT.md
 ```
@@ -359,8 +378,9 @@ work/reports/STORIES_13_15_LANGUAGE_EDITORIAL_PASS_REPORT.md
 Использование:
 
 - `russian-language.md` обязателен для языкового прохода.
-- `human-technical-style.md` и `language-style-rules.md` использовать только в отдельных языково-стилевых проходах, не смешивать с writing-pass. Для больших atlas article packages после content/source/visual/concept reinforcement идут два языковых прохода, затем общие repair/editorial проходы, затем `style defect audit`, `selective natural rewrite` и отдельный guarded final style pass. Стилевой протокол должен калибровать вкус, а не работать как исполняемый чек-лист тотального переписывания.
+- `human-technical-style.md` и `language-style-rules.md` использовать только в отдельных языково-стилевых проходах, не смешивать с writing-pass. Протоколы не являются образцом финальной прозы; их командный язык не должен переноситься в главы. Для больших atlas article packages после content/source/visual/concept reinforcement идут два языковых прохода, затем общие repair/editorial проходы, затем `style defect audit`, `selective natural rewrite` и отдельный guarded final style pass. Стилевой протокол должен калибровать вкус, а не работать как исполняемый чек-лист тотального переписывания.
 - `LANGUAGE_TERMINOLOGY_REPAIR_QUEUE.md` использовать как словарь анти-калек для досье и историй.
+- `conceptual-translation-glossary.md` использовать для терминов, где прямой перевод ломает смысл агентской разработки: `evidence`, `transcript`, `trace`, `acceptance`, `handoff`, `state`. Он не является источником теории; это словарь выбора русской формы и границ употребления. При правке уже написанного текста он применяется ретроспективно к словам вроде `свидетельство`, `наблюдение`, `стенограмма` и `доказательный`.
 - Отчёты языковой нормализации не являются источниками теории; они нужны для контроля качества текста.
 
 ---
@@ -1709,3 +1729,584 @@ work/atlas/articles/bmad_method.md
 
 Заголовок `Вопрос читателя` больше не используется в article headings; текущая формула — `О чём эта статья`.
 
+
+
+## Post-atlas chapter-plan blueprint proposal
+
+`work/theory-writing/reports/POST_ATLAS_CHAPTER_TARGET_PLAN_BLUEPRINT_PROPOSAL.md` — предложенный blueprint для будущих chapter target-group plans. Документ пока proposal, не active protocol: использовать его для обсуждения и пилотного plan-manufacturing, но не считать автоматически утверждённым, пока пользователь явно не примет.
+
+
+## Post-Atlas chapter blueprint correction — 2026-06-13
+
+The previous combined chapter blueprint proposal is superseded because it mixed global preparation with per-chapter writing. Current planning artifacts:
+
+- `work/theory-writing/reports/POST_ATLAS_GLOBAL_CORPUS_ROUTING_PREPARATION_BLUEPRINT.md` — proposed one-time/global preparation package for chapter routing: chapter list, Atlas routing, A/B/C fragment routing, dossier gap map, story anchors, external discovery profiles, visual routing and input matrix.
+- `work/theory-writing/reports/POST_ATLAS_PER_CHAPTER_TARGET_PLAN_BLUEPRINT.md` — рабочий blueprint для плана одной послеатласной главы. Обновлён по результату главы II: вместо отдельного языко-стилевого хвоста использует добор материала и русскую перепись после каждого существенного содержательного изменения; внешний поиск добавляется только при реальной лакуне.
+- `work/theory-writing/reports/POST_ATLAS_CHAPTER_TARGET_PLAN_BLUEPRINT_PROPOSAL.md` — superseded historical proposal; kept for provenance only.
+
+Next planning step should normally be a `GLOBAL_CORPUS_ROUTING` target-group plan/package, not a direct chapter-writing package.
+
+
+## Skeleton V5 — second language/style pass — 2026-06-13
+
+`work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md` прошёл второй, более строгий языко-стилевой проход после замечания пользователя, что первый проход оставил слишком много английских полупредложений. Структура, список глав, источникoвая иерархия и модель тяжёлого пакета главы не менялись.
+
+Отчёт: `work/theory-writing/reports/SKELETON_V5_LANGUAGE_STYLE_PASS_2_REPORT.md`.
+
+## Post-atlas global corpus routing package — 2026-06-13
+
+`work/theory-writing/packages/POST_ATLAS_GLOBAL_CORPUS_ROUTING.zip` — repo-snapshot-bound executor package для общего routing layer перед изготовлением планов глав. Пакет не содержит весь корпус источников и должен запускаться рядом с отдельно развёрнутым репозиторием. Он создаёт карты глав, маршрутизацию Атласа, A/B/C-фрагментов, досье, story anchors, external discovery profiles, visual candidates and chapter package input matrix.
+
+Target plan: `work/theory-writing/target-group-plans/POST_ATLAS_GLOBAL_CORPUS_ROUTING_TARGET_GROUP_PLAN.md`.
+Report: `work/theory-writing/reports/POST_ATLAS_GLOBAL_ROUTING_PACKAGE_BUILD_REPORT.md`.
+
+---
+
+## Post-Atlas global corpus routing result — 2026-06-13
+
+Статус: результат repo-level package `POST_ATLAS_GLOBAL_CORPUS_ROUTING` включён в файловую систему как рабочий слой маршрутизации для будущего изготовления планов глав.
+
+Основные выходы результата:
+
+```text
+work/theory-writing/reports/POST_ATLAS_CHAPTER_LIST_AND_SCOPE_MAP.md
+work/theory-writing/reports/POST_ATLAS_ATLAS_TO_CHAPTER_ROUTING_MAP.md
+work/theory-writing/reports/POST_ATLAS_FRAGMENT_TO_CHAPTER_ROUTING_MAP.md
+work/theory-writing/reports/POST_ATLAS_DOSSIER_TO_CHAPTER_GAP_MAP.md
+work/theory-writing/reports/POST_ATLAS_STORY_ANCHOR_ROUTING_MAP.md
+work/theory-writing/reports/POST_ATLAS_EXTERNAL_SOURCE_DISCOVERY_MAP.md
+work/theory-writing/reports/POST_ATLAS_VISUAL_CANDIDATE_ROUTING_MAP.md
+work/theory-writing/reports/POST_ATLAS_CHAPTER_PACKAGE_INPUT_MATRIX.md
+work/theory-writing/reports/POST_ATLAS_GLOBAL_ROUTING_DECISIONS.md
+work/theory-writing/reports/POST_ATLAS_GLOBAL_ROUTING_OPEN_QUESTIONS.md
+work/theory-writing/reports/POST_ATLAS_GLOBAL_ROUTING_READINESS_REPORT.md
+work/theory-writing/reports/POST_ATLAS_GLOBAL_ROUTING_VERIFY.md
+work/theory-writing/reports/POST_ATLAS_GLOBAL_ROUTING_RESUME.md
+```
+
+Сырой result-архив сохранён как:
+
+```text
+work/theory-writing/results/POST_ATLAS_GLOBAL_CORPUS_ROUTING_RESULT.zip
+```
+
+Оценка результата:
+
+```text
+work/theory-writing/reports/POST_ATLAS_GLOBAL_ROUTING_RESULT_INCLUSION_AND_EVALUATION_REPORT.md
+```
+
+Результат пригоден как routing layer: он не пишет главы, не создаёт per-chapter plans, не запускает внешний поиск и не подменяет Skeleton V5. Перед изготовлением конкретных планов глав нужно использовать `POST_ATLAS_CHAPTER_PACKAGE_INPUT_MATRIX.md` вместе с актуальным `POST_ATLAS_PER_CHAPTER_TARGET_PLAN_BLUEPRINT.md`.
+
+## Chapter I target plan — 2026-06-13
+
+`work/theory-writing/target-group-plans/CHAPTER_I_UNIT_OF_ANALYSIS_TARGET_GROUP_PLAN.md` — рабочий target-group plan для пилотной главы I, `Единица анализа: программное изменение, а не prompt`.
+
+Статус: готов для ручной проверки и последующей сборки chapter-writing package. План не пишет главу и не меняет Skeleton or routing maps. Он использует post-atlas global routing layer and current per-chapter blueprint, но адаптирует их под особенность главы: глава задаёт единицу анализа, поэтому должна отличить prompt, task, diff, session trace and software change, не превращаясь в prompt-philosophy, method catalogue or protocol handbook.
+
+Ключевые входы: `00_spine_map`, Skeleton V5, A1, A10, SPDD/Spec Kit/Kiro/BMAD atlas articles, sparse story anchors Boris/Peter/Calvin/Mark/HumanLayer and D1 source-restoration only if terminology/provenance needs it.
+
+
+## Chapter I package — unit of analysis
+
+Status: package built, chapter not written.
+
+- Target plan: `work/theory-writing/target-group-plans/CHAPTER_I_UNIT_OF_ANALYSIS_TARGET_GROUP_PLAN.md`.
+- Executor package: `work/theory-writing/packages/CHAPTER_I_UNIT_OF_ANALYSIS.zip`.
+- Build report: `work/theory-writing/reports/CHAPTER_I_UNIT_OF_ANALYSIS_PACKAGE_BUILD_REPORT.md`.
+
+This package is the pilot per-chapter writing package after the post-atlas routing layer. It uses a self-contained selected-input bundle, not the whole repository, and tests the new per-chapter plan logic on Chapter I: software change as the unit of analysis, not prompt/task/diff/session.
+
+
+## Package creation protocol hardening — 2026-06-13
+
+Updated protocol files:
+
+```text
+work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md
+work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md
+work/reports/TASK_PACKAGE_CREATION_PROTOCOL_STAGED_RESUME_UPDATE_REPORT.md
+```
+
+Purpose: harden executor package construction after the Chapter I pilot exposed a failure mode in which a weaker model, after interruption, could inspect visible future-plan clues and synthesize pass reports/final outputs too quickly.
+
+Operational consequences for future packages:
+
+- regular executor packages must not include open `TARGET_PLAN_SNAPSHOT.md`, full pass queue, final artifact inventory or readiness checklist;
+- full target plans remain build-time inputs;
+- package builders may receive `stage_count` or `max_passes_per_stage` without changing the target plan;
+- heavy chapter packages should use planned stage stops or separate stage packages;
+- interruption/resume behavior is now explicit: no reconstruction of missing pass outputs, no bulk creation of future pass reports, no finalization before final worksheet;
+- final verification must check chain integrity.
+
+Current status: protocol update only. Existing packages are not automatically rebuilt.
+
+
+## Chapter II and III target plans
+
+Созданы рабочие планы для следующих глав:
+
+```text
+work/theory-writing/target-group-plans/CHAPTER_II_AGENTIC_SESSION_TRACE_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_III_INTENT_SPEC_CONTRACT_ADR_TARGET_GROUP_PLAN.md
+```
+
+Оба плана используют Skeleton V5, послеатласные карты маршрутизации, A/B/C-фрагменты, Атлас, досье, stories and ordinary language/style tail. Они не являются готовыми главами и не заменяют будущие executor packages.
+
+## Chapter II/III target plans — individuality patch — 2026-06-13
+
+Обновлены рабочие планы глав II и III:
+
+```text
+work/theory-writing/target-group-plans/CHAPTER_II_AGENTIC_SESSION_TRACE_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_III_INTENT_SPEC_CONTRACT_ADR_TARGET_GROUP_PLAN.md
+work/theory-writing/reports/CHAPTER_II_III_TARGET_PLANS_INDIVIDUALITY_PATCH_REPORT.md
+```
+
+Изменение не переписывает Skeleton V5 и global routing. Оно усиливает индивидуальность будущих глав: глава II теперь строится вокруг анатомии живой агентской сессии, а глава III — вокруг лестницы полномочий артефактов и границы `candidate vs accepted`.
+
+
+
+## Chapter II/III packages
+
+Добавлены no-stage executor packages для глав II и III, построенные из очищенных target plans и текущего post-atlas package protocol.
+
+
+## Chapter IV–VI target plans — 2026-06-14
+
+Созданы рабочие планы для следующих глав:
+
+```text
+work/theory-writing/target-group-plans/CHAPTER_IV_SPDD_SPECIFICATION_LIFECYCLE_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_V_PROTECTED_SPECIFICATION_PROFILES_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_VI_CONTEXT_WORKING_STATE_INTERFACE_TARGET_GROUP_PLAN.md
+```
+
+Планы используют Skeleton V5, послеатласные карты маршрутизации, готовый Атлас, релевантные A/B/C-фрагменты и обычный языко-стилевой хвост. Они не пишут главы и не заменяют будущие executor packages.
+
+Особенности:
+
+- IV — глубокий SPDD-узел: REASONS Canvas, человеческие навыки, OpenSPDD как переходы жизненного цикла, billing example, `/spdd-reverse`, sync/update, границы метода.
+- V — сравнительный узел спецификационных профилей: Spec Kit, Kiro, Constitutional SDD и TDAD по обязанностям, а не по набору возможностей.
+- VI — мостовой узел между specification profiles и PWG: проектный контекст как интерфейс агента, происхождение поведения, rules/specs/skills/state files, граница с PWG и runtime.
+
+Для VI в плане явно указано: если A4/C4 отсутствуют в доступном пакете, это нужно зафиксировать, а не восстанавливать по памяти.
+
+## Update — chapter IV–VI target plans individuality/language pass
+
+Обновлены планы глав IV–VI. Глава IV теперь подчёркивает SPDD как путь одного программного изменения; глава V строит спецификационные профили через типы сбоев и усиливает TDAD как самостоятельную тестовую логику; глава VI описывает проектный контекст как интерфейс агента и добавляет проверки устаревших правил и конфликтующих источников. После содержательных правок выполнен отдельный языко-смысловой проход по планам. Пакеты не создавались.
+
+## 2026-06-14 — словарь смыслового перевода
+
+Добавлен устойчивый словарь терминологического перевода:
+
+```text
+protocols/rules/conceptual-translation-glossary.md
+```
+
+Его роль — не расширять стилевой протокол новыми запретами, а отделить смысловой перевод терминов агентской разработки от обычного словаря анти-калек. В него вынесены различения для `evidence`, `transcript`, `trace`, `observation`, `acceptance`, `handoff`, `artifact` и `state`. После уточнения словарь прямо запрещает переводить `evidence` как `наблюдение`: `наблюдение` оставлено для `observation`, а материал проверки должен называться по функции — `результат проверки`, `артефакт проверки`, `проверочный материал`, `проверочное основание`, `основание для принятия изменения`, `подтверждение` или, в строгих случаях, `доказательство`.
+
+Обновлены связанные правила и будущие package inputs: `language-style-rules.md` теперь прямо указывает на словарь, `terminology-and-translation.md` оставлен для обычных английских слов и отсылает сложные случаи в новый документ, а chapter blueprint / input matrix / chapter target plans I–VI включают словарь как явный read-only input. Это должно предотвращать автоматические переводы вроде `evidence → свидетельство`, `evidence → наблюдение` и `transcript → стенограмма` в новых главах и при ретроспективной правке уже написанного текста.
+
+
+
+## 2026-06-14 — ретроспективная терминологическая проверка и риск протокольного языка
+
+Уточнён `protocols/rules/conceptual-translation-glossary.md`: `evidence` больше не предлагается переводить как `наблюдение`. `Наблюдение` оставлено для `observation` и для материала, который помогает вести текущую работу, но сам по себе не даёт права принять изменение.
+
+Добавлено правило ретроспективной правки: при языковом проходе, `selective natural rewrite` или обычной просьбе сделать текст естественнее нужно проверять не только английские исходные термины, но и уже написанные русские слова: `свидетельство`, `наблюдение`, `стенограмма`, `доказательный`, `трасса сессии`. Они могут быть следами прежнего неудачного перевода. Замена не должна быть массовой; нужно заново определить функцию слова в предложении.
+
+Отдельно зафиксирован риск: языковые и рабочие протоколы написаны операционным языком, а не языком финальной главы. Они должны работать как ограничения и критерии, но не как prose sample. Target plans опаснее, потому что становятся seed-текстом для будущей главы; поэтому их нужно вычитывать естественным русским до сборки executor package.
+
+## Chapter II target plan — natural Russian rewrite update — 2026-06-14
+
+Обновлён план главы II:
+
+```text
+work/theory-writing/target-group-plans/CHAPTER_II_AGENTIC_SESSION_TRACE_TARGET_GROUP_PLAN.md
+work/theory-writing/reports/CHAPTER_II_TARGET_PLAN_NATURAL_REWRITE_UPDATE_REPORT.md
+```
+
+Смысл обновления: сохранить добор источников, добор материала, усиление главы и визуально-ссылочные проверки, но заменить отдельные языковые/стилевые проходы на естественную русскую перепись после каждого существенного содержательного изменения. План также явно снимает неявный потолок объёма: будущая глава не должна подгоняться под привычный размер, если тема требует большего раскрытия.
+
+При будущей сборке пакета главы II прежний no-stage package считать устаревшим по очереди проходов: его нужно пересобрать из обновлённого target plan.
+
+
+## План главы II — сжатие очереди проходов — 2026-06-14
+
+Обновлён план главы II:
+
+```text
+work/theory-writing/target-group-plans/CHAPTER_II_AGENTIC_SESSION_TRACE_TARGET_GROUP_PLAN.md
+work/theory-writing/reports/CHAPTER_II_TARGET_PLAN_STRUCTURE_SIMPLIFICATION_REPORT.md
+```
+
+Правка сжимает очередь проходов с 31 до 22 без удаления содержательного добора. Ранние шаги восстановления рамки, фрагментов, историй, Атласа и досье объединены в три рабочих шага, чтобы подготовка не превращалась в семь отдельных отчётов до первого черновика. Прежние отдельные ремонты логики аргумента и технической плотности убраны: их полезная часть перенесена в добор слабых мест и проверку обзорности.
+
+Решение по фигуре перенесено после появления устойчивого текста главы. Раннее чтение источников может только записывать визуальных кандидатов; вставлять или отклонять фигуру нужно после черновика, интеграции материалов и русской переписи.
+
+Термин `читательский ход` удалён как неестественный рабочий язык. План использует формулировку `логика построения главы`.
+
+## План главы II — русский язык вспомогательных текстов и визуальный баланс — 2026-06-14
+
+Обновлён план главы II:
+
+```text
+work/theory-writing/target-group-plans/CHAPTER_II_AGENTIC_SESSION_TRACE_TARGET_GROUP_PLAN.md
+work/theory-writing/reports/CHAPTER_II_TARGET_PLAN_RUSSIAN_TEXT_AND_VISUAL_BALANCE_UPDATE_REPORT.md
+```
+
+Правка уточняет уже упрощённый план. Во все места, где создаётся текст — основной черновик, рабочие заметки, журналы поиска, решения по источникам, реестры, сопутствующие файлы и финальные отчёты — добавлено требование писать естественным русским техническим языком. Формулировки target plan прямо помечены как рабочие указания, а не как готовые фразы будущей главы.
+
+Порядок объяснения главы теперь не должен становиться скрытым мини-черновиком: P07 собирает только 5–7 пунктов логики. Полная проверка источников сдвинута к финалу, потому что поздний добор может добавить новые ссылки. Шаги про обзорность и фигуру переставлены: сначала глава избавляется от каталога материалов и выбирает сильные сцены/технические опоры, потом принимается решение по изображению.
+
+Визуальный шаг теперь смещён в сторону сохранения полезного кандидата: если изображение действительно помогает главе и его можно использовать, лучше зафиксировать или встроить его в текущем пакете, потому что позже восстановить потерянный визуальный материал из нескольких уровней документов трудно. Отказ от фигуры остаётся допустимым, но должен быть обоснован.
+
+План дополнительно вычитан на естественный русский. Убраны рабочие маркеры вроде `рабочие якоря`, `визуальный долг`, `первый экран`, `карта внутренних опор`, `asset-проход` и `readiness report`.
+
+
+## План главы II — короткие локальные напоминания о естественном русском языке — 2026-06-14
+
+Обновлён план главы II:
+
+```text
+work/theory-writing/target-group-plans/CHAPTER_II_AGENTIC_SESSION_TRACE_TARGET_GROUP_PLAN.md
+work/theory-writing/reports/CHAPTER_II_TARGET_PLAN_SHORT_LOCAL_RUSSIAN_PROMPTS_REPORT.md
+```
+
+Правка сохраняет очередь из 22 проходов и не меняет содержательную логику плана. Локальные языковые напоминания в шагах, где создаётся или правится текст, сокращены до короткой формулы: `Пиши создаваемый текст естественным русским языком.` Для проходов переписи используется форма `Переписывай текст естественным русским языком.`
+
+Цель правки — дать исполнителю короткий якорь прямо в текущей инструкции, не превращая каждый шаг в мини-стильгайд и не добавляя новый протокольный шум. Подробные правила языка, терминологии и словаря смыслового перевода остаются в общих протоколах.
+
+
+## Глава II — принят новый результат пакета и внесён в рабочие файлы — 2026-06-14
+
+Последний результат пакета главы II принят как текущая рабочая версия и внесён в репозиторий:
+
+```text
+work/theory-writing/chapters/II_agentic_session_trace.md
+work/theory-writing/chapters/II_agentic_session_trace_*.md
+work/theory-writing/chapters/II_agentic_session_trace_passes/
+work/theory-writing/reports/CHAPTER_II_RESULT_INTEGRATION_AND_TERMINOLOGY_PATCH_REPORT.md
+work/DELETE_PATHS_CHAPTER_II_RESULT_INTEGRATION.txt
+```
+
+Новая версия заметно лучше предыдущей по языку и терминологии: убраны `свидетельство` как неудачный перевод `evidence`, почти полностью снята `трасса` как псевдотермин, а основной ход главы строится вокруг `следа сессии`, вмешательства человека и состояния работы после обрыва.
+
+После применения результата выполнена локальная правка: `стенограмма` заменена там, где речь шла об обычной переписке или сыром логе разговора; `diff` в русской прозе заменён на `дифф`; встроенная текстовая схема русифицирована; термин `выживание результата` убран из заголовка и основного текста. Словарь смыслового перевода получил отдельную запись о нежелательности этой формы.
+
+При применении overlay нужно удалить старый каталог `work/theory-writing/chapters/II_agentic_session_trace_passes/`, иначе старые pass-файлы из baseline останутся рядом с новыми P01–P22. Готовые старые пакеты главы II считать историческими. Если главу II нужно запускать заново, пакет следует пересобрать из текущего target plan; если нужно продолжать редактирование, исходить из `II_agentic_session_trace.md` как текущей рабочей версии.
+
+## Глава II — правка формулировки вместо «повторного расследования» — 2026-06-14
+
+Обновлены:
+
+```text
+work/theory-writing/chapters/II_agentic_session_trace.md
+protocols/rules/conceptual-translation-glossary.md
+work/theory-writing/reports/CHAPTER_II_INVESTIGATION_WORDING_PATCH_REPORT.md
+```
+
+Правка уточняет уже принятую замену `выживание результата`. Формулировка `работу можно продолжить без повторного расследования` признана неестественной: слово `расследование` слишком юридическое/детективное для обычной мысли о продолжении агентской работы. В словаре и тексте главы используется более простой вариант: следующий человек или агент может продолжить работу, не выясняя заново, что было сделано, что проверено и где остались риски.
+
+## Post-Atlas per-chapter blueprint обновлён по результату главы II — 2026-06-14
+
+`work/theory-writing/reports/POST_ATLAS_PER_CHAPTER_TARGET_PLAN_BLUEPRINT.md` переписан как действующий blueprint для будущих планов отдельных глав. Новый blueprint закрепляет форму, проверенную на главе II: короткая подготовка рамки, рабочая модель предмета главы, выбор внутренних материалов, внешний поиск только по лакунам, первый черновик, русская перепись, содержательная интеграция, русская перепись после каждого крупного добора, добор слабых мест без потолка объёма, проверка обзорности, решение по фигуре после устойчивого текста, финальная проверка потерь и синхронизация сопутствующих файлов.
+
+Старый хвост `language pass / style pass / selective natural rewrite / guarded final style` больше не является обычной схемой для послеатласных глав. Он сохранён только как исторический след в старых пакетах и в общих протоколах, где теперь добавлено уточнение: для послеатласных глав использовать обновлённый blueprint.
+
+
+## Post-Atlas per-chapter blueprint: русская перепись самого плана — 2026-06-14
+
+Обновлены:
+
+```text
+work/theory-writing/reports/POST_ATLAS_PER_CHAPTER_TARGET_PLAN_BLUEPRINT.md
+work/theory-writing/reports/POST_ATLAS_PER_CHAPTER_BLUEPRINT_PLAN_RUSSIAN_REWRITE_UPDATE_REPORT.md
+```
+
+Blueprint теперь явно требует: после написания плана главы выполнить отдельную русскую перепись самого плана. Эта перепись не меняет очередь проходов и не добавляет новые требования; она убирает протокольный ритм, служебные кальки, искусственные рабочие термины, повторяющиеся страхующие формулы и фразы, похожие на готовые абзацы будущей главы.
+
+Сам blueprint также переписан как естественный русский рабочий документ. Его задача — порождать планы, похожие на обновлённый план главы II: с содержательным добором материала, русской переписью после существенных изменений, решением по изображениям после устойчивого текста и без старого хвоста отдельных языковых и стилевых проходов.
+
+Словарь смыслового перевода уже содержит отдельную запись про `расследование`: слово допустимо для настоящего разбора инцидента, но не должно заменять обычные формулы вроде `выяснить заново, что было сделано` или `восстановить ход работы`.
+
+
+## Post-Atlas per-chapter blueprint: гибкость очереди и защита от чрезмерной спецификации — 2026-06-14
+
+Обновлены:
+
+```text
+work/theory-writing/reports/POST_ATLAS_PER_CHAPTER_TARGET_PLAN_BLUEPRINT.md
+protocols/rules/conceptual-translation-glossary.md
+work/theory-writing/reports/POST_ATLAS_PER_CHAPTER_BLUEPRINT_FLEXIBILITY_AND_SPECIFICATION_UPDATE_REPORT.md
+```
+
+Blueprint уточнён после обсуждения нового плана главы II. Базовая очередь больше не читается как обязательная форма на 22 прохода: план может быть короче или длиннее, если это отражает сложность главы, количество аспектов для добора, внешний поиск, изображения и риск обзорности. Каждый конкретный план должен явно выбрать профиль внешнего поиска `D0`, `D1`, `D2` или `D3`.
+
+Добавлено определение существенного содержательного изменения: новый источник, сцена, различение, раздел, пример или правка хода аргумента. После такого изменения переписывается затронутый раздел; вся глава переписывается только если изменилась общая логика.
+
+Отдельно закреплено, что план не должен быть механической копией blueprint, мини-главой или чрезмерно подробной заготовкой, где исполнителю остаётся только заполнить фразы. Он задаёт направление, материалы, риски и критерии; конкретный текст рождается в исполнительном пакете.
+
+В словарь смыслового перевода добавлена запись про `долг`: слово допустимо для настоящего technical debt, но не для обычных планировочных форм вроде `визуальный долг` или `долг для другой главы`. В таких случаях писать `открытый вопрос`, `отложенная задача`, `кандидат для последующей работы`, `тема для другой главы` или `запись для последующей работы`.
+
+
+## 2026-06-14 — планы оставшихся послеатласных глав по новому blueprint
+
+Созданы или переписаны планы всех глав послеатласного ряда, кроме I–II. Новые планы следуют схеме, проверенной на главе II: профиль внешнего поиска выбран явно, добор материала сохранён, русская перепись запускается после существенных содержательных изменений, а сам план не должен становиться мини-главой.
+
+- `work/theory-writing/target-group-plans/INTRO_NOT_CODE_GENERATION_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_III_INTENT_SPEC_CONTRACT_ADR_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_IV_SPDD_SPECIFICATION_LIFECYCLE_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_V_PROTECTED_SPECIFICATION_PROFILES_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_VI_CONTEXT_WORKING_STATE_INTERFACE_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_VII_PERSISTENT_WORK_GRAPH_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_VIII_PROTECTED_PROCESS_PROFILES_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_IX_EXECUTION_ENVIRONMENT_RUNTIME_RIGHTS_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_X_GAS_TOWN_BEADS_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_XI_VERIFICATION_MATERIAL_TESTS_REVIEW_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_XII_AUTHORITY_RESPONSIBILITY_OUTER_CONTOUR_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_XIII_POST_MERGE_MAINTENANCE_LEARNING_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CONCLUSION_MODE_SELECTION_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/reports/POST_ATLAS_REMAINING_CHAPTER_TARGET_PLANS_REWRITE_REPORT.md` — отчёт о переписывании планов.
+
+
+## Планы глав III–VI: индивидуализация после обновления blueprint — 2026-06-14
+
+Обновлены:
+
+```text
+work/theory-writing/target-group-plans/CHAPTER_III_INTENT_SPEC_CONTRACT_ADR_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_IV_SPDD_SPECIFICATION_LIFECYCLE_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_V_PROTECTED_SPECIFICATION_PROFILES_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_VI_CONTEXT_WORKING_STATE_INTERFACE_TARGET_GROUP_PLAN.md
+work/theory-writing/reports/POST_ATLAS_CHAPTER_III_VI_PLAN_INDIVIDUALIZATION_REPORT.md
+```
+
+Планы III–VI больше не являются одинаковой реализацией общей очереди. У каждой главы задан собственный режим письма: III — цепочка носителей намерения и решения; IV — полный цикл SPDD; V — сравнение профилей по общей фиче и осям; VI — проектный интерфейс агента с глубоким раскрытием `skills`, `hooks`, `MCP`, `subagents`.
+
+Глава VI намеренно усилена как большая глава. В плане прямо снят неявный потолок объёма и добавлены отдельные проходы для ключевых понятий, чтобы они не превратились в каталог инструментов.
+
+
+## Планы III–VI: второе усиление индивидуальности и языка — 2026-06-14
+
+Обновлены:
+
+```text
+work/theory-writing/target-group-plans/CHAPTER_III_INTENT_SPEC_CONTRACT_ADR_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_IV_SPDD_SPECIFICATION_LIFECYCLE_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_V_PROTECTED_SPECIFICATION_PROFILES_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_VI_CONTEXT_WORKING_STATE_INTERFACE_TARGET_GROUP_PLAN.md
+work/theory-writing/reports/POST_ATLAS_CHAPTER_III_VI_SECOND_INDIVIDUALIZATION_AND_LANGUAGE_REVIEW_REPORT.md
+```
+
+Правка усиливает индивидуальность будущих глав и одновременно чистит язык планов. III теперь сильнее держит разрыв между сгенерированным текстом и принятым изменением. IV заменяет неудачный `обратный вход` на восстановление намерения по старому коду. V сильнее строится вокруг выбора профиля. VI расширена до 29 проходов и получила отдельную проверку, что `skills`, `hooks`, `MCP`, `subagents` раскрыты как механизмы проектного интерфейса, а не как список инструментов.
+
+Замечание по языку: `лакуна` не считается проблемным словом само по себе. Это нормальное, хотя и редкое, русское слово; его не нужно автоматически заменять при будущих правках.
+
+## План главы VI: уточнение языка и механики `skills` / `hooks` / `MCP` / `subagents` — 2026-06-14
+
+Обновлён:
+
+```text
+work/theory-writing/target-group-plans/CHAPTER_VI_CONTEXT_WORKING_STATE_INTERFACE_TARGET_GROUP_PLAN.md
+work/theory-writing/reports/POST_ATLAS_CHAPTER_VI_INTERFACE_MECHANISMS_LANGUAGE_PATCH_REPORT.md
+```
+
+Правка точечно исправляет язык плана главы VI и убирает слишком симметричную постановку проходов P08–P11. Теперь `skills`, `hooks`, `MCP` и `subagents` раскрываются не по одинаковой анкете, а через разные функции проектного интерфейса: повторяемая способность, автоматическое вмешательство, управляемый доступ и разделение внимания/ответственности между агентами.
+
+Очередь главы VI остаётся на 29 проходах; профиль внешнего поиска остаётся `D3`. Смысл правки — сильнее удержать главу VI как большую главу о проектном интерфейсе агента, а не как каталог возможностей.
+
+## Языковая правка планов глав III–V — 2026-06-14
+
+Обновлены:
+
+```text
+work/theory-writing/target-group-plans/CHAPTER_III_INTENT_SPEC_CONTRACT_ADR_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_IV_SPDD_SPECIFICATION_LIFECYCLE_TARGET_GROUP_PLAN.md
+work/theory-writing/target-group-plans/CHAPTER_V_PROTECTED_SPECIFICATION_PROFILES_TARGET_GROUP_PLAN.md
+work/theory-writing/reports/POST_ATLAS_CHAPTER_III_IV_V_LANGUAGE_PATCH_REPORT.md
+```
+
+Правка убирает из планов III–V несколько формул, которые были понятны как внутренние рабочие ярлыки, но звучали неестественно в русском техническом тексте. Глава V теперь не выносит `поверхность` в главное место плана; глава IV говорит о полном рабочем цикле и возвращении принятого результата в документы, решения и текущее состояние проекта; глава III уточняет язык вокруг внешних источников и восстановления истории решения.
+
+## 2026-06-14 — план главы VI: глубокое раскрытие ключевых механизмов перенесено после первого черновика
+
+Пользователь уточнил, что для главы VI небезопасно подробно разбирать `skills`, `hooks`, `MCP` и `subagents` до первого черновика. Даже если эти проходы не должны писать готовые разделы, они всё равно задают симметричный материал и могут подтолкнуть будущую главу к каталогу четырёх возможностей агентской платформы.
+
+План `work/theory-writing/target-group-plans/CHAPTER_VI_CONTEXT_WORKING_STATE_INTERFACE_TARGET_GROUP_PLAN.md` обновлён. До первого черновика теперь остаётся только короткое разведение четырёх понятий: повторяемая способность, автоматическое вмешательство, управляемый доступ и разделение внимания/ответственности. Глубокие проходы по `skills`, `hooks`, `MCP` и `subagents` перенесены после первого черновика и первой русской переписи. Они работают уже с живым текстом: находят место в существующей главе, добавляют объяснение, пример, источник, риск и связь с общей логикой.
+
+После этих четырёх усилений добавлена отдельная русская перепись, чтобы глава снова читалась как цельный текст о проектном интерфейсе агента, а не как черновик с поздно добавленными техническими блоками. Очередь главы VI теперь содержит 30 проходов.
+## 2026-06-14 — глава III: принята расширенная ADR-редакция V4; глава IV проверена против SPDD-Атласа
+
+В файловую систему внесена последняя редакция главы III после ADR-расширения и ребаланса: `work/theory-writing/chapters/III_intent_spec_contract_adr.md`. Эта версия сохраняет усиленный ADR-блок, но больше не подаёт ADR как единственный возможный способ записывать архитектурные решения. ADR объясняется как удобная и распространённая форма явной записи решения; рядом явно оставлено место для RFC, дизайн-документа, обсуждения в pull request, задачи или внутреннего журнала решений, если они выполняют ту же функцию в проекте.
+
+Также обновлены сопутствующие файлы главы III и заменён каталог проходов `work/theory-writing/chapters/III_intent_spec_contract_adr_passes/`. Перед применением overlay старый каталог проходов главы III нужно удалить, чтобы старые pass-файлы не остались рядом с текущими `P01.md`…`P23.md` и `FINAL.md`.
+
+По главе IV выполнена отдельная проверка против `work/atlas/articles/spdd_method.md` и `work/dossiers/SPDD_METHOD_DOSSIER.md`. Вывод зафиксирован в `work/theory-writing/reports/CHAPTER_IV_SPDD_ATLAS_ALIGNMENT_REVIEW.md`: глава IV в целом последовательна, но SPDD раскрыт слабее, чем позволяет Атлас. Для будущей ручной правки нужно усилить REASONS Canvas, человеческое ревью намерения, проверку результата по Canvas, `prompt-update` / `sync`, работу со старым кодом без исходной спецификации и визуальный слой.
+
+
+## Глава IV: интеграция ручной SPDD-редакции V4 — 2026-06-14
+
+Текущая версия главы IV находится здесь:
+
+```text
+work/theory-writing/chapters/IV_spdd_specification_lifecycle.md
+```
+
+Она заменяет пакетный результат и последующие промежуточные SPDD-патчи. В редакции V4 усилено объяснение SPDD как спецификационного жизненного цикла: зачем он нужен, что он решает и как REASONS Canvas, генерация, проверки, code review, `prompt-update` и `sync` работают в одном цикле.
+
+Ключевая правка V4: пример биллинга введён прямо в главу и теперь достаточно предметен для чтения без внешней реконструкции. В тексте есть API `POST /usage/quote`, клиент, модель, токены, тарифы, квота, валюта, версия тарифа и спорные правила обработки ошибок/округления.
+
+Связанные файлы:
+
+```text
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_atlas_usage.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_degradation_and_duplication_audit.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_dossier_gap_notes.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_external_discovery_log.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_figure_candidates.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_fragment_usage.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_open_questions.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_passes/
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_readiness_report.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_source_register.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_story_anchors.md
+content/assets/theory-images/fowler-spdd-workflow.svg
+work/theory-writing/reports/CHAPTER_IV_SPDD_RESULT_V4_INTEGRATION_REPORT.md
+work/theory-writing/reports/CHAPTER_IV_SPDD_PATCH_APPLY_REPORT.md
+work/theory-writing/reports/CHAPTER_IV_SPDD_CYCLE_LANGUAGE_REBALANCE_REPORT.md
+work/theory-writing/reports/CHAPTER_IV_BILLING_EXAMPLE_THREAD_PATCH_REPORT.md
+work/theory-writing/reports/CHAPTER_IV_BILLING_EXAMPLE_RECONSTRUCTION_PATCH_REPORT.md
+```
+
+Перед применением overlay удалить старый каталог проходов главы IV:
+
+```text
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_passes/
+```
+
+
+## Глава I: интеграция принятого nostage-результата — 2026-06-14
+
+В файловую систему добавлена принятая nostage-версия главы I:
+
+```text
+work/theory-writing/chapters/I_unit_of_analysis.md
+```
+
+Также добавлены сопутствующие файлы и каталог проходов:
+
+```text
+work/theory-writing/chapters/I_unit_of_analysis_*.md
+work/theory-writing/chapters/I_unit_of_analysis_passes/
+```
+
+Источник интеграции — пользовательский архив `CHAPTER_I_UNIT_OF_ANALYSIS_NOSTAGE_RESULT.zip`. По доступным файлам это пакетный результат без отдельной ручной редакции после генерации; глава ранее была принята как canonical nostage prose result, но не была внесена в текущий каталог `work/theory-writing/chapters/`.
+
+Перед применением overlay удалить старый каталог проходов главы I, если он уже есть:
+
+```text
+work/theory-writing/chapters/I_unit_of_analysis_passes/
+```
+
+Отчёт:
+
+```text
+work/theory-writing/reports/CHAPTER_I_RESULT_INTEGRATION_REPORT.md
+```
+
+
+## Update — Chapter IV V6 current version
+
+- `work/theory-writing/chapters/IV_spdd_specification_lifecycle.md` — current integrated Chapter IV text after the V6 natural Russian pass.
+- `work/theory-writing/reports/CHAPTER_IV_RESULT_V6_FS_INTEGRATION_REPORT.md` — integration note and workflow correction.
+- `work/DELETE_PATHS_CHAPTER_IV_RESULT_V6_INTEGRATION.txt` — path to remove before applying this overlay.
+
+
+## Update — Chapter IV V7 direct API example patch
+
+- `work/theory-writing/chapters/IV_spdd_specification_lifecycle.md` — current integrated Chapter IV text after direct rewriting of the billing API example.
+- `work/theory-writing/reports/CHAPTER_IV_DIRECT_API_EXAMPLE_V7_REPORT.md` — report for the local in-place patch.
+
+The billing example now starts from `POST /usage/quote` as a concrete API method and directly states the input fields, output fields, data sources and error/rounding rules. This replaces the earlier indirect presentation where the reader had to reconstruct the task from the phrase "calculate model usage cost".
+
+## Chapter VI routes / MCP interface patch — 2026-06-15
+
+Current integrated Chapter VI file:
+
+```text
+work/theory-writing/chapters/VI_context_working_state_interface.md
+```
+
+The `Маршруты действия` part was restructured. The former large nested subsections are now top-level chapter sections:
+
+```text
+## Маршруты действия: как проект выбирает способ работы
+## Skills: повторяемые процедуры как часть проекта
+## MCP-сервер: управляемый внешний интерфейс
+## Subagents: разные исполнители для разных частей задачи
+```
+
+The MCP section was expanded from a general access/context explanation into a technical external-interface explanation grounded in the official MCP specification: host/client/server, JSON-RPC, initialization, capability negotiation, `stdio`, Streamable HTTP, `resources`, `prompts`, `tools`, and discovery/call methods such as `tools/list`, `tools/call`, `resources/read`, `prompts/get`.
+
+Report:
+
+```text
+work/theory-writing/reports/CHAPTER_VI_ROUTES_AND_MCP_INTERFACE_PATCH_REPORT.md
+```
+
+## Chapter VI hooks source expansion patch — 2026-06-15
+
+Current integrated Chapter VI file remains:
+
+```text
+work/theory-writing/chapters/VI_context_working_state_interface.md
+```
+
+The local MCP paragraph that referred to an old wording about “MCP gives context” was rewritten so the chapter no longer comments on its own draft history. The text now directly distinguishes `resources`, `prompts`, and `tools` as different external-interface forms.
+
+The hooks section was expanded with external technical sources and practical usage patterns. The chapter now cites official Claude Code, Codex, Kiro, and Gemini CLI materials and presents hooks as a lifecycle layer: contextual input at session/prompt time, policy checks before action, post-action repair/verification, stop/finalization gates, and audit/observability.
+
+Report:
+
+```text
+work/theory-writing/reports/CHAPTER_VI_HOOKS_SOURCE_EXPANSION_PATCH_REPORT.md
+```
+
+## Chapter VI route selection and natural Russian pass — 2026-06-15
+
+Current integrated Chapter VI file remains:
+
+```text
+work/theory-writing/chapters/VI_context_working_state_interface.md
+```
+
+The section `Маршруты действия: как проект выбирает способ работы` has been expanded from a short transition into a functional argument node. It now explains route-selection failure, criteria for choosing between skill, MCP, subagent and hook, route combinations, and the requirement that the chosen route leaves a trace in working state.
+
+The whole Chapter VI text has also passed a natural Russian rewrite. This pass preserved the previously added MCP and hooks technical material and existing inline external links, while reducing protocol-like phrasing, awkward translation residue and avoidable English glue. No new external sources were added in this pass.
+
+Report:
+
+```text
+work/theory-writing/reports/CHAPTER_VI_ROUTE_SELECTION_AND_NATURAL_RU_PASS_REPORT.md
+```
+
+
+## Chapter VI external image candidate discovery — 2026-06-15
+
+Current integrated Chapter VI file remains unchanged:
+
+```text
+work/theory-writing/chapters/VI_context_working_state_interface.md
+```
+
+A source/asset discovery report was added for Chapter VI:
+
+```text
+work/theory-writing/reports/CHAPTER_VI_EXTERNAL_IMAGE_CANDIDATES_REPORT.md
+```
+
+The report scans the external sources currently referenced by Chapter VI and the recent Chapter VI patch reports. It identifies likely illustration candidates for a future visual pass: route-selection, skills progressive disclosure, MCP external-interface structure, hooks lifecycle / hook resolution, subagents versus agent teams, and optional current-practice screenshots from field reports. The chapter text was not changed in this pass.
+
+- `work/theory-writing/chapters/VI_context_working_state_interface.md` — текущая файловая версия главы VI; теперь включает шесть встроенных локальных иллюстраций из `content/assets/theory-images/` (project interface, route selection, skills, MCP, subagents, hooks).

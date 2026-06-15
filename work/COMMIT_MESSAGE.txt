@@ -1,1 +1,1 @@
-theory: add post-atlas skeleton v5 and chapter package routing
+Integrate six local illustrations into chapter VI and add theory image assets
