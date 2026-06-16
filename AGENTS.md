@@ -74,10 +74,14 @@ protocols/skills/
 - `protocols/rules/site-update-rules.md`
 - `protocols/rules/content-preservation.md`
 
+Перед правкой содержательного текста помните: протоколы и target plans задают ограничения, но не являются образцом финальной прозы. При правке уже написанного русского текста `conceptual-translation-glossary.md` применяется ретроспективно: проверяйте `свидетельство`, `наблюдение`, `стенограмма` и похожие слова как возможные следы прежнего перевода.
+
 Перед правкой содержательного текста прочитайте:
 
 - `project/source-precedence.md`
 - `protocols/rules/language-style-rules.md`
+- `protocols/rules/terminology-and-translation.md`
+- `protocols/rules/conceptual-translation-glossary.md`
 - связанные файлы, перечисленные внутри `language-style-rules.md`
 - `protocols/rules/english-source-handling.md`
 - `protocols/rules/source-and-provenance.md`
@@ -134,6 +138,7 @@ protocols/skills/
 - После нетривиальной сессии по текущей задаче обновите `work/discourse.md` по `protocols/rules/discourse-maintenance-rules.md`.
 - Если работа создала, изменила или переоценила файлы, впишите их точные имена прямо в дискурс рядом с соответствующим смысловым ходом.
 - При работе ChatGPT с репозиторием через GitHub-интеграцию новые рабочие файлы создавайте в `/work` репозитория, а существующие файлы обновляйте через commit новой версии с понятным commit anchor. Не создавайте “копии внутри чата” как рабочий артефакт.
+- Если ChatGPT возвращает delta/overlay archive, архив должен быть repository-root shaped: внутри zip сразу лежат `START.md`, `AGENTS.md`, `work/...`, `protocols/...` и другие repository-relative paths, без дополнительной верхней папки с именем overlay/задачи/snapshot.
 - Не заявляйте завершение, если нет проверяемых артефактов: изменённых файлов, отчёта, списка проверок or созданных рабочих документов.
 
 ## Финальный отчёт

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#1d4ed8"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1e3a8a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="800.0" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="46" font-weight="700" fill="#111827"><tspan x="800.0" dy="0">Спецификация, контракт и ADR — не один документ</tspan></text>
+  <text x="800.0" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="400" fill="#334155"><tspan x="800.0" dy="0">три формы удерживают разные части намерения</tspan></text>
+  <rect x="90" y="190" width="390" height="470" rx="22" fill="#eff6ff" stroke="#1d4ed8" stroke-width="3"/>
+  <text x="285" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#1d4ed8"><tspan x="285" dy="0">Спецификация</tspan></text>
+  <circle cx="145" cy="317" r="8" fill="#1d4ed8"/>
+  <text x="175" y="325" text-anchor="start" font-family="Arial, sans-serif" font-size="25" font-weight="400" fill="#111827"><tspan x="175" dy="0">что меняется</tspan></text>
+  <circle cx="145" cy="379" r="8" fill="#1d4ed8"/>
+  <text x="175" y="387" text-anchor="start" font-family="Arial, sans-serif" font-size="25" font-weight="400" fill="#111827"><tspan x="175" dy="0">границы задачи</tspan></text>
+  <circle cx="145" cy="441" r="8" fill="#1d4ed8"/>
+  <text x="175" y="449" text-anchor="start" font-family="Arial, sans-serif" font-size="25" font-weight="400" fill="#111827"><tspan x="175" dy="0">нецели и ограничения</tspan></text>
+  <rect x="125" y="540" width="320" height="80" rx="14" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="285" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827"><tspan x="285" dy="0">опасность:</tspan></text>
+  <text x="285" y="598" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="400" fill="#111827"><tspan x="285" dy="0">принять план за решение</tspan></text>
+  <rect x="570" y="190" width="390" height="470" rx="22" fill="#ecfdf5" stroke="#059669" stroke-width="3"/>
+  <text x="765" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#059669"><tspan x="765" dy="0">Контракт</tspan></text>
+  <circle cx="625" cy="317" r="8" fill="#059669"/>
+  <text x="655" y="325" text-anchor="start" font-family="Arial, sans-serif" font-size="25" font-weight="400" fill="#111827"><tspan x="655" dy="0">какое обещание</tspan></text>
+  <circle cx="625" cy="379" r="8" fill="#059669"/>
+  <text x="655" y="387" text-anchor="start" font-family="Arial, sans-serif" font-size="25" font-weight="400" fill="#111827"><tspan x="655" dy="0">как увидеть нарушение</tspan></text>
+  <circle cx="625" cy="441" r="8" fill="#059669"/>
+  <text x="655" y="449" text-anchor="start" font-family="Arial, sans-serif" font-size="25" font-weight="400" fill="#111827"><tspan x="655" dy="0">оракул проверки</tspan></text>
+  <rect x="605" y="540" width="320" height="80" rx="14" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="765" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827"><tspan x="765" dy="0">опасность:</tspan></text>
+  <text x="765" y="598" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="400" fill="#111827"><tspan x="765" dy="0">принять зелёный тест за всё изменение</tspan></text>
+  <rect x="1050" y="190" width="390" height="470" rx="22" fill="#fff7ed" stroke="#f97316" stroke-width="3"/>
+  <text x="1245" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#f97316"><tspan x="1245" dy="0">ADR</tspan></text>
+  <circle cx="1105" cy="317" r="8" fill="#f97316"/>
+  <text x="1135" y="325" text-anchor="start" font-family="Arial, sans-serif" font-size="25" font-weight="400" fill="#111827"><tspan x="1135" dy="0">почему выбран путь</tspan></text>
+  <circle cx="1105" cy="379" r="8" fill="#f97316"/>
+  <text x="1135" y="387" text-anchor="start" font-family="Arial, sans-serif" font-size="25" font-weight="400" fill="#111827"><tspan x="1135" dy="0">статус решения</tspan></text>
+  <circle cx="1105" cy="441" r="8" fill="#f97316"/>
+  <text x="1135" y="449" text-anchor="start" font-family="Arial, sans-serif" font-size="25" font-weight="400" fill="#111827"><tspan x="1135" dy="0">последствия и замена</tspan></text>
+  <rect x="1085" y="540" width="320" height="80" rx="14" fill="#ffffff" stroke="#f97316" stroke-width="2"/>
+  <text x="1245" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827"><tspan x="1245" dy="0">опасность:</tspan></text>
+  <text x="1245" y="598" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="400" fill="#111827"><tspan x="1245" dy="0">принять черновик за принятое правило</tspan></text>
+  <rect x="310" y="720" width="980" height="70" rx="16" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="800" y="763" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" font-weight="400" fill="#111827"><tspan x="800" dy="0">Эти формы связаны, но отвечают на разные вопросы и имеют разный статус.</tspan></text>
+</svg>

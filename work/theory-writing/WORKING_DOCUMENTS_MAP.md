@@ -2310,3 +2310,276 @@ work/theory-writing/reports/CHAPTER_VI_EXTERNAL_IMAGE_CANDIDATES_REPORT.md
 The report scans the external sources currently referenced by Chapter VI and the recent Chapter VI patch reports. It identifies likely illustration candidates for a future visual pass: route-selection, skills progressive disclosure, MCP external-interface structure, hooks lifecycle / hook resolution, subagents versus agent teams, and optional current-practice screenshots from field reports. The chapter text was not changed in this pass.
 
 - `work/theory-writing/chapters/VI_context_working_state_interface.md` — текущая файловая версия главы VI; теперь включает шесть встроенных локальных иллюстраций из `content/assets/theory-images/` (project interface, route selection, skills, MCP, subagents, hooks).
+
+- `protocols/rules/visual-assets-and-figures.md` — обновлённое правило visual-layer для будущих writing/asset passes: выбор между real source image, local asset, source-backed redraw, synthetic figure, defer/reject и нейтральная формулировка prompts для генерации схем.
+- `work/theory-writing/reports/POST_ATLAS_PER_CHAPTER_TARGET_PLAN_BLUEPRINT.md` — обновлённый blueprint планов глав: P19 теперь проектирует визуальный слой главы, а не принимает одиночное решение по фигуре.
+- `work/theory-writing/target-group-plans/CHAPTER_VII_PERSISTENT_WORK_GRAPH_TARGET_GROUP_PLAN.md` … `CHAPTER_XIII_POST_MERGE_MAINTENANCE_LEARNING_TARGET_GROUP_PLAN.md` — планы глав VII–XIII обновлены под новый visual-layer pass.
+
+- `work/theory-writing/reports/CHAPTERS_I_V_EXTERNAL_IMAGE_CANDIDATES_REPORT.md` — visual-discovery отчёт для глав I–V; собирает кандидаты из глав, companion-файлов, фрагментов A1–A5, asset catalog и внешних источников, но не вносит иллюстрации в сами главы.
+
+## Chapters I–V figure integration — 2026-06-15
+
+- `work/theory-writing/chapters/I_unit_of_analysis.md` — теперь включает две локальные иллюстрации: обновлённую схему про частичные носители и ось программного изменения.
+- `work/theory-writing/chapters/II_agentic_session_trace.md` — теперь включает две локальные иллюстрации: структуру агентской сессии и переход от следа сессии к внешнему состоянию.
+- `work/theory-writing/chapters/III_intent_spec_contract_adr.md` — теперь включает три локальных ADR/atlas-иллюстрации: минимальная запись ADR, жизненный цикл ADR и Confirmation.
+- `work/theory-writing/chapters/IV_spdd_specification_lifecycle.md` — visual layer усилен до трёх фигур: REASONS Canvas, существующий workflow и схема sync / обратного возврата знаний в Canvas.
+- `work/theory-writing/chapters/V_protected_specification_profiles.md` — теперь включает три локальные иллюстрации: TDAD pipeline, Constitutional SDD hierarchy и сравнительную матрицу protected specification profiles.
+- `work/theory-writing/reports/CHAPTERS_I_V_FIGURE_INTEGRATION_REPORT.md` — краткий отчёт о том, какие изображения были реально вставлены и почему.
+
+
+## Chapters I–V visual-layer completion — 2026-06-15
+
+Current integrated chapter files with completed figure layers:
+- `work/theory-writing/chapters/I_unit_of_analysis.md` — 3 figures: pre-prompt entry points, partial carriers, minimal change axis.
+- `work/theory-writing/chapters/II_agentic_session_trace.md` — 3 figures: session wider than chat, trace-to-state, Agent Trace/provenance.
+- `work/theory-writing/chapters/III_intent_spec_contract_adr.md` — 5 figures: spec/contract/ADR boundaries, minimal ADR, ADR lifecycle, Confirmation, ADR projection for agent use.
+- `work/theory-writing/chapters/IV_spdd_specification_lifecycle.md` — 5 figures: SPDD overview, REASONS Canvas, code review, workflow, sync/backflow.
+- `work/theory-writing/chapters/V_protected_specification_profiles.md` — 5 figures: Spec Kit workflow, Kiro Specs surface, TDAD pipeline, Constitutional SDD traceability, protected-profile matrix.
+
+New report:
+- `work/theory-writing/reports/CHAPTERS_I_V_VISUAL_LAYER_COMPLETION_REPORT.md`
+
+
+## Blueprint retrofit rules update — 2026-06-15
+
+- `work/theory-writing/reports/POST_ATLAS_PER_CHAPTER_TARGET_PLAN_BLUEPRINT.md` — обновлён после ретроспективы ручных правок глав III–VI: добавлены условные модули для anchor-balance, сквозного примера, anti-self-commentary, interface anatomy, current practice, structural pressure, hinge-section, comparative failure boundaries, terminology domestication, source factuality и final residue. Модуль reconstruction-by-traces не добавлялся.
+- `work/theory-writing/reports/POST_ATLAS_BLUEPRINT_RETROFIT_RULES_UPDATE_REPORT.md` — отчёт по этой правке blueprint.
+
+
+## Chapters VII–X target plan regeneration — 2026-06-15
+
+Перегенерированы планы глав VII–X под обновлённый blueprint:
+
+- `work/theory-writing/target-group-plans/CHAPTER_VII_PERSISTENT_WORK_GRAPH_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_VIII_PROTECTED_PROCESS_PROFILES_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_IX_EXECUTION_ENVIRONMENT_RUNTIME_RIGHTS_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_X_GAS_TOWN_BEADS_TARGET_GROUP_PLAN.md`
+
+Отчёт: `work/theory-writing/reports/CHAPTERS_VII_X_TARGET_PLANS_REGENERATION_REPORT.md`.
+
+- `work/theory-writing/target-group-plans/CHAPTER_VII_PERSISTENT_WORK_GRAPH_TARGET_GROUP_PLAN.md` — обновлён после ретроспективного анализа: план теперь сильнее задаёт индивидуальность главы VII как переход от линейной памяти сессии к графу продолжения работы.
+
+- `work/theory-writing/target-group-plans/CHAPTER_VIII_PROTECTED_PROCESS_PROFILES_TARGET_GROUP_PLAN.md` — обновлённый план главы VIII; теперь индивидуализирован вокруг wrong-mode continuation и перехода от PWG-состояния к способу продолжения работы. Техническое имя файла сохранено, но в русской смысловой рамке “профиль” заменён на “способ/подход/методология” по контексту.
+- `work/theory-writing/reports/CHAPTER_VIII_TARGET_PLAN_INDIVIDUALITY_UPDATE_REPORT.md` — отчёт о точечной правке плана VIII.
+
+- `work/theory-writing/target-group-plans/CHAPTER_IX_EXECUTION_ENVIRONMENT_RUNTIME_RIGHTS_TARGET_GROUP_PLAN.md` — обновлён по индивидуальности: усилена ось “способ продолжения работы → среда исполнения → допустимый радиус действия”, уточнены permission/approval/sandbox/authority и убраны искусственные рабочие ярлыки.
+
+- `work/theory-writing/target-group-plans/CHAPTER_X_GAS_TOWN_BEADS_TARGET_GROUP_PLAN.md` — обновлён после индивидуального разбора: глава X теперь задаётся как организация многоагентной рабочей среды, а не как пересказ Gas Town; усилены направления про Beads, Mayor, workspaces/rigs, service agents, GUPP и возврат результата в состояние работы.
+
+## Chapters VII–X size and material-intake reinforcement — 2026-06-15
+
+Target plans VII–X updated to remove any implicit size ceiling. Each plan now says that the chapter has no target size or hidden 40K-like norm, and that post-draft weak spots require active rereading of fragments, atlas articles, dossiers, source registers and primary sources, followed by source-backed expansion and rewrite.
+
+Updated files:
+
+- `work/theory-writing/target-group-plans/CHAPTER_VII_PERSISTENT_WORK_GRAPH_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_VIII_PROTECTED_PROCESS_PROFILES_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_IX_EXECUTION_ENVIRONMENT_RUNTIME_RIGHTS_TARGET_GROUP_PLAN.md`
+- `work/theory-writing/target-group-plans/CHAPTER_X_GAS_TOWN_BEADS_TARGET_GROUP_PLAN.md`
+
+Report:
+
+- `work/theory-writing/reports/CHAPTERS_VII_X_SIZE_AND_MATERIAL_INTAKE_AUDIT_REPORT.md`
+
+- `work/theory-writing/target-group-plans/CHAPTER_VII_PERSISTENT_WORK_GRAPH_TARGET_GROUP_PLAN.md` … `CHAPTER_X_GAS_TOWN_BEADS_TARGET_GROUP_PLAN.md` — актуальные планы VII–X после natural Russian rewrite; сохраняют индивидуальные оси глав и no-size-limit/source-intake правила, но написаны менее протокольно.
+- `work/theory-writing/reports/CHAPTERS_VII_X_TARGET_PLANS_NATURAL_RU_REWRITE_REPORT.md` — отчёт о переписи планов VII–X естественным русским языком.
+
+## Session baseline delta — 2026-06-15
+
+A cumulative root-shaped delta has been built from the initial `git.zip` uploaded at the start of the chat. It includes all accepted repository changes through the Chapter VII–X executor package build and should be treated as the next local baseline for subsequent overlay/delta work. Report: `work/reports/SESSION_BASELINE_DELTA_BUILD_REPORT.md`.
+
+
+## Blueprint individual tuning update — 2026-06-15
+
+- `work/theory-writing/reports/POST_ATLAS_PER_CHAPTER_TARGET_PLAN_BLUEPRINT.md` now includes an individual chapter tuning step before full target-plan assembly. It asks future plans to formulate what the chapter receives from the previous chapter, what new layer/form of work it introduces, what scene should make it visible, what terms need functional Russian explanation, and what question passes onward. It avoids requiring every chapter to have a central failure mode.
+- `work/theory-writing/reports/POST_ATLAS_BLUEPRINT_INDIVIDUAL_TUNING_UPDATE_REPORT.md` records this update.
+
+## Chapters VIII–X result integration — 2026-06-15
+
+Integrated result-package outputs:
+
+- `work/theory-writing/chapters/VIII_protected_process_profiles.md` — current result text for Chapter VIII; conceptually good but needs terminology cleanup away from overuse of `профиль`, self-commentary removal, and visual-layer integration before canonical acceptance.
+- `work/theory-writing/chapters/IX_execution_environment_runtime_rights.md` — current result text for Chapter IX; materially strong and source-dense, but requires substantial natural-Russian pass and visual-layer integration before canonical acceptance.
+- `work/theory-writing/chapters/X_gas_town_beads.md` — current result text for Chapter X; near-canonical after light language/terminology polish.
+
+Result archives stored:
+
+- `work/theory-writing/results/CHAPTER_VIII_PROTECTED_PROCESS_PROFILES_NOSTAGE_RESULT.zip`
+- `work/theory-writing/results/CHAPTER_IX_EXECUTION_ENVIRONMENT_RUNTIME_RIGHTS_RESULT.zip`
+- `work/theory-writing/results/CHAPTER_X_GAS_TOWN_BEADS_RESULT.zip`
+
+Integration/evaluation report:
+
+- `work/theory-writing/reports/CHAPTERS_VIII_X_RESULT_FS_INTEGRATION_AND_EVALUATION_REPORT.md`
+
+- `work/theory-writing/chapters/VIII_protected_process_profiles.md` — GSD-раздел после пользовательской критики переработан: фактура из Атласа и досье больше не лежит отдельным добавочным блоком, а встроена в собственную логику раздела — маршрутизация рабочего режима, phase loop, Verify/Ship, `.planning/`, specialist agents, `billing/API` и `gsd-pi` теперь объясняют один механизм выбора следующего допустимого хода; см. `work/theory-writing/reports/CHAPTER_VIII_GSD_INTEGRATION_REPAIR_REPORT.md`.
+
+## Chapter VII result integration — 2026-06-15
+
+Current integrated Chapter VII file:
+
+```text
+work/theory-writing/chapters/VII_persistent_work_graph.md
+```
+
+The result package has been integrated as the current working version, with pass files and companion files under `work/theory-writing/chapters/`. The source result archive is stored at:
+
+```text
+work/theory-writing/results/CHAPTER_VII_PERSISTENT_WORK_GRAPH_RESULT.zip
+```
+
+Status: strong working version, but not yet canonical. Conceptual axis and boundaries are good; material transfer is probably sufficient for a first integrated result, but requires an explicit source-intake audit because the actual text is about 40.7K characters while the package readiness report claims about 57K. A natural-Russian pass is also needed to remove English connective prose and meta phrasing.
+
+Report:
+
+```text
+work/theory-writing/reports/CHAPTER_VII_RESULT_FS_INTEGRATION_AND_EVALUATION_REPORT.md
+```
+
+
+## Chapters VII–X natural-Russian rewrite — 2026-06-15
+
+- `work/theory-writing/chapters/VII_persistent_work_graph.md` — текущая рабочая версия главы VII после прохода естественного русского языка; концептуальная ось PWG сохранена, английский связочный текст и самокомментарии в хвостовых разделах вычищены.
+- `work/theory-writing/chapters/VIII_protected_process_profiles.md` — текущая рабочая версия главы VIII после natural-Russian pass; исправленная интеграция GSD-фактуры сохранена, объяснительный язык сильнее держится вокруг “способов продолжения работы”, а не “профилей”.
+- `work/theory-writing/chapters/IX_execution_environment_runtime_rights.md` — текущая рабочая версия главы IX после наиболее сильного языкового прохода; distinction sandbox/permission/approval/authority, command/tool/browser и durable execution сохранены, но полуанглийские explanatory фразы переписаны.
+- `work/theory-writing/chapters/X_gas_town_beads.md` — текущая рабочая версия главы X после natural-Russian pass; Gas Town/Beads термины оставлены как source terms, но объяснение сильнее встроено в русскую прозу про обслуживаемую многоагентную рабочую среду.
+- `work/theory-writing/reports/CHAPTERS_VII_X_NATURAL_RU_REWRITE_REPORT.md` — отчёт о редакторском проходе.
+
+## Chapters VII–X term repair — 2026-06-15
+
+- `work/theory-writing/chapters/VII_persistent_work_graph.md` — текущая рабочая версия после локальной терминологической правки: слово `сбой` заменено контекстными русскими формулировками.
+- `work/theory-writing/chapters/VIII_protected_process_profiles.md` — текущая рабочая версия после той же правки; центральная формула теперь говорит о проблеме неправильного входа в восстановленную работу, а не о “сбое”.
+- `work/theory-writing/chapters/IX_execution_environment_runtime_rights.md` — текущая рабочая версия после той же правки; runtime-контексты теперь говорят о неудачной попытке, проблеме исполнения и ошибках выполнения.
+- `work/theory-writing/chapters/X_gas_town_beads.md` — текущая рабочая версия после той же правки; процессные `сбои` заменены на нарушения рабочего процесса.
+- `work/theory-writing/reports/CHAPTERS_VII_X_FAILURE_TERM_REPAIR_REPORT.md` — отчёт о правке термина.
+
+
+## Chapter VII natural-Russian repair — 2026-06-15
+
+- `work/theory-writing/chapters/VII_persistent_work_graph.md` — текущая рабочая версия главы VII после более глубокого русского редакторского прохода. Исправлена не отдельная фраза, а общий способ объяснения: глава теперь говорит не о том, что `почти готово` “становится состоянием”, а о том, что сводка `почти готово` не даёт безопасно продолжить изменение. Фактура, ссылки, фигуры и структура сохранены.
+- `work/theory-writing/chapters/VIII_protected_process_profiles.md` — выполнена маленькая сопутствующая правка оставшихся объяснительных употреблений `профиль`; основной текст использует `способ` / `способ работы`.
+- `work/theory-writing/chapters/IX_execution_environment_runtime_rights.md` — техническая фраза про Codex `profiles` переписана через `встроенные режимы` и `permission-настройки`.
+- `work/theory-writing/reports/CHAPTER_VII_NATURAL_RU_REPAIR_REPORT.md` — отчёт о проходе и проверке терминов.
+
+
+## Chapter VIII natural-Russian repair — 2026-06-15
+
+- `work/theory-writing/chapters/VIII_protected_process_profiles.md` — текущая рабочая версия главы VIII после более глубокого русского редакторского прохода. Заголовок и объяснительная проза переписаны: вместо искусственных формул вроде `защищённые способы продолжения работы` и `способ действия` глава говорит о том, как продолжать работу под контролем, какой следующий шаг допустим, кто что читает, что можно менять и где нужно остановиться. Фактура GSD/BMAD и сквозной пример `billing/API` сохранены.
+- `work/theory-writing/reports/CHAPTER_VIII_NATURAL_RU_REPAIR_REPORT.md` — отчёт о проходе.
+
+
+## Chapter IX natural-Russian repair — 2026-06-15
+
+- `work/theory-writing/chapters/IX_execution_environment_runtime_rights.md` — текущая рабочая версия главы IX после более глубокого русского редакторского прохода. Исправлена не отдельная фраза, а общий способ объяснения: глава теперь говорит о том, где агент реально работает, какие границы пересекает, что ему разрешено, какой след остаётся после запуска и почему этот след ещё не равен проверке или принятию результата. Фактура, ссылки, сквозной пример `billing UI`, разделы и границы с VII/VIII/X/XI сохранены.
+- `work/theory-writing/reports/CHAPTER_IX_NATURAL_RU_REPAIR_REPORT.md` — отчёт о проходе.
+
+## 2026-06-15 — Chapter X natural-Russian repair
+
+`work/theory-writing/chapters/X_gas_town_beads.md` переписан более естественным русским языком после замечаний о неудачных формулах `обслуживаемый поток`, `среда для многих агентских действий` и подобных выражениях. Текущая версия главы X должна считаться актуальной рабочей версией для дальнейших правок; прежние result/pass-файлы сохраняются как история пакетной генерации, но не должны подменять интегрированный файл главы.
+
+## Chapter VII second natural-Russian repair — 2026-06-15
+
+- `work/theory-writing/chapters/VII_persistent_work_graph.md` — текущая рабочая версия главы VII после повторного крупного прохода естественного русского языка. Проход применяет словарь смыслового перевода к `стенограмма`/`transcript`, переписывает неестественные формулы вроде `завершение изменения` и `решает соседнюю, но другую задачу`, сокращает английский связочный язык, но сохраняет source-specific technical labels, ссылки, фигуры и структуру.
+- `work/theory-writing/reports/CHAPTER_VII_NATURAL_RU_SECOND_REPAIR_REPORT.md` — отчёт о повторном языковом проходе по главе VII.
+
+## Remaining chapter target plans — 2026-06-15
+
+The remaining unwritten parts now have rewritten target-group plans aligned with the current blueprint and the lessons from VII–X:
+
+- `work/theory-writing/target-group-plans/INTRO_NOT_CODE_GENERATION_TARGET_GROUP_PLAN.md` — introduction plan, reframed as an entrance into the lifecycle of a software change rather than a chapter summary or AI manifesto.
+- `work/theory-writing/target-group-plans/CHAPTER_XI_VERIFICATION_MATERIAL_TESTS_REVIEW_TARGET_GROUP_PLAN.md` — Chapter XI plan, focused on verification material by the promise made by the change; profile `D3`.
+- `work/theory-writing/target-group-plans/CHAPTER_XII_AUTHORITY_RESPONSIBILITY_OUTER_CONTOUR_TARGET_GROUP_PLAN.md` — Chapter XII plan, focused on acceptance, responsibility and the external decision contour; profile `D3`.
+- `work/theory-writing/target-group-plans/CHAPTER_XIII_POST_MERGE_MAINTENANCE_LEARNING_TARGET_GROUP_PLAN.md` — Chapter XIII plan, focused on cleanup, maintenance and updating the future working environment after merge; profile `D2`.
+- `work/theory-writing/target-group-plans/CONCLUSION_MODE_SELECTION_TARGET_GROUP_PLAN.md` — conclusion plan, focused on mode selection rather than recap; profile `D0`.
+- `work/theory-writing/reports/REMAINING_CHAPTER_TARGET_PLANS_REWRITE_REPORT.md` — report for the rewrite.
+
+
+## Remaining executor packages — 2026-06-15
+
+The following packages are the current executor packages for writing the remaining parts: introduction, Chapters XI–XIII and conclusion. Use them after applying the current repository state.
+
+- `work/theory-writing/packages/INTRO_NOT_CODE_GENERATION_NOSTAGE.zip` — package for `work/theory-writing/chapters/INTRO_not_code_generation.md`.
+- `work/theory-writing/packages/CHAPTER_XI_VERIFICATION_MATERIAL_TESTS_REVIEW_NOSTAGE.zip` — package for `work/theory-writing/chapters/XI_verification_material_tests_review.md`.
+- `work/theory-writing/packages/CHAPTER_XII_AUTHORITY_RESPONSIBILITY_OUTER_CONTOUR_NOSTAGE.zip` — package for `work/theory-writing/chapters/XII_authority_responsibility_outer_contour.md`.
+- `work/theory-writing/packages/CHAPTER_XIII_POST_MERGE_MAINTENANCE_LEARNING_NOSTAGE.zip` — package for `work/theory-writing/chapters/XIII_post_merge_maintenance_learning.md`.
+- `work/theory-writing/packages/CONCLUSION_MODE_SELECTION_NOSTAGE.zip` — package for `work/theory-writing/chapters/CONCLUSION_mode_selection.md`.
+- `work/theory-writing/packages/remaining_chapter_executor_packages.zip` — convenience archive containing all five packages.
+
+
+Package mapping manifest: `work/theory-writing/packages/remaining_chapter_executor_packages_manifest.json`.
+
+
+## Remaining target plans after natural-Russian repair — 2026-06-15
+
+- `work/theory-writing/target-group-plans/INTRO_NOT_CODE_GENERATION_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for the remaining part.
+- `work/theory-writing/target-group-plans/CHAPTER_XI_VERIFICATION_MATERIAL_TESTS_REVIEW_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for the remaining part.
+- `work/theory-writing/target-group-plans/CHAPTER_XII_AUTHORITY_RESPONSIBILITY_OUTER_CONTOUR_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for the remaining part.
+- `work/theory-writing/target-group-plans/CHAPTER_XIII_POST_MERGE_MAINTENANCE_LEARNING_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for the remaining part.
+- `work/theory-writing/target-group-plans/CONCLUSION_MODE_SELECTION_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for the remaining part.
+
+
+## Remaining target plans after natural-Russian repair — 2026-06-15
+
+- `work/theory-writing/target-group-plans/INTRO_NOT_CODE_GENERATION_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for the remaining part.
+- `work/theory-writing/target-group-plans/CHAPTER_XI_VERIFICATION_MATERIAL_TESTS_REVIEW_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for the remaining part.
+- `work/theory-writing/target-group-plans/CHAPTER_XII_AUTHORITY_RESPONSIBILITY_OUTER_CONTOUR_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for the remaining part.
+- `work/theory-writing/target-group-plans/CHAPTER_XIII_POST_MERGE_MAINTENANCE_LEARNING_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for the remaining part.
+- `work/theory-writing/target-group-plans/CONCLUSION_MODE_SELECTION_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for the remaining part.
+
+
+## Remaining target plans and packages after natural-Russian repair — 2026-06-15
+
+- `work/theory-writing/target-group-plans/INTRO_NOT_CODE_GENERATION_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for `work/theory-writing/chapters/INTRO_not_code_generation.md`. Package: `work/theory-writing/packages/INTRO_NOT_CODE_GENERATION_NOSTAGE.zip`.
+- `work/theory-writing/target-group-plans/CHAPTER_XI_VERIFICATION_MATERIAL_TESTS_REVIEW_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for `work/theory-writing/chapters/XI_verification_material_tests_review.md`. Package: `work/theory-writing/packages/CHAPTER_XI_VERIFICATION_MATERIAL_TESTS_REVIEW_NOSTAGE.zip`.
+- `work/theory-writing/target-group-plans/CHAPTER_XII_AUTHORITY_RESPONSIBILITY_OUTER_CONTOUR_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for `work/theory-writing/chapters/XII_authority_responsibility_outer_contour.md`. Package: `work/theory-writing/packages/CHAPTER_XII_AUTHORITY_RESPONSIBILITY_OUTER_CONTOUR_NOSTAGE.zip`.
+- `work/theory-writing/target-group-plans/CHAPTER_XIII_POST_MERGE_MAINTENANCE_LEARNING_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for `work/theory-writing/chapters/XIII_post_merge_maintenance_learning.md`. Package: `work/theory-writing/packages/CHAPTER_XIII_POST_MERGE_MAINTENANCE_LEARNING_NOSTAGE.zip`.
+- `work/theory-writing/target-group-plans/CONCLUSION_MODE_SELECTION_TARGET_GROUP_PLAN.md` — current natural-Russian target plan for `work/theory-writing/chapters/CONCLUSION_mode_selection.md`. Package: `work/theory-writing/packages/CONCLUSION_MODE_SELECTION_NOSTAGE.zip`.
+- `work/theory-writing/packages/remaining_chapter_executor_packages.zip` — combined archive with the five rebuilt packages.
+
+## Chapter XI target plan after individuality repair — 2026-06-15
+
+- `work/theory-writing/target-group-plans/CHAPTER_XI_VERIFICATION_MATERIAL_TESTS_REVIEW_TARGET_GROUP_PLAN.md` — текущий план главы XI после усиления индивидуальной оси и русской переписи. План фокусирует будущую главу на связи между обещанием изменения, проверочным материалом, границами проверки и тем, что остаётся непроверенным.
+- `work/theory-writing/packages/CHAPTER_XI_VERIFICATION_MATERIAL_TESTS_REVIEW_NOSTAGE.zip` — пересобранный executor package для главы XI с обновлённым скрытым payload.
+- `work/theory-writing/packages/remaining_chapter_executor_packages.zip` — пересобранный общий архив оставшихся пакетов, включающий обновлённый пакет XI.
+- `work/theory-writing/reports/CHAPTER_XI_TARGET_PLAN_INDIVIDUALITY_REPAIR_REPORT.md` — отчёт о правке плана XI.
+
+## 2026-06-16 — Coverage audit широкой агентской экосистемы
+
+Добавлен диагностический отчёт:
+
+```text
+work/theory-writing/reports/AGENTIC_AI_COVERAGE_AUDIT_2026_06_16.md
+```
+
+Документ нужен перед финальной сборкой теории. Он не заменяет главы и не меняет их напрямую, а задаёт карту недостающих внешних семейств источников: ранняя reasoning/action петля, agent harness/frameworks, stateful graph runtimes, multi-agent orchestration, A2A/protocol layer, observability/evaluation/provenance, security/authorization и coding-agent research. Использовать его как gap-check перед правками введения, глав II, VI–XIII и заключения.
+
+## Atlas V2 A1 target plan — 2026-06-16
+
+Created target-group plan for the next large Atlas V2 article:
+
+```text
+work/atlas/target-group-plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md
+```
+
+Supporting package split meta:
+
+```text
+work/atlas/plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md
+```
+
+The article is planned as a self-contained public Atlas article about the repository as an interface for agents. It should feed the later rewrite of chapter VI and related theory passages, but it is not a draft chapter and should not be written as internal project notes. Use the existing glossary and language protocols when building the package.
+
+## 2026-06-16 — protocol update: full dry-run validation for executor packages
+
+Updated the general task-package protocols to require a full dry run of runner chains before releasing long, staged, or reordered executor packages. The rule is generic: every required file for a record must either be bundled initially or produced by an earlier record during the dry run. A record must not require a file that belongs to a future record.
+
+Updated files:
+
+```text
+work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md
+work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md
+work/reports/TASK_PACKAGE_PROTOCOL_DRY_RUN_VALIDATION_UPDATE_2026_06_16.md
+work/atlas/packages/agent_execution_stack_ATLAS_V2_ARTICLE.zip
+```
+
+The protocol update intentionally avoids article-specific or mini-dossier-specific rules. It only changes the packaging validation gate. The cached A2 package has been replaced with the repaired package version.

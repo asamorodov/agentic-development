@@ -13,6 +13,10 @@
    - `protocols/rules/discourse-maintenance-rules.md`
    - `protocols/rules/russian-language.md`
    - `protocols/rules/language-style-rules.md`
+   - `protocols/rules/terminology-and-translation.md`
+   - `protocols/rules/conceptual-translation-glossary.md`
+   - `protocols/rules/human-technical-style.md`
+   - `protocols/rules/english-source-handling.md`
    - `protocols/rules/source-and-provenance.md`
    - `protocols/rules/content-preservation.md`
    - `protocols/rules/fragment-defect-analysis-and-repair.md`
@@ -63,6 +67,43 @@ work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md
 
 Если текущий архив должен включать ранее сделанные, но ещё не закоммиченные изменения, это должна быть кумулятивная дельта относительно той же базовой линии, а не дельта поверх предыдущего assistant-generated overlay. Если кумулятивность не требуется, делай узкую дельту только по текущей просьбе и прямо скажи, что она не включает прежние uncommitted overlays.
 
+### Финальное закрытие repo/archive задач
+
+Перед финальным ответом по задаче, которая меняла репозиторий или рабочую позицию проекта, обязательно выполнить лёгкую closeout-проверку:
+
+1. Проверить, менялась ли рабочая позиция проекта: статус главы/пакета, baseline, правила применения overlay, текущая карта рабочих документов, принятый процесс или другой state, от которого зависит следующая сессия.
+2. Если рабочая позиция изменилась, обновить:
+   - `work/discourse.md`;
+   - `work/theory-writing/WORKING_DOCUMENTS_MAP.md`, если меняется карта theory-writing документов, их статус или маршрутизация;
+   - `work/APPLY_NOTES.md`, если создаётся overlay/delta или меняется порядок применения.
+3. Собрать overlay/delta, если были файловые изменения.
+4. В финальном ответе перечислить, какие state-файлы обновлены, какие содержательные файлы изменены и почему ожидаемый state-файл не обновлялся, если он не был затронут.
+
+Отдельный `STATE_CLOSEOUT.md` пока не требуется, если пользователь явно не попросил более жёсткий gate.
+
+### Форма delta/overlay archive
+
+Delta/overlay archive должен содержать файлы репозитория прямо в корне архива. Корень zip-архива считается корнем репозитория. Не создавай дополнительную верхнюю папку с именем overlay, задачи, даты или snapshot.
+
+Правильно:
+
+```text
+START.md
+AGENTS.md
+work/...
+protocols/...
+```
+
+Неправильно:
+
+```text
+some_overlay_folder/
+  START.md
+  AGENTS.md
+  work/...
+  protocols/...
+```
+
 Если в теоретическом тексте используется материал из внутреннего досье, ссылка должна вести не на досье, а на первичный источник, указанный или выводимый из досье. Если первоисточник нельзя уверенно восстановить, ссылку лучше не ставить.
 
 Внешние ссылки и внутренние ссылки ставятся сразу там, где вводится материал. Визуальные кандидаты проходят обязательную asset-классификацию до inline-вставки: `synthetic_figure`, `local_image_asset`, `external_real_image_candidate`, `editorial_visual_idea`. Синтетические схемы можно вставлять через `<figure>` по месту применения только если они действительно полезны, нетривиальны и проясняют то, что плохо держится в прозе; готовые иллюстрации, скриншоты, source diagrams и локальные assets нельзя пересказывать текстом, перерисовывать или ухудшать без отдельного явного решения. Если asset-pass/rights-check/download/quality-check ещё не сделан, кандидат фиксируется в `*_figure_candidates.md` и asset catalog, но не подменяется текстовой схемой.
@@ -70,9 +111,11 @@ work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md
 Для concept-atlas article packages визуальный проход обязан читать не только общий asset catalog, но и основной dossier article: разделы `Кандидаты на иллюстрации`, `Кандидаты на изображения`, `image candidates` и похожие списки являются обязательными источниками visual decisions. Каждый кандидат из досье получает disposition в `<article_id>_image_plan.md`; релевантные внешние кандидаты ставятся inline как `<figure data-asset-status="external-real-candidate">` и зеркалятся в нижнем разделе `Внешние изображения для asset-pass` и external image queue. Локальные assets работают по правилу insert-or-explain: вставить как `<figure><img ...></figure>` или явно отклонить с причиной.
 
 
+Протоколы и планы не являются образцом финальной прозы: они задают ограничения и критерии, но не должны переносить свой командный язык в главу. При языковых проходах `conceptual-translation-glossary.md` применять ретроспективно к уже написанным словам вроде `свидетельство`, `наблюдение` и `стенограмма`.
+
 Для repair-pass и анализа уже сделанных фрагментов дополнительно читать `protocols/rules/fragment-defect-analysis-and-repair.md`. Repair начинается с диагностики функции фрагмента и типов дефектов, а не с переписывания. После правки нужен regression audit и readiness status, особенно если результат станет входом для B/C-фрагментов или composition pass.
 
-Для ещё не построенных writing-фрагментов target-group plan должен включать не один общий repair-pass после стиля, а 2–3 общих редакторских прохода после первичной русификации/языковых проходов и до финальных стилевых проходов. Языковые проходы должны идти раньше repair/style, чтобы repair работал уже с русским текстом и мог чинить смысловые проблемы, возникшие после перевода. Редакторские проходы сохраняют общность: «оцени текст, насколько он хорошо выполняет поставленную задачу; после формулирования проблем исправь их», без заранее назначенной специальной темы вроде визуального слоя, источников или стиля.
+Для послеатласных планов отдельных глав действует обновлённый `work/theory-writing/reports/POST_ATLAS_PER_CHAPTER_TARGET_PLAN_BLUEPRINT.md`. Старый хвост из отдельных языковых и стилевых проходов для таких глав больше не используется как обычная схема. План главы должен сохранять добор материала и источников, но после каждого существенного содержательного изменения выполнять русскую перепись; в локальных инструкциях достаточно короткого якоря: `Пиши создаваемый текст естественным русским языком.` или `Переписывай текст естественным русским языком.` Очередь проходов в blueprint не является обязательной формой на 22 шага: план может быть короче или длиннее, если это отражает сложность главы. Каждый план должен явно выбрать профиль внешнего поиска `D0`–`D3` и после написания пройти русскую перепись самого плана.
 
 Если будущий фрагмент имеет сильный специфический риск, target-group plan может добавлять 1–3 адресных прохода усиления основной функции **между системным выравниванием и общей редакторской тройкой**. Такие проходы допустимо формулировать специально: например проверить терминологический контракт под нагрузкой, переход между слоями, практическую применимость карты или границу runtime/PWG. Они не заменяют общие редакторские проходы и не должны превращать их в специальные visual/source/style checks.
 
@@ -85,7 +128,7 @@ work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md
 
 Главная текущая линия — post-atlas написание теоретического раздела по Skeleton V5, готовым A/B/C-фрагментам, Атласу, досье gap-check и внешнему source discovery там, где главы недособраны.
 
-Принята стратегия: сначала пишутся несущие узлы и мосты, затем отдельные главы, затем composition pass, языковые и стилевые проходы.
+Принята стратегия: сначала пишутся несущие узлы и мосты, затем отдельные главы и composition pass. Для новых послеатласных глав использовать не старый языко-стилевой хвост, а обновлённую схему: добор материала и русская перепись после существенных изменений.
 
 Ключевые опорные узлы скелетона:
 
@@ -286,3 +329,87 @@ work/atlas/packages/persistent_work_graph_ATLAS_ARTICLE.zip
 
 Both packages contain 27 gated records (`P01`–`P26` + `Final`) and exact bundled read-only inputs. The article-writing packages have not been executed; no `work/atlas/articles/adr_method.md` or `work/atlas/articles/persistent_work_graph.md` article result was created in the repository.
 
+## 2026-06-14 — планы глав III–VI индивидуализированы
+
+Планы глав III–VI обновлены после новой схемы главы II и blueprint. Они больше не должны выглядеть как одинаковая очередь с разными названиями:
+
+- III — цепочка носителей намерения и решения;
+- IV — полный цикл SPDD;
+- V — сравнение спецификационных профилей по общей фиче и осям;
+- VI — проектный интерфейс агента с глубоким раскрытием `skills`, `hooks`, `MCP`, `subagents`.
+
+Глава VI намеренно планируется как большая глава: не ограничивать её условным размером, если материал требует подробного раскрытия. Перед сборкой пакетов использовать обновлённые target-group plans из `work/theory-writing/target-group-plans/`.
+
+
+## Current post-atlas chapter result state — 2026-06-14
+
+Current integrated chapter results:
+
+```text
+work/theory-writing/chapters/II_agentic_session_trace.md
+work/theory-writing/chapters/III_intent_spec_contract_adr.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle.md
+```
+
+Chapter III uses the ADR-expanded V4 result. Chapter IV uses the current integrated SPDD text after the V7 direct API example patch: it includes the local figure `content/assets/theory-images/fowler-spdd-workflow.svg`, a direct Atlas link to `../../atlas/articles/spdd_method.md`, and a concrete `POST /usage/quote` billing example carried through Canvas, generation, API checks, code review, `prompt-update`, and `sync`.
+
+When applying the current overlay to an existing repository state, delete old pass directories first if present:
+
+```text
+work/theory-writing/chapters/III_intent_spec_contract_adr_passes/
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_passes/
+```
+
+
+## 2026-06-14 — Chapter I result integrated
+
+The accepted nostage result for Chapter I is now integrated at:
+
+```text
+work/theory-writing/chapters/I_unit_of_analysis.md
+```
+
+Companion files and pass files are integrated from `CHAPTER_I_UNIT_OF_ANALYSIS_NOSTAGE_RESULT.zip`. No separate post-package manual correction was found for Chapter I in the available working files.
+
+Current integrated chapter results:
+
+```text
+work/theory-writing/chapters/I_unit_of_analysis.md
+work/theory-writing/chapters/II_agentic_session_trace.md
+work/theory-writing/chapters/III_intent_spec_contract_adr.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle.md
+```
+
+When applying the current overlay to an existing repository state, delete old pass directories first if present:
+
+```text
+work/theory-writing/chapters/I_unit_of_analysis_passes/
+work/theory-writing/chapters/III_intent_spec_contract_adr_passes/
+work/theory-writing/chapters/IV_spdd_specification_lifecycle_passes/
+```
+
+## 2026-06-16 — A1 Atlas V2 target plan
+
+Создан target-group plan для крупной статьи Атласа V2 `A1. Репозиторий как интерфейс для агента`:
+
+```text
+work/atlas/target-group-plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md
+```
+
+Пакет ещё не собран. План следует `ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md` и использует ту же логику, что A2: самостоятельная публичная статья, мини-досье с полным циклом сбора, карта отношений, проект сшивки, переписывание естественным русским языком с использованием словаря и включение мини-досье в будущий результат.
+
+## 2026-06-16 — protocol update: full dry-run validation for executor packages
+
+Updated the general task-package protocols to require a full dry run of runner chains before releasing long, staged, or reordered executor packages. The rule is generic: every required file for a record must either be bundled initially or produced by an earlier record during the dry run. A record must not require a file that belongs to a future record.
+
+Updated files:
+
+```text
+work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md
+work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md
+work/reports/TASK_PACKAGE_PROTOCOL_DRY_RUN_VALIDATION_UPDATE_2026_06_16.md
+work/atlas/packages/agent_execution_stack_ATLAS_V2_ARTICLE.zip
+```
+
+The protocol update intentionally avoids article-specific or mini-dossier-specific rules. It only changes the packaging validation gate. The cached A2 package has been replaced with the repaired package version.

@@ -15,7 +15,7 @@
 
 ## Что переносить
 
-Перенос должен быть не transcript and not summary, а применимый результат:
+Перенос должен быть не сырой перепиской, логом чата или кратким резюме, а применимым результатом:
 
 - фрагмент для добавления в `work/discourse.md`;
 - список решений, которые нужно применить;
@@ -35,15 +35,15 @@ Codex, получив такой transfer packet, должен:
 1. Прочитать `AGENTS.md`.
 2. Прочитать `protocols/rules/codex-task-work-protocol.md`.
 3. Прочитать `protocols/rules/discourse-maintenance-rules.md`.
-4. Прочитать текущий `work/discourse.md` and relevant `/work` files.
-5. Сопоставить transfer packet с текущим дискурсом and source precedence.
+4. Прочитать текущий `work/discourse.md` и релевантные файлы из `/work`.
+5. Сопоставить transfer packet с текущим дискурсом и правилами source precedence.
 6. Если есть конфликт — остановиться и описать его.
 7. Если конфликта нет — применить изменения к файлам репозитория.
 8. Обновить `work/discourse.md` как часть результата.
 
 ## Что не делать
 
-Не считать transfer packet новым source of truth после применения. После применения актуальное состояние должно быть в файлах репозитория, прежде всего в `work/discourse.md` and relevant project/protocol files.
+Не считать transfer packet новым источником актуального состояния после применения. После применения актуальное состояние должно быть в файлах репозитория, прежде всего в `work/discourse.md` и релевантных проектных/протокольных файлах.
 
 ## Archive overlay как основной переносимый формат
 
@@ -51,11 +51,13 @@ Codex, получив такой transfer packet, должен:
 
 Правила:
 
-- top-level folders match repository paths: `work/`, `protocols/`, `project/`, `content/` when needed;
-- for task-local work use `work/` top-level;
-- for long files include full replacement if full snapshot was provided;
-- keep overlays cumulative until user provides new snapshot or says changes were committed;
-- include `work/APPLY_NOTES.md`, `work/COMMIT_MESSAGE.txt`, `work/CHECKS.json`;
-- if the overlay changes task direction, include updated full `work/discourse.md` when possible.
+- архив должен быть repository-root shaped: корень zip-архива равен корню репозитория, а не папке с именем задачи/overlay;
+- top-level entries внутри архива должны быть путями репозитория: `START.md`, `AGENTS.md`, `work/`, `protocols/`, `project/`, `content/`, если они нужны;
+- не заворачивать файлы в дополнительную папку вроде `some_overlay/`, `repo/`, `git12/` или `task_result/`;
+- для локальных материалов задачи использовать верхний уровень `work/`;
+- для длинных файлов включать полную замену, если был предоставлен полный snapshot;
+- держать overlays кумулятивными, пока пользователь не предоставит новый snapshot или не скажет, что изменения применены/закоммичены;
+- включать `work/APPLY_NOTES.md`, `work/COMMIT_MESSAGE.txt`, `work/CHECKS.json`;
+- если overlay меняет направление задачи, по возможности включать обновлённый полный `work/discourse.md`.
 
-Codex applying archive overlay must treat it as repository file changes, not as chat summary.
+Codex должен применять archive overlay как изменения файлов репозитория, а не как краткое резюме чата.

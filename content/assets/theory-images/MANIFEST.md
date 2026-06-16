@@ -74,3 +74,27 @@
 | `fowler-spdd-analysis-review.png` | [Structured-Prompt-Driven Development](https://martinfowler.com/articles/structured-prompt-driven/) | Раздел 14, billing engine example | Показывает analysis review: edge cases и technical risks видны до генерации кода. |
 | `fowler-spdd-prompt-update.png` | [Structured-Prompt-Driven Development](https://martinfowler.com/articles/structured-prompt-driven/) | Раздел 15, prompt-update vs sync | Показывает случай, где изменение бизнес-правила требует сначала обновить structured prompt. |
 | `fowler-spdd-api-test-results.png` | [Structured-Prompt-Driven Development](https://martinfowler.com/articles/structured-prompt-driven/) | Раздел 16, поведенческая проверка | Показывает expected/actual/result как вторую половину проверяемого свидетельства после test-case overview. |
+
+## Дополнение: Chapter I–V figure integration pass
+
+| Файл | Источник | Где используется | Зачем стоит в тексте |
+| --- | --- | --- | --- |
+| `i-unit-of-analysis-carriers.png` | локально синтезированная схема | Глава I | Показывает, что промпт, задача, изменённый код, трасса сессии, проверка и ревью — частичные носители, но не сама единица анализа. |
+| `i-minimal-change-axis.png` | локально синтезированная схема | Глава I | Делает видимой минимальную ось программного изменения от намерения до принятия и сопровождения. |
+| `ii-session-wider-than-chat.png` | локально синтезированная схема по мотивам Programming by Chat и SWE-chat | Глава II | Показывает, что сессия включает не только переписку, но и инструменты, правки, артефакты и наблюдения. |
+| `ii-trace-to-work-state.png` | локально синтезированная схема | Глава II | Показывает переход от материала сессии к наблюдениям, вмешательствам и внешнему состоянию работы. |
+| `v-protected-specification-profiles-matrix.png` | локально синтезированная сравнительная схема | Глава V | Сводит в одну матрицу места, где Spec Kit, Kiro Specs, TDAD и Constitutional SDD лучше всего защищают изменение. |
+| `v-tdad-pipeline.png` | локально синтезированная схема по мотивам TDAD | Глава V | Делает наглядным переход от кодовой базы и графа влияния к `test_map.txt`, агенту и запуску релевантных тестов. |
+| `v-constitutional-sdd-traceability.png` | локально синтезированная схема по мотивам Constitutional SDD | Глава V | Показывает иерархию правил верхнего уровня, спецификации, реализации и проверки, связанную трассируемостью. |
+
+
+## Дополнение: Chapters I–V visual-layer completion pass
+
+| Файл | Источник | Где используется | Зачем стоит в тексте |
+| --- | --- | --- | --- |
+| `i-entry-points-before-prompt.svg` | локально синтезированная схема | Глава I | Показывает, что до промпта уже могут существовать bug report, review comment, CI signal, пользовательский сигнал, исследование или ADR. |
+| `ii-agent-trace-provenance.svg` | локально синтезированная схема по мотивам Agent Trace | Глава II | Показывает связь трассы сессии, инструментальных действий, изменённых строк и последующего рабочего состояния. |
+| `iii-spec-contract-adr-boundaries.svg` | локально синтезированная схема | Глава III | Разводит спецификацию, контракт и ADR как разные формы удержания намерения, проверки и решения. |
+| `iii-adr-agent-projection.svg` | локально синтезированная схема | Глава III | Показывает, как полная ADR превращается в рабочую проекцию для агента без подмены статуса исходной записи. |
+| `v-speckit-workflow.svg` | локально синтезированная схема по документации Spec Kit | Глава V | Показывает видимые переходы до кода: constitution, specify, clarify, checklist, plan, tasks, analyze, implement. |
+| `v-kiro-specs-surface.svg` | локально синтезированная схема по документации Kiro Specs | Глава V | Показывает Kiro Specs как рабочую поверхность фичи: requirements, design, tasks. |

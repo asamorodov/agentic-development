@@ -47,6 +47,7 @@ Direct commit mode используется только по явной про�
 Для archive overlay:
 
 - если пользователь дал full snapshot, работайте с файлами локально;
+- собирайте zip как repository-root overlay: внутри архива сразу лежат repository-relative paths (`START.md`, `AGENTS.md`, `work/`, `protocols/`), без верхней папки-обёртки;
 - перед сборкой архива назовите baseline: последний полный repo snapshot пользователя или явную commit/apply-точку;
 - не считайте assistant-generated overlay новым baseline без явного указания пользователя;
 - для длинных файлов используйте full-file replacement in overlay;
@@ -59,6 +60,8 @@ Direct commit mode используется только по явной про�
 
 Если работа меняет ход задачи, обновите `work/discourse.md` по `protocols/rules/discourse-maintenance-rules.md`.
 
+Перед финальным ответом выполните лёгкую closeout-проверку: изменилась ли рабочая позиция проекта; нужно ли обновить `work/discourse.md`, `work/theory-writing/WORKING_DOCUMENTS_MAP.md` или `work/APPLY_NOTES.md`; собран ли overlay/delta, если были файловые изменения. Отдельный `STATE_CLOSEOUT.md` не создавайте, если пользователь не попросил более жёсткий gate.
+
 ## Итог
 
 В финальном ответе укажите:
@@ -66,7 +69,9 @@ Direct commit mode используется только по явной про�
 - режим: archive overlay or direct commit;
 - ветку or snapshot base;
 - ссылку на архив or commit SHA;
-- список изменённых файлов;
+- какие state-файлы обновлены;
+- какие содержательные файлы изменены;
+- если ожидаемый state-файл не обновлялся — почему;
 - suggested commit anchor;
 - как обновлён discourse;
 - что делать дальше.

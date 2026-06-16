@@ -1,23 +1,35 @@
 {
   "changed_files": [
-    "work/theory-writing/chapters/VI_context_working_state_interface.md",
-    "content/assets/theory-images/vi-project-interface-agent.png",
-    "content/assets/theory-images/vi-route-selection.png",
-    "content/assets/theory-images/vi-skills-procedure.png",
-    "content/assets/theory-images/vi-mcp-server-interface.png",
-    "content/assets/theory-images/vi-subagents-orchestration.png",
-    "content/assets/theory-images/vi-hooks-lifecycle.png",
-    "work/theory-writing/reports/CHAPTER_VI_FIGURE_INTEGRATION_REPORT.md",
+    "work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md",
+    "work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md",
+    "work/reports/TASK_PACKAGE_PROTOCOL_DRY_RUN_VALIDATION_UPDATE_2026_06_16.md",
+    "work/atlas/packages/agent_execution_stack_ATLAS_V2_ARTICLE.zip",
+    "START.md",
     "work/discourse.md",
     "work/theory-writing/WORKING_DOCUMENTS_MAP.md",
     "work/APPLY_NOTES.md",
+    "work/CHECKS.json",
     "work/COMMIT_MESSAGE.txt",
-    "work/CHECKS.json"
+    "CHECKS.json",
+    "COMMIT_MESSAGE.txt"
   ],
   "state_files_updated": [
+    "START.md",
     "work/discourse.md",
     "work/theory-writing/WORKING_DOCUMENTS_MAP.md",
-    "work/APPLY_NOTES.md"
+    "work/APPLY_NOTES.md",
+    "work/CHECKS.json",
+    "work/COMMIT_MESSAGE.txt",
+    "CHECKS.json",
+    "COMMIT_MESSAGE.txt"
   ],
-  "notes": "Integrated six local images into chapter VI and added them under content/assets/theory-images."
+  "checks": [
+    "updated general package creation protocol with full runner dry-run validation",
+    "updated package manufactury protocol with required full dry-run for long/staged/reordered packages",
+    "kept protocol generic; no mini-dossier-specific rule was added",
+    "added report documenting the packaging error class and protocol repair",
+    "replaced cached A2 executor package with repaired fixed package",
+    "verified protocol text does not contain mini-dossier-specific dry-run rule"
+  ],
+  "notes": "Full overlay includes prior A1/A2 planning state, repaired A2 package cache, and the new protocol validation gate."
 }

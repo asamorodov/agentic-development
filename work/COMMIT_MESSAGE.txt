@@ -1,1 +1,3 @@
-Integrate six local illustrations into chapter VI and add theory image assets
+protocol: require full runner dry-run validation
+
+Add generic dry-run validation to package creation/manufactury protocols and replace cached A2 package with repaired version.
