@@ -31,6 +31,38 @@
       "name": "Overlay shape",
       "status": "pass",
       "details": "Overlay paths are repository-relative and root-shaped."
+    },
+    {
+      "name": "Atlas A16 accepted",
+      "status": "pass",
+      "details": "A16 organizational context/software catalog/developer portal layer added to Atlas map and decision record."
+    },
+    {
+      "name": "ADR-0017 multilingual architecture created",
+      "status": "pass",
+      "details": "Records Russian-first corpus, future English transfer, stable IDs, bilingual terminology and translation-readiness gate."
+    },
+    {
+      "name": "Multilingual protocol and term registry created",
+      "status": "pass",
+      "details": "work/multilingual/MULTILINGUAL_CORPUS_PROTOCOL.md and BILINGUAL_TERM_REGISTRY.md added."
+    },
+    {
+      "name": "Terminology protocol multilingual note",
+      "status": "pass",
+      "details": "protocols/rules/terminology-and-translation.md includes future-English readiness guidance without degrading Russian prose."
     }
-  ]
+  ],
+  "atlas_expanded_core_a1_a15_2026_06_17": {
+    "status": "pass",
+    "notes": "Layer map expanded to A1-A15; ADR-0015 and attachment map updated. Browser/GUI/app feedback and model/provider layer accepted as core, with model/provider marked fast-staleness."
+  },
+  "atlas_expanded_core_a1_a16_2026_06_17": {
+    "status": "pass",
+    "notes": "A16 accepted; legacy Atlas article routing and site entrypoint review notes added. Public navigation not changed."
+  },
+  "multilingual_readiness_2026_06_17": {
+    "status": "pass",
+    "notes": "Future English version prepared through metadata/provenance/terminology layer, not immediate translation."
+  }
 }

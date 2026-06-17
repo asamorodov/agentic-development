@@ -2796,3 +2796,41 @@ work/atlas/plans/reports/agent_execution_stack_A2_NATURAL_RUSSIAN_SECOND_REWRITE
 ```
 
 The second language pass keeps the A2 plan structure unchanged and rewrites remaining artificial planning language into more natural Russian. The A2 executor package is still stale and must be rebuilt before use.
+
+
+## 2026-06-17 — Atlas V2 expanded layer map A1–A15
+
+Current Atlas planning source: `work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md`. It now covers A1–A15, not only A1–A8. The companion report is `work/theory-writing/reports/ATLAS_V2_EXPANDED_LAYER_COVERAGE_CHECK_2026_06_17.md`, and the decision record is `work/decisions/ADR-0015-atlas-v2-expanded-core-layers-a9-a15.md`.
+
+When building Atlas packages, use the layer map as the source of article scope. When building Theory packages, use `work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md` to select which Atlas layers ground the chapter without turning it into a mini-Atlas.
+
+
+## 2026-06-17 — Atlas A16 and site entrypoint review
+
+A16 `Организационный контекст, software catalog и developer portal` is accepted as a core Level 1 Atlas article. The Atlas map is now A1–A16. Old concept-first Atlas articles are retained as method/product/case profile nodes rather than deleted or forced into the Level 1 layer map.
+
+Relevant documents:
+
+```text
+work/decisions/ADR-0016-atlas-a16-legacy-articles-and-site-entrypoint-review.md
+work/theory-writing/reports/ATLAS_LEGACY_ARTICLE_ROUTING_NOTE_2026_06_17.md
+work/theory-writing/reports/SITE_ENTRYPOINT_AND_READING_ORDER_REVIEW_NOTE_2026_06_17.md
+```
+
+The public site order is not changed yet. A future navigation package should decide whether the site should begin from a reader-oriented multi-entry orientation rather than from Stories.
+
+## 2026-06-17 — Multilingual readiness layer
+
+Future English translation is now treated as a corpus-level architecture issue, not as a later ad-hoc rewrite. The current Russian corpus remains the working editorial base, but public-facing stabilization should preserve stable IDs, source provenance, working English titles, bilingual terminology and translation notes.
+
+Relevant documents:
+
+```text
+work/decisions/ADR-0017-multilingual-corpus-architecture.md
+work/multilingual/MULTILINGUAL_CORPUS_PROTOCOL.md
+work/multilingual/BILINGUAL_TERM_REGISTRY.md
+work/theory-writing/reports/MULTILINGUAL_READINESS_NOTE_2026_06_17.md
+protocols/rules/terminology-and-translation.md
+```
+
+Future Atlas and Theory packages should include a small translation-readiness check when stabilizing public-facing material. This is not a translation pass and should not make Russian prose less natural.

@@ -2357,3 +2357,38 @@ The user fixed an important corpus-level decision: Atlas is not an appendix to T
 A new detailed Atlas planning map was added at `work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md`. It expands A1–A8 into required topics, mini-dossier queues, artifacts, selection criteria and boundaries. Future Atlas target-group plans should be built from this map rather than from the older A1–A5 shape.
 
 A new living map `work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md` records how Atlas layers, fragments, dossiers and story anchors attach to each Theory chapter. This is now the synchronization document to update when Atlas changes, when theory-ready fragments are accepted, or when chapter target plans are rebuilt.
+
+
+## 2026-06-17 — Atlas core expanded to A15
+
+After the corpus-cut decision and the recognition that Atlas is a peer major part rather than an appendix to Theory, the Atlas scope was checked again for missing technical layers. The user accepted the need for separate articles on reproducible execution environments / sandboxes and codebase context retrieval, and preferred issue-to-agent as a separate article rather than a cross-cutting subsection. Shotgun must be explicitly covered in the context-retrieval article.
+
+The user also accepted Browser/GUI/app feedback surfaces as a core Atlas article because this loop is practically important for seeing and checking the running application. The model/provider layer, routing, cost and inference constraints article was also accepted as useful now, but with a fast-staleness status: it should be maintained as a dated working map, not an evergreen model ranking.
+
+The working Atlas map is now A1–A15. Memory and security are included as technical layers, with a caution that public memory coverage must remain neutral and should not become premature Noveia positioning.
+
+
+## 2026-06-17 — A16, old Atlas articles and site-entry question
+
+User accepted A16 as useful: organizational context, software catalog and developer portal should be a core Atlas article, not a minor subsection. This covers ownership, services, dependencies, environments, runbooks, scorecards, self-service actions and platform workflow context.
+
+The discussion also clarified that older concept-first Atlas articles should not be thrown away. They no longer define the top-level Atlas layer map, but they remain useful as method/product/case profile articles. Kiro should be preserved and likely expanded as an integrated product/method profile: specs + steering + hooks + IDE workflow + MCP integrations.
+
+The user also questioned whether the public site should really be story-first. The current answer is not to change navigation immediately, but to run a separate site-entry/navigation review. Stories remain important as evidence and texture, but the first screen may need to present the whole corpus: Theory / Atlas / Working Scenarios / Problems and Solutions / Stories.
+
+## 2026-06-17 — Multilingual readiness for future English corpus
+
+The user noted that after the Russian-first corpus stabilizes, a large reverse-transfer into English will be needed. The project should prepare for this now rather than later treating translation as an uncontrolled rewrite.
+
+Accepted direction: keep Russian prose natural and useful, but add multilingual infrastructure around it: stable article/chapter/story IDs, working English titles, bilingual term registry, source provenance, translation notes and a small translation-readiness gate before public stabilization. English-source claims should later be checked against their original sources rather than translated back from Russian retellings.
+
+New documents:
+
+```text
+work/decisions/ADR-0017-multilingual-corpus-architecture.md
+work/multilingual/MULTILINGUAL_CORPUS_PROTOCOL.md
+work/multilingual/BILINGUAL_TERM_REGISTRY.md
+work/theory-writing/reports/MULTILINGUAL_READINESS_NOTE_2026_06_17.md
+```
+
+The protocol explicitly says not to make Russian text artificial for future English. Translation readiness is a metadata/provenance/terminology layer, not a parallel translation task.

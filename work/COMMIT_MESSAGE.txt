@@ -1,6 +1,1 @@
-Record Atlas parity and planning maps
-
-- add ADR-0014 for Atlas parity and Russian public names
-- add detailed Atlas V2 layer article map for A1-A8 planning
-- add living Theory chapter attachment map
-- update Atlas status, corpus cuts, working map, discourse, checks and apply notes
+Add multilingual corpus readiness layer

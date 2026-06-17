@@ -28,11 +28,11 @@
 
 Перед финальной сшивкой нужен technological payload gate. Мини-досье должны предъявить достаточно фактуры, чтобы читатель после статьи понимал не только смысл слоя, но и то, чем люди реально пользуются.
 
-## Быстрая карта A1–A8
+## Быстрая карта A1–A16
 
 | ID | Рабочее название | Слой | Главный риск подмены |
 | --- | --- | --- | --- |
-| A1 | Контекстный интерфейс проекта для агента | Где живут правила, знания и процедуры проекта для агента | Свести к списку файлов инструкций |
+| A1 | Контекстный интерфейс проекта для агента | Где живут явные правила, знания и процедуры проекта для агента | Свести к списку файлов инструкций |
 | A2 | Рабочие поверхности coding agents | Где агент действует над кодом и проектом | Смешать чат, IDE, CLI, облако и PR-agent в один обзор продуктов |
 | A3 | Оркестрация и фреймворки агентского исполнения | Как строится управляемый агентский процесс | Написать историю ReAct или каталог фреймворков |
 | A4 | Инструменты, протоколы, доступы и полномочия | Как агент получает возможность и право действовать | Уйти в общую философию ответственности или security-обзор |
@@ -40,6 +40,14 @@
 | A6 | Git, worktree и PR/MR как субстрат агентского изменения | Как результат получает форму change candidate | Спрятать Git внутри CI/review |
 | A7 | CI, status checks, review и acceptance gates | Как candidate проходит проверки и решение о статусе | Повторить ex-A3 как теорию принятия |
 | A8 | Спецификации, планы и исполняемые процессные артефакты | Как намерение превращается в управляемую работу | Смешать методологии без технического сравнения |
+| A9 | Воспроизводимые среды исполнения и песочницы | Где агент безопасно запускает команды, тесты, сборку и приложение | Растворить среду в A2/A4/A7 |
+| A10 | Индексация, поиск и извлечение контекста из кодовой базы | Как агент находит нужный код и проектные закономерности | Смешать с инструкциями A1 или с памятью A12 |
+| A11 | Issue-to-agent: задачи, очереди, assignment и progress surfaces | Как задача становится агентской рабочей единицей | Свести к issue templates из A8 или к PR из A6 |
+| A12 | Долгая память проекта и повторное использование опыта | Как опыт прошлых сессий и решений становится доступен будущей работе | Превратить в рекламу Нoveia или в общую философию памяти |
+| A13 | Безопасность агентской разработки и supply-chain controls | Как защищать агентский контур от инъекций, секретов, вредных зависимостей и небезопасного кода | Смешать с A4 или общей AI security |
+| A14 | Browser/GUI/app feedback surfaces | Как агент видит и проверяет работающее приложение через UI, браузер и визуальные следы | Растворить в средах исполнения или E2E-тестах |
+| A15 | Model/provider layer, routing, cost and inference constraints | Как выбор модели, провайдера, gateway и routing влияет на процесс | Сделать быстро устаревающий рейтинг моделей |
+| A16 | Организационный контекст, software catalog и developer portal | Как агент узнаёт сервисы, ownership, environments, runbooks, зависимости и платформенные правила | Растворить в A1/A11 или сделать обзор Backstage/Port без agentic-development угла |
 
 ## A1. Контекстный интерфейс проекта для агента
 
@@ -59,13 +67,13 @@
 
 **Критерии выбора.** Одноразовая задача или повторяемый процесс; один инструмент или несколько агентов; насколько важно наследование правил; сколько контекста держать в инструкции, а что вынести в документы; где будет repair после ошибки.
 
-**Граница.** Не превращать статью в учебник по каждому инструменту. A1 говорит, где агент получает правила и знания; A2 говорит, где он действует.
+**Граница.** Не превращать статью в учебник по каждому инструменту. A1 говорит, где агент получает правила и знания; A2 говорит, где он действует; A9 — в какой воспроизводимой среде это происходит; A14 — как он видит и проверяет приложение через UI.
 
 ## A2. Рабочие поверхности coding agents
 
 **Назначение слоя.** Показать, где агент реально работает: в чате, IDE, CLI, облачной задаче, песочнице, локальном open-source окружении или PR-контуре. Это выбор прав, видимости, воспроизводимости, проверки и стоимости контроля.
 
-**Обязательные темы.** Chat-based coding; IDE agents; CLI agents; cloud coding agents; PR-agent / issue-to-PR mode; sandbox/worktree/devbox; Aider; OpenHands; SWE-agent-подобные среды; Computer Use / browser-use forms для разработки через UI или devtools.
+**Обязательные темы.** Chat-based coding; IDE agents; CLI agents; cloud coding agents; PR-agent / issue-to-PR mode; sandbox/worktree/devbox; Aider; OpenHands; SWE-agent-подобные среды; Computer Use / browser-use forms упоминаются здесь как рабочие поверхности, но подробно разбираются в A14 как отдельный слой UI/app feedback.
 
 **Мини-досье для пакета.**
 
@@ -124,7 +132,7 @@
 
 **Критерии выбора.** Насколько опасно действие; какие данные видит агент; можно ли действие отменить; нужен ли человек до вызова или после; как отозвать доступ; что должно логироваться; как ограничить prompt injection через tools.
 
-**Граница.** Не писать общую статью о безопасности ИИ. A4 говорит о праве вызвать действие и границах доступа, а не о праве признать изменение завершённым.
+**Граница.** Не писать общую статью о безопасности ИИ. A4 говорит о праве вызвать действие и границах доступа; A13 отдельно раскрывает безопасность агентского контура и supply-chain controls; A7 говорит о праве признать изменение завершённым.
 
 ## A5. Наблюдаемость, traces и evals
 
@@ -214,8 +222,186 @@
 
 **Граница.** Не повторять старые статьи SPDD/ADR/Spec Kit целиком. Эта статья сравнивает классы process artifacts как технический слой.
 
+
+## A9. Воспроизводимые среды исполнения и песочницы
+
+**Назначение слоя.** Показать, где агент может безопасно и воспроизводимо выполнять работу: запускать команды, тесты, сборку, браузер, приложение, миграции и вспомогательные проверки. Для агентской разработки среда исполнения — это не фон, а техническое условие доверия к результату.
+
+**Обязательные темы.** Dev containers; Docker / Docker Compose; Codespaces-подобные облачные среды; sandboxed execution; isolated working directories; disposable vs persistent environments; Nix/reproducible environment class where relevant; CI-like local pipelines; dependency setup; environment snapshots; secret handling inside runtime; browser/VNC/Computer Use environments; relation to A2 surfaces, A4 permissions and A7 checks.
+
+**Мини-досье для пакета.**
+
+1. Local runtime and shell surface: commands, dependencies, OS assumptions, local contamination.
+2. Dev containers / Docker / Compose: reproducible project environment and limits.
+3. Cloud dev environments and remote sandboxes: Codespaces/devbox-like class, ephemeral compute, permissions.
+4. Browser/VNC/desktop runtime: when UI work requires a rendered app rather than file edits.
+5. Environment snapshots and reset: how to make failed runs recoverable.
+6. Secrets and network boundaries inside runtime: what must not leak into agent context.
+7. CI-like local validation: what can be run before PR gates and what remains platform-only.
+
+**Артефакты слоя.** Dev container config, Dockerfile, compose file, sandbox profile, environment snapshot, dependency lockfile, terminal session, command log, browser session, environment variable reference, local validation report.
+
+**Критерии выбора.** Нужно ли запускать проект; насколько сложно окружение; есть ли опасные команды; можно ли изолировать зависимости; нужен ли браузер; сколько стоит disposable runtime; нужны ли секреты; можно ли воспроизвести run на другой машине или в CI.
+
+**Граница.** Не делать учебник Docker/Nix/Codespaces. Статья объясняет слой исполнения для агента. A2 говорит о рабочей поверхности, A4 — о правах, A7 — о формальных gates.
+
+## A10. Индексация, поиск и извлечение контекста из кодовой базы
+
+**Назначение слоя.** Показать, как агент находит нужный код, связи, символы, зависимости, похожие места и проектные закономерности в большой кодовой базе. Это не то же самое, что явные инструкции A1: здесь контекст извлекается из самого проекта.
+
+**Обязательные темы.** Code search; symbol search; language server / LSP class; IDE index; semantic code search; embeddings/RAG over codebase; call graph and dependency graph; code maps; repo indexing; large-repo context selection; multi-repo context; Sourcegraph/Cody-like systems; Shotgun and `shotgun_code`; limits of context blast; stale indexes; relevance errors.
+
+**Мини-досье для пакета.**
+
+1. Text/search baseline: grep/ripgrep, file search, exact symbol lookup.
+2. IDE/LSP index: symbol graph, references, definitions, type-aware navigation.
+3. Semantic retrieval and embeddings over code: when approximate search helps and where it lies.
+4. Codebase maps and dependency/call graphs: structural context beyond snippets.
+5. Sourcegraph/Cody-like layer: large codebase search and agent context.
+6. Shotgun family: codebase-aware spec/planning and context blast variants.
+7. Context selection failures: wrong files, stale indexes, overlarge payload, missing negative evidence.
+
+**Артефакты слоя.** Search result, symbol reference list, code map, dependency graph, call graph, embedding index, retrieval packet, context bundle, selected file list, relevance note, stale-index warning.
+
+**Критерии выбора.** Размер репозитория; язык и toolchain; есть ли LSP; нужна точная навигация или semantic recall; сколько контекста можно дать модели; как проверять полноту выбранных файлов; как избежать того, что retrieval выдаёт удобный, но неверный контекст.
+
+**Граница.** Не смешивать с A1: инструкции говорят агенту, как работать; retrieval показывает, где в коде искать материал. Не смешивать с A12: память хранит прошлый опыт и решения; retrieval извлекает текущую структуру кодовой базы.
+
+## A11. Issue-to-agent: задачи, очереди, assignment и progress surfaces
+
+**Назначение слоя.** Показать, как задача становится агентской рабочей единицей: из issue/ticket/задачи в назначение агенту, план, рабочую ветку, прогресс, draft PR и обратную связь в tracker.
+
+**Обязательные темы.** GitHub Issues; Jira/Linear-like trackers; issue templates; labels; priorities; ownership; task assignment to agent; background agent sessions; progress updates; branch/PR linking; task decomposition; queued agent work; status comments; review handoff; cancellation/retry; relation to A6/A7/A8.
+
+**Мини-досье для пакета.**
+
+1. Issue/ticket as agent input: description, comments, labels, acceptance criteria.
+2. Assignment and ownership: who can assign an agent, what scope is implied.
+3. Task decomposition and plan publication: when the agent must show plan before work.
+4. Progress surfaces: comments, status updates, logs, draft PR links.
+5. Tracker ↔ branch ↔ PR linkage: preserving provenance and review route.
+6. Queue and background work: parallel tasks, cancellation, retries, stale work.
+7. Failure modes: underspecified ticket, wrong owner, hidden dependencies, misleading progress.
+
+**Артефакты слоя.** Issue, ticket, label, assignment event, agent plan comment, progress update, linked branch, draft PR, status comment, cancellation note, task queue entry, ownership metadata.
+
+**Критерии выбора.** Когда достаточно prompt; когда нужна issue-first работа; кто владеет задачей; где должны жить acceptance criteria; нужен ли план до исполнения; как часто агент должен обновлять статус; как связать tracker с Git/PR и не потерять решение.
+
+**Граница.** Не сводить к issue templates из A8 и не повторять PR mechanics из A6/A7. A11 отвечает за превращение задачи в управляемую агентскую работу.
+
+## A12. Долгая память проекта и повторное использование опыта
+
+**Назначение слоя.** Показать, как знания, решения, неудачные попытки, проектные привычки и выводы прошлых сессий становятся доступными будущей агентской работе. Это центрально для agentic development, но публичная статья должна быть нейтральной: не рекламировать Нoveia и не раскрывать частные стратегические выводы.
+
+**Обязательные темы.** Session memory; project memory; episodic/semantic/procedural memory; summaries; event logs; topic documents; decision records; failed attempts; known fragile files; chat-history retrieval; MCP memory servers; graph memory; consolidation; forgetting; contradiction handling; provenance; why memory is not just a larger context window.
+
+**Мини-досье для пакета.**
+
+1. Context window vs memory: why long context does not equal project memory.
+2. Memory forms: summary, event log, topic document, decision record, graph/link structure.
+3. Coding-agent memory: past attempts, fragile files, conventions, known fixes, reviewer preferences.
+4. Memory retrieval and injection: when and how memory enters a run.
+5. Consolidation and forgetting: avoiding stale or wrong memory.
+6. Provenance and auditability: linking memory back to source conversation, commit, issue or decision.
+7. Competitive/source landscape: neutral survey, with private Noveia notes kept out of public text.
+
+**Артефакты слоя.** Memory entry, topic document, event log, decision note, failed-attempt record, retrieval packet, provenance link, contradiction note, stale-memory warning, memory update instruction.
+
+**Критерии выбора.** Насколько проект долгий; сколько повторяется ошибок; есть ли cross-session work; нужно ли сохранять точную provenance; кто может изменять memory; как обнаруживать устаревшие выводы; когда memory опаснее отсутствия памяти.
+
+**Граница.** Не писать статью о Нoveia и не делать product positioning. Публичный Атлас описывает long-lived project memory as a technical layer of agentic development.
+
+## A13. Безопасность агентской разработки и supply-chain controls
+
+**Назначение слоя.** Показать, как агентская разработка расширяет поверхность риска: модель читает документы и issue, вызывает tools, может добавлять зависимости, генерировать небезопасный код, утекать секретами и принимать вредные инструкции. A13 собирает security слой, который не помещается полностью в A4 или A7.
+
+**Обязательные темы.** Prompt injection in docs/issues/web pages; indirect prompt injection; MCP/tool poisoning; malicious skills/instruction packages; secret exposure; unsafe dependency additions; supply-chain attacks; generated-code vulnerabilities; SAST/SCA/CodeQL/security scans; license/security policy gates; separation of generator and validator; least privilege; audit logs; incident response for agent-caused changes.
+
+**Мини-досье для пакета.**
+
+1. Prompt injection surfaces in development artifacts: issues, docs, comments, web pages.
+2. Tool/MCP poisoning: malicious tool descriptions, connector risks, tool-result trust.
+3. Skills/instruction supply chain: operational prompts as executable influence.
+4. Secrets and sensitive data: env vars, logs, screenshots, accessibility snapshots, redaction.
+5. Dependency and generated-code risk: unsafe packages, vulnerable code, license conflicts.
+6. Security gates and scanners: SAST, SCA, CodeQL-like scans, policy checks.
+7. Separation of roles: generator, checker, reviewer, deployer, incident responder.
+
+**Артефакты слоя.** Security warning, injection finding, redacted log, denied tool call, scan result, dependency alert, license policy result, secret reference, audit entry, incident note, security review comment.
+
+**Критерии выбора.** Что агент читает; какие tools доступны; может ли он добавлять зависимости; где живут секреты; какие сканы обязательны; где нужен человек; как отделить генерацию от проверки; как восстановиться после unsafe change.
+
+**Граница.** Не превращать в общую AI security. A4 раскрывает полномочия и доступы; A13 — безопасность всего agentic-development supply chain; A7 — gates принятия изменения.
+
+## A14. Browser/GUI/app feedback surfaces
+
+**Назначение слоя.** Показать, как агент получает обратную связь от реально работающего приложения: через браузер, GUI, screenshots, accessibility snapshots, devtools, визуальные комментарии, E2E-навигацию и Computer Use. Это закрывает разрыв между `код изменён` и `приложение действительно ведёт себя так, как нужно`.
+
+**Обязательные темы.** Browser automation; Playwright; Playwright MCP; accessibility snapshots vs screenshots; Computer Use; Claude computer use; OpenAI computer use; in-app browser / shared rendered page; VNC/desktop sessions; devtools logs; screenshots; visual diffs; appshots; UI comments; generated E2E tests; risks of page snapshots and secrets; relation to A9 runtime and A7 acceptance gates.
+
+**Мини-досье для пакета.**
+
+1. Browser automation baseline: Playwright/Selenium-like class, rendered application checks.
+2. Playwright MCP and accessibility snapshots: structured page context for agents.
+3. Screenshot/vision-based Computer Use: when visual state matters more than DOM structure.
+4. In-app browser and UI comments: shared rendered page as review and debugging surface.
+5. Devtools/log feedback: console, network, browser errors, screenshots, video traces.
+6. Visual regression and appshots: when screenshots become acceptance material.
+7. Security and privacy risks: passwords in snapshots, screenshots, third-party pages, indirect injection.
+
+**Артефакты слоя.** Browser session, accessibility snapshot, screenshot, UI action, devtools log, console error, network trace, visual diff, appshot, E2E test, UI comment, browser macro, reproduction step.
+
+**Критерии выбора.** Нужно ли видеть rendered app; достаточно ли DOM/accessibility snapshot; нужна ли vision; есть ли секреты на странице; надо ли генерировать E2E; важен ли visual diff; кто проверяет UI-result; можно ли воспроизвести шаги.
+
+**Граница.** Не растворять в A9: среда даёт место запуска, A14 даёт обратную связь от приложения. Не растворять в A7: acceptance gates могут использовать UI feedback, но не объясняют сам слой.
+
+## A15. Model/provider layer, routing, cost and inference constraints
+
+**Назначение слоя.** Дать рабочую карту того, как выбор модели, провайдера, gateway, routing, cost controls, context limits, latency, data controls and tool support меняет агентский процесс. Эта статья полезна прямо сейчас, но должна иметь специальный статус fast-staleness layer: её нужно обновлять чаще остальных и не превращать в рейтинг моделей.
+
+**Обязательные темы.** Model families and capabilities as volatile inputs; reasoning vs fast/cheap models; context window and multimodal/tool support; provider APIs; OpenAI-compatible gateways; LiteLLM/Portkey/OpenRouter-like routing layer; fallback/retry; cost tracking; caching; rate limits; data retention/data residency; regional availability; BYOK/BYOC/self-hosted options; model evaluation and routing policies; separation of dev, eval and production routing.
+
+**Мини-досье для пакета.**
+
+1. Model capability axes: reasoning, coding, vision, tool use, context, latency.
+2. Provider/API differences: tools, computer use, hosted tools, data controls, regions.
+3. Gateway/routing layer: unified API, fallback, retry, model routing, policy.
+4. Cost and latency controls: budgets, caching, token accounting, prompt size, batch/retry costs.
+5. Context and memory pressure: context window, retrieval, compression, memory vs raw context.
+6. Eval-driven model choice: local tasks, regression sets, canary model changes.
+7. Staleness and update protocol: how to keep the article useful without chasing every release.
+
+**Артефакты слоя.** Model selection note, routing config, gateway policy, cost report, latency report, rate-limit event, cache hit, provider incident note, data-control note, eval comparison, model-change decision.
+
+**Критерии выбора.** Какая часть workflow требует сильной модели; где нужна дешёвая модель; что можно routed/fallback; где latency убивает процесс; какие данные можно отправлять провайдеру; нужен ли gateway; как считать стоимость; какие evals подтверждают смену модели; когда статья/таблица устарела.
+
+**Граница.** Не делать evergreen рейтинг моделей. Статья объясняет model/provider layer as an engineering layer, а конкретные модели и цены должны иметь дату, источник и короткий срок актуальности.
+
+
+## A16. Организационный контекст, software catalog и developer portal
+
+**Назначение слоя.** Показать, как агентская разработка опирается не только на код, инструкции, Git и CI, но и на организационную карту инженерной системы: какие сервисы существуют, кто ими владеет, какие у них зависимости, environments, runbooks, maturity/security/compliance metadata, scorecards, self-service actions and platform workflows. Этот слой особенно важен для командной и enterprise-разработки, но полезен и как модель будущей project memory / developer platform integration.
+
+**Обязательные темы.** Backstage-like software catalog; Port-like internal developer portal; `catalog-info.yaml` / service descriptors; components, systems, APIs, resources and ownership; service dependency maps; environments and deployment metadata; runbooks; scorecards; maturity/security/compliance metadata; developer self-service actions; event-driven workflows/automations; links from issue/task to service catalog; agent-facing organizational context; relation to A1/A10/A11/A12/A13.
+
+**Мини-досье для пакета.**
+
+1. Software catalog baseline: components, systems, APIs, resources, ownership and metadata.
+2. Internal developer portal: catalog + actions + scorecards + self-service workflows.
+3. Agent-facing organizational context: how agents use ownership, service boundaries, runbooks and environments.
+4. Catalog ↔ repository ↔ issue ↔ PR links: preserving organizational provenance.
+5. Scorecards and maturity gates: how catalog metadata influences acceptance and prioritization.
+6. Automation/workflow layer: event-driven portal workflows and self-service actions as agent-accessible surfaces.
+7. Failure modes: stale ownership, missing catalog entries, wrong service boundary, hidden dependencies, catalog as false authority.
+
+**Артефакты слоя.** Catalog entity, service descriptor, ownership record, dependency link, system/domain map, API entity, resource entity, runbook link, scorecard, maturity metric, environment record, self-service action, workflow automation, catalog event, service health/status panel, platform policy note.
+
+**Критерии выбора.** Достаточно ли repo-local knowledge или нужен organizational context; сколько сервисов и команд; есть ли владельцы и dependencies; может ли агент безопасно действовать без catalog metadata; нужен ли self-service portal; какие scorecards/gates должны влиять на change acceptance; как синхронизировать catalog с Git/issues/CI/deployments.
+
+**Граница.** Не смешивать с A1: A1 описывает явные инструкции и правила проекта; A16 описывает организационную карту инженерной системы. Не смешивать с A11: A11 отвечает за задачу и очередь работы; A16 — за сервисы, ownership, dependencies and platform context. Не смешивать с A12: memory хранит прошлый опыт и решения; catalog describes current organizational topology and operational metadata.
+
 ## Синхронизация с Теорией
 
-Эта карта является источником для `work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md`. Когда меняется состав A1–A8, нужно обновлять attachment map, чтобы будущие главы Теории знали, какие слои Атласа их заземляют.
+Эта карта является источником для `work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md`. Когда меняется состав A1–A16, нужно обновлять attachment map, чтобы будущие главы Теории знали, какие слои Атласа их заземляют.
 
 Правило: Атлас раскрывает слой технически; Теория берёт из слоя только тот срез, который нужен для жизненного цикла изменения. Если chapter package начинает пересказывать статью Атласа, это ошибка. Если chapter package вообще не привязывает теоретический тезис к техническим слоям, это тоже ошибка.
