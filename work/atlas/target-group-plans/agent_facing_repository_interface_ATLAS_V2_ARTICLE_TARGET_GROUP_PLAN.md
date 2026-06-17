@@ -1,186 +1,114 @@
-# Target-group plan: A1. Репозиторий как интерфейс для агента
+# A1. Репозиторий как интерфейс для агента — план статьи Атласа V2
 
 Статус: план для будущего исполнительного пакета.  
 Статья: `A1. Репозиторий как интерфейс для агента`.  
-Article id: `agent_facing_repository_interface`.  
-Основание: Skeleton V6.3, Atlas V2, `ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md`, обсуждение больших статей Атласа V2 и опыт плана A2.
+Идентификатор статьи: `agent_facing_repository_interface`.
 
-## 1. Назначение статьи
+План опирается на Skeleton V6.3, структуру Атласа V2, общий blueprint крупных статей Атласа и обсуждение новой группы статей. Его задача — не написать статью прямо сейчас, а задать достаточно подробную рабочую очередь для будущего пакета.
 
-Статья должна объяснить, как репозиторий становится интерфейсом для агента. Речь не о том, что в проект добавляют ещё один файл с подсказками. Речь о более широком слое: проект начинает сообщать агенту правила работы, область действия, доступные процедуры, допустимые инструменты, точки остановки, способы делегирования и порядок исправления самих инструкций.
+## 1. Что должна сделать статья
 
-Главный вопрос статьи: где должно жить рабочее знание проекта, чтобы агент мог использовать его как устойчивую часть процесса, а не как случайный фрагмент prompt-а. Одни знания лучше хранить в репозитории, другие — в настройках конкретного инструмента, третьи — в пакете задачи, skill, hook, MCP-конфигурации или отдельной роли subagent. Статья должна показать, что эти формы не равнозначны и не всегда конкурируют напрямую.
+Статья должна объяснить, как репозиторий становится интерфейсом для агента. Речь не о том, что в проект добавляют ещё один файл с подсказками. Речь о более важном сдвиге: проектное знание перестаёт быть только документацией и начинает задавать агенту способ работы.
 
-Статья пишется как самостоятельный публичный материал Атласа. Она должна быть полезна читателю, который пытается понять современную агентскую разработку и не знает внутренней истории проекта. Теория позже возьмёт из неё свой срез для главы VI, а также для глав IX и XIII.
+Такой интерфейс сообщает агенту правила, область действия, повторяемые процедуры, доступы, роли, точки вмешательства и порядок исправления самих правил после сбоя. Он может жить в постоянных файлах репозитория, в настройках конкретного инструмента, в локальных правилах, в skills, hooks, MCP, subagents или во временной инструкции для одной задачи. Эти формы не равнозначны. Одни хранят устойчивое знание проекта, другие включаются только в определённой ситуации, третьи подключают внешний ресурс или отдельного исполнителя.
 
-## 2. Рабочая гипотеза статьи
+Будущая статья должна держать один проверочный тезис:
 
-Репозиторий в агентской разработке перестаёт быть только хранилищем кода и документации. Он становится средой, которая готовит агента к работе: объясняет устройство проекта, задаёт правила изменения, показывает повторяемые процедуры, подключает инструменты и фиксирует, когда агент должен остановиться или передать решение человеку.
+> Проектное знание становится агентским интерфейсом тогда, когда начинает задавать не только сведения о проекте, но и правила, процедуры, доступы, роли, вмешательства и порядок исправления этих правил.
 
-Но это не значит, что нужно положить в репозиторий как можно больше инструкций. Избыточные, устаревшие или конфликтующие правила могут ухудшить результат. Поэтому статья должна держать двойной тезис: инструкции и процедуры нужны агенту, но они становятся инженерным артефактом только тогда, когда у них есть область действия, владелец, проверка, возможность удаления и порядок исправления после сбоя.
+Если итоговый текст нельзя будет пересказать похожей фразой, значит статья, скорее всего, ушла в каталог форматов или в практический шаблон настройки.
+
+Статья пишется как самостоятельный публичный материал Атласа. Она должна быть полезна читателю, который пытается понять современную агентскую разработку. Позже теория возьмёт из неё свой срез для главы VI, а также для глав IX и XIII. При этом глава VI остаётся самостоятельным сильным текстом. В A1 отдельные фрагменты главы VI используются как уже найденные смысловые опоры, а не как материал, который нужно чинить, ослаблять или забирать из главы.
+
+## 2. Рабочая гипотеза
+
+В агентской разработке репозиторий постепенно становится средой, которая готовит агента к работе. Он объясняет устройство проекта, задаёт правила изменения, показывает повторяемые процедуры, подключает инструменты, отделяет роли, задаёт точки вмешательства и указывает, когда агент должен остановиться или передать решение человеку.
+
+Но из этого не следует, что в репозиторий нужно складывать как можно больше инструкций. Инструкция становится частью рабочей среды агента. Плохая инструкция не просто не помогает: она может подмешивать лишний контекст, смещать решение, конфликтовать с локальной задачей или заставлять агента выполнять устаревший ритуал. Поэтому статья должна одновременно показать полезность такого интерфейса и его цену: область действия, старение, конфликт правил, избыточный контекст, зависимость от инструмента и необходимость исправления.
+
+В статье нужно ясно различать несколько форм.
+
+- Инструкция сообщает правило или контекст.
+- Skill задаёт повторяемую процедуру.
+- Hook вмешивается в ход работы в определённой точке.
+- MCP подключает ресурс или действие.
+- Subagent отделяет роль или исполнителя.
+- Временная инструкция для конкретной задачи собирает материалы, границы, порядок действий и ожидаемые результаты для одного изменения.
+- Ремонт поддерживает весь этот слой в рабочем состоянии.
 
 ## 3. Главные риски
 
-1. Статья может стать справочником по файлам: `AGENTS.md`, `CLAUDE.md`, Cursor Rules, GitHub custom instructions, Kiro steering и так далее. Это недопустимо. Файлы и форматы нужны как фактура для объяснения слоя.
-2. Статья может стать практическим шаблоном «как написать хороший AGENTS.md». Это полезно для Handbook, но не для Атласа. Атласная статья должна объяснять, какую роль такие файлы играют в жизненном цикле изменения.
-3. Статья может смешать разные формы: постоянные инструкции, локальные правила, skills, hooks, subagents, MCP и пакет задачи. Нужно показать, где они дополняют друг друга, а где действительно конкурируют за место рабочего знания.
-4. Статья может слишком оптимистично описать инструкции как очевидное улучшение. Нужно явно раскрыть обратную сторону: лишние правила, конфликт областей действия, старение контекста, скрытая зависимость от инструмента и увеличение стоимости работы.
-5. Статья может забрать материал будущей A4 о полномочиях и безопасности. В A1 нужно говорить о доступе и интерфейсе, но глубокая тема identity, authorization, secrets, prompt injection и tool poisoning относится к A4.
-6. Статья может забрать материал A2 о среде выполнения. В A1 нужно держать проектный интерфейс агента; runtime, cloud execution, open harnesses и наблюдаемость остаются фоном, а не центром.
-7. Текст может уйти во внутреннюю проектную записку. Этого делать нельзя: статья должна оставаться самостоятельным публичным материалом сайта.
+Статья легко может свернуть не туда. Эти риски нужно держать перед глазами на протяжении всей работы.
 
-## 4. Обрабатываемые файлы
+Первый риск — получить справочник по файлам и форматам: `AGENTS.md`, `CLAUDE.md`, Cursor Rules, GitHub custom instructions, Kiro steering и так далее. Файлы и форматы нужны как фактура, но статья должна объяснять слой целиком.
 
-```yaml
-group_mode: linked-target-edit
-files:
-  - path: work/atlas/articles/agent_facing_repository_interface.md
-    status: future
-    role: primary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Основная публичная статья Атласа V2."
-  - path: work/atlas/articles/agent_facing_repository_interface_source_usage.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Реестр внешних и внутренних источников, реально использованных в статье и мини-досье."
-  - path: work/atlas/articles/agent_facing_repository_interface_source_transfer_ledger.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Журнал решений о переносе фактуры: что вошло в статью, что осталось в мини-досье, что отложено в другие узлы Атласа."
-  - path: work/atlas/articles/agent_facing_repository_interface_image_plan.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "План изображений и решений по визуальным кандидатам."
-  - path: work/atlas/articles/agent_facing_repository_interface_external_image_queue.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Очередь внешних реальных изображений для будущего asset-pass."
-  - path: work/atlas/articles/agent_facing_repository_interface_open_questions.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Открытые вопросы, слабые места источников и решения, сознательно отложенные из статьи."
-  - path: work/atlas/articles/agent_facing_repository_interface_theory_links.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Связи статьи с Skeleton V6.3, главами теории и существующими статьями Атласа."
-  - path: work/atlas/articles/agent_facing_repository_interface_degradation_and_duplication_audit.md
-    status: future
-    role: diagnostic-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Проверка, что статья не стала каталогом файлов, повтором главы VI или практическим шаблоном вместо Атласа."
-  - path: work/atlas/articles/agent_facing_repository_interface_readiness_report.md
-    status: future
-    role: diagnostic-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Итоговая готовность статьи и сопроводительных файлов."
-  - path: work/atlas/articles/agent_facing_repository_interface_relationship_map.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Карта отношений между инструкциями, правилами, procedures, skills, hooks, subagents, MCP и task package."
-  - path: work/atlas/articles/agent_facing_repository_interface_synthesis_design.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Проект сшивки мини-досье в статью: главный ход, порядок разделов, переходы, что переносится и что остаётся за пределами статьи."
-  - path: work/atlas/articles/agent_facing_repository_interface_MANIFEST.md
-    status: future
-    role: diagnostic-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Список выходных файлов и краткое назначение каждого."
-  - path: work/atlas/articles/agent_facing_repository_interface_VERIFY.md
-    status: future
-    role: diagnostic-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Проверка выполнения очереди и готовности результата."
-  - path: work/atlas/articles/agent_facing_repository_interface_RESUME.md
-    status: future
-    role: diagnostic-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Короткая записка для возобновления работы, если пакет остановлен или результат требует repair."
-  - path: work/atlas/articles/agent_facing_repository_interface_mini_dossiers/01_repository_level_context_files.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о repository-level context files: AGENTS.md, agent manifests и близкие формы."
-  - path: work/atlas/articles/agent_facing_repository_interface_mini_dossiers/02_tool_specific_instructions.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о CLAUDE.md, Cursor Rules, GitHub Copilot instructions, Codex/Amp instructions и других tool-specific слоях."
-  - path: work/atlas/articles/agent_facing_repository_interface_mini_dossiers/03_scope_hierarchy_and_conflicts.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье об области действия инструкций, иерархии, discovery, конфликтах и старении правил."
-  - path: work/atlas/articles/agent_facing_repository_interface_mini_dossiers/04_steering_and_spec_context.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о Kiro steering, spec-linked context и проектном контексте, связанном со спецификацией."
-  - path: work/atlas/articles/agent_facing_repository_interface_mini_dossiers/05_skills_and_procedural_modules.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о skills, SKILL.md, reusable procedures и процедурной памяти агента."
-  - path: work/atlas/articles/agent_facing_repository_interface_mini_dossiers/06_hooks_and_automatic_interventions.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о hooks и автоматических вмешательствах в ход агентской работы."
-  - path: work/atlas/articles/agent_facing_repository_interface_mini_dossiers/07_subagents_and_delegation.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о subagents, специализированных ролях и делегировании части работы."
-  - path: work/atlas/articles/agent_facing_repository_interface_mini_dossiers/08_mcp_and_tool_access.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о MCP, tool access, resources and prompts как части интерфейса проекта для агента."
-  - path: work/atlas/articles/agent_facing_repository_interface_mini_dossiers/09_task_package_as_work_interface.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о task package как переносимом интерфейсе конкретной работы."
-  - path: work/atlas/articles/agent_facing_repository_interface_mini_dossiers/10_instruction_quality_and_repair.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о качестве инструкций, минимальности, устаревании, конфликте правил и ремонте после неудачных прогонов."
+Второй риск — сделать из статьи практический шаблон настройки `AGENTS.md`. Это полезно для Handbook, но не для Атласа. Если фрагмент начинает звучать как совет “что положить в AGENTS.md”, его нужно переписать так, чтобы он объяснял роль этой формы в жизненном цикле изменения.
+
+Третий риск — смешать разные формы агентского интерфейса: постоянные инструкции, локальные правила, skills, hooks, subagents, MCP и временную инструкцию конкретной задачи. Нужно показать, где они дополняют друг друга, где находятся на разных уровнях, а где действительно конкурируют за место рабочего знания.
+
+Четвёртый риск — слишком оптимистично описать инструкции как очевидное улучшение. Нужно показать обратную сторону: лишние правила, конфликт областей действия, старение контекста, зависимость от конкретного инструмента, рост стоимости работы и шум от лишних инструкций.
+
+Пятый риск — забрать тему A4 о полномочиях и безопасности. В A1 можно говорить о доступе и интерфейсе, но глубокая тема identity, authorization, secrets, prompt injection и tool poisoning относится к другой статье.
+
+Шестой риск — уйти в A2 и начать писать про среду выполнения. В A1 центр тяжести другой: как проект сообщает агенту правила, процедуры, доступы и роли. Среда выполнения, облачное выполнение, open harnesses и наблюдаемость остаются фоном.
+
+Седьмой риск — потерять публичный жанр и сделать служебный регламент настройки одного инструмента или репозитория. Этого быть не должно.
+
+Восьмой риск — обращаться с фрагментами главы VI как с черновиками. Это ошибка. Эти фрагменты уже хорошо работают внутри главы. В A1 они служат исходными смысловыми зёрнами для самостоятельных досье Атласа.
+
+## 4. Что нужно создать
+
+Главный выходной файл:
+
+```text
+work/atlas/articles/agent_facing_repository_interface.md
 ```
 
-## 5. Файлы для чтения
+Сопроводительные файлы:
+
+```text
+work/atlas/articles/agent_facing_repository_interface_source_usage.md
+work/atlas/articles/agent_facing_repository_interface_source_transfer_ledger.md
+work/atlas/articles/agent_facing_repository_interface_image_plan.md
+work/atlas/articles/agent_facing_repository_interface_external_image_queue.md
+work/atlas/articles/agent_facing_repository_interface_open_questions.md
+work/atlas/articles/agent_facing_repository_interface_theory_links.md
+work/atlas/articles/agent_facing_repository_interface_relationship_map.md
+work/atlas/articles/agent_facing_repository_interface_synthesis_design.md
+work/atlas/articles/agent_facing_repository_interface_degradation_and_duplication_audit.md
+work/atlas/articles/agent_facing_repository_interface_readiness_report.md
+work/atlas/articles/agent_facing_repository_interface_MANIFEST.md
+work/atlas/articles/agent_facing_repository_interface_VERIFY.md
+work/atlas/articles/agent_facing_repository_interface_RESUME.md
+```
+
+Контрольная точка после мини-досье:
+
+```text
+work/atlas/articles/agent_facing_repository_interface_CHECKPOINT_AFTER_MINI_DOSSIERS.md
+work/atlas/articles/agent_facing_repository_interface_CHECKPOINT_AFTER_MINI_DOSSIERS_DECISION.md
+```
+
+Второй файл создаётся только если пользователь ответит по существу на вопрос контрольной точки.
+
+Мини-досье:
+
+```text
+work/atlas/articles/agent_facing_repository_interface_mini_dossiers/01_repository_level_context_files.md
+work/atlas/articles/agent_facing_repository_interface_mini_dossiers/02_tool_specific_instructions.md
+work/atlas/articles/agent_facing_repository_interface_mini_dossiers/03_scope_hierarchy_and_conflicts.md
+work/atlas/articles/agent_facing_repository_interface_mini_dossiers/04_steering_and_spec_context.md
+work/atlas/articles/agent_facing_repository_interface_mini_dossiers/05_skills_and_procedural_modules.md
+work/atlas/articles/agent_facing_repository_interface_mini_dossiers/06_hooks_and_automatic_interventions.md
+work/atlas/articles/agent_facing_repository_interface_mini_dossiers/07_subagents_and_delegation.md
+work/atlas/articles/agent_facing_repository_interface_mini_dossiers/08_mcp_and_tool_access.md
+work/atlas/articles/agent_facing_repository_interface_mini_dossiers/09_task_specific_work_interface.md
+work/atlas/articles/agent_facing_repository_interface_mini_dossiers/10_instruction_quality_and_repair.md
+```
+
+Каждое мини-досье входит в итоговый архив результата. Это не временная заметка, а рабочий источник для статьи.
+
+## 5. Что читать
 
 ### Управляющие документы
 
@@ -202,7 +130,7 @@ work/theory-writing/ATLAS_ARTICLE_PACKAGE_BLUEPRINT.md
 work/prompts/TARGET_GROUP_PLAN_TEMPLATE.md
 ```
 
-### Протоколы языка, источников и изображений
+### Правила языка, источников и изображений
 
 ```text
 protocols/rules/russian-language.md
@@ -217,7 +145,7 @@ protocols/rules/fragment-defect-analysis-and-repair.md
 protocols/rules/visual-assets-and-figures.md
 ```
 
-### Существующие статьи Атласа и связанные материалы
+### Существующие статьи Атласа и досье
 
 ```text
 work/atlas/articles/kiro_specs.md
@@ -246,6 +174,7 @@ work/theory-writing/fragments/A7_observation_vs_evidence.md
 work/theory-writing/fragments/A8_authority_to_act_vs_complete.md
 work/theory-writing/fragments/A10_mode_selection_map.md
 work/theory-writing/fragments/A10_mode_selection_matrix.md
+work/theory-writing/chapters/VI_context_working_state_interface.md
 content/Cross_story_synthesis.md
 content/Theoretical_synthesis.md
 content/stories/07_human_layer_agentic_harness_reconstruction_connected.md
@@ -254,11 +183,36 @@ content/stories/13_armin_ronacher_pi_minimal_agent_harness_reconstruction_connec
 content/stories/15_shopify_roast_executable_ai_workflow_reconstruction_connected.md
 ```
 
-## 6. Стартовые внешние источники
+## 6. Зёрна из главы VI
 
-Исполнитель открывает первичные источники по мере работы над соответствующим мини-досье. Список ниже — не предел поиска. Если официальный документ ведёт к более точной странице, changelog, репозиторию, paper или связанному guide, нужно открыть и оценить этот источник тоже.
+Для мини-досье о `skills`, `MCP`, `subagents` и `hooks` нужно использовать соответствующие подглавы главы VI как исходные зёрна.
 
-### Repository-level context files и agent manifests
+Порядок работы такой:
+
+1. Открыть `work/theory-writing/chapters/VI_context_working_state_interface.md`.
+2. Найти нужный раздел.
+3. Скопировать его в начало соответствующего мини-досье без переписывания.
+4. Пометить этот фрагмент как зерно из главы VI.
+5. Затем расширять досье внешними источниками, уточнениями, ограничениями и связями с соседними формами.
+
+Соответствия:
+
+```text
+skills — "Skills: повторяемые процедуры как часть проекта"
+MCP — "MCP-сервер: управляемый внешний интерфейс"
+subagents — "Subagents: разные исполнители для разных частей задачи"
+hooks — "Где инструкция становится вмешательством"
+```
+
+С этими фрагментами нужно обращаться бережно. Они не являются сырыми заметками. Исполнитель не оценивает главу VI и не решает, что в ней нужно удалить, ослабить или заменить. Его задача — сохранить найденные различения и расширить их до самостоятельного Атласного досье.
+
+После внешнего добора итоговый текст мини-досье нужно переписать естественным русским языком, используя словарь. При этом сильные различения исходного фрагмента должны сохраниться.
+
+## 7. Стартовые источники
+
+Исполнитель открывает первичные источники по мере работы над конкретным мини-досье. Список ниже задаёт начальные точки входа, но не ограничивает поиск. Если официальный документ ведёт к более точной странице, changelog, репозиторию, статье или связанному руководству, нужно открыть и оценить этот источник тоже.
+
+### Файлы проектного контекста на уровне репозитория и agent manifests
 
 ```text
 https://agents.md/
@@ -280,7 +234,7 @@ https://developers.openai.com/codex/guides/agents-md
 https://ampcode.com/manual
 ```
 
-### Scope, hierarchy, discovery and conflicts
+### Область действия, иерархия, обнаружение и конфликты правил
 
 ```text
 https://developers.openai.com/codex/guides/agents-md
@@ -290,7 +244,7 @@ https://kiro.dev/docs/steering/
 https://arxiv.org/abs/2602.11988
 ```
 
-### Kiro steering and spec-linked context
+### Kiro steering и контекст спецификаций
 
 ```text
 https://kiro.dev/docs/steering/
@@ -301,7 +255,7 @@ https://kiro.dev/docs/mcp/
 https://kiro.dev/docs/powers/
 ```
 
-### Skills and reusable procedures
+### Skills и повторяемые процедуры
 
 ```text
 https://code.claude.com/docs/en/skills
@@ -311,7 +265,7 @@ https://github.com/anthropics/skills
 https://arxiv.org/abs/2602.08004
 ```
 
-### Hooks and automatic interventions
+### Hooks и автоматические вмешательства
 
 ```text
 https://code.claude.com/docs/en/hooks
@@ -321,7 +275,7 @@ https://kiro.dev/docs/powers/
 https://arxiv.org/abs/2604.14228
 ```
 
-### Subagents and delegation
+### Subagents и делегирование
 
 ```text
 https://code.claude.com/docs/en/agent-sdk/overview
@@ -329,9 +283,9 @@ https://arxiv.org/abs/2604.14228
 https://arxiv.org/abs/2602.14690
 ```
 
-Дополнительно нужно искать официальные страницы Claude Code о subagents. Если найден только вторичный источник, его можно использовать как вспомогательный, но в статье не заменять им первичный источник.
+Дополнительно нужно найти официальные страницы Claude Code о subagents. Если найден только вторичный источник, его можно использовать как вспомогательный, но не как замену первичному.
 
-### MCP and tool access
+### MCP и доступ к инструментам
 
 ```text
 https://modelcontextprotocol.io/specification/2025-06-18
@@ -341,7 +295,7 @@ https://kiro.dev/docs/mcp/
 https://code.claude.com/docs/en/agent-sdk/overview
 ```
 
-### Task package и instruction repair
+### Инструкция и материалы для конкретной задачи; исправление инструкций
 
 ```text
 work/atlas/plans/ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md
@@ -354,251 +308,246 @@ https://arxiv.org/abs/2602.14690
 https://arxiv.org/html/2606.13449v1
 ```
 
-## 7. Очередь рабочих инструкций
+## 8. Общий цикл каждого мини-досье
 
-### P01 — контракт статьи, границы и карта мини-досье
+Каждое мини-досье выполняется не одним проходом, а последовательной работой.
 
-```text
-Прочитай сначала:
-- START.md
-- work/discourse.md
-- work/theory-writing/WORKING_DOCUMENTS_MAP.md
-- work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V6_3_ACCEPTED.md
-- work/theory-writing/reports/ATLAS_V2_STRUCTURE_AND_ARTICLE_STATUS.md
-- work/atlas/plans/ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+1. Открыть первичные источники.
+2. Собрать первый фактический черновик.
+3. Переписать его естественным русским языком, используя словарь. Не ограничиваться точечной заменой слов.
+4. Провести альтернативный поиск и пройти по важным ссылкам из найденных материалов.
+5. Добрать материал после альтернативного поиска.
+6. Усилить досье по локальным углам, указанным в плане.
+7. Зафиксировать ограничения, слабые места, визуальные кандидаты и материал, который лучше перенести в другие узлы Атласа.
+8. Ещё раз переписать затронутый текст естественным русским языком, используя словарь.
+9. Обновить сопроводительные файлы.
+
+Если мини-досье начинается с зерна из главы VI, первый фактический черновик строится не с нуля: сначала вставляется это зерно, затем оно расширяется внешними источниками и локальными доборами.
+
+## 9. Очередь работы
+
+### P01 — контракт статьи и карта мини-досье
+
+Прочитай управляющие документы, правила языка, словарь, правила работы с источниками и визуальными материалами.
 
 Создай стартовые файлы целевой группы и зафиксируй контракт статьи `agent_facing_repository_interface`.
 
 Нужно записать:
-- какую задачу выполняет статья в Атласе V2;
-- почему она не является справочником по instruction files;
-- какую рабочую гипотезу статья проверяет;
+
+- какую задачу статья выполняет в Атласе V2;
+- почему она не является справочником по файлам инструкций;
+- какую рабочую гипотезу проверяет;
+- каким одним тезисом должна быть пересказываема;
+- какие различения должна держать с самого начала: инструкция, процедура, вмешательство, доступ, роль, временная инструкция, исправление;
 - какие мини-досье будут собраны;
 - какие группы мини-досье уже заданы;
-- какие локальные углы усиления есть у каждого мини-досье;
-- какие источники входят в стартовый source seed.
+- какие локальные углы усиления есть у каждого досье;
+- какие источники входят в стартовый набор.
 
 Группы мини-досье уже заданы в этом плане. Не дели их заново и не объясняй в публичном тексте техническое разбиение работы.
 
-Пиши создаваемый текст естественным русским языком и используй словарь. Запиши результат в `agent_facing_repository_interface_open_questions.md`, `agent_facing_repository_interface_source_usage.md` и начальные разделы остальных сопроводительных файлов.
-```
+В каждом досье отдельно проверяй, как рассматриваемая форма стареет, конфликтует с соседними правилами, перегружает агента или требует исправления после ошибки. Эта проверка не заменяет отдельное досье о качестве и исправлениее, но должна проходить через всю статью.
 
-### P02 — мини-досье: repository-level context files
+Пиши естественным русским языком и используй словарь. Обнови `open_questions`, `source_usage` и начальные разделы остальных сопроводительных файлов.
 
-```text
-Прочитай сначала:
-- work/atlas/articles/agent_facing_repository_interface_source_usage.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+### P02 — файлы проектного контекста на уровне репозитория
 
-Открой первичные источники по `AGENTS.md`, Codex `AGENTS.md`, agent manifests и empirical work по context files. Собери мини-досье о repository-level context files как первом слое интерфейса репозитория для агента.
+Открой первичные источники по `AGENTS.md`, Codex `AGENTS.md`, agent manifests и исследованиям файлов проектного контекста. Собери мини-досье о файлах проектного контекста на уровне репозитория как первом слое интерфейса репозитория для агента.
 
 Локальные углы усиления:
-- `AGENTS.md` и похожие файлы работают как устойчивое место проектных инструкций, а не как разовый prompt;
-- context files могут быть межинструментальным стандартом, но эмпирические исследования показывают, что лишние требования могут ухудшать результат;
-- важно различить self-description источника и реальную роль файла в жизненном цикле изменения.
 
-Внутри этого пункта нельзя ограничиваться одним проходом. Нужно открыть первичные источники, собрать фактический черновик, переписать его естественным русским языком с использованием словаря, сделать альтернативный поиск, добрать материал, усилить досье по локальным углам, снова переписать затронутый текст естественным русским языком, зафиксировать ограничения, визуальные кандидаты и маршрутизацию материала в другие узлы Атласа.
+- `AGENTS.md` и похожие файлы работают как устойчивое место проектных инструкций, а не как разовый запрос;
+- файлы проектного контекста могут становиться межинструментальным стандартом, но эмпирические исследования показывают, что лишние требования способны ухудшать результат;
+- самоописание источника и реальную роль файла в жизненном цикле изменения нужно разводить.
 
-Запиши результат в `agent_facing_repository_interface_mini_dossiers/01_repository_level_context_files.md`, обнови `source_usage`, `source_transfer_ledger`, `image_plan`, `external_image_queue` и `open_questions`.
-```
+Пройди полный цикл мини-досье. Запиши результат в `01_repository_level_context_files.md` и обнови сопроводительные файлы.
 
-### P03 — мини-досье: tool-specific instructions
+### P03 — инструкции конкретных инструментов
 
-```text
-Открой первичные источники по `CLAUDE.md`, Cursor Rules, GitHub Copilot custom instructions, Codex instructions, Amp instructions и близким tool-specific слоям. Собери мини-досье о том, как разные инструменты размещают проектные правила и память.
+Открой первичные источники по `CLAUDE.md`, Cursor Rules, GitHub Copilot custom instructions, Codex instructions, Amp instructions и близким слоям инструкций конкретных инструментов. Собери мини-досье о том, как разные инструменты размещают проектные правила и память.
 
 Локальные углы усиления:
-- tool-specific instructions усиливают конкретный инструмент, но могут снижать переносимость рабочего знания между агентами;
-- разные инструменты по-разному разводят user-level, repository-level, workspace-level и path-specific инструкции;
-- natural language instructions, rules, memory и configuration files нельзя механически считать одним и тем же.
 
-Работай полным циклом мини-досье: первичные источники, первый черновик, переписывание естественным русским языком с использованием словаря, альтернативный поиск, общий добор, локальное усиление, повторное переписывание затронутого текста, ограничения, визуальные кандидаты и маршрутизация лишнего материала.
+- инструкции конкретных инструментов усиливают конкретный инструмент, но могут снижать переносимость рабочего знания между агентами;
+- разные инструменты по-разному разводят пользовательские инструкции, инструкции репозитория, правила рабочей области и инструкции для отдельных путей;
+- файлы правил на естественном языке не нужно принимать как готовую зрелую практику: важно смотреть на область действия, конфликт правил, старение и исправление.
 
-Запиши результат в `agent_facing_repository_interface_mini_dossiers/02_tool_specific_instructions.md` и обнови сопроводительные файлы.
-```
+Пройди полный цикл мини-досье. Запиши результат в `02_tool_specific_instructions.md` и обнови сопроводительные файлы.
 
-### P04 — мини-досье: область действия, иерархия и конфликты
+### P04 — область действия, иерархия и конфликт правил
 
-```text
-Открой источники о discovery, hierarchy, nested instructions, global/project/path-specific rules, fallback filenames и конфликтах инструкций. Собери мини-досье об области действия и поддержке инструкций.
+Открой источники по вложенным инструкциям, иерархии, обнаружению правил, области действия и конфликтам. Собери мини-досье о том, как инструкции получают область действия и как они конфликтуют.
 
 Локальные углы усиления:
-- инструкция без области действия быстро превращается в шум;
-- иерархия правил может помогать, но создаёт конфликты, старение и скрытые переопределения;
-- правило должно иметь владельца, срок актуальности или хотя бы понятный повод для удаления.
 
-Не делай досье юридической схемой приоритетов. Нужно показать инженерную проблему: агент может следовать правилу, но само правило может быть плохим, устаревшим или относящимся не к этой задаче.
+- правило без области действия быстро становится шумом;
+- nested и path-specific instructions полезны, но могут создавать неочевидные конфликты;
+- старение правила важно не меньше, чем его начальное написание.
 
-Работай полным циклом мини-досье. После добора материала перепиши затронутый текст естественным русским языком, используя словарь.
+Покажи, почему интерфейс репозитория нельзя строить как один большой файл правил. Пройди полный цикл мини-досье. Запиши результат в `03_scope_hierarchy_and_conflicts.md` и обнови сопроводительные файлы.
 
-Запиши результат в `agent_facing_repository_interface_mini_dossiers/03_scope_hierarchy_and_conflicts.md` и обнови сопроводительные файлы.
-```
+### P05 — steering и контекст спецификаций
 
-### P05 — мини-досье: steering и контекст, связанный со спецификацией
-
-```text
-Открой источники по Kiro steering, specs, hooks, MCP и powers. Используй существующие статьи Kiro / Spec Kit / SPDD как внутреннюю опору, но не переписывай их заново. Собери мини-досье о steering и проектном контексте, связанном со спецификацией.
+Открой источники по Kiro steering, specs, hooks, powers и MCP. Собери мини-досье о steering и контексте, связанном со спецификацией.
 
 Локальные углы усиления:
-- steering связывает постоянный проектный контекст с конкретным способом вести работу;
-- spec-driven surface меняет не только исполнение, но и место, где агент получает требования, дизайн и задачи;
-- steering-файлы находятся между инструкцией репозитория, спецификацией и рабочей поверхностью агента.
 
-Собери досье полным циклом. В конце явно укажи, что относится к A1, а что лучше оставить статье Kiro, SPDD или A2.
+- steering отличается от обычной инструкции тем, что связывает поведение агента с устойчивым проектным контекстом;
+- контекст, связанный со спецификацией, помогает удерживать требования, design и tasks, но может спутать спецификацию и постоянные правила проекта;
+- Kiro важен как продуктовая форма spec-driven agentic development, но A1 должна раскрыть только его роль в интерфейсе репозитория.
 
-Запиши результат в `agent_facing_repository_interface_mini_dossiers/04_steering_and_spec_context.md` и обнови сопроводительные файлы.
-```
+Пройди полный цикл мини-досье. Запиши результат в `04_steering_and_spec_context.md` и обнови сопроводительные файлы.
 
-### P06 — мини-досье: skills и повторяемые процедуры
+### P06 — skills и повторяемые процедуры
 
-```text
-Открой первичные источники по Claude Skills, Codex Skills, `SKILL.md`, Anthropic Agent Skills и анализам skill-экосистемы. Собери мини-досье о skills как форме повторяемой процедуры для агента.
+Сначала открой главу VI и скопируй раздел `Skills: повторяемые процедуры как часть проекта` в начало мини-досье как исходное зерно. Не переписывай его на этом шаге.
+
+Затем открой первичные источники по Claude Skills, Codex Skills, `SKILL.md`, Anthropic Agent Skills и анализам skill-экосистемы. Собери мини-досье о skills как форме повторяемой процедуры для агента.
 
 Локальные углы усиления:
+
 - skill отличается от постоянной инструкции: он должен включаться тогда, когда задача требует конкретной процедуры;
-- skill может содержать не только текст, но и ресурсы, scripts, examples или tool usage patterns;
+- skill может содержать не только текст, но и ресурсы, скрипты, примеры или устойчивые способы использования инструментов;
 - большое число skills создаёт проблему выбора, длины описаний, безопасности и повторов.
 
-Не превращай досье в список skill-платформ. Нужно показать, как procedural memory отличается от context file и почему skill требует своего порядка поддержки.
+Не превращай досье в список платформ с skills. Нужно показать, как процедурная память отличается от файла проектного контекста и почему skill требует собственного порядка поддержки.
 
-Работай полным циклом мини-досье и переписывай затронутый текст естественным русским языком, используя словарь.
+Пройди полный цикл мини-досье. После добора перепиши затронутый текст естественным русским языком, используя словарь. Запиши результат в `05_skills_and_procedural_modules.md` и обнови сопроводительные файлы.
 
-Запиши результат в `agent_facing_repository_interface_mini_dossiers/05_skills_and_procedural_modules.md` и обнови сопроводительные файлы.
-```
+### P07 — hooks и автоматические вмешательства
 
-### P07 — мини-досье: hooks и автоматические вмешательства
+Сначала открой главу VI и скопируй раздел `Где инструкция становится вмешательством` в начало мини-досье как исходное зерно. Не переписывай его на этом шаге.
 
-```text
-Открой источники по Claude Code hooks, Kiro hooks, powers and hooks-related automation. Собери мини-досье о hooks как точках автоматического вмешательства в ход агентской работы.
+Затем открой источники по Claude Code hooks, Kiro hooks, powers and hooks-related automation. Собери мини-досье о hooks как точках автоматического вмешательства в ход агентской работы.
 
 Локальные углы усиления:
-- hook отличается от инструкции: он не просто говорит агенту, что делать, а запускает действие или проверку в определённой точке жизненного цикла инструмента;
+
+- hook отличается от инструкции: он не просто говорит агенту, что делать, а запускает действие или проверку в определённой точке;
 - hooks могут форматировать файлы, блокировать рискованные команды, добавлять контекст, уведомлять человека или вызывать внешнюю проверку;
 - hooks полезны только при ясной границе ответственности: что проверяет hook, что остаётся за человеком, что не должно выполняться автоматически.
 
-Не забирай всю тему безопасности из A4. В A1 важно объяснить hook как часть интерфейса проекта для агента и как точку вмешательства, а не как полный контур authorisation.
+Не забирай всю тему безопасности из A4. В A1 hook нужен как часть интерфейса проекта для агента и как точка вмешательства.
 
-Работай полным циклом мини-досье. После добора перепиши затронутый текст естественным русским языком, используя словарь.
+Пройди полный цикл мини-досье. Запиши результат в `06_hooks_and_automatic_interventions.md` и обнови сопроводительные файлы.
 
-Запиши результат в `agent_facing_repository_interface_mini_dossiers/06_hooks_and_automatic_interventions.md` и обнови сопроводительные файлы.
-```
+### P08 — subagents и делегирование
 
-### P08 — мини-досье: subagents и делегирование
+Сначала открой главу VI и скопируй раздел `Subagents: разные исполнители для разных частей задачи` в начало мини-досье как исходное зерно. Не переписывай его на этом шаге.
 
-```text
-Открой первичные источники по subagents, Claude Code Agent SDK, Claude Code architecture papers и empirical configuration studies. Собери мини-досье о subagents как форме делегирования части работы внутри агентского процесса.
+Затем открой первичные источники по subagents, Claude Code Agent SDK, статьям об архитектуре Claude Code и empirical configuration studies. Собери мини-досье о subagents как форме делегирования части работы внутри агентского процесса.
 
 Локальные углы усиления:
+
 - subagent не равен skill: это не только процедура, а отдельная роль, контекст или исполнитель;
 - subagents могут уменьшать смешение задач, но создают вопросы передачи контекста, проверки результата и возврата работы в общую картину;
-- важно показать связь subagents с интерфейсом репозитория, не превращая досье в статью о многоагентной оркестрации.
+- нужно показать связь subagents с интерфейсом репозитория, не превращая досье в статью о многоагентной оркестрации.
 
-Если официальный источник по subagents недостаточен, найди дополнительные первичные или исследовательские источники. Вторичные материалы можно использовать только как вспомогательные.
+Если первичных источников по subagents не хватает, найди дополнительные первичные или исследовательские источники. Вторичные материалы можно использовать только как вспомогательные.
 
-Работай полным циклом мини-досье и перепиши затронутый текст естественным русским языком, используя словарь.
+Пройди полный цикл мини-досье. Запиши результат в `07_subagents_and_delegation.md` и обнови сопроводительные файлы.
 
-Запиши результат в `agent_facing_repository_interface_mini_dossiers/07_subagents_and_delegation.md` и обнови сопроводительные файлы.
-```
+### P09 — MCP и доступ к инструментам
 
-### P09 — мини-досье: MCP и доступ к инструментам
+Сначала открой главу VI и скопируй раздел `MCP-сервер: управляемый внешний интерфейс` в начало мини-досье как исходное зерно. Не переписывай его на этом шаге.
 
-```text
-Открой MCP specification, intro, resources/tools/prompts materials, а также источники по MCP в Kiro и Claude/agent SDK context. Собери мини-досье о MCP как части интерфейса между агентом, проектом и внешними ресурсами.
+Затем открой спецификацию MCP, вводные материалы, разделы о ресурсах, инструментах и prompts, а также источники по MCP в Kiro и Claude/Agent SDK. Собери мини-досье о MCP как части интерфейса между агентом, проектом и внешними ресурсами.
 
 Локальные углы усиления:
+
 - MCP не является инструкцией, но может сделать ресурсы и инструменты частью рабочей среды агента;
-- resources, tools и prompts имеют разные функции и не должны смешиваться;
+- ресурсы, инструменты и prompts выполняют разные функции, и их нельзя смешивать;
 - подключённость не равна праву действовать: глубокая тема полномочий относится к A4, но в A1 нужно показать границу.
 
-Не превращай досье в технический tutorial по MCP. Нужно объяснить, почему MCP важен для репозитория как интерфейса агента: он показывает, что проект может давать агенту не только текстовые правила, но и структурированный доступ к данным и действиям.
+Не делай техническое пошаговое руководство по MCP. Нужно объяснить, почему MCP важен для репозитория как интерфейса агента: проект может давать агенту не только текстовые правила, но и структурированный доступ к данным и действиям.
 
-Работай полным циклом мини-досье. После добора перепиши затронутый текст естественным русским языком, используя словарь.
+Пройди полный цикл мини-досье. Запиши результат в `08_mcp_and_tool_access.md` и обнови сопроводительные файлы.
 
-Запиши результат в `agent_facing_repository_interface_mini_dossiers/08_mcp_and_tool_access.md` и обнови сопроводительные файлы.
-```
+### P10 — инструкция и материалы для конкретной задачи
 
-### P10 — мини-досье: пакет задачи как переносимый интерфейс работы
+Собери мини-досье о временной инструкции и материалах для конкретной задачи: как постоянные правила проекта, источники, границы работы, порядок действий, проверочные требования, остановы и ожидаемые результаты могут собираться вокруг одного изменения.
 
-```text
-Прочитай внутренние протоколы task package, hidden runner, theory writing prompt queue и A2 package plan. Собери мини-досье о пакете задачи как переносимом интерфейсе конкретной работы для агента.
+Протоколы работы с исполнительными архивами можно использовать только как один из рабочих источников о том, как конкретная задача превращается в последовательность действий. Не выноси их технические названия, частные решения и формат архива в публичную терминологию статьи.
 
 Локальные углы усиления:
-- пакет задачи отличается от постоянных инструкций репозитория: он задаёт контекст, границы и материалы для одной конкретной работы;
-- пакет может переносить не только prompt, но и источники, рабочие листы, проверочные требования, визуальные кандидаты и правила остановки;
-- пакет задачи может быть мостом между публичным project interface и конкретным проходом исполнения.
 
-Не делай досье внутренней историей этого проекта. Нужно описать task package как общую форму agent-facing work interface, пригодную для публичной статьи.
+- временная инструкция конкретной задачи отличается от постоянных правил репозитория: она задаёт не общий стиль работы, а порядок работы над одним изменением;
+- она может включать исходную просьбу, источники, рабочие материалы, проверочные требования, визуальные кандидаты и условия остановки;
+- она показывает, как статическая инструкция может стать порядком работы, но публичная статья должна описывать это как общую форму агентской разработки, а не как частный формат архива.
 
-Работай полным циклом мини-досье. После добора перепиши затронутый текст естественным русским языком, используя словарь.
+Не делай досье описанием одного технического формата. Пройди полный цикл мини-досье. Запиши результат в `09_task_specific_work_interface.md` и обнови сопроводительные файлы.
 
-Запиши результат в `agent_facing_repository_interface_mini_dossiers/09_task_package_as_work_interface.md` и обнови сопроводительные файлы.
-```
+### P11 — качество и исправление агентского интерфейса проекта
 
-### P11 — мини-досье: качество инструкций и ремонт после сбоя
-
-```text
-Открой исследования по AGENTS.md, agentic coding manifests, configuring agentic coding tools, Toward Instructions-as-Code и близким работам. Собери мини-досье о том, почему инструкции нужно не только писать, но и проверять, сокращать, исправлять и удалять.
+Открой исследования по `AGENTS.md`, agentic coding manifests, configuring agentic coding tools, Toward Instructions-as-Code и близким работам. Собери мини-досье о том, почему агентский интерфейс проекта нужно не только писать, но и проверять, сокращать, исправлять и удалять.
 
 Локальные углы усиления:
+
 - больше инструкций не значит лучше;
-- лишние требования могут снижать успешность, увеличивать стоимость и уводить агента в ненужное исследование;
-- после сбоя нужно чинить не только код, но и правило, пакет задачи, skill, hook или область действия инструкции, если именно они стали причиной ошибки;
-- ремонт инструкций должен быть отдельной практикой, а не случайной правкой после раздражения.
+- лишние требования могут снижать успешность, увеличивать стоимость, подмешивать лишний контекст и уводить агента в ненужное исследование;
+- после сбоя нужно чинить не только код, но и правило, временную инструкцию конкретной задачи, skill, hook, роль или область действия инструкции, если именно они стали причиной ошибки;
+- исправление включает не только добавление новых правил. Иногда правильное действие — удалить устаревшее правило, сузить слишком широкое, перенести его из постоянной инструкции в локальную, объединить дублирующие указания или разделить смешанную процедуру;
+- исправление и поддержка инструкций должны быть отдельной практикой, а не случайной правкой после раздражения.
 
-Это одно из ключевых мини-досье статьи. Оно должно помочь финальному тексту избежать наивного вывода «надо просто написать больше правил для агента».
+Это одно из ключевых мини-досье статьи. Оно должно защитить будущий текст от наивного вывода “надо просто написать больше правил для агента”.
 
-Работай полным циклом мини-досье. После добора перепиши затронутый текст естественным русским языком, используя словарь.
-
-Запиши результат в `agent_facing_repository_interface_mini_dossiers/10_instruction_quality_and_repair.md` и обнови сопроводительные файлы.
-```
+Пройди полный цикл мини-досье. Запиши результат в `10_instruction_quality_and_repair.md` и обнови сопроводительные файлы.
 
 ### P12 — проверка мини-досье и карта отношений
 
-```text
-Прочитай все мини-досье и сопроводительные файлы. Проверь, не было ли мини-досье сделано одним поверхностным проходом. Если где-то не хватает первичных источников, альтернативного поиска, локального добора или переписывания естественным русским языком, зафиксируй это в open questions и, если возможно, исправь до сшивки.
+Прочитай все мини-досье и сопроводительные файлы. Проверь, не было ли какое-то досье сделано одним поверхностным проходом. Если где-то не хватает первичных источников, альтернативного поиска, локального добора или переписывания естественным русским языком, зафиксируй это в open questions и по возможности исправь до сшивки.
 
 Создай `agent_facing_repository_interface_relationship_map.md`.
 
-В карте отношений нужно развести:
+В карте отношений разведи:
+
 - постоянные инструкции репозитория;
-- tool-specific instructions;
+- инструкции конкретных инструментов;
 - область действия и иерархию правил;
-- steering и spec-linked context;
+- steering и контекст, связанный со спецификацией;
 - skills как повторяемые процедуры;
 - hooks как точки автоматического вмешательства;
 - subagents как роли и делегирование;
 - MCP как доступ к ресурсам и инструментам;
-- task package как переносимый интерфейс конкретной работы;
-- instruction repair как сопровождение самого интерфейса.
+- временную инструкцию и материалы для конкретной задачи;
+- исправление и поддержка как сопровождение всего агентского интерфейса проекта.
 
 Отдельно зафиксируй:
+
 - какие формы реально конкурируют;
 - какие лежат на разных уровнях и не должны сравниваться напрямую;
 - где один инструмент совмещает несколько форм;
+- какой срок жизни у каждой формы: постоянное правило проекта, локальное правило области репозитория, временная инструкция конкретной задачи, повторяемая процедура, автоматическое вмешательство, внешний интерфейс, роль или правило исправления;
 - что лучше перенести в A2, A3, A4, A5 или старые статьи Атласа.
 
-Пиши естественным русским языком и используй словарь.
+После карты отношений создай `agent_facing_repository_interface_CHECKPOINT_AFTER_MINI_DOSSIERS.md`. Это плановая остановка перед сшивкой статьи.
+
+В контрольной точке кратко напиши:
+
+- что сделано;
+- какие материалы стали главными;
+- какое сомнение реально влияет на будущую статью;
+- один вопрос пользователю.
+
+Вопрос:
+
+```text
+По собранным мини-досье и карте отношений статью можно сшить двумя близкими способами. Первый — как спокойную карту форм, через которые репозиторий сообщает агенту контекст, правила, процедуры, доступы и роли. Второй — как более жёсткую статью о поддерживаемом агентском интерфейсе проекта: с акцентом на область действия, шум от лишних инструкций, старение правил, конфликт инструкций и исправление интерфейса. Какой акцент выбрать для сшивки?
 ```
+
+Решение по умолчанию: если пользователь не ответит по существу, сшивай статью вторым способом, но не теряй карту форм. То есть главный ход — поддерживаемый агентский интерфейс проекта, а конкретные формы остаются материалом и опорой объяснения.
+
+Пиши естественным русским языком и используй словарь.
 
 ### P13 — проект сшивки статьи
 
-```text
-На основе мини-досье и карты отношений создай `agent_facing_repository_interface_synthesis_design.md`.
+Перед началом прочитай `agent_facing_repository_interface_CHECKPOINT_AFTER_MINI_DOSSIERS.md`. Если пользователь дал содержательный ответ на вопрос контрольной точки, кратко зафиксируй этот ответ и своё понимание в `agent_facing_repository_interface_CHECKPOINT_AFTER_MINI_DOSSIERS_DECISION.md`, затем учитывай его при сшивке. Если ответа нет или он не отвечает на вопрос, работай по решению по умолчанию.
+
+Создай `agent_facing_repository_interface_synthesis_design.md`.
 
 Не пересказывай мини-досье. Реши, какой текст должен получиться.
 
-В проекте сшивки нужно указать:
+В проекте сшивки укажи:
+
 - главный тезис статьи;
 - порядок разделов;
 - какие мини-досье становятся крупными разделами, а какие работают как примеры;
@@ -608,51 +557,45 @@ https://arxiv.org/html/2606.13449v1
 - какие материалы не переносить в публичную статью;
 - какие различения статья обязана донести читателю.
 
-Перед переходом к черновику проверь, можно ли пересказать будущую статью одним тезисом, который не сводится к «существуют разные instruction files для агентов».
-```
+Перед переходом к черновику проверь, можно ли пересказать будущую статью одним тезисом, который не сводится к “существуют разные файлы инструкций для агентов”.
 
 ### P14 — первый цельный черновик статьи
 
-```text
 Напиши первый цельный черновик `agent_facing_repository_interface.md` по проекту сшивки.
 
 Пиши статью с нуля. Мини-досье являются источником фактуры, а не готовыми кусками статьи. Не склеивай их подряд.
 
-Статья должна объяснить слой целиком: как репозиторий и связанные с ним артефакты начинают задавать агенту правила, процедуры, доступы, роли, точки вмешательства и порядок ремонта. При этом статья должна удержать предупреждение: instruction layer полезен только как поддерживаемый инженерный артефакт, а не как накопление всё большего числа правил.
+Статья должна объяснить слой целиком: как репозиторий и связанные с ним артефакты начинают задавать агенту правила, процедуры, доступы, роли, точки вмешательства, временные инструкции конкретной задачи и порядок исправления. При этом статья должна удержать предупреждение: этот слой полезен только как поддерживаемый инженерный артефакт, а не как накопление всё большего числа правил.
 
 Ставь ссылки на первичные источники там, где вводится фактический материал.
-```
 
 ### P15 — переписать черновик естественным русским языком
 
-```text
 Перепиши первый черновик естественным русским языком, используя словарь. Не ограничивайся точечной заменой слов.
 
 Особенно проверь:
+
 - не появился ли англоязычный связующий слой;
 - не звучит ли текст как документация продукта;
-- не стало ли слишком много выражений вроде context files, workflow, setup, instruction layer без русского объяснения;
+- не осталось ли слишком много неразъяснённых выражений вроде “файлы проектного контекста”, “рабочий процесс”, “настройка”, “слой инструкций”;
 - не превратились ли `интерфейс`, `процедура`, `доступ`, `полномочие`, `проверка` и `состояние` в расплывчатые слова без функции.
-```
 
-### P16 — anti-catalog / anti-template pass
+### P16 — проверка против каталога и шаблона
 
-```text
 Проверь статью против двух рисков.
 
-Первый риск: статья стала каталогом instruction files и возможностей инструментов. Если да, перестрой текст вокруг главного слоя: репозиторий как интерфейс для агента.
+Первый риск: статья стала каталогом файлы инструкций и возможностей инструментов. Если да, перестрой текст вокруг главного слоя: репозиторий как интерфейс для агента.
 
-Второй риск: статья стала практическим шаблоном настройки AGENTS.md / CLAUDE.md / Cursor Rules. Если да, верни её в жанр Атласа: объяснить форму и её место в жизненном цикле изменения, а не дать готовый checklist для проекта.
+Второй риск: статья стала практическим шаблоном настройки `AGENTS.md`, `CLAUDE.md` или Cursor Rules. Если фрагмент звучит как совет “что положить в AGENTS.md”, перепиши его так, чтобы он объяснял роль этой формы в агентской разработке: где она хранит повторяющееся знание проекта, когда помогает, когда создаёт шум и как должна поддерживаться.
 
 После правки перепиши затронутые фрагменты естественным русским языком, используя словарь.
-```
 
 ### P17 — проход на различения
 
-```text
 Проверь, что статья не смешивает:
-- постоянную инструкцию и task package;
-- context file и skill;
+
+- постоянную инструкцию и временную инструкцию конкретной задачи;
+- файл проектного контекста и skill;
 - skill и subagent;
 - hook и проверку человеком;
 - MCP и право действовать;
@@ -661,41 +604,38 @@ https://arxiv.org/html/2606.13449v1
 - инструкцию как текст и инструкцию как поддерживаемый инженерный артефакт.
 
 Если различение не видно в тексте, исправь статью. После правки перепиши затронутые фрагменты естественным русским языком.
-```
 
-### P18 — проход по источникам и фактической плотности
+### P18 — источники и фактическая плотность
 
-```text
-Проверь все фактические утверждения и ссылки.
+Проверь фактические утверждения и ссылки.
 
 Нужно убедиться, что:
+
 - сильные утверждения о продуктах и форматах опираются на первичные источники;
 - исследования используются там, где они действительно поддерживают тезис;
-- внутренние досье не подменяют первоисточники в публичной статье;
+- рабочие досье не подменяют первоисточники в публичной статье;
 - source_usage содержит дату просмотра, устойчивость источника, самоописание источника и роль материала в статье;
 - source_transfer_ledger фиксирует материал, который лучше перенести в A2, A3, A4, A5 или старые статьи Атласа.
-```
 
 ### P19 — визуальный проход
 
-```text
 Прочитай image_plan и external_image_queue. Выбери, какие визуальные кандидаты действительно помогают статье.
 
 Для A1 возможны:
+
 - screenshot или diagram `AGENTS.md` / Codex discovery;
 - screenshot или diagram Claude memory / hooks / skills / subagents;
 - screenshot Cursor Rules или GitHub custom instructions;
 - Kiro steering / specs / hooks diagram или UI;
 - MCP architecture diagram;
-- собственная схема только если она действительно проясняет отношения между инструкциями, skills, hooks, subagents, MCP и task package.
+- собственная схема только если она действительно проясняет отношения между инструкциями, skills, hooks, subagents, MCP и временной инструкцией конкретной задачи.
 
-Не подменяй готовые реальные изображения текстовыми схемами. Если asset-pass не выполнен, ставь внешний кандидат в очередь, а не вставляй сомнительный материал inline.
-```
+Не подменяй готовые реальные изображения текстовыми схемами. Если проход по визуальным материалам не выполнен, ставь внешний кандидат в очередь, а не вставляй сомнительный материал прямо в текст.
 
 ### P20 — синхронизация сопроводительных файлов
 
-```text
 Синхронизируй основную статью и сопроводительные файлы:
+
 - source_usage;
 - source_transfer_ledger;
 - image_plan;
@@ -705,25 +645,24 @@ https://arxiv.org/html/2606.13449v1
 - relationship_map;
 - synthesis_design.
 
-Каждый материал, который был найден, но не вошёл в статью, должен иметь понятное решение: оставить в мини-досье, перенести в другой узел Атласа, вернуть при future repair или отклонить.
-```
+Каждый материал, который был найден, но не вошёл в статью, должен иметь понятное решение: оставить в мини-досье, перенести в другой узел Атласа, вернуть при future исправление или отклонить.
 
-### P21 — общие редакторские repair-проходы
+### P21 — общие редакторские проходы на исправление
 
-```text
-Проведи три общих редакторских repair-прохода:
+Проведи три общих редакторских прохода на исправление.
 
-1. Диагностика структуры: статья держит один ход или распадается на куски?
-2. Диагностика полноты: нет ли важного слоя интерфейса репозитория, который потерялся после сжатия мини-досье?
-3. Адверсариальная проверка: где статья преувеличивает силу инструкций, скрывает риск старения правил или смешивает разные формы agent-facing interface?
+Первый: диагностика структуры. Статья держит один ход или распадается на куски?
+
+Второй: диагностика полноты. Нет ли важного слоя интерфейса репозитория, который потерялся после сжатия мини-досье?
+
+Третий: адверсариальная проверка. Где статья преувеличивает силу инструкций, скрывает риск старения правил или смешивает разные формы интерфейс для агента?
 
 После каждого содержательного исправления переписывай затронутые фрагменты естественным русским языком, используя словарь.
-```
 
-### P22 — style defect audit и selective natural rewrite
+### P22 — style defect audit и естественная перепись слабых фрагментов
 
-```text
-Проведи style defect audit. Найди фрагменты, где текст звучит как:
+Найди фрагменты, где текст звучит как:
+
 - машинная инструкция;
 - маркетинговый обзор продукта;
 - калька с английской документации;
@@ -731,29 +670,29 @@ https://arxiv.org/html/2606.13449v1
 - повтор главы VI вместо самостоятельной статьи Атласа.
 
 Затем перепиши найденные фрагменты естественным русским языком, используя словарь. Переписывай фрагменты заново, а не заменяй отдельные слова.
-```
 
-### P23 — guarded final human technical style pass
+### P23 — финальный технический стилевой проход
 
-```text
 Проведи финальный технический стилевой проход.
 
 Сохрани точность, ссылки, названия инструментов, имена файлов и важные различения. Убери остаточную тяжесть языка, повторяющиеся формулы и искусственные обороты.
 
 Не делай текст проще за счёт потери различений. Не превращай статью в набор советов. Она должна остаться самостоятельной статьёй Атласа.
-```
 
 ### Final — готовность, manifest, verify, resume
 
-```text
 Создай:
-- `agent_facing_repository_interface_degradation_and_duplication_audit.md`
-- `agent_facing_repository_interface_readiness_report.md`
-- `agent_facing_repository_interface_MANIFEST.md`
-- `agent_facing_repository_interface_VERIFY.md`
-- `agent_facing_repository_interface_RESUME.md`
+
+```text
+agent_facing_repository_interface_degradation_and_duplication_audit.md
+agent_facing_repository_interface_readiness_report.md
+agent_facing_repository_interface_MANIFEST.md
+agent_facing_repository_interface_VERIFY.md
+agent_facing_repository_interface_RESUME.md
+```
 
 Проверь, что:
+
 - все заявленные выходные файлы существуют;
 - мини-досье включены в результат;
 - статья не является каталогом файлов и инструментов;
@@ -763,4 +702,3 @@ https://arxiv.org/html/2606.13449v1
 - визуальные кандидаты обработаны честно;
 - открытые вопросы записаны явно;
 - теория сможет взять из статьи срез для главы VI, не копируя Атлас механически.
-```

@@ -1,20 +1,18 @@
 
 # Post-Atlas active source routing
 
-Статус на 2026-06-13: concept-first Атлас завершён как baseline из 10 статей. Активный скелетон для следующих глав:
+Статус на 2026-06-17: concept-first Атлас завершён как baseline, но новая Атласная архитектура после ADR-0012/ADR-0013 строится по техническим слоям. Активный скелетон для следующих глав Теории:
 
 ```text
-work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md
+work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V6_3_ACCEPTED.md
 ```
 
-`THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md` остаётся историческим baseline и источником сравнения, но новые chapter packages должны стартовать от V5.
-
-Статус после языко-стилевого прохода: активный Skeleton V5 вычитан локально по последним правилам Атласа; структура и источник решений не менялись.
+`THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md` и `THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V4.md` остаются историческими baselines и источниками сравнения, но новые chapter packages должны стартовать от V6.3 и читать `THEORY_SKELETON_IMPLICATIONS_AFTER_ATLAS_CUTS_2026_06_17.md` как корректирующую карту маршрутизации.
 
 Главная иерархия источников для глав:
 
 ```text
-00_spine_map / Skeleton V5 / CORE plan — композиция и термины
+00_spine_map / Skeleton V6.3 / CORE plan — композиция и термины
 A/B/C-фрагменты — уже проделанный синтез
 Atlas articles — concept-first baseline
 Dossiers — gap-check, source restoration, failure modes и visual/source queues
@@ -30,6 +28,12 @@ work/theory-writing/reports/POST_ATLAS_EXTERNAL_DISCOVERY_NEEDS.md
 work/theory-writing/reports/POST_ATLAS_HEAVY_CHAPTER_PACKAGE_BLUEPRINT.md
 work/theory-writing/reports/POST_ATLAS_CHAPTER_TARGET_PLAN_BLUEPRINT_PROPOSAL.md
 work/theory-writing/reports/POST_ATLAS_SKELETON_ANTI_DEGRADATION_AUDIT.md
+work/theory-writing/reports/CORPUS_PROJECTION_CUTS_UPDATE_2026_06_17.md
+work/theory-writing/reports/VERSION_CONTROL_AGENTIC_DEVELOPMENT_COVERAGE_NOTE_2026_06_17.md
+work/theory-writing/reports/THEORY_SKELETON_IMPLICATIONS_AFTER_ATLAS_CUTS_2026_06_17.md
+work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md
+work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md
+work/decisions/ADR-0014-public-corpus-part-names-and-atlas-parity.md
 ```
 
 Правило: главы не пишутся напрямую из досье и не пересказывают Атлас. Сначала section contract, затем A/B/C и Атлас, затем dossier gap-check, затем external discovery только там, где этого требуют content gaps.
@@ -52,7 +56,7 @@ work/theory-writing/target-group-plans/POST_ATLAS_GLOBAL_CORPUS_ROUTING_TARGET_G
 
 Статус: рабочая карта документов для подготовки теоретического раздела, технического атласа, Handbook и Fieldbook.  
 Дата: 2026-06-13.  
-Основание: текущий репозиторий, `work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md`, завершённый concept-first Атлас, A/B/C-фрагменты, методологические досье, story-dossiers, отчёты, протоколы и принятые решения.
+Основание: текущий репозиторий, `work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V6_3_ACCEPTED.md`, завершённый concept-first Атлас, A/B/C-фрагменты, методологические досье, story-dossiers, отчёты, протоколы и принятые решения.
 
 ## Назначение
 
@@ -65,10 +69,43 @@ work/theory-writing/target-group-plans/POST_ATLAS_GLOBAL_CORPUS_ROUTING_TARGET_G
 ```text
 Публичные истории дают фактический корпус.
 Досье дают source-backed quarry и gap-check после чтения Атласа.
-Скелетон V5, `00_spine_map` и CORE plan задают композицию.
+Скелетон V6.3, `00_spine_map` и CORE plan задают композицию.
 ADRs фиксируют решения.
 Reports и audits помогают не потерять материал и не повторить старые ошибки.
 Automation logs не являются источником теории, если только не анализируется сам процесс автоматизации.
+```
+
+## Правило разрезов для публичных частей
+
+С 2026-06-17 действует решение ADR-0012: Теория, Атлас, Handbook и Fieldbook работают на одном корпусе знаний, но используют разные организующие разрезы.
+
+```text
+Теория — жизненный цикл изменения.
+Атлас — технические слои и конкурирующие способы их построения.
+Handbook — решения практика.
+Fieldbook — типовые сбои, диагностика и восстановление.
+```
+
+Это не разные области знания, а разные projection passes над общим материалом. Поэтому при создании target-group plan нужно явно указывать не только тему, но и жанр/разрез. Если хороший текст написан в соседнем разрезе, он может быть сохранён как полезный побочный результат, но не считается принятым результатом для текущей части.
+
+Для Атласа действует отдельный технологический gate: статья не должна переходить к финальной сшивке, пока не собраны реальные технологии, форматы, протоколы, рабочие поверхности, артефакты, ограничения, источники и критерии выбора. Текущий результат A3 `От прогона к принятому изменению` считается theory-ready fragment, но не принятой статьёй Атласа.
+
+С 2026-06-17 также действует решение ADR-0013: Git/version-control слой должен быть отдельной статьёй Атласа, а не растворяться в CI/review/acceptance tooling. Для Теории это не создаёт новую главу; Git/worktree/PR/MR маршрутизируются как сквозной технический субстрат глав VI, IX, XI, XII и XIII.
+
+С 2026-06-17 также действует решение ADR-0014: Атлас равноправен Теории и не является её приложением. Для практических частей в новых публичных планах предпочтительны русские названия: `Рабочие сценарии` вместо `Хандбук/Handbook` и `Каталог проблем и решений` вместо `Фильдбук/Fieldbook`. Слово `Теория` пока остаётся коротким рабочим именем, хотя возможное будущее публичное название может быть ближе к `Жизненному циклу программного изменения`.
+
+Связанные документы:
+
+```text
+work/decisions/ADR-0012-shared-knowledge-genre-cuts.md
+work/decisions/ADR-0013-git-version-control-agentic-change-substrate.md
+work/theory-writing/reports/CORPUS_PROJECTION_CUTS_UPDATE_2026_06_17.md
+work/theory-writing/reports/ATLAS_V2_STRUCTURE_AND_ARTICLE_STATUS.md
+work/theory-writing/reports/VERSION_CONTROL_AGENTIC_DEVELOPMENT_COVERAGE_NOTE_2026_06_17.md
+work/theory-writing/reports/THEORY_SKELETON_IMPLICATIONS_AFTER_ATLAS_CUTS_2026_06_17.md
+work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md
+work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md
+work/decisions/ADR-0014-public-corpus-part-names-and-atlas-parity.md
 ```
 
 ## Правило базовой линии и формы рабочих delta/overlay
@@ -165,6 +202,7 @@ content/stories/15_shopify_roast_executable_ai_workflow_reconstruction_connected
 ```text
 START.md
 work/approved-ai-sdlc-plan.md
+work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V6_3_ACCEPTED.md
 work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md
 work/theory-writing/CORE_NODES_WRITING_PLAN.md
 work/theory-writing/WORKING_DOCUMENTS_MAP.md
@@ -175,7 +213,7 @@ work/discourse.md
 
 - `START.md` является корневым входным файлом для восстановления контекста нового чата или среза репозитория: он указывает, какие документы читать первыми. Он не заменяет `work/discourse.md` и не отменяет протокольное сопровождение после нетривиальной сессии.
 - `approved-ai-sdlc-plan.md` задаёт утверждённую общую рамку AI-driven SDLC и текущий scope.
-- `THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md` является основной структурой будущей теоретической главы.
+- `THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V6_3_ACCEPTED.md` является основной структурой будущей теоретической части. `THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V5_POST_ATLAS.md` остаётся историческим baseline и source of comparison.
 - `CORE_NODES_WRITING_PLAN.md` задаёт порядок написания несущих узлов и глав.
 - `WORKING_DOCUMENTS_MAP.md` объясняет, какие документы использовать и как.
 - `work/discourse.md` хранит смысловую непрерывность текущей ветки работы. Перед крупными writing-pass его нужно читать, но не использовать как первичный источник фактов вместо досье и историй. Если сессия меняет рабочую траекторию, процесс или роль документов, дискурс нужно обновлять в том же overlay.
@@ -191,6 +229,8 @@ work/decisions/ADR-0008-protected-methodology-profiles.md
 work/decisions/ADR-0009-skeleton-v4-2-story-boundary-and-technical-atlas.md
 work/decisions/ADR-0010-persistent-work-graph-deep-mechanism-anchor.md
 work/decisions/ADR-0011-чтение от конкретной концепции-technical-atlas.md
+work/decisions/ADR-0012-shared-knowledge-genre-cuts.md
+work/decisions/ADR-0013-git-version-control-agentic-change-substrate.md
 work/decisions/PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md
 ```
 
@@ -202,7 +242,28 @@ work/decisions/PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md
 - `ADR-0009` фиксирует границу: истории / теория / технический атлас.
 - `ADR-0010` фиксирует PWG как отдельный глубокий механизм.
 - `ADR-0011` уточняет границу theory / atlas: технический атлас теперь концептуально-технический слой самостоятельных концептуально-технических статей, а не узкое техническое приложение.
+- `ADR-0012` фиксирует главное различение текущей архитектуры корпуса: одна область знаний проецируется в Теорию через жизненный цикл изменения, в Атлас через технические слои, в Handbook через решения практика, в Fieldbook через типовые сбои.
+- `ADR-0013` фиксирует Git/version-control как отдельный слой Атласа и сквозной технический субстрат теоретических глав VI, IX, XI, XII и XIII.
 - `PROPOSED_*` использовать только как исторический след, не как принятое решение.
+
+---
+
+## 2.3. Специальные фрагменты после жанровой коррекции
+
+Файлы:
+
+```text
+work/theory-writing/fragments/ex_a3_agent_run_to_accepted_change_theory_fragment.md
+work/theory-writing/reports/THEORY_SKELETON_IMPLICATIONS_AFTER_ATLAS_CUTS_2026_06_17.md
+work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md
+work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md
+work/decisions/ADR-0014-public-corpus-part-names-and-atlas-parity.md
+```
+
+Использование:
+
+- `ex_a3_agent_run_to_accepted_change_theory_fragment.md` — сильный побочный результат A3, перенесённый из Атласного пакета в theory-ready фрагменты. Он не является принятой статьёй Атласа. Использовать как donor для глав XI, XII и XIII: смена статуса материала от agent run к проверочному материалу, review, decision и post-merge route.
+- `THEORY_SKELETON_IMPLICATIONS_AFTER_ATLAS_CUTS_2026_06_17.md` объясняет, почему skeleton Теории не требует перестройки, но future chapter packages должны использовать `atlas-technical-grounding check`.
 
 ---
 
@@ -2569,17 +2630,169 @@ work/atlas/plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_PACKAGE_SPLI
 
 The article is planned as a self-contained public Atlas article about the repository as an interface for agents. It should feed the later rewrite of chapter VI and related theory passages, but it is not a draft chapter and should not be written as internal project notes. Use the existing glossary and language protocols when building the package.
 
-## 2026-06-16 — protocol update: full dry-run validation for executor packages
+## 2026-06-16 — A1 target plan refinement
 
-Updated the general task-package protocols to require a full dry run of runner chains before releasing long, staged, or reordered executor packages. The rule is generic: every required file for a record must either be bundled initially or produced by an earlier record during the dry run. A record must not require a file that belongs to a future record.
+A1 target-group plan refined: `work/atlas/target-group-plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md` now treats the task-specific work interface without elevating `пакет задачи` as a public site concept. It also requires the relevant subsections of Chapter VI as seed text for the skills, MCP, subagents and hooks mini-dossiers.
 
-Updated files:
+Relevant report: `work/atlas/plans/reports/agent_facing_repository_interface_A1_PLAN_REFINEMENT_SEEDS_AND_PUBLIC_TERMS_2026_06_16.md`.
+
+## Update 2026-06-16 — A1 plan seed-preservation refinement
+
+A1 target-group plan was refined after discussion. Chapter VI fragments on skills, MCP, subagents and hooks are to be used as strong source seeds for Atlas mini-dossiers, not as weak drafts or material to remove from Chapter VI. The A1 public terminology was also softened around task-specific work framing: do not promote the private package form as a public analytic category. Relevant files:
+
+- `work/atlas/target-group-plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md`
+- `work/atlas/plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md`
+- `work/atlas/plans/ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md`
+- `work/atlas/plans/reports/agent_facing_repository_interface_A1_PLAN_REFINEMENT_SEED_PRESERVATION_2026_06_16.md`
+
+
+### 2026-06-16 — A1 plan refinement
+
+`work/atlas/target-group-plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md` has been refined. The article should emphasize project knowledge as a maintained interface for agents, not a catalogue of instruction files or a setup template. New plan report: `work/atlas/plans/reports/agent_facing_repository_interface_A1_PLAN_INTERFACE_REPAIR_AND_TEMPLATE_GUARD_2026_06_16.md`.
+
+## 2026-06-16 — task-package checkpoint protocol update
+
+General task-package protocols were updated:
+
+- `work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md`
+- `work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md`
+
+The new rule preserves explicit human clarification checkpoints from target-group plans by default, while allowing an explicit override during package-building. Checkpoints with questions must be printed briefly in chat as well as saved to file. If no explicit checkpoint or staged mode is requested, packages continue to be built in the previous non-staged mode.
+
+Report:
+
+- `work/reports/TASK_PACKAGE_PROTOCOL_HUMAN_CHECKPOINT_UPDATE_2026_06_16.md`
+
+
+## 2026-06-16 — A1 checkpoint update
+
+Current A1 plan includes a human checkpoint after all mini-dossiers and relationship map, before article synthesis. A2 remains unchanged because it is already being executed. Package protocols now require a concise chat-visible report at every planned stop.
+
+## 2026-06-16 — A1 plan natural Russian rewrite
+
+- `work/atlas/target-group-plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md` — rewritten into more natural Russian without changing the accepted structure or mini-dossier sequence.
+- `work/atlas/plans/reports/agent_facing_repository_interface_A1_NATURAL_RUSSIAN_REWRITE_REPORT_2026_06_16.md` — report for the language pass.
+
+## 2026-06-16 — A1 plan language and terminology pass
+
+The A1 target-group plan was rewritten again in more natural Russian. The existing terminology file was extended with A1 terms for repository-as-agent-interface work. The plan content and mini-dossier structure remain unchanged.
+
+Files:
+
+- `work/atlas/target-group-plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md`
+- `protocols/rules/terminology-and-translation.md`
+- `work/atlas/plans/reports/agent_facing_repository_interface_A1_NATURAL_RUSSIAN_REWRITE_2_REPORT_2026_06_16.md`
+
+
+## 2026-06-16 — A1 package cache
+
+- `work/atlas/packages/agent_facing_repository_interface_ATLAS_V2_ARTICLE.zip` — executor package for Atlas V2 article A1, built from the current A1 target-group plan.
+- `work/atlas/plans/reports/agent_facing_repository_interface_A1_PACKAGE_BUILD_REPORT_2026_06_16.md` — package build and dependency validation report.
+
+
+## 2026-06-16 — A3 Atlas V2 target plan and blueprint checkpoint rule
+
+Обновлён `work/atlas/plans/ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md`: для крупных статей Атласа V2 план должен явно задавать остановы после групп мини-досье; последний останов перед сшивкой статьи должен быть содержательным checkpoint-ом с одним вопросом пользователю, если при сборке пакета не указано обратное.
+
+Создан план A3:
 
 ```text
-work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md
-work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md
-work/reports/TASK_PACKAGE_PROTOCOL_DRY_RUN_VALIDATION_UPDATE_2026_06_16.md
-work/atlas/packages/agent_execution_stack_ATLAS_V2_ARTICLE.zip
+work/atlas/target-group-plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md
 ```
 
-The protocol update intentionally avoids article-specific or mini-dossier-specific rules. It only changes the packaging validation gate. The cached A2 package has been replaced with the repaired package version.
+A3 рассматривает переход от агентского прогона к принятому изменению: след выполнения, трассировка, оценки, тесты/CI, contract/API checks, ревью, PR, созданные агентами, причины принятия/отказа и последствия после merge или отказа.
+
+Пакет для A3 не собирался.
+
+
+## 2026-06-17 — A3 refined plan
+
+The A3 Atlas V2 target plan now uses existing theory materials as seeds for mini-dossiers. Chapter II seeds run trace/session material; A7 seeds observation-to-verification distinctions; C3 seeds verification as state transition and durable verification material; A8 seeds authority/acceptance boundaries. The article line is now framed around status shift of materials, not only a sequential path from run to PR acceptance.
+
+Files:
+
+```text
+work/atlas/target-group-plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md
+work/atlas/plans/reports/agent_run_to_accepted_change_A3_SEEDS_AND_STATUS_SHIFT_REFINEMENT_REPORT_2026_06_17.md
+```
+
+
+## 2026-06-17 — A3 plan refinement: status thresholds and 4-stage split
+
+Changed files:
+
+```text
+work/atlas/target-group-plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md
+work/atlas/plans/reports/agent_run_to_accepted_change_A3_STATUS_THRESHOLDS_AND_4STAGE_REFINEMENT_REPORT_2026_06_17.md
+```
+
+The refined A3 plan keeps the core status-shift idea and adds threshold/strength questions for every mini-dossier. The package split now moves `07_agent_authored_pr_datasets` into the second group, leaving the third group for failed/rejected PRs, acceptance decisions, after-acceptance/rejection learning, the relationship map and the human checkpoint.
+
+### 2026-06-17 — A3 Atlas V2 plan refinement
+
+Updated: `work/atlas/target-group-plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md` and `work/atlas/plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md`.
+
+Status: A3 plan now uses a five-block package split and a stronger distinction between agent/system evaluation, run diagnosis, change verification, and acceptance. A3 package has not yet been built.
+
+### 2026-06-17 — A3 plan natural Russian rewrite
+
+`work/atlas/target-group-plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md` was rewritten in more natural Russian. The accepted A3 structure did not change. `protocols/rules/terminology-and-translation.md` now includes additional A3 terms for material-status transitions and acceptance-related distinctions.
+
+
+### A3 target plan — natural Russian rewrite, second pass (2026-06-17)
+- `work/atlas/target-group-plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md` — rewritten again in natural Russian; structure unchanged.
+- `protocols/rules/terminology-and-translation.md` — extended with natural A3 terms for checks, API diff and CI signals.
+
+
+## 2026-06-17 — A3 package cache
+
+- `work/atlas/packages/agent_run_to_accepted_change_ATLAS_V2_ARTICLE.zip` — executor package for Atlas V2 article A3, built from the current A3 target-group plan.
+- `work/atlas/plans/reports/agent_run_to_accepted_change_A3_PACKAGE_BUILD_REPORT_2026_06_17.md` — package build and validation report.
+
+
+## 2026-06-17 — A2 plan: seeds and five-stage package split
+
+Updated planning files:
+
+```text
+work/atlas/target-group-plans/agent_execution_stack_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/plans/agent_execution_stack_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md
+work/atlas/plans/reports/agent_execution_stack_A2_SEEDS_AND_5STAGE_REPLAN_REPORT_2026_06_17.md
+```
+
+The A2 plan now uses existing theory chapters and fragments as required seeds: A6, Chapter IX, C4, Chapters VII/VIII/X, Chapter IV, A7/B3 and relevant story anchors. The package split is now five blocks with explicit stops, including a checkpoint after all mini-dossiers and the relationship map. A2 package has not been rebuilt in this update.
+
+
+A2 cached executor package note: the old `work/atlas/packages/agent_execution_stack_ATLAS_V2_ARTICLE.zip` is stale after the runner-chain failure and the new seeds/five-stage replan. Rebuild A2 before running it again.
+- `work/atlas/plans/reports/agent_execution_stack_A2_ACCEPTED_REPAIRS_EXCEPT_RELATIONSHIP_MAP_2026_06_17.md` — отчёт о правке A2-плана: пятиблочное разбиение синхронизировано, добавлен счёт рабочих листов и блок прямых/непрямых сравнений; усиление карты отношений намеренно не применялось.
+
+## 2026-06-17 — A2 plan natural Russian rewrite
+
+Updated A2 planning files:
+
+```text
+work/atlas/target-group-plans/agent_execution_stack_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/plans/agent_execution_stack_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md
+protocols/rules/terminology-and-translation.md
+work/atlas/plans/reports/agent_execution_stack_A2_NATURAL_RUSSIAN_REWRITE_2026_06_17.md
+```
+
+The A2 plan has been rewritten in natural Russian while preserving the accepted five-block execution structure, theory seeds and planned checkpoint. The terminology file now includes additional A2-specific natural Russian variants for planning language. The cached A2 executor package remains stale and must be rebuilt before use.
+
+
+
+## 2026-06-17 — A2 plan natural Russian rewrite, second pass
+
+Updated planning files:
+
+```text
+work/atlas/target-group-plans/agent_execution_stack_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/plans/agent_execution_stack_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md
+protocols/rules/terminology-and-translation.md
+work/atlas/plans/reports/agent_execution_stack_A2_NATURAL_RUSSIAN_SECOND_REWRITE_2026_06_17.md
+```
+
+The second language pass keeps the A2 plan structure unchanged and rewrites remaining artificial planning language into more natural Russian. The A2 executor package is still stale and must be rebuilt before use.

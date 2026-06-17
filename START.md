@@ -25,6 +25,8 @@
    - `work/protocols/THEORY_WRITING_PROMPT_QUEUE_PROTOCOL.md`
    - `work/prompts/TARGET_GROUP_PLAN_TEMPLATE.md`
 
+   Актуальная протокольная правка от 2026-06-16: явные checkpoint-ы, остановки для человеческого решения и вопросы пользователю, заданные в target-group plan, по умолчанию сохраняются при сборке пакета, если в задаче на сборку прямо не сказано обратное. Checkpoint с вопросом должен быть сохранён файлом и кратко выведен в чат. Если в плане нет явной остановки и пользователь не задаёт staged mode, пакет собирается как раньше.
+
 Не читай весь репозиторий подряд. После первичного восстановления контекста открывай только те документы, которые нужны для конкретной задачи.
 
 
@@ -399,17 +401,23 @@ work/atlas/plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_PACKAGE_SPLI
 
 Пакет ещё не собран. План следует `ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md` и использует ту же логику, что A2: самостоятельная публичная статья, мини-досье с полным циклом сбора, карта отношений, проект сшивки, переписывание естественным русским языком с использованием словаря и включение мини-досье в будущий результат.
 
-## 2026-06-16 — protocol update: full dry-run validation for executor packages
+## 2026-06-16 — A1 plan refinement
 
-Updated the general task-package protocols to require a full dry run of runner chains before releasing long, staged, or reordered executor packages. The rule is generic: every required file for a record must either be bundled initially or produced by an earlier record during the dry run. A record must not require a file that belongs to a future record.
+A1 `agent_facing_repository_interface` target plan refined: avoid the project-specific `пакет задачи` term as a public analytical category; use Chapter VI subsections as seeds for skills/MCP/subagents/hooks mini-dossiers.
 
-Updated files:
+
+## Latest update — 2026-06-16
+
+A1 target plan now has an explicit human checkpoint after mini-dossiers and relationship map, before synthesis. The package protocol now requires every planned stop to print a concise checkpoint report in chat; question handling is used only when explicitly specified.
+
+## 2026-06-16 — Current update: A1 natural Russian pass 2
+
+Latest overlay updates the A1 target-group plan language and the terminology file. It does not change chapter texts, Atlas articles, or executor packages.
+
+Key files:
 
 ```text
-work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md
-work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md
-work/reports/TASK_PACKAGE_PROTOCOL_DRY_RUN_VALIDATION_UPDATE_2026_06_16.md
-work/atlas/packages/agent_execution_stack_ATLAS_V2_ARTICLE.zip
+work/atlas/target-group-plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md
+protocols/rules/terminology-and-translation.md
+work/atlas/plans/reports/agent_facing_repository_interface_A1_NATURAL_RUSSIAN_REWRITE_2_REPORT_2026_06_16.md
 ```
-
-The protocol update intentionally avoids article-specific or mini-dossier-specific rules. It only changes the packaging validation gate. The cached A2 package has been replaced with the repaired package version.

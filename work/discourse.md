@@ -2213,17 +2213,147 @@ Files:
 - `work/atlas/plans/agent_facing_repository_interface_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md`
 - `work/atlas/plans/reports/agent_facing_repository_interface_A1_TARGET_PLAN_REPORT_2026_06_16.md`
 
-## 2026-06-16 — protocol update: full dry-run validation for executor packages
+## 2026-06-16 — A1 plan refinement: public terms and Chapter VI seeds
 
-Updated the general task-package protocols to require a full dry run of runner chains before releasing long, staged, or reordered executor packages. The rule is generic: every required file for a record must either be bundled initially or produced by an earlier record during the dry run. A record must not require a file that belongs to a future record.
+For A1, accepted refinement: do not make `task package` / `пакет задачи` a central public-facing concept. The article may discuss a task-specific work interface, but should not elevate a project-specific archive term into a general industry category.
 
-Updated files:
+Also accepted: no explicit negative anchoring around private project context in public-facing instructions. The public scope should be expressed positively: the article remains a standalone public text of the site.
+
+For the `skills`, `MCP`, `subagents`, and `hooks` mini-dossiers, the corresponding subsections of Chapter VI should be used as initial seeds: copy the subsection unchanged into the draft mini-dossier, then expand and revise using external sources and local source intake.
+
+## 2026-06-16 — A1 target plan refinement: seeds from Chapter VI are preserved as strong source material
+
+After reviewing the A1 plan, the user agreed with strengthening the article but warned that the reused subsections from Chapter VI are already carefully written and should not be treated as weak material or as something to remove from the chapter. The plan for A1 was updated accordingly. The sections on skills, MCP, subagents and hooks are now framed as strong source seeds for Atlas mini-dossiers: they must be copied into the relevant dossier as initial material, preserved in their key distinctions, expanded with external sources and adapted into an independent Atlas article. The executor must not decide what to delete, weaken, or replace in Chapter VI.
+
+The A1 article line was also sharpened: it should not become a catalogue of instruction files. Its central movement is from project knowledge to an agent-facing project interface: instructions, procedures, interventions, access, roles, temporary task frames, and repair. The term around private task packages was weakened in public terminology: the plan now uses “instruction and materials for a concrete task” / temporary work frame rather than making the package form a public analytic category.
+
+
+## 2026-06-16 — A1 article plan refinement
+
+Accepted refinements for the A1 Atlas V2 article plan: strengthen the thesis that project knowledge becomes a maintained agent-facing interface; keep the article public and non-template-like; treat repair as adding, deleting, narrowing, moving, merging, or splitting rules and procedures; add lifespan as an axis in the relationship map. Do not limit the depth of mini-dossiers seeded from chapter VI, and do not decide package block count in the target plan.
+
+2026-06-16 — В протокол упаковки пакетов добавлено общее правило для остановок с человеческим уточнением. Если target-group plan явно задаёт checkpoint, остановку для решения пользователя или вопрос, сборщик по умолчанию должен сохранить эту остановку в executor package; убрать её можно только по явному указанию при сборке, и это должно быть записано в отчёте. Без явных остановок в плане и без параметра стадийности пакет собирается как раньше. Checkpoint с вопросом должен быть не только файлом, но и кратко выводиться в чат, чтобы пользователю было удобно ответить и чтобы ответ сразу стал контекстом для модели. Это универсальная протокольная правка, без упоминания частных мини-досье или устройства текущих Atlas-пакетов.
+
+
+2026-06-16 — A1 human checkpoint and package stop reporting.
+
+For A1, added an explicit human checkpoint after mini-dossiers and the relationship map, before article synthesis. The checkpoint asks one question about the article's main stitching emphasis: a calm map of forms versus a stronger line around the maintained agent-facing project interface. Default: use the maintained-interface line while preserving the map of forms. Earlier A1 stage stops remain ordinary stops without questions.
+
+Updated task-package protocol so every planned stage stop must print a short checkpoint summary to chat, even without a question. A question is only required when explicitly specified by the plan/checkpoint mode.
+
+16 June 2026 — A1 plan language pass. The A1 target plan for `agent_facing_repository_interface` was rewritten into more natural Russian. The pass preserved the accepted article structure, mini-dossier list, checkpoint-after-mini-dossiers logic, and the rule that selected chapter VI fragments are strong seeds rather than weak drafts. The main change was linguistic and editorial: less protocol tone, clearer working prose, and a more direct public-article framing.
+
+2026-06-16 — A1 plan second natural Russian rewrite.
+
+The user asked to rewrite the A1 plan again in natural Russian and to use the existing glossary, adding new terms only if their Russian form sounds natural. The plan was rewritten without changing its accepted structure. The existing terminology file was extended with A1-specific terms: repository as an interface for agents, files of project context at repository level, instructions of a particular tool, scope, noise from excessive instructions, and instruction repair as correction/support rather than a mechanical “repair” term. Care was taken not to let replacements damage file names, URLs, product names or accepted tool terms.
+
+
+## 2026-06-16 — A1 executor package built
+
+Built the executor package for Atlas V2 article A1, `Репозиторий как интерфейс для агента`. The package includes staged execution with a human clarification checkpoint after mini-dossiers and passed dependency dry-run validation.
+
+
+## 2026-06-16 — A3 Atlas V2 target plan and blueprint checkpoint rule
+
+Обновлён `work/atlas/plans/ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md`: для крупных статей Атласа V2 план должен явно задавать остановы после групп мини-досье; последний останов перед сшивкой статьи должен быть содержательным checkpoint-ом с одним вопросом пользователю, если при сборке пакета не указано обратное.
+
+Создан план A3:
 
 ```text
-work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md
-work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md
-work/reports/TASK_PACKAGE_PROTOCOL_DRY_RUN_VALIDATION_UPDATE_2026_06_16.md
-work/atlas/packages/agent_execution_stack_ATLAS_V2_ARTICLE.zip
+work/atlas/target-group-plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_TARGET_GROUP_PLAN.md
+work/atlas/plans/agent_run_to_accepted_change_ATLAS_V2_ARTICLE_PACKAGE_SPLIT_META.md
 ```
 
-The protocol update intentionally avoids article-specific or mini-dossier-specific rules. It only changes the packaging validation gate. The cached A2 package has been replaced with the repaired package version.
+A3 рассматривает переход от агентского прогона к принятому изменению: след выполнения, трассировка, оценки, тесты/CI, contract/API checks, ревью, PR, созданные агентами, причины принятия/отказа и последствия после merge или отказа.
+
+Пакет для A3 не собирался.
+
+
+## 2026-06-17 — A3 plan refinement: seeds and status shift
+
+План A3 `От прогона к принятому изменению` усилен перед сборкой пакета. Уже написанные материалы теперь используются как сильные зёрна для мини-досье: глава II даёт зерно для следа выполнения и различения сессии/trace; A7 — для перехода от рабочего наблюдения к проверочному материалу; C3 — для проверки как перехода состояния и материала, который должен пережить исполнителя; A8 — для границы между правом действовать, PR-кандидатом и признанным изменением. Планы глав XI–XIII используются только как карта границ, не как текстовые зёрна.
+
+Главная линия A3 уточнена: статья должна показывать не только путь `прогон → проверка → PR → принятие`, но и смену статуса материалов: рабочий след становится проверочным материалом, затем материалом для ревью, основанием решения и материалом для последующего сопровождения. В цикл мини-досье добавлен вопрос: что этот материал показывает и чего он не доказывает. Checkpoint после мини-досье теперь задаёт вопрос о выборе акцента между последовательным путём и статьёй о смене статуса материалов.
+
+
+## 2026-06-17 — A3 plan refinement: status thresholds and package split
+
+A3 target plan was refined before package assembly. The article line now explicitly tracks not only the change of material status, but thresholds that let material move from working trace to verification material, review material, decision support and follow-up material. Each mini-dossier must ask what the material shows, what it does not prove and what makes it stronger as support for the next step. The relationship map now has a material/status/threshold/strength/limitation shape. The package split was adjusted to four working blocks with `07_agent_authored_pr_datasets` moved to the second block so the third block is shorter before the checkpoint.
+
+## 2026-06-17 — A3 plan: five-stage split and added status-question distinction
+
+A3 target-group plan was refined after discussion. The package split meta now uses five working blocks rather than the earlier 4-stage layout: P01+01–03, 04–06, 07–08, 09–10+P12/checkpoint, and P13–Final. Expected block sizes are about 28 / 27 / 18 / 20 / 13 working sheets, pending dry-run verification during package building.
+
+The A3 plan was also strengthened around a new distinction: evaluation of an agent/system, diagnosis of a concrete run, verification of a concrete change, and acceptance of the result are separate questions. Relationship mapping must therefore record not only material/status/threshold/limits, but also which question a material can support.
+
+## 2026-06-17 — A3 plan natural Russian rewrite
+
+A3 target-group plan `От прогона к принятому изменению` was rewritten in more natural Russian without changing its accepted logic. The plan still uses the already accepted seeds from chapter II, A7, C3 and A8, the five working blocks, and the checkpoint after mini-dossiers. The terminology file was extended with natural Russian forms for `status shift`, `transition threshold`, `review material`, `basis for decision`, `run inspection`, `change verification` and related A3 terms.
+
+## 2026-06-17 — A3 plan natural Russian rewrite, second pass
+
+A3 target-group plan was rewritten again in natural Russian, following the project terminology glossary. The rewrite preserved the accepted article logic: agent run is not accepted change; the article tracks how materials change status from execution trace to verification material, review material, decision support and follow-up material. No theory chapter, Atlas article or executor package was changed.
+
+
+## 2026-06-17 — A3 executor package built
+
+Built the executor package for Atlas V2 article A3, `От прогона к принятому изменению`. The package includes staged execution, a human clarification checkpoint after mini-dossiers, and passed dependency validation.
+
+
+## 2026-06-17 — A2 plan refined with theory seeds and five-stage split
+
+Updated the A2 Atlas V2 target plan (`agent_execution_stack`) after the previous execution failure. The plan now explicitly uses theory seeds: A6 execution-environment distinctions, Chapter IX, C4 runtime-to-PWG, plus relevant material from Chapters VII/VIII/X, Chapter IV, A7/B3 and story anchors such as Armin/Pi, HumanLayer, Mae/Honeycomb, Stripe Minions and Shopify Roast. A2 is now planned as a five-block staged package: three surface/runtime dossier blocks, one observability/human-in-loop plus relationship-map checkpoint block, and a final synthesis/article/repair block.
+
+
+A2 cached executor package note: the old `work/atlas/packages/agent_execution_stack_ATLAS_V2_ARTICLE.zip` is stale after the runner-chain failure and the new seeds/five-stage replan. Rebuild A2 before running it again.
+
+## 2026-06-17 — A2 plan accepted repairs, no relationship-map strengthening
+
+Принята и внесена правка A2-плана после ошибки старого пакета. План теперь синхронизирован с пятиблочным разбиением, старый шаг проверки `01–05` удалён, в meta и notes добавлена оценка рабочих листов по блокам, в мини-досье добавлен обязательный блок `С чем нельзя сравнивать напрямую`, а словарь дополнен терминами для прямых/непрямых сравнений и слоёв стека. Предложенное усиление карты отношений не внесено по решению пользователя. Старый A2 package остаётся непригодным для повторного запуска без пересборки.
+
+## 2026-06-17 — A2 plan natural Russian rewrite
+
+A2 target-group plan `agent_execution_stack` was rewritten again in natural Russian after the five-stage seeds/repair pass. The accepted structure was preserved: ten mini-dossiers, five working blocks with expected working-sheet counts, explicit planned stops, a checkpoint after all mini-dossiers, required theory seeds, and the `С чем нельзя сравнивать напрямую` block for each mini-dossier.
+
+The rewrite removed more service-English from ordinary prose: `Target-group plan`, `checkpoint`, `stage stop`, `synthesis design`, `open harnesses`, `agent-computer interface`, `human-in-the-loop`, `source usage`, `image plan`, `asset classification` and related expressions now have natural Russian forms in the plan. File names, URLs, source titles and product names were preserved. The relationship-map strengthening remains intentionally excluded by user decision. The old A2 executor package is still stale and must be rebuilt before reuse.
+
+
+
+## 2026-06-17 — A2 plan natural Russian rewrite, second pass
+
+A2 target-group plan was rewritten again in natural Russian. This pass targeted not only English service terms, but also artificial planning phrases that could contaminate the future article draft: `локальные вопросы`, `визуальный слой`, `маршрутизация лишнего материала`, and similar wording were replaced with plainer Russian. The accepted structure remained unchanged: ten mini-dossiers, five working blocks with expected working-sheet counts, explicit stops, a checkpoint after mini-dossiers, theory seeds, and the no-direct-comparison block. Relationship-map strengthening remains excluded by user decision.
+
+## 2026-06-17 — Corpus cuts, A3 genre failure, and version-control coverage gap
+
+After reviewing the completed A3 result, the user identified a core genre failure: A3 became a strong theory-like article about the status transition from agent run to accepted change, but it did not provide the technological map expected from Atlas. The important distinction is now fixed: the project is not working with separate knowledge domains for Theory, Atlas, Handbook and Fieldbook; it is working with one knowledge set projected through different cuts.
+
+Accepted mapping:
+
+```text
+Variant 2 / lifecycle of change → Theory.
+Variant 1 / technical layers → Atlas.
+Variant 5 / practitioner decisions → Handbook.
+Variant 8 / failure modes → Fieldbook.
+```
+
+This is now recorded in `work/decisions/ADR-0012-shared-knowledge-genre-cuts.md`, `work/theory-writing/reports/CORPUS_PROJECTION_CUTS_UPDATE_2026_06_17.md`, and the updated `work/theory-writing/WORKING_DOCUMENTS_MAP.md`. The Atlas V2 structure report was rewritten around technical layers rather than the earlier A1–A5 life-cycle-like map. The completed A3 text should be treated as a theory-ready fragment, not as an accepted Atlas article.
+
+A second issue was identified: version control is not yet covered enough as a public knowledge layer. The repository has strong internal Git/worktree/branch/merge protocols, and the theory mentions worktrees/PR/CI in several places, but there is no systematic Atlas/Handbook/Fieldbook coverage of Git/version-control as the substrate of agentic change. Current working conclusion: Git and Git-compatible workflow are the practical base for modern agentic development, not because alternatives are impossible, but because coding-agent work surfaces, PR/MR review, CI/status checks, protected branches, merge queues, worktrees and agent-authored PR studies largely assume a Git-compatible change model. This gap is recorded in `work/theory-writing/reports/VERSION_CONTROL_AGENTIC_DEVELOPMENT_COVERAGE_NOTE_2026_06_17.md` and in `work/approved-decisions.md`.
+
+## 2026-06-17 — Git layer accepted as separate Atlas article; theory skeleton implications
+
+The user accepted the conclusion that Git/version-control should be a separate Atlas article rather than a hidden section inside CI/review/acceptance tooling. This decision is now recorded as `work/decisions/ADR-0013-git-version-control-agentic-change-substrate.md`.
+
+The updated Atlas Level 1 map now treats `Git, worktree и PR/MR как субстрат агентского изменения` as its own layer. The neighboring acceptance article becomes `CI, status checks, review и acceptance gates`: it starts from an already formed change candidate and explains the gates applied to it. Specs/process-artifact coverage shifts to A8 in the working numbering.
+
+The theory skeleton does not need a new chapter or a full rebuild from this decision. Its lifecycle-of-change axis remains right. The change is in material routing and chapter-package gates: Git/worktree/PR/MR become a cross-cutting technical substrate for chapters VI, IX, XI, XII and XIII, while the ex-A3 result is preserved as a theory-ready donor for Part V. It should feed XI/XII/XIII around the status transition from agent run to verification material, review material, decision basis and post-merge route. It should not be used as an accepted Atlas article.
+
+A new report `work/theory-writing/reports/THEORY_SKELETON_IMPLICATIONS_AFTER_ATLAS_CUTS_2026_06_17.md` records this: Theory should not cover technologies by becoming a mini-Atlas. Each chapter package should instead run an `atlas-technical-grounding check`: identify which Atlas layers ground the argument, which concrete technologies must be mentioned to keep the chapter from becoming empty methodology, and which technical detail belongs in the Atlas rather than in the theory chapter.
+
+## 2026-06-17 — Atlas parity, Russian part names, and attachment maps
+
+The user fixed an important corpus-level decision: Atlas is not an appendix to Theory. It is a peer major part of the public corpus. The shared knowledge set is projected through different cuts: Theory by lifecycle of change, Atlas by technical layers, Working Scenarios / Handbook by practitioner decisions, and Catalog of Problems and Solutions / Fieldbook by failures and recovery. This decision is recorded as `work/decisions/ADR-0014-public-corpus-part-names-and-atlas-parity.md`.
+
+A new detailed Atlas planning map was added at `work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md`. It expands A1–A8 into required topics, mini-dossier queues, artifacts, selection criteria and boundaries. Future Atlas target-group plans should be built from this map rather than from the older A1–A5 shape.
+
+A new living map `work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md` records how Atlas layers, fragments, dossiers and story anchors attach to each Theory chapter. This is now the synchronization document to update when Atlas changes, when theory-ready fragments are accepted, or when chapter target plans are rebuilt.

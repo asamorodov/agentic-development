@@ -1,35 +1,36 @@
 {
-  "changed_files": [
-    "work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md",
-    "work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md",
-    "work/reports/TASK_PACKAGE_PROTOCOL_DRY_RUN_VALIDATION_UPDATE_2026_06_16.md",
-    "work/atlas/packages/agent_execution_stack_ATLAS_V2_ARTICLE.zip",
-    "START.md",
-    "work/discourse.md",
-    "work/theory-writing/WORKING_DOCUMENTS_MAP.md",
-    "work/APPLY_NOTES.md",
-    "work/CHECKS.json",
-    "work/COMMIT_MESSAGE.txt",
-    "CHECKS.json",
-    "COMMIT_MESSAGE.txt"
-  ],
-  "state_files_updated": [
-    "START.md",
-    "work/discourse.md",
-    "work/theory-writing/WORKING_DOCUMENTS_MAP.md",
-    "work/APPLY_NOTES.md",
-    "work/CHECKS.json",
-    "work/COMMIT_MESSAGE.txt",
-    "CHECKS.json",
-    "COMMIT_MESSAGE.txt"
-  ],
+  "date": "2026-06-17",
+  "status": "manual-overlay-built",
   "checks": [
-    "updated general package creation protocol with full runner dry-run validation",
-    "updated package manufactury protocol with required full dry-run for long/staged/reordered packages",
-    "kept protocol generic; no mini-dossier-specific rule was added",
-    "added report documenting the packaging error class and protocol repair",
-    "replaced cached A2 executor package with repaired fixed package",
-    "verified protocol text does not contain mini-dossier-specific dry-run rule"
-  ],
-  "notes": "Full overlay includes prior A1/A2 planning state, repaired A2 package cache, and the new protocol validation gate."
+    {
+      "name": "ADR-0014 created",
+      "status": "pass",
+      "details": "Records Atlas as peer major part and Russian naming direction for practical sections."
+    },
+    {
+      "name": "Detailed Atlas A1-A8 map",
+      "status": "pass",
+      "details": "work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md exists and contains per-article required topics, mini-dossiers, artifacts, criteria and boundaries."
+    },
+    {
+      "name": "Theory attachment map",
+      "status": "pass",
+      "details": "work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md exists and routes Atlas layers/fragments/dossiers/story anchors to Theory chapters."
+    },
+    {
+      "name": "Status map updated",
+      "status": "pass",
+      "details": "ATLAS_V2_STRUCTURE_AND_ARTICLE_STATUS points future planning to the detailed Atlas map."
+    },
+    {
+      "name": "Working map and discourse updated",
+      "status": "pass",
+      "details": "WORKING_DOCUMENTS_MAP and discourse include the new ADR and maps."
+    },
+    {
+      "name": "Overlay shape",
+      "status": "pass",
+      "details": "Overlay paths are repository-relative and root-shaped."
+    }
+  ]
 }

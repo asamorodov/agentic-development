@@ -1,172 +1,123 @@
-# Target-group plan: A2. Стек агентского исполнения
+# План A2. Стек агентского исполнения
 
 Статус: план для будущего исполнительного пакета.  
 Статья: `A2. Стек агентского исполнения: рабочие поверхности, среды выполнения и выбор между ними`.  
-Article id: `agent_execution_stack`.  
-Основание: Skeleton V6.3, Atlas V2, `ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md`.
+Служебный идентификатор статьи: `agent_execution_stack`.  
+Основание: Skeleton V6.3, Atlas V2 и общий план крупных статей `ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md`.
 
-## 1. Назначение статьи
+## 1. Задача статьи
 
-Статья должна объяснить современный стек агентского исполнения как набор разных рабочих форм, а не как список продуктов. Читателю нужно увидеть, что агентская работа может жить в чате, терминале, IDE, облачной среде, среде вокруг спецификации, открытой рабочей обвязке, графовой среде выполнения, многоагентной системе, слое наблюдаемости или возобновляемом процессе с участием человека.
+Статья должна объяснить современный стек агентского исполнения не как перечень продуктов, а как несколько разных способов организовать работу агента. Читатель должен увидеть, что агент может работать через чат, терминал, IDE, облачную среду, спецификацию, открытую рабочую обвязку, графовую среду выполнения, многоагентную координацию, слой наблюдаемости или длинный рабочий процесс с участием человека.
 
-Главный вопрос статьи: где живёт агентская работа и какие последствия имеет выбранная среда. Разные формы по-разному распределяют действие, состояние, права, видимость хода работы, проверку, переносимость, стоимость и роль человека.
+Главный вопрос статьи: где именно идёт агентская работа, какие слои стоят под видимой формой инструмента и как выбранная среда меняет действие агента, состояние выполнения, права, видимость хода работы, проверку, переносимость, стоимость и роль человека.
 
-Статья пишется как самостоятельная публичная статья Атласа. Она должна держать общую рамку agentic development и быть понятной читателю, который не знает внутренней истории проекта. Теория позже возьмёт из статьи свой срез для вступительной карты поля, глав VII–XI и заключения.
+Рабочая гипотеза: форма, в которой агент доступен пользователю, не равна архитектуре агентского исполнения. Терминал, IDE, облачный режим с PR или веб-приложение показывают, где человек встречает агента. Под этой видимой формой могут стоять разные агентские ядра, рабочие среды, журналы действий, графы выполнения, проверки, оценки и места, где в работу включается человек.
+
+Сравнивать эти формы нужно не по названиям продуктов, а по тому, какой вопрос они решают. Для каждой формы надо понять: где появляется задача, где агент действует, что является рабочей поверхностью, где хранится состояние выполнения, как виден ход работы, как результат возвращается в проект, где в работу включается человек и чего эта форма сама по себе не доказывает.
+
+A2 должна держать границу с соседними статьями. Среда исполнения создаёт условия для действия агента, но сама по себе не делает результат принятым изменением. Переход от прогона к принятому изменению раскрывается в A3. Продолжимое рабочее состояние проекта раскрывается через Persistent Work Graph. В A2 эти границы нужно обозначать, но не писать вместо соседних статей.
+
+Статья должна читаться как самостоятельная публичная статья Атласа. Она не должна быть справочником по инструментам и не должна превращаться в инструкцию по настройке одного процесса. Позже теория возьмёт из неё свой срез для вступительной карты поля, глав VII–XI и заключения.
 
 ## 2. Главные риски
 
-1. Статья может стать каталогом инструментов: Claude Code, Codex, Cursor, Kiro, OpenHands, LangGraph и так далее. Это недопустимо. Инструменты нужны как фактура для объяснения рабочих форм.
-2. Статья может натянуть все технологии на одну сравнительную таблицу. Это тоже плохо: технологии находятся на разных уровнях стека и не всегда конкурируют напрямую.
-3. Статья может смешать рабочую поверхность, среду выполнения, интерфейс между агентом и компьютером, многоагентную оркестрацию, наблюдаемость и проверку. Эти различения нужно удержать явно.
-4. Статья может уйти во внутренний проектный контекст вместо публичной карты современного стека. Этого нельзя делать: текст должен оставаться самостоятельным материалом сайта.
-5. Статья может оказаться слишком гладкой и без фактуры. Для каждого важного блока нужны первичные источники, технические детали, ограничения, UI/diagram candidates или research anchors.
+1. Статья может стать каталогом инструментов: Claude Code, Codex, Cursor, Kiro, OpenHands, LangGraph и так далее. Инструменты нужны как фактура, а не как порядок статьи.
+2. Статья может свести разные технологии к одной таблице сравнения. Это неверный ход: часть технологий находится на разных уровнях стека и не конкурирует напрямую.
+3. Статья может смешать рабочую поверхность, среду выполнения, интерфейс между агентом и компьютером, многоагентную координацию, наблюдаемость и проверку результата. Эти различения нужно держать явно.
+4. Статья может принять самоописание продукта за аналитическую категорию. Если источник называет продукт `agent`, `SDK`, `runtime`, `cloud` или `autonomous`, это ещё не значит, что именно так его нужно классифицировать в статье.
+5. Статья может потерять связь с уже написанной теорией. Для A2 особенно важны зёрна из главы IX, фрагментов A6/C4, глав VII/VIII/X и существующих статей Kiro / Spec Kit / SPDD / Gas Town.
+6. Статья может стать слишком гладкой и общей. Для каждого важного блока нужны первичные источники, техническая фактура, ограничения, возможные изображения и исследовательские опоры.
 
-## 3. Обрабатываемые файлы
+## 3. Выходные файлы
 
-```yaml
-group_mode: linked-target-edit
-files:
-  - path: work/atlas/articles/agent_execution_stack.md
-    status: future
-    role: primary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Основная публичная статья Атласа V2."
-  - path: work/atlas/articles/agent_execution_stack_source_usage.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Реестр внешних и внутренних источников, реально использованных в статье и мини-досье."
-  - path: work/atlas/articles/agent_execution_stack_source_transfer_ledger.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Журнал решений о переносе фактуры: что вошло в статью, что осталось в мини-досье, что отложено."
-  - path: work/atlas/articles/agent_execution_stack_image_plan.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "План изображений и решений по визуальным кандидатам."
-  - path: work/atlas/articles/agent_execution_stack_external_image_queue.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Очередь внешних реальных изображений для будущего asset-pass."
-  - path: work/atlas/articles/agent_execution_stack_open_questions.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Открытые вопросы, слабые места источников и решения, сознательно отложенные из статьи."
-  - path: work/atlas/articles/agent_execution_stack_theory_links.md
-    status: future
-    role: supporting-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Связи статьи с Skeleton V6.3, главами теории и существующими статьями Атласа."
-  - path: work/atlas/articles/agent_execution_stack_degradation_and_duplication_audit.md
-    status: future
-    role: diagnostic-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Проверка, что статья не стала каталогом, повтором теории или механическим обзором продуктов."
-  - path: work/atlas/articles/agent_execution_stack_readiness_report.md
-    status: future
-    role: diagnostic-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Итоговая готовность статьи и companion-файлов."
-  - path: work/atlas/articles/agent_execution_stack_synthesis_design.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Проект сшивки мини-досье в статью: главный ход, порядок разделов, переходы, что переносится и что остаётся за пределами статьи."
-  - path: work/atlas/articles/agent_execution_stack_MANIFEST.md
-    status: future
-    role: diagnostic-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Список выходных файлов и краткое назначение каждого."
-  - path: work/atlas/articles/agent_execution_stack_VERIFY.md
-    status: future
-    role: diagnostic-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Проверка выполнения очереди и готовности результата."
-  - path: work/atlas/articles/agent_execution_stack_RESUME.md
-    status: future
-    role: diagnostic-output
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Короткая записка для возобновления работы, если пакет остановлен или результат требует repair."
-  - path: work/atlas/articles/agent_execution_stack_mini_dossiers/01_terminal_and_local_agents.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о терминальных и локальных агентах."
-  - path: work/atlas/articles/agent_execution_stack_mini_dossiers/02_ide_agents.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье об IDE-агентах и средах вокруг редактора."
-  - path: work/atlas/articles/agent_execution_stack_mini_dossiers/03_cloud_issue_to_pr_agents.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье об облачных агентских режимах, которые берут задачу и возвращают PR."
-  - path: work/atlas/articles/agent_execution_stack_mini_dossiers/04_app_builder_surfaces.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о средах сборки приложения и end-to-end app-builder формах."
-  - path: work/atlas/articles/agent_execution_stack_mini_dossiers/05_spec_driven_surfaces.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о средах, построенных вокруг спецификаций."
-  - path: work/atlas/articles/agent_execution_stack_mini_dossiers/06_open_harnesses_and_aci.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье об открытых рабочих обвязках и agent-computer interface."
-  - path: work/atlas/articles/agent_execution_stack_mini_dossiers/07_graph_and_agent_runtimes.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о LangGraph, OpenAI Agents SDK, Google ADK и близких средах выполнения."
-  - path: work/atlas/articles/agent_execution_stack_mini_dossiers/08_multi_agent_orchestration.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о многоагентной оркестрации."
-  - path: work/atlas/articles/agent_execution_stack_mini_dossiers/09_observability_and_evaluation.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о наблюдаемости, трассировке и автоматических оценках."
-  - path: work/atlas/articles/agent_execution_stack_mini_dossiers/10_durable_workflow_and_human_in_loop.md
-    status: future
-    role: secondary
-    write_policy: replace-full-file
-    result_policy: overlay-path
-    notes: "Мини-досье о возобновляемых рабочих процессах и участии человека."
+Главный файл статьи:
+
+```text
+work/atlas/articles/agent_execution_stack.md
 ```
 
-## 4. Файлы для чтения
+Файлы, которые сопровождают статью:
+
+```text
+work/atlas/articles/agent_execution_stack_source_usage.md
+work/atlas/articles/agent_execution_stack_source_transfer_ledger.md
+work/atlas/articles/agent_execution_stack_image_plan.md
+work/atlas/articles/agent_execution_stack_external_image_queue.md
+work/atlas/articles/agent_execution_stack_open_questions.md
+work/atlas/articles/agent_execution_stack_theory_links.md
+work/atlas/articles/agent_execution_stack_relationship_map.md
+work/atlas/articles/agent_execution_stack_synthesis_design.md
+work/atlas/articles/agent_execution_stack_degradation_and_duplication_audit.md
+work/atlas/articles/agent_execution_stack_readiness_report.md
+work/atlas/articles/agent_execution_stack_MANIFEST.md
+work/atlas/articles/agent_execution_stack_VERIFY.md
+work/atlas/articles/agent_execution_stack_RESUME.md
+```
+
+Файлы контрольной точки после мини-досье:
+
+```text
+work/atlas/articles/agent_execution_stack_CHECKPOINT_AFTER_MINI_DOSSIERS.md
+work/atlas/articles/agent_execution_stack_CHECKPOINT_AFTER_MINI_DOSSIERS_DECISION.md
+```
+
+Второй файл создавать только тогда, когда пользователь содержательно ответит на вопрос контрольной точки.
+
+Мини-досье:
+
+```text
+work/atlas/articles/agent_execution_stack_mini_dossiers/01_terminal_and_local_agents.md
+work/atlas/articles/agent_execution_stack_mini_dossiers/02_ide_agents.md
+work/atlas/articles/agent_execution_stack_mini_dossiers/03_cloud_issue_to_pr_agents.md
+work/atlas/articles/agent_execution_stack_mini_dossiers/04_app_builder_surfaces.md
+work/atlas/articles/agent_execution_stack_mini_dossiers/05_spec_driven_surfaces.md
+work/atlas/articles/agent_execution_stack_mini_dossiers/06_open_harnesses_and_aci.md
+work/atlas/articles/agent_execution_stack_mini_dossiers/07_graph_and_agent_runtimes.md
+work/atlas/articles/agent_execution_stack_mini_dossiers/08_multi_agent_orchestration.md
+work/atlas/articles/agent_execution_stack_mini_dossiers/09_observability_and_evaluation.md
+work/atlas/articles/agent_execution_stack_mini_dossiers/10_durable_workflow_and_human_in_loop.md
+```
+
+## 4. Обязательные зёрна из уже написанной теории
+
+Эти материалы не нужны для общего пересказа. В них уже есть сильные различения, поэтому их нужно использовать как исходные опоры для мини-досье и проекта сшивки.
+
+### Центральные зёрна всей статьи
+
+```text
+work/theory-writing/fragments/A6_execution_environment_distinctions.md
+work/theory-writing/chapters/IX_execution_environment_runtime_rights.md
+work/theory-writing/fragments/C4_execution_runtime_to_pwg.md
+```
+
+`A6_execution_environment_distinctions.md` задаёт главное различение для A2: проверять нужно не список инструментов, а слой агентской работы, который закрывает конкретная форма. Этот фрагмент обязателен для P01, карты отношений и проекта сшивки.
+
+Глава IX даёт основную рамку среды исполнения: где агент работает, какие действия ему разрешены, что делает среда, как она возвращает обратную связь и где проходит граница между выполнением, разрешением, видимостью хода работы и принятием результата. Это главное зерно для терминальных агентов, облачных режимов, открытых рабочих обвязок, сред выполнения, наблюдаемости и участия человека.
+
+`C4_execution_runtime_to_pwg.md` удерживает важную границу: долговечное выполнение и долговечная работа — не одно и то же. Среда выполнения может сохранить ход исполнения, но это ещё не значит, что проект получил продолжимое рабочее состояние.
+
+### Зёрна по отдельным мини-досье
+
+| Мини-досье | Используемые зёрна |
+|---|---|
+| 01 — терминальные и локальные агенты | Глава IX: команда, инструмент, браузер, полезная обратная связь среды; история Armin Ronacher / Pi. |
+| 02 — IDE-агенты | A6 как опора для различения рабочей поверхности и архитектуры исполнения; по возможности — уже восстановленные истории о разработчике, который работает рядом с агентом. |
+| 03 — облачные агенты от задачи к PR | Глава IX: платформа готовит вариант изменения, но не принимает его; Stripe Minions как пример платформенной формы. |
+| 04 — среды сборки приложения | A6 как граница: среда сборки приложения не обязательно стоит в одном ряду с IDE, терминалом или средой выполнения. |
+| 05 — среды вокруг спецификаций | Глава IV, статьи Kiro / Spec Kit / SPDD: спецификация становится рабочей поверхностью, а не предварительным документом. |
+| 06 — открытые рабочие обвязки и интерфейс между агентом и компьютером | Глава IX, A6, история Armin Ronacher / Pi: инструментальная поверхность, командная оболочка, файлы, тесты, обратная связь среды. |
+| 07 — графовые и агентские среды выполнения | A6, C4 и глава VII как граница между состоянием выполнения и рабочим состоянием проекта. |
+| 08 — многоагентная координация | Глава X, B3, HumanLayer, Shopify Roast: координация многих задач и ролей не равна проверке результата. |
+| 09 — наблюдаемость и оценки | Глава II, глава IX, A7: трассировку, наблюдение и проверочный материал нужно различать. |
+| 10 — возобновляемый процесс и участие человека | Глава VIII, C4, HumanLayer, Shopify Roast: остановка, подтверждение, восстановление и выбор следующего режима. |
+
+### Как работать с зёрнами
+
+Если в плане сказано взять зерно из главы или фрагмента, сначала перенеси подходящий фрагмент в мини-досье как исходную опору. Не переписывай его сразу так, будто он плохой. Сначала расширь его внешними источниками, технической фактурой, примерами, ограничениями и связями с другими слоями. После добора перепиши итоговый фрагмент естественным русским языком с использованием словаря.
+
+Зерно не должно заставлять статью повторять главу теории. Его задача — сохранить уже найденное различение и дать мини-досье сильное начало.
+
+## 5. Файлы для чтения
 
 ### Управляющие документы
 
@@ -203,12 +154,31 @@ protocols/rules/fragment-defect-analysis-and-repair.md
 protocols/rules/visual-assets-and-figures.md
 ```
 
+### Теория, фрагменты и истории
+
+```text
+work/theory-writing/chapters/II_agentic_session_trace.md
+work/theory-writing/chapters/IV_spdd_specification_lifecycle.md
+work/theory-writing/chapters/VII_persistent_work_graph.md
+work/theory-writing/chapters/VIII_protected_process_profiles.md
+work/theory-writing/chapters/IX_execution_environment_runtime_rights.md
+work/theory-writing/chapters/X_gas_town_beads.md
+work/theory-writing/fragments/A6_execution_environment_distinctions.md
+work/theory-writing/fragments/A7_observation_vs_evidence.md
+work/theory-writing/fragments/C4_execution_runtime_to_pwg.md
+work/theory-writing/fragments/B3_gas_town_beyond_pwg.md
+content/stories/07_human_layer_agentic_harness_reconstruction_connected.md
+content/stories/11_mae_capozzi_maximum_deep_reconstruction_connected.md
+content/stories/13_armin_ronacher_pi_minimal_agent_harness_reconstruction_connected.md
+content/stories/14_stripe_minions_enterprise_agentic_platform_reconstruction_connected.md
+content/stories/15_shopify_roast_executable_ai_workflow_reconstruction_connected.md
+```
+
 ### Существующие статьи Атласа и связанные материалы
 
 ```text
 work/atlas/articles/kiro_specs.md
 work/atlas/articles/kiro_specs_source_usage.md
-work/atlas/articles/kiro_specs_image_plan.md
 work/atlas/articles/spec_kit_method.md
 work/atlas/articles/spec_kit_method_source_usage.md
 work/atlas/articles/spdd_method.md
@@ -227,28 +197,17 @@ work/dossiers/PERSISTENT_WORK_GRAPH_MECHANISM_DOSSIER.md
 work/dossiers/GAS_TOWN_METHOD_DOSSIER.md
 ```
 
-### Теория, карты и визуальные материалы
+### Визуальные материалы
 
 ```text
-work/theory-writing/fragments/00_spine_map.md
-work/theory-writing/fragments/A6_execution_environment_distinctions.md
-work/theory-writing/fragments/A7_observation_vs_evidence.md
-work/theory-writing/fragments/A8_authority_to_act_vs_complete.md
-work/theory-writing/fragments/A10_mode_selection_map.md
-work/theory-writing/fragments/A10_mode_selection_matrix.md
 work/theory-writing/asset-catalog/FIGURE_ASSET_CATALOG.md
 work/theory-writing/asset-catalog/LOCAL_ASSET_INDEX.md
 work/theory-writing/asset-catalog/EXTERNAL_REAL_IMAGE_CANDIDATES.md
-content/Cross_story_synthesis.md
-content/Theoretical_synthesis.md
-content/stories/07_human_layer_agentic_harness_reconstruction_connected.md
-content/stories/13_armin_ronacher_pi_minimal_agent_harness_reconstruction_connected.md
-content/stories/15_shopify_roast_executable_ai_workflow_reconstruction_connected.md
 ```
 
-## 5. Стартовые внешние источники
+## 6. Стартовые внешние источники
 
-Исполнитель должен открывать первичные источники по мере работы над соответствующим мини-досье, а не читать весь список сразу. Внешний поиск разрешён и обязателен там, где источник устарел, недостаточен или ведёт к более точной первичной странице.
+Исполнитель открывает первичные источники тогда, когда работает над соответствующим мини-досье. Не нужно читать весь список заранее. Внешний поиск обязателен, если стартовый источник устарел, не закрывает вопрос или ведёт к более точной первичной странице.
 
 ### Терминальные и локальные агенты
 
@@ -302,7 +261,7 @@ https://kiro.dev/docs/hooks/
 https://kiro.dev/docs/mcp/
 ```
 
-### Open harnesses и agent-computer interface
+### Открытые рабочие обвязки и интерфейс между агентом и компьютером
 
 ```text
 https://swe-agent.com/latest/
@@ -314,7 +273,7 @@ https://docs.openhands.dev/sdk
 https://github.com/OpenHands/software-agent-sdk/
 ```
 
-### Graph/runtime frameworks
+### Графовые и агентские среды выполнения
 
 ```text
 https://docs.langchain.com/oss/python/langgraph/overview
@@ -327,7 +286,7 @@ https://adk.dev/
 https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/adk
 ```
 
-### Многоагентная оркестрация
+### Многоагентная координация
 
 ```text
 https://microsoft.github.io/autogen/stable//index.html
@@ -358,609 +317,407 @@ https://arxiv.org/abs/2606.05548
 https://arxiv.org/abs/2511.03690
 ```
 
-## 6. Очередь рабочих prompt-ов
 
-### P01 — контракт статьи, границы и карта мини-досье
+## 7. Как собирать мини-досье
+
+Мини-досье нельзя писать одним ходом. Каждое из них должно пройти отдельную цепочку рабочих инструкций: сначала источники и зёрна, затем черновик, добор, ограничения, сравнения, изображения и только потом итоговый текст.
+
+Для каждого мини-досье нужно выполнить такие действия:
+
+1. открыть первичные источники и записать, как они сами описывают инструмент, среду или метод;
+2. перенести зёрна из уже написанной теории, если они указаны для этого досье;
+3. собрать первый фактический черновик;
+4. переписать черновик естественным русским языком с использованием словаря, не ограничиваясь заменой отдельных слов;
+5. сделать дополнительный поиск и пройти по полезным ссылкам из найденных материалов;
+6. добрать общий материал, которого не хватает для понимания формы;
+7. добрать материал по вопросам именно этого досье;
+8. зафиксировать ограничения, слабые места и места, где самоописание источника нельзя принимать за готовую аналитику;
+9. отдельно ответить, с чем эту форму нельзя сравнивать напрямую и почему;
+10. собрать кандидатов для изображений и схем;
+11. решить, что войдёт в A2, что останется только в мини-досье, а что нужно отнести к другой статье или другому узлу Атласа;
+12. переписать итоговый фрагмент естественным русским языком с использованием словаря.
+
+В конце каждого мини-досье нужно коротко ответить:
+
+- что эта форма добавляет в агентскую разработку;
+- какой участок жизненного цикла изменения она меняет;
+- с чем она действительно пересекается или конкурирует;
+- с чем её нельзя сравнивать напрямую и почему;
+- какой уже написанный фрагмент теории она подтверждает, уточняет или ограничивает.
+
+## 8. Очередь рабочих инструкций
+
+### P01 — контракт статьи, зёрна и карта мини-досье
 
 ```text
-Прочитай сначала:
-- START.md
-- work/discourse.md
-- work/theory-writing/WORKING_DOCUMENTS_MAP.md
-- work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V6_3_ACCEPTED.md
-- work/theory-writing/reports/ATLAS_V2_STRUCTURE_AND_ARTICLE_STATUS.md
-- work/atlas/plans/ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Прочитай управляющие документы, словарь, правила языка, общий план Атласа V2, Skeleton V6.3, A6, главу IX и C4. Создай стартовые файлы статьи `agent_execution_stack`.
 
-Создай стартовые файлы целевой группы и зафиксируй контракт статьи `agent_execution_stack`.
-
-Нужно записать:
-- какую задачу выполняет статья в Атласе V2;
-- почему она не является каталогом инструментов;
+Зафиксируй:
+- задачу статьи в Атласе V2;
+- рабочую гипотезу: форма, в которой агент доступен пользователю, не равна архитектуре исполнения;
+- почему статья не является каталогом инструментов;
 - какие мини-досье будут собраны;
-- какие мини-досье должны быть крупными, а какие могут быть короче;
-- какие локальные углы усиления заданы для каждого мини-досье;
-- какие источники входят в стартовый source seed.
+- какие зёрна из уже написанных глав и фрагментов нужно использовать;
+- какие вопросы заданы для каждого мини-досье;
+- какие источники входят в стартовый набор;
+- какие материалы нужно перенести в другие статьи Атласа.
 
-Пиши создаваемый текст естественным русским языком. Не делай выводов о личном процессе автора или о Новой. Запиши результат в `agent_execution_stack_open_questions.md`, `agent_execution_stack_source_usage.md` и начальные разделы companion-файлов.
+Пиши естественным русским языком и используй словарь. Запиши результат в начальные разделы `agent_execution_stack_source_usage.md`, `agent_execution_stack_open_questions.md`, `agent_execution_stack_theory_links.md`, `agent_execution_stack_MANIFEST.md`, `agent_execution_stack_VERIFY.md`, `agent_execution_stack_RESUME.md`.
 ```
 
 ### P02 — мини-досье: терминальные и локальные агенты
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Используй как зёрна главу IX и историю Armin Ronacher / Pi. Открой первичные источники по Claude Code, Codex CLI, Aider и Amp. Собери мини-досье о терминальных и локальных агентах.
 
-Открой первичные источники по Claude Code, Codex CLI, Aider и Amp. Собери мини-досье о терминальных и локальных агентах.
+Вопросы для этого досье:
+- как агент работает рядом с локальным деревом проекта, командной строкой, файлами и тестами;
+- как быстрый цикл действия усиливает работу, но переносит на пользователя вопросы прав, окружения и проверки.
 
-Локальные углы усиления:
-- агент работает рядом с локальным деревом проекта, командной строкой, файлами и тестами;
-- быстрый цикл действия может давать силу, но переносит на пользователя вопросы прав, окружения и проверки;
+В конце разведи локальную рабочую поверхность, агентское ядро, командная оболочка / файлы / тесты, права, проверку и принятие результата.
 
+Добавь короткий блок `С чем нельзя сравнивать напрямую`: перечисли 2–4 близкие формы, которые не являются прямыми конкурентами, и объясни, на каком уровне стека проходит различие.
 
-Внутри прохода сделай основной поиск, первый сбор, русскую перепись, альтернативный поиск по найденным ссылкам, добор материала, локальное усиление, ещё одну русскую перепись и фиксацию кандидатов для изображений. Не превращай досье в таблицу сравнения. В конце коротко ответь на три вопроса: что эта форма добавляет, какой участок жизненного цикла меняет, с чем пересекается или конкурирует.
-
-Запиши результат в `agent_execution_stack_mini_dossiers/01_terminal_and_local_agents.md`, обнови `source_usage`, `source_transfer_ledger`, `image_plan`, `external_image_queue` и `open_questions`.
+Запиши результат в `agent_execution_stack_mini_dossiers/01_terminal_and_local_agents.md` и обнови сопроводительные файлы.
 ```
 
 ### P03 — мини-досье: IDE-агенты
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack_mini_dossiers/01_terminal_and_local_agents.md
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Используй A6 как рамку различения рабочей поверхности и архитектуры исполнения. Открой первичные источники по Cursor, JetBrains Junie, GitHub Copilot в IDE и близким редакторным формам. Собери мини-досье об IDE-агентах.
 
-Открой первичные источники по Cursor, JetBrains Junie, GitHub Copilot в IDE и близким редакторным формам. Собери мини-досье об IDE-агентах.
+Вопросы для этого досье:
+- как IDE-агент работает внутри среды понимания кода и навигации по проекту;
+- как человек остаётся рядом с правкой, хотя часть анализа, запуска и проверки переходит агенту.
 
-Локальные углы усиления:
-- IDE-агент работает внутри среды понимания кода и навигации по проекту;
-- человек часто остаётся рядом с правкой, но часть анализа, запуска и проверки переходит агенту;
+Покажи, где IDE-агент действительно отличается от терминального агента, а где различие оказывается только пользовательской формой.
 
+Добавь короткий блок `С чем нельзя сравнивать напрямую`: перечисли 2–4 близкие формы, которые не являются прямыми конкурентами, и объясни, на каком уровне стека проходит различие.
 
-Собери материал полным циклом: основной поиск, черновик, русская перепись, альтернативный поиск, добор, локальное усиление, русская перепись, visual candidates. В конце зафиксируй, как IDE-агенты отличаются от терминальных и облачных режимов.
-
-Запиши результат в `agent_execution_stack_mini_dossiers/02_ide_agents.md` и обнови companion-файлы.
+Запиши результат в `agent_execution_stack_mini_dossiers/02_ide_agents.md` и обнови сопроводительные файлы.
 ```
 
 ### P04 — мини-досье: облачные агенты от задачи к PR
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack_mini_dossiers/01_terminal_and_local_agents.md
-- work/atlas/articles/agent_execution_stack_mini_dossiers/02_ide_agents.md
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Используй как зёрна главу IX и историю Stripe Minions. Открой первичные источники по GitHub Copilot cloud agent, Jules, Codex/GitHub integration и близким режимам от задачи к PR. Собери мини-досье об облачных агентах, которые берут задачу, работают в отдельной среде и возвращают PR или материал для ревью.
 
-Открой первичные источники по GitHub Copilot cloud agent, Jules, Codex/GitHub integration и близким issue-to-PR режимам. Собери мини-досье об облачных агентах, которые берут задачу, работают в отдельной среде и возвращают PR или review.
+Вопросы для этого досье:
+- как работа переносится из локального цикла в фоновую или облачную среду;
+- как результат возвращается через PR, ревью, CI и журнал сессии;
+- почему автономия увеличивается, но растёт цена постановки задачи, видимости работы и ревью.
 
-Локальные углы усиления:
-- работа переносится из локального цикла в фоновую или облачную среду;
-- результат возвращается через PR, review, CI и журнал сессии;
-- автономия увеличивается, но возрастает цена постановки задачи, видимости и review.
+Отдельно удержи различение: платформа может подготовить вариант изменения, но не принимает результат за проект.
 
-Собери материал полным циклом, включая alternative search и visual candidates. Обрати внимание на то, какие детали среды видит пользователь и где проходит граница между выполнением и принятием.
+Добавь короткий блок `С чем нельзя сравнивать напрямую`: перечисли 2–4 близкие формы, которые не являются прямыми конкурентами, и объясни, на каком уровне стека проходит различие.
 
-Запиши результат в `agent_execution_stack_mini_dossiers/03_cloud_issue_to_pr_agents.md` и обнови companion-файлы.
+Запиши результат в `agent_execution_stack_mini_dossiers/03_cloud_issue_to_pr_agents.md` и обнови сопроводительные файлы.
 ```
 
 ### P05 — мини-досье: среды сборки приложения
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Используй A6 как границу: среда сборки приложения не обязательно стоит в одном ряду с терминалом, IDE или средой выполнения. Открой первичные источники по Replit Agent и близким формам, где агентская работа подаётся как путь от идеи к работающему приложению. Собери короткое, но фактурное мини-досье.
 
-Открой первичные источники по Replit Agent и близким app-builder формам. Собери короткое, но фактурное мини-досье о средах, где агентская работа подаётся как путь от идеи к работающему приложению.
+Вопросы для этого досье:
+- как такая среда объединяет постановку, генерацию, запуск, публикацию и часть отладки;
+- почему она может быть удобна для нового приложения, но хуже совпадает с работой над зрелым репозиторием.
 
-Локальные углы усиления:
-- такая среда объединяет постановку, генерацию, запуск, публикацию и часть отладки;
-- она может быть удобна для нового приложения, но плохо совпадает с работой над зрелым репозиторием;
+В конце объясни, зачем этот блок нужен A2 и почему он не должен стать центром статьи.
 
+Добавь короткий блок `С чем нельзя сравнивать напрямую`: перечисли 2–4 близкие формы, которые не являются прямыми конкурентами, и объясни, на каком уровне стека проходит различие.
 
-Собери материал полным циклом, но не раздувай досье, если источники дают только продуктовый уровень. В конце явно укажи, почему этот блок нужен статье и почему он не должен стать её центром.
-
-Запиши результат в `agent_execution_stack_mini_dossiers/04_app_builder_surfaces.md` и обнови companion-файлы.
+Запиши результат в `agent_execution_stack_mini_dossiers/04_app_builder_surfaces.md` и обнови сопроводительные файлы.
 ```
 
 ### P06 — мини-досье: среды вокруг спецификаций
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/kiro_specs.md
-- work/atlas/articles/kiro_specs_source_usage.md
-- work/atlas/articles/spec_kit_method.md
-- work/atlas/articles/spdd_method.md
-- work/dossiers/KIRO_SPECS_DOSSIER.md
-- work/dossiers/SPEC_KIT_METHOD_DOSSIER.md
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Используй как зёрна главу IV и существующие статьи Kiro, Spec Kit и SPDD. Открой первичные источники по Kiro specs, Spec Kit и близким средам вокруг спецификаций. Собери мини-досье о средах, где агентская работа строится вокруг требований, проекта решения, задач, проектных правил и точек подтверждения.
 
-Открой первичные источники по Kiro specs, Spec Kit и близким spec-driven поверхностям. Собери мини-досье о средах, где агентская работа строится вокруг requirements, design, tasks, steering и approval points.
+Вопросы для этого досье:
+- как спецификация становится рабочей поверхностью, а не предварительным документом;
+- как среда ведёт пользователя через требования, дизайн и задачи.
 
-Локальные углы усиления:
-- спецификация становится рабочей поверхностью, а не предварительным документом;
-- среда ведёт пользователя через требования, дизайн и задачи;
+Не переписывай уже существующую статью Kiro. Используй её как опору и покажи, какую роль среды вокруг спецификаций играют именно в статье о стеке исполнения.
 
+Добавь короткий блок `С чем нельзя сравнивать напрямую`: перечисли 2–4 близкие формы, которые не являются прямыми конкурентами, и объясни, на каком уровне стека проходит различие.
 
-Не переписывай уже существующую статью Kiro. Используй её как опору и покажи, какую роль spec-driven поверхности играют именно в статье о стеке исполнения.
-
-Запиши результат в `agent_execution_stack_mini_dossiers/05_spec_driven_surfaces.md` и обнови companion-файлы.
+Запиши результат в `agent_execution_stack_mini_dossiers/05_spec_driven_surfaces.md` и обнови сопроводительные файлы.
 ```
 
-### P07 — проверка первой рабочей группы мини-досье
+### P07 — мини-досье: открытые рабочие обвязки и интерфейс между агентом и компьютером
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack_mini_dossiers/01_terminal_and_local_agents.md
-- work/atlas/articles/agent_execution_stack_mini_dossiers/02_ide_agents.md
-- work/atlas/articles/agent_execution_stack_mini_dossiers/03_cloud_issue_to_pr_agents.md
-- work/atlas/articles/agent_execution_stack_mini_dossiers/04_app_builder_surfaces.md
-- work/atlas/articles/agent_execution_stack_mini_dossiers/05_spec_driven_surfaces.md
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- work/atlas/articles/agent_execution_stack_open_questions.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/source-and-provenance.md
+Используй как зёрна главу IX, A6 и историю Armin Ronacher / Pi. Открой первичные источники по SWE-agent, OpenHands, OpenHands Software Agent SDK и Aider там, где он выступает как открытая рабочая обвязка. Собери мини-досье об открытых рабочих обвязках и интерфейсе между агентом и компьютером.
 
-Проверь первую рабочую группу мини-досье. Не пиши статью. Оцени, не стала ли работа каталогом продуктов, достаточно ли фактуры, какие различения уже видны, какие досье нужно поправить или усилить и какие вопросы надо сохранить для следующих групп.
+Вопросы для этого досье:
+- почему агент является пользователем компьютерной среды и нуждается в подходящем интерфейсе;
+- как командная оболочка, файлы, тесты, навигация по репозиторию, журнал действий и sandbox становятся частью качества агентской работы.
 
-Пиши создаваемый текст естественным русским языком. Запиши результат в `agent_execution_stack_open_questions.md`, `source_transfer_ledger` и `RESUME.md`. Если нужен короткий ремонт одного из мини-досье, внеси его сразу и зафиксируй причину.
+Особое внимание удели SWE-agent ACI и OpenHands SDK. В конце покажи, чем открытая рабочая обвязка отличается от IDE, терминального агента и среды выполнения.
+
+Добавь короткий блок `С чем нельзя сравнивать напрямую`: перечисли 2–4 близкие формы, которые не являются прямыми конкурентами, и объясни, на каком уровне стека проходит различие.
+
+Запиши результат в `agent_execution_stack_mini_dossiers/06_open_harnesses_and_aci.md` и обнови сопроводительные файлы.
 ```
 
-### P08 — мини-досье: open harnesses и agent-computer interface
+### P08 — мини-досье: графовые и агентские среды выполнения
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- work/atlas/articles/agent_execution_stack_open_questions.md
-- content/stories/13_armin_ronacher_pi_minimal_agent_harness_reconstruction_connected.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Используй как зёрна A6, C4 и главу VII как границу между состоянием выполнения и рабочим состоянием проекта. Открой первичные источники по LangGraph, OpenAI Agents SDK и Google ADK. Собери мини-досье о графовых и агентских средах выполнения.
 
-Открой первичные источники по SWE-agent, OpenHands, OpenHands Software Agent SDK и Aider там, где он выступает как открытая рабочая обвязка. Собери мини-досье об open harnesses и agent-computer interface.
+Вопросы для этого досье:
+- как среда выполнения управляет ходом агентского процесса, состоянием выполнения, сессиями, передачами управления, остановками, инструментами и участием человека;
+- почему состояние выполнения не равно рабочему состоянию проекта.
 
-Локальные углы усиления:
-- агент является пользователем компьютерной среды и нуждается в подходящем интерфейсе;
-- shell, файлы, тесты, навигация по репозиторию, журнал действий и sandbox становятся частью качества агентской работы;
+Не превращай досье в инструкцию по API. В конце явно разведи состояние выполнения, трассировку, рабочее состояние проекта и принятое изменение.
 
+Добавь короткий блок `С чем нельзя сравнивать напрямую`: перечисли 2–4 близкие формы, которые не являются прямыми конкурентами, и объясни, на каком уровне стека проходит различие.
 
-Собери материал полным циклом. Особое внимание удели paper / docs по SWE-agent ACI и документации OpenHands SDK. В конце укажи, чем open harness отличается от IDE, терминального агента и runtime framework.
-
-Запиши результат в `agent_execution_stack_mini_dossiers/06_open_harnesses_and_aci.md` и обнови companion-файлы.
+Запиши результат в `agent_execution_stack_mini_dossiers/07_graph_and_agent_runtimes.md` и обнови сопроводительные файлы.
 ```
 
-### P09 — мини-досье: графовые и агентские среды выполнения
+### P09 — мини-досье: многоагентная координация
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- work/atlas/articles/agent_execution_stack_open_questions.md
-- work/atlas/articles/persistent_work_graph.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Используй как зёрна главу X, B3, HumanLayer и Shopify Roast. Открой первичные источники по AutoGen, CrewAI и LlamaIndex Workflows. Собери мини-досье о многоагентной координации.
 
-Открой первичные источники по LangGraph, OpenAI Agents SDK и Google ADK. Собери мини-досье о графовых и агентских средах выполнения.
+Вопросы для этого досье:
+- как несколько агентов делят работу, роли и сообщения;
+- почему это не автоматически даёт управляемую разработку;
+- какие новые проблемы видимости, ответственности и проверки создаёт такая координация.
 
-Локальные углы усиления:
-- среда выполнения управляет ходом агентского процесса, состоянием выполнения, sessions, handoffs, interrupts, tools и human-in-the-loop;
-- состояние выполнения не равно рабочему состоянию проекта;
+Отдельно отметь, где AutoGen / CrewAI / LlamaIndex действительно относятся к разработке программных изменений, а где являются общими фреймворками для агентов.
 
+Добавь короткий блок `С чем нельзя сравнивать напрямую`: перечисли 2–4 близкие формы, которые не являются прямыми конкурентами, и объясни, на каком уровне стека проходит различие.
 
-Собери материал полным циклом. Не превращай досье в tutorial по API. В конце явно разведи runtime state, trace, work state и accepted change.
-
-Запиши результат в `agent_execution_stack_mini_dossiers/07_graph_and_agent_runtimes.md` и обнови companion-файлы.
+Запиши результат в `agent_execution_stack_mini_dossiers/08_multi_agent_orchestration.md` и обнови сопроводительные файлы.
 ```
 
-### P10 — мини-досье: многоагентная оркестрация
+### P10 — мини-досье: наблюдаемость и оценки
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/gas_town.md
-- work/atlas/articles/gas_town_source_usage.md
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- work/atlas/articles/agent_execution_stack_open_questions.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Используй как зёрна главу II, главу IX, A7 и историю Mae / Honeycomb. Открой первичные источники по LangSmith, OpenAI tracing, ADK evaluation и близким слоям наблюдаемости. Собери мини-досье о трассировке, наблюдаемости и оценках агентских прогонов.
 
-Открой первичные источники по AutoGen, CrewAI и LlamaIndex Workflows. Собери мини-досье о многоагентной оркестрации.
+Вопросы для этого досье:
+- как след выполнения помогает увидеть, что делал агент;
+- почему трассировка, оценочный прогон и бенчмарк не равны доказательству корректности изменения.
 
-Локальные углы усиления:
-- несколько агентов могут делить работу, роли и сообщения, но это не автоматически даёт управляемую разработку;
-- оркестрация решает часть проблемы координации, но создаёт новые проблемы видимости, ответственности и проверки;
+Визуальные кандидаты здесь особенно важны: экраны трассировки, экраны прогонов, дашборды, схемы и диаграммы. Не вставляй изображения без классификации.
 
+Добавь короткий блок `С чем нельзя сравнивать напрямую`: перечисли 2–4 близкие формы, которые не являются прямыми конкурентами, и объясни, на каком уровне стека проходит различие.
 
-Собери материал полным циклом. Отдельно отметь, где AutoGen/CrewAI/LlamaIndex действительно относятся к разработке программных изменений, а где являются общими agent frameworks.
-
-Запиши результат в `agent_execution_stack_mini_dossiers/08_multi_agent_orchestration.md` и обнови companion-файлы.
+Запиши результат в `agent_execution_stack_mini_dossiers/09_observability_and_evaluation.md` и обнови сопроводительные файлы.
 ```
 
-### P11 — мини-досье: наблюдаемость и оценки
+### P11 — мини-досье: возобновляемый рабочий процесс и участие человека
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- work/atlas/articles/agent_execution_stack_open_questions.md
-- work/theory-writing/fragments/A7_observation_vs_evidence.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Используй как зёрна главу VIII, C4, HumanLayer и Shopify Roast. Открой первичные источники по паттернам HumanLayer, примерам Temporal с участием человека и движкам рабочих процессов там, где они помогают понять возобновляемую агентскую работу. Собери мини-досье о долгих процессах, подтверждениях человека и контрольных точках.
 
-Открой первичные источники по LangSmith, OpenAI tracing, ADK evaluation и близким слоям наблюдаемости. Собери мини-досье о трассировке, наблюдаемости и оценках агентских прогонов.
+Вопросы для этого досье:
+- как участие человека может быть событием в ходе выполнения, точкой подтверждения, обратной связью или решением о продолжении;
+- почему долгий процесс требует сохранения состояния, возобновления и понятной точки ожидания.
 
-Локальные углы усиления:
-- след выполнения помогает увидеть, что делал агент;
-- trace, eval и benchmark не равны доказательству корректности изменения;
+В конце разведи участие человека в ходе выполнения, ревью как проверку результата и принятие как право признать изменение готовым.
 
+Добавь короткий блок `С чем нельзя сравнивать напрямую`: перечисли 2–4 близкие формы, которые не являются прямыми конкурентами, и объясни, на каком уровне стека проходит различие.
 
-Собери материал полным циклом. Визуальные кандидаты здесь особенно важны: trace views, run views, dashboard screenshots, diagrams. Не вставляй изображения без asset classification.
-
-Запиши результат в `agent_execution_stack_mini_dossiers/09_observability_and_evaluation.md` и обнови companion-файлы.
+Запиши результат в `agent_execution_stack_mini_dossiers/10_durable_workflow_and_human_in_loop.md` и обнови сопроводительные файлы.
 ```
 
-### P12 — мини-досье: возобновляемый workflow и участие человека
+### P12 — проверка всех мини-досье, карта отношений и контрольная точка
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- work/atlas/articles/agent_execution_stack_open_questions.md
-- content/stories/07_human_layer_agentic_harness_reconstruction_connected.md
-- content/stories/15_shopify_roast_executable_ai_workflow_reconstruction_connected.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Прочитай все мини-досье, сопроводительные файлы, A6, C4, главы VII–X и статьи Kiro / Spec Kit / SPDD / Gas Town. Не пиши статью.
 
-Открой первичные источники по HumanLayer-like patterns, Temporal human-in-the-loop examples и workflow engines там, где они помогают понять возобновляемую агентскую работу. Собери мини-досье о долгих процессах, подтверждениях человека и контрольных точках.
+Сначала проверь, достаточно ли материала для сшивки. Если нужен узкий добор по одному месту, сделай его сразу и перепиши затронутый фрагмент естественным русским языком.
 
-Локальные углы усиления:
-- участие человека может быть runtime-событием, approval gate, обратной связью или решением о продолжении;
-- долгий процесс требует сохранения состояния, возобновления и понятной точки ожидания;
+Затем создай `agent_execution_stack_relationship_map.md`. В карте отношений покажи:
+- какие технологии находятся на одном уровне;
+- какие лежат на разных уровнях стека;
+- какие действительно конкурируют;
+- какие дополняют друг друга;
+- где один продукт совмещает несколько слоёв;
+- где источник сам себя описывает одним словом, но аналитически закрывает другой слой;
+- как уже написанные зёрна подтверждены, уточнены или ограничены внешними источниками.
 
+После карты отношений создай `agent_execution_stack_CHECKPOINT_AFTER_MINI_DOSSIERS.md`. Это плановая остановка перед сшивкой статьи.
 
-Собери материал полным циклом. В конце разведи human-in-the-loop как runtime pattern, review как проверку результата и acceptance как право принять изменение.
+В контрольной точке кратко напиши:
+- что сделано;
+- какие материалы стали главными;
+- какое сомнение реально влияет на будущую статью;
+- один вопрос пользователю.
 
-Запиши результат в `agent_execution_stack_mini_dossiers/10_durable_workflow_and_human_in_loop.md` и обнови companion-файлы.
+Вопрос:
+
+```text
+По собранным мини-досье и карте отношений статью можно сшить двумя способами. Первый — как последовательное расслоение агентского исполнения: от рабочих поверхностей к средам выполнения, открытым обвязкам, многоагентности, наблюдаемости и участию человека. Второй — как более жёсткую статью о выборе между режимами: какие формы действительно конкурируют за место в процессе, а какие относятся к разным слоям и не должны сравниваться напрямую. Какой акцент выбрать для сшивки?
 ```
 
-### P13 — проверка полноты мини-досье и точечный добор
+Решение по умолчанию: если пользователь не ответит по существу, сшивай статью вокруг различения слоёв агентского исполнения, но явно показывай места настоящей конкуренции между режимами.
 
-```text
-Прочитай сначала:
-- все файлы `work/atlas/articles/agent_execution_stack_mini_dossiers/*.md`
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- work/atlas/articles/agent_execution_stack_source_transfer_ledger.md
-- work/atlas/articles/agent_execution_stack_open_questions.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
-
-Проверь все мини-досье как корпус будущей статьи. Определи, достаточно ли материала для synthesis design, не пропущен ли важный класс технологий, не нужно ли сделать точечный добор по одному узкому месту.
-
-Если точечный добор нужен, выполни его сразу: открой первичные источники, добавь материал в соответствующее мини-досье и companion-файлы, затем перепиши затронутый фрагмент естественным русским языком.
-
-Не пиши основную статью. Запиши решение о готовности к сшивке в `agent_execution_stack_open_questions.md`, `source_transfer_ledger` и `RESUME.md`.
+Запиши результат в `agent_execution_stack_relationship_map.md`, `agent_execution_stack_CHECKPOINT_AFTER_MINI_DOSSIERS.md`, `agent_execution_stack_open_questions.md`, `agent_execution_stack_source_transfer_ledger.md` и `agent_execution_stack_RESUME.md`.
 ```
 
-### P14 — synthesis design
+### P13 — проект сшивки статьи
 
 ```text
-Прочитай сначала:
-- все файлы `work/atlas/articles/agent_execution_stack_mini_dossiers/*.md`
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- work/atlas/articles/agent_execution_stack_source_transfer_ledger.md
-- work/atlas/articles/agent_execution_stack_open_questions.md
-- work/skeletons/THEORETICAL_SYNTHESIS_REBUILT_SKELETON_V6_3_ACCEPTED.md
-- work/theory-writing/reports/ATLAS_V2_STRUCTURE_AND_ARTICLE_STATUS.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
+Перед началом прочитай `agent_execution_stack_CHECKPOINT_AFTER_MINI_DOSSIERS.md`. Если пользователь дал содержательный ответ на вопрос контрольной точки, кратко зафиксируй этот ответ и своё понимание в `agent_execution_stack_CHECKPOINT_AFTER_MINI_DOSSIERS_DECISION.md`, затем учитывай его при сшивке. Если ответа нет или он не отвечает на вопрос, работай по решению по умолчанию.
 
-Сделай проект сшивки статьи. Не пиши статью.
+Создай `agent_execution_stack_synthesis_design.md`. Это рабочий файл с проектом сшивки статьи.
 
-Нужно решить:
-- что стало видно после мини-досье;
-- какие технологии идут последовательно, а какие действительно конкурируют;
-- какие уровни стека нужно развести;
-- какой главный ход статьи;
+Не пересказывай мини-досье подряд. Сначала реши, какой цельный текст должен получиться.
+
+В проекте сшивки укажи:
+- главный тезис статьи;
 - порядок разделов;
-- мосты между разделами;
-- что из каждого мини-досье берётся в основную линию;
-- что остаётся только примером или companion-материалом;
-- где нужны изображения;
-- какие различения должны быть явно видны в статье.
+- где статья идёт последовательным объяснением, а где действительно сравнивает конкурирующие режимы;
+- какие мини-досье становятся крупными разделами, а какие работают как примеры;
+- где нужны переходы между разделами;
+- какие источники обязательны для основной статьи;
+- какие изображения нужны;
+- какие различения должны быть видны в статье.
 
-Пиши создаваемый текст естественным русским языком. Запиши результат в `agent_execution_stack_synthesis_design.md` и обнови `theory_links`, `image_plan`, `open_questions`.
+Пиши естественным русским языком и используй словарь. Обнови `theory_links`, `image_plan`, `open_questions`.
 ```
 
-### P15 — первый цельный черновик статьи
+### P14 — первый цельный черновик статьи
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack_synthesis_design.md
-- все файлы `work/atlas/articles/agent_execution_stack_mini_dossiers/*.md`
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- work/atlas/articles/agent_execution_stack_image_plan.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
+Прочитай проект сшивки, все мини-досье, карту отношений, учёт использованных источников и план изображений. Напиши первый цельный черновик статьи `agent_execution_stack.md` по проекту сшивки.
 
-Напиши первый цельный черновик статьи `agent_execution_stack.md` по synthesis design. Мини-досье используй как источник фактуры, а не как готовые блоки для склейки.
+Мини-досье используй как источник фактуры, а не как готовые блоки для склейки. Статья должна читаться самостоятельно и объяснять стек агентского исполнения как слой современной агентской разработки: рабочие поверхности, среды выполнения, открытые рабочие обвязки, многоагентность, наблюдаемость и участие человека.
 
-Статья должна читаться самостоятельно. Она должна объяснять стек агентского исполнения как слой современной агентской разработки: рабочие поверхности, среды выполнения, open harnesses, runtime frameworks, многоагентность, наблюдаемость и участие человека. Не превращай статью в список продуктов и не делай выводов о личном процессе автора или о Новой.
-
-Ссылки на внешние источники ставь сразу по месту утверждения. Пиши создаваемый текст естественным русским языком. Обнови companion-файлы по мере использования материала.
+Не превращай статью в список продуктов. Ссылки на внешние источники ставь сразу рядом с утверждениями, которые они поддерживают. Пиши естественным русским языком и используй словарь. Обновляй сопроводительные файлы по мере использования материала.
 ```
 
-### P16 — русская перепись и anti-catalog pass
+### P15 — естественная русская перепись и проверка против каталога
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack.md
-- work/atlas/articles/agent_execution_stack_synthesis_design.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
+Прочитай статью и проект сшивки. Перепиши статью естественным русским языком с использованием словаря. Переписывай фрагменты заново, а не ограничивайся точечной заменой слов.
 
-Перечитай статью и перепиши её естественным русским языком. Затем проверь, не стала ли она каталогом продуктов.
-
-Если статья перечисляет инструменты без общей линии, перестрой проблемные разделы: покажи, какую рабочую форму они раскрывают, как она устроена и какой участок жизненного цикла изменения меняет. Сохраняй фактуру, источники и технические детали.
+Затем проверь, не стала ли статья каталогом продуктов. Если раздел перечисляет инструменты без общей линии, перестрой его: покажи, какую рабочую форму они раскрывают, как она устроена и какой участок жизненного цикла изменения меняет. Сохраняй фактуру, источники и технические детали.
 
 Запиши исправленную статью и короткую запись в `degradation_and_duplication_audit.md`.
 ```
 
-### P17 — проход на различения
+### P16 — проход на различения
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack.md
-- work/atlas/articles/agent_execution_stack_synthesis_design.md
-- work/atlas/articles/persistent_work_graph.md
-- work/theory-writing/fragments/A6_execution_environment_distinctions.md
-- work/theory-writing/fragments/A7_observation_vs_evidence.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/source-and-provenance.md
+Прочитай статью, проект сшивки, карту отношений, A6, A7 и Persistent Work Graph. Проверь и усили различения: рабочая поверхность, среда выполнения, открытая рабочая обвязка, состояние выполнения, рабочее состояние проекта, трассировка, проверка, полномочие, ревью, принятие.
 
-Проверь и усили различения: рабочая поверхность, среда выполнения, open harness, runtime state, рабочее состояние проекта, trace, проверка, полномочие, review, принятие. Исправь места, где статья смешивает эти вещи.
-
-Пиши создаваемый и исправляемый текст естественным русским языком. Обнови `theory_links`, `open_questions` и audit-файл.
+Исправь места, где статья смешивает эти вещи. Пиши и исправляй естественным русским языком. Обнови `theory_links`, `open_questions` и файл аудита.
 ```
 
-### P18 — проход на источники и фактическую плотность
+### P17 — проход на источники и фактическую плотность
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack.md
-- work/atlas/articles/agent_execution_stack_source_usage.md
-- work/atlas/articles/agent_execution_stack_source_transfer_ledger.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/english-source-handling.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
+Прочитай статью, файл учёта использованных источников (`source_usage`) и журнал переноса источников (`source_transfer_ledger`). Проверь фактическую плотность статьи. Сильные утверждения должны иметь первичные источники.
 
-Проверь фактическую плотность статьи. Сильные утверждения должны иметь первичные источники. Если раздел остался общей прозой без технической опоры, открой нужные первичные источники, добавь фактуру и поставь ссылки по месту утверждения.
+Если раздел остался общей прозой без технической опоры, открой нужные первичные источники, добавь фактуру и поставь ссылки по месту утверждения. Не добавляй новые темы ради широты. Исправляй только места, где статья не держит собственный аргумент.
 
-Не добавляй новые темы ради широты. Исправляй только те места, где статья не держит собственный аргумент. Пиши создаваемый текст естественным русским языком. Обнови `source_usage`, `source_transfer_ledger` и `open_questions`.
+Пиши естественным русским языком и обнови учёт использованных источников, журнал переноса источников и список открытых вопросов.
 ```
 
-### P19 — визуальный проход
+### P18 — визуальный проход
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack.md
-- work/atlas/articles/agent_execution_stack_image_plan.md
-- work/atlas/articles/agent_execution_stack_external_image_queue.md
-- work/theory-writing/asset-catalog/FIGURE_ASSET_CATALOG.md
-- work/theory-writing/asset-catalog/LOCAL_ASSET_INDEX.md
-- work/theory-writing/asset-catalog/EXTERNAL_REAL_IMAGE_CANDIDATES.md
-- protocols/rules/visual-assets-and-figures.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
+Прочитай статью, план изображений (`image_plan`), очередь внешних изображений (`external_image_queue`) и каталоги изображений. Проведи визуальный проход.
 
-Проведи визуальный проход. Сначала используй кандидаты, найденные в мини-досье. Выбери только те изображения, которые действительно помогают понять статью: UI рабочей поверхности, workflow, runtime graph, trace view, architecture diagram, issue-to-PR flow или agent-computer interface.
+Сначала используй кандидаты, найденные в мини-досье. Выбери только те изображения, которые действительно помогают понять статью: вид рабочей поверхности, рабочий процесс, граф выполнения, вид трассировки, архитектурная схема, поток от задачи к PR или интерфейс между агентом и компьютером.
 
-Локальные assets вставляй как настоящие `<figure><img ...></figure>`. Внешние реальные изображения ставь как `external-real-candidate` placeholders и заноси в нижний раздел статьи и external image queue. Собственные схемы создавай только если они нетривиально проясняют связь, которую трудно удержать прозой.
+Локальные изображения и схемы вставляй как настоящие `<figure><img ...></figure>`. Внешние реальные изображения ставь как `external-real-candidate` заглушки и заноси в нижний раздел статьи и очередь внешних изображений. Собственные схемы создавай только если они нетривиально проясняют связь, которую трудно удержать прозой.
 
-Обнови `agent_execution_stack.md`, `image_plan` и `external_image_queue`.
+Обнови статью, план изображений и очередь внешних изображений.
 ```
 
-### P20 — public/article structure pass
+### P19 — проверка публичной статьи
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack.md
-- work/theory-writing/reports/ATLAS_V2_STRUCTURE_AND_ARTICLE_STATUS.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/human-technical-style.md
-- protocols/rules/source-and-provenance.md
+Прочитай статью, структуру Атласа V2 и правила языка. Проверь статью как публичную статью Атласа.
 
-Проверь статью как публичную статью Атласа. Первый экран должен быстро объяснять, зачем читателю эта статья. Статья должна быть самостоятельной, но не должна заново писать всю теорию агентской разработки.
+Первый экран должен быстро объяснять, зачем читателю эта статья. Статья должна быть самостоятельной, но не должна заново писать всю теорию агентской разработки.
 
-Убери внутренние формулы, которые выглядят как рабочие заметки. Убедись, что в тексте нет выводов о личном процессе автора или о Новой. Пиши создаваемый текст естественным русским языком.
+Убери внутренние формулы, которые выглядят как рабочие заметки. Пиши естественным русским языком и используй словарь.
 ```
 
-### P21 — companion sync
+### P20 — синхронизация сопроводительных файлов
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack.md
-- все companion-файлы `work/atlas/articles/agent_execution_stack_*`
-- все файлы `work/atlas/articles/agent_execution_stack_mini_dossiers/*.md`
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
-- protocols/rules/russian-language.md
+Прочитай статью, все сопроводительные файлы и мини-досье. Синхронизируй учёт использованных источников, журнал переноса источников, план изображений, очередь внешних изображений, список открытых вопросов, связи с теорией и файл аудита с текущей статьёй.
 
-Синхронизируй companion-файлы с текущей статьёй. Проверь, что source usage, source transfer ledger, image plan, external image queue, open questions, theory links и audit-файл не противоречат статье и не содержат устаревших решений.
-
-Создай или обнови `MANIFEST.md`, `VERIFY.md` и `RESUME.md`. Пиши создаваемый текст естественным русским языком.
+Проверь, что они не противоречат статье и не содержат устаревших решений. Создай или обнови MANIFEST, VERIFY и RESUME. Пиши естественным русским языком.
 ```
 
-### P22 — общий редакторский repair 1
+### P21 — общий редакторский проход 1
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack.md
-- work/atlas/articles/agent_execution_stack_synthesis_design.md
-- work/atlas/articles/agent_execution_stack_degradation_and_duplication_audit.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/human-technical-style.md
-- protocols/rules/fragment-defect-analysis-and-repair.md
+Прочитай статью, проект сшивки и файл аудита. Оцени, насколько статья выполняет поставленную задачу. Сначала сформулируй проблемы, затем исправь их.
 
-Оцени, насколько статья выполняет поставленную задачу. Сначала сформулируй проблемы, затем исправь их. Не сужай проход заранее до стиля, источников или изображений: смотри на функцию статьи целиком.
+Не сужай проход заранее до стиля, источников или изображений: смотри на функцию статьи целиком. После правки проверь, не появились ли регрессии: что изменилось, какие риски сняты, что осталось.
 
-После правки сделай короткий regression audit: что изменилось, какие риски сняты, что осталось. Пиши создаваемый текст естественным русским языком.
+Пиши естественным русским языком.
 ```
 
-### P23 — общий редакторский repair 2
+### P22 — общий редакторский проход 2
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack.md
-- work/atlas/articles/agent_execution_stack_degradation_and_duplication_audit.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/human-technical-style.md
-- protocols/rules/fragment-defect-analysis-and-repair.md
+Перечитай статью после первого редакторского прохода. Снова оцени, насколько она выполняет задачу: не стала ли она каталогом, не потеряла ли фактуру, не смешала ли уровни стека, не стала ли слишком общей или слишком сосредоточенной на продуктах.
 
-Перечитай статью после первого repair. Снова оцени, насколько она выполняет задачу: не стала ли она каталогом, не потеряла ли фактуру, не смешала ли уровни стека, не стала ли слишком общей или слишком продуктовой.
-
-Сначала сформулируй проблемы, затем исправь их. Пиши создаваемый текст естественным русским языком. Обнови audit и readiness notes.
+Сначала сформулируй проблемы, затем исправь их. Пиши естественным русским языком. Обнови файл аудита и заметки о готовности.
 ```
 
-### P24 — style defect audit
+### P23 — аудит стилевых дефектов
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/human-technical-style.md
-
 Проведи стилевой аудит без массовой переписи. Найди реальные дефекты: кальки, тяжёлые цепочки родительного падежа, псевдотермины, протокольные формулы, неестественные заголовки, англоязычный клей, слишком гладкие места без точного смысла.
 
 Запиши список дефектов и предложи выборочную правку. Не меняй статью целиком на этом проходе.
 ```
 
-### P25 — selective natural rewrite
+### P24 — выборочная естественная перепись
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack.md
-- work/atlas/articles/agent_execution_stack_degradation_and_duplication_audit.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/terminology-and-translation.md
-- protocols/rules/conceptual-translation-glossary.md
-- protocols/rules/human-technical-style.md
+Исправь только те места, которые аудит стилевых дефектов признал реально плохими. Переписывай текст естественным русским языком, используя словарь, но не выбрасывай фактуру, источники, технические детали, ограничения и различения ради гладкости.
 
-Исправь только те места, которые style defect audit признал реально плохими. Переписывай текст естественным русским языком, но не выбрасывай фактуру, источники, технические детали, ограничения и различения ради гладкости.
-
-Обнови статью и audit-файл.
+Обнови статью и файл аудита.
 ```
 
-### P26 — финальная проверка и готовность
+### P25 — финальная проверка и готовность
 
 ```text
-Прочитай сначала:
-- work/atlas/articles/agent_execution_stack.md
-- все companion-файлы `work/atlas/articles/agent_execution_stack_*`
-- все файлы `work/atlas/articles/agent_execution_stack_mini_dossiers/*.md`
-- work/atlas/plans/ATLAS_V2_LARGE_SYNTHETIC_ARTICLE_BLUEPRINT.md
-- work/theory-writing/reports/ATLAS_V2_STRUCTURE_AND_ARTICLE_STATUS.md
-- protocols/rules/russian-language.md
-- protocols/rules/language-style-rules.md
-- protocols/rules/source-and-provenance.md
-- protocols/rules/visual-assets-and-figures.md
-
 Проверь финальный результат.
 
 Должно быть верно:
 - основной файл статьи существует и читается самостоятельно;
 - статья не является каталогом продуктов;
-- статья не делает выводов о личном процессе автора или о Новой;
 - технологии раскрыты на своих основаниях;
 - выбор между режимами появляется там, где режимы действительно конкурируют;
 - источники стоят по месту утверждения;
-- visual candidates обработаны через image plan и external image queue;
-- companion-файлы синхронизированы;
-- все целевые файлы созданы или получили явный blocked status.
+- кандидаты для изображений и схем обработаны через план изображений и очередь внешних изображений;
+- сопроводительные файлы синхронизированы;
+- все целевые файлы созданы или получили явную пометку о блокировке.
 
-Запиши `agent_execution_stack_readiness_report.md`, `VERIFY.md`, `MANIFEST.md` и `RESUME.md`. Пиши создаваемый текст естественным русским языком.
+Запиши отчёт `agent_execution_stack_readiness_report.md`, `VERIFY.md`, `MANIFEST.md` и `RESUME.md`. Пиши естественным русским языком.
 ```
 
-## 7. Заметки для сборщика пакета
+## 9. Заметки для сборщика пакета
 
-Target-group plan остаётся единой логической очередью. Стадии выполнения задаются не здесь, а в служебной meta-записке пакета.
+План задаёт единую логическую очередь работы. Исполнительный пакет нужно собрать в пять рабочих блоков с явными остановками. При разбиении всегда показывай не только состав блоков, но и ожидаемое число рабочих листов.
 
-Для текущего A2-пакета мини-досье нужно выполнить тремя рабочими группами:
+| Блок | Состав | Оценка рабочих листов | Остановка |
+|---|---|---:|---|
+| 1 | `P01 + 01–03`: терминальные и локальные агенты, IDE-агенты, облачные агенты от задачи к PR | ~23–25 | краткий отчёт в чат, без вопроса |
+| 2 | `04–06`: среды сборки приложения, среды вокруг спецификаций, открытые рабочие обвязки / ACI | ~22–25 | краткий отчёт в чат, без вопроса |
+| 3 | `07–08`: графовые и агентские среды выполнения, многоагентная координация | ~15–18 | краткий отчёт в чат, без вопроса |
+| 4 | `09–10 + P12`: наблюдаемость и оценки, возобновляемый рабочий процесс и участие человека, карта отношений, контрольная точка с вопросом | ~16–19 | краткий отчёт в чат и один вопрос |
+| 5 | `P13–финал`: проект сшивки, статья, редакторские и ремонтные проходы, финал | ~14–16 | финальная выдача результата |
 
-1. `06_open_harnesses_and_aci`, `09_observability_and_evaluation`, `10_durable_workflow_and_human_in_loop`.
-2. `05_spec_driven_surfaces`, `07_graph_and_agent_runtimes`, `08_multi_agent_orchestration`.
-3. `01_terminal_and_local_agents`, `02_ide_agents`, `03_cloud_issue_to_pr_agents`, `04_app_builder_surfaces`.
+На первых трёх остановках пакет должен вывести в чат краткий отчёт без вопроса. На четвёртой остановке пакет должен вывести краткий отчёт и один вопрос из контрольной точки. Если пользователь не ответит по существу, следующий блок идёт по решению по умолчанию.
 
-После трёх групп отдельный завершающий блок строит карту отношений, проект сшивки, статью и ремонтные отчёты. Не нужно возвращать в план объяснения о техническом разбиении работы; это обязанность сборщика пакета.
+Внутри каждого мини-досье нужно сохранить полный цикл: первичные источники, зёрна из теории, первый черновик, переписывание естественным русским языком с использованием словаря, дополнительный поиск, общий добор материала, добор материала по вопросам конкретного досье, ограничения, блок `С чем нельзя сравнивать напрямую`, кандидаты для изображений и схем, решение о том, куда отнести материал, который не входит в статью, и итоговое переписывание. Нельзя сворачивать это в один рабочий лист.
 
-Внутри каждого мини-досье нужно сохранить полный цикл: первичные источники, первый черновик, переписывание естественным русским языком с использованием словаря, альтернативный поиск, общий добор, локальные доборы, ограничения, визуальные кандидаты, маршрутизация лишнего материала и итоговое переписывание. Нельзя сворачивать это в один рабочий лист.
+Перед выдачей нового пакета нужно провести полный сухой прогон исполнительного скрипта. В отчёте сборки нужно сравнить ожидаемое и фактическое число рабочих листов по блокам и прямо указать, что очередь рабочих листов соответствует этому пятиблочному разбиению.
