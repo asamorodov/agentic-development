@@ -34,3 +34,10 @@ Do not rewrite site navigation in a small opportunistic edit. A separate navigat
 ## Working recommendation
 
 Use a reader-oriented front door, not a chronology-of-work front door. Stories should stay prominent, but the first screen should probably advertise the whole corpus rather than imply that the site is only a story collection.
+
+
+## Cross-story note: dark matter of software
+
+The phrase `dark matter of software` should be routed primarily to Cross-story synthesis rather than to the Atlas layer map. It names a cross-story pattern: AI-assisted development may produce much more internal, personal, one-off, workflow-specific and invisible software than public product markets immediately reveal.
+
+This is useful for the public entrypoint because it helps explain why the visible SaaS/product landscape may understate the real effect of agentic development. But it is not itself a technical layer. Atlas can point to the technologies that enable this pattern; Cross-story should explain the pattern across stories.

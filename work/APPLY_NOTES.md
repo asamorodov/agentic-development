@@ -38,3 +38,47 @@ This overlay is cumulative over the current 2026-06-17 corpus-cuts / Atlas-expan
 ## 2026-06-17 — multilingual readiness layer
 
 This overlay adds ADR-0017 and a first multilingual preparation layer for the future English version of the corpus. It does not translate current materials and does not change public routes. It adds a protocol, bilingual term registry, multilingual readiness report, and updates the Russian terminology protocol with a note that natural Russian prose should be preserved while stable IDs, source provenance and translation notes are added for future English transfer.
+
+
+## 2026-06-17 — Harness Engineering in Theory skeleton
+
+This overlay adds ADR-0018 and a skeleton-routing note for Harness Engineering. It does not add a new Theory chapter and does not change public navigation. Future chapter packages should use the new `harness-frame check` together with the existing `atlas-technical-grounding check`.
+
+Added/updated:
+
+```text
+work/decisions/ADR-0018-harness-engineering-in-theory-skeleton.md
+work/theory-writing/reports/HARNESS_ENGINEERING_THEORY_SKELETON_NOTE_2026_06_17.md
+work/theory-writing/reports/THEORY_SKELETON_IMPLICATIONS_AFTER_ATLAS_CUTS_2026_06_17.md
+work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md
+work/multilingual/BILINGUAL_TERM_REGISTRY.md
+```
+
+## 2026-06-17 — corrected Harness retrofit handling
+
+Supersedes the un-applied `harness_retrofit_patch_map_overlay_2026_06_17.zip`. Do not apply that previous overlay.
+
+This corrected overlay does **not** add a separate `WRITTEN_THEORY_ARTICLES_HARNESS_RETROFIT_PATCH_MAP_2026_06_17.md`. Instead, it folds the already-written-chapter harness retrofit rule into the existing synchronization document:
+
+```text
+work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md
+```
+
+Reason: all retrofit decisions for written Theory chapters must be coordinated in the same map that already routes Atlas layers, ex-A3, old fragments, story anchors and future source attachments. Otherwise future chapter packages would receive conflicting patch maps.
+
+
+## 2026-06-17 — Atlas skeleton, A17-A19, and Cross-story routing
+
+This overlay is cumulative over the current 2026-06-17 corpus/Atlas branch. It adds ADR-0019, creates `work/atlas/ATLAS_V2_SKELETON.md`, expands Atlas Level 1 to A1–A19, and records that Atlas also contains additional Level 2/3 profile/method/case articles beyond A1–A19.
+
+It also routes `dark matter of software` to Cross-story synthesis rather than Atlas Level 1, and strengthens existing Atlas routing:
+
+```text
+A16 — include machine-readable application/service descriptors and topology.
+A4  — include discoverable, role-scoped agent-facing CLI/API commands.
+A15 — focus on model/process fit and real-work trials, not rankings.
+A19 — core layer for release/deployment/production monitoring/incident-remediation.
+AgenticOps — Level 2 integrated platform profile, not A20.
+```
+
+Public site navigation is not changed by this overlay.

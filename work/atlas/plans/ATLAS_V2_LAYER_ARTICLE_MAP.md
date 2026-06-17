@@ -2,7 +2,7 @@
 
 Статус: рабочая карта для пересборки target-group plans.  
 Дата: 2026-06-17.  
-Основание: ADR-0012, ADR-0013, ADR-0014 и жанровая диагностика ex-A3.
+Основание: ADR-0012–ADR-0019, жанровая диагностика ex-A3 и Atlas V2 Skeleton.
 
 ## Назначение
 
@@ -28,7 +28,7 @@
 
 Перед финальной сшивкой нужен technological payload gate. Мини-досье должны предъявить достаточно фактуры, чтобы читатель после статьи понимал не только смысл слоя, но и то, чем люди реально пользуются.
 
-## Быстрая карта A1–A16
+## Быстрая карта A1–A19
 
 | ID | Рабочее название | Слой | Главный риск подмены |
 | --- | --- | --- | --- |
@@ -48,6 +48,9 @@
 | A14 | Browser/GUI/app feedback surfaces | Как агент видит и проверяет работающее приложение через UI, браузер и визуальные следы | Растворить в средах исполнения или E2E-тестах |
 | A15 | Model/provider layer, routing, cost and inference constraints | Как выбор модели, провайдера, gateway и routing влияет на процесс | Сделать быстро устаревающий рейтинг моделей |
 | A16 | Организационный контекст, software catalog и developer portal | Как агент узнаёт сервисы, ownership, environments, runbooks, зависимости и платформенные правила | Растворить в A1/A11 или сделать обзор Backstage/Port без agentic-development угла |
+| A17 | Структурированная обратная связь от программы | Как агент использует compiler/typechecker/LSP/debugger/static-analysis/runtime signals | Растворить в CI/evals или сделать общий debugging essay |
+| A18 | Автономное тестирование и QA-артефакты | Как агенты создают, чинят, проверяют и сопровождают тесты/QA material | Спрятать test generation внутри CI или acceptance gates |
+| A19 | Release, deployment, production monitoring and incident/remediation agents | Как изменение проходит production loop: deploy, monitor, incident, rollback/remediation, learning | Считать merge концом жизненного цикла или растворить ops в A7 |
 
 ## A1. Контекстный интерфейс проекта для агента
 
@@ -400,8 +403,92 @@
 
 **Граница.** Не смешивать с A1: A1 описывает явные инструкции и правила проекта; A16 описывает организационную карту инженерной системы. Не смешивать с A11: A11 отвечает за задачу и очередь работы; A16 — за сервисы, ownership, dependencies and platform context. Не смешивать с A12: memory хранит прошлый опыт и решения; catalog describes current organizational topology and operational metadata.
 
+
+
+## A17. Структурированная обратная связь от программы
+
+**Назначение слоя.** Показать, как агент получает и использует структурированные сигналы от программы, toolchain и runtime во внутреннем рабочем цикле: не только тесты и CI, но compiler/typechecker/LSP/debugger/static-analysis/profiler/log signals.
+
+**Обязательные темы.** Compiler diagnostics; typechecker output; language server / LSP diagnostics; lint/static analysis warnings; debugger sessions; breakpoints; variable inspection; stack traces; runtime logs; profiler output; local reproduction loops; repair loops driven by structured diagnostics; distinction from agent traces/evals and CI gates.
+
+**Мини-досье для пакета.**
+
+1. Compiler/typechecker/LSP diagnostics as agent-readable feedback.
+2. Static analysis/lint/security warning repair loops.
+3. Debugger-driven agent work: breakpoints, variables, stack traces, stateful reproduction.
+4. Runtime logs and local reproduction as repair material.
+5. Profiler/performance signals and agent limitations.
+6. How A17 signals become A7 gates or A18 tests.
+7. Failure modes: misleading diagnostics, overfitting to warnings, local-only reproduction, suppressed errors.
+
+**Артефакты слоя.** Compiler diagnostic, type error, LSP diagnostic, lint/static-analysis warning, stack trace, debugger transcript, breakpoint state, variable dump, profiler output, runtime log, reproduction note, repair verification output.
+
+**Критерии выбора.** Какие языки и toolchain дают структурированные сигналы; нужен ли LSP; можно ли safely debug; какие logs доступны агенту; как отделить локальный repair signal от acceptance gate; когда warning должен стать задачей, тестом or review item.
+
+**Граница.** A17 — feedback from program/toolchain during work. A5 — observability/evals of agent runs. A7 — formal gates. A18 — test/QA artifacts. A14 — browser/UI feedback.
+
+## A18. Автономное тестирование и QA-артефакты
+
+**Назначение слоя.** Показать, как агенты создают, чинят, запускают, оценивают и сопровождают тесты и QA-материал. Это отдельный слой: CI использует тесты как gate, но не объясняет, откуда тесты берутся и как сохранять их качество.
+
+**Обязательные темы.** Unit/integration/E2E test generation; bug reproduction; regression tests from issues/commits/PRs; test repair; flaky-test handling; coverage-guided work; mutation testing; UI/browser test generation; property/fuzz tests when relevant; test data and fixtures; governance of AI-generated tests; weakness of tests written by the same agent that wrote the code; human review of tests.
+
+**Мини-досье для пакета.**
+
+1. Test generation classes: unit, integration, E2E, property/fuzz, UI/browser tests.
+2. Bug reproduction and regression tests as durable artifacts.
+3. Coverage and mutation testing as feedback for agents.
+4. Test repair and flaky-test handling.
+5. AI-generated test governance: reviewing tests, avoiding false confidence, separating generator and verifier.
+6. QA checklists, fixtures, synthetic data and environment preconditions.
+7. Failure modes: tests that only assert implementation, weak or fake coverage, overfit reproduction, brittle UI tests.
+
+**Артефакты слоя.** Generated test, reproduction test, regression test, test diff, test plan, QA checklist, fixture, synthetic data, coverage report, mutation score, flaky-test note, test-review comment, bug reproduction script.
+
+**Критерии выбора.** Когда generated tests are useful; what needs human review; when to require reproduction before fix; when coverage/mutation signals matter; how to avoid tests that simply encode the agent's mistake; where to store generated QA artifacts.
+
+**Граница.** A18 creates and governs test/QA artifacts. A7 consumes test results as gates. A17 gives diagnostics. A14 contributes UI/app feedback and E2E surfaces.
+
+## A19. Release, deployment, production monitoring and incident/remediation agents
+
+**Назначение слоя.** Показать, что merge не завершает жизненный цикл изменения. После acceptance существуют release, deployment, runtime monitoring, incident response, rollback/remediation and learning-back loops. A19 — production-facing counterpart of A7.
+
+**Обязательные темы.** Release pipelines; deployment approvals; environment promotion; feature flags; canaries; progressive delivery; production monitoring; logs/metrics/traces/alerts; Sentry/Datadog/Grafana/PagerDuty-like surfaces as classes; runbook automation; incident triage; rollback/revert decisions; remediation PRs; postmortems; learning back into docs/rules/tests/memory/process.
+
+**Мини-досье для пакета.**
+
+1. Release and deployment pipelines: from accepted PR to environment promotion.
+2. Feature flags, canaries and progressive delivery as risk controls.
+3. Production monitoring surfaces: logs, metrics, traces, errors and alerts.
+4. Incident/remediation agents: triage, diagnosis, runbook actions, PR creation.
+5. Rollback/revert decisions and relation to Git/A6.
+6. Postmortem and learning loops: docs, tests, rules, memory, catalog metadata.
+7. Failure modes: agent over-remediation, wrong rollback, alert noise, missing ownership, production-only hidden dependency.
+
+**Артефакты слоя.** Release plan, deployment run, environment promotion, feature flag, canary result, alert, incident ticket, runbook action, monitoring dashboard note, rollback, remediation PR, postmortem, learning update.
+
+**Критерии выбора.** When agents may deploy; what requires approval; what monitoring signals are agent-readable; when to auto-remediate vs escalate; how to preserve audit and ownership; how production lessons update future agent work.
+
+**Граница.** A7 decides engineering acceptance. A19 handles release and production survival. A16 supplies ownership/runbook/catalog context; A13 supplies security constraints.
+
+
+
+## Дополнительные статьи Атласа за пределами A1–A19
+
+A1–A19 — это Level 1 технические слои. Они не исчерпывают весь Атлас. Дополнительные статьи должны существовать как Level 2/3 profiles, method articles and case/source nodes.
+
+**Kiro / Kiro Specs.** Integrated product/method profile: specs, steering, hooks, IDE surface and MCP/tooling. Связи: A1, A2, A4, A8, A11, A14.
+
+**AgenticOps / agent-facing platform engineering.** Integrated platform profile: discoverable CLI/API, role-scoped commands, IaC/CaC, deployment, monitoring, model gateway, observability, software catalog and production remediation. Связи: A4, A6, A7, A9, A15, A16, A19. Не выделять как A20, потому что это assembly of layers.
+
+**SPDD, Persistent Work Graph, ADR/MADR, Spec Kit, TDAD, Constitutional SDD, BMAD/GSD/Open GSD.** Method/concept profiles. Они сохраняют старые сильные статьи Атласа и связывают несколько слоёв.
+
+**Gas Town / Beads.** Dense organizational/operational case profile. Связи: A3, A8, A11, A12, A16, A19.
+
+Каждый такой profile article должен явно указать, какие Level 1 слои он пересекает, какие артефакты показывает и чем он полезен читателю сверх общей layer map.
+
 ## Синхронизация с Теорией
 
-Эта карта является источником для `work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md`. Когда меняется состав A1–A16, нужно обновлять attachment map, чтобы будущие главы Теории знали, какие слои Атласа их заземляют.
+Эта карта является источником для `work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md`. Когда меняется состав A1–A19, нужно обновлять attachment map, чтобы будущие главы Теории знали, какие слои Атласа их заземляют.
 
 Правило: Атлас раскрывает слой технически; Теория берёт из слоя только тот срез, который нужен для жизненного цикла изменения. Если chapter package начинает пересказывать статью Атласа, это ошибка. Если chapter package вообще не привязывает теоретический тезис к техническим слоям, это тоже ошибка.

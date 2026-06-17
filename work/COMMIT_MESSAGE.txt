@@ -1,1 +1,1 @@
-Add multilingual corpus readiness layer
+docs: add atlas v2 skeleton and expand layer map to a19

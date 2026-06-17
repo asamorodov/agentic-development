@@ -69,6 +69,33 @@ Ex-A3 не должен становиться отдельной новой г�
 
 Пример: глава XII может говорить о PR, required reviews, CODEOWNERS, status checks и merge rules, но не должна объяснять все варианты GitHub/GitLab/Azure/Gerrit. Это работа Атласа. Теория использует эти формы для утверждения: accepted change возникает не из успешного прогона агента, а из социально-технического контура принятия.
 
+
+### 4. Harness Engineering becomes a cross-cutting frame, not a new chapter
+
+After ADR-0018, Theory should explicitly recognize `Harness Engineering` as a useful external-facing frame:
+
+```text
+agentic development is not model use plus code generation;
+it is a model-harness-environment system that moves a software change through context, action, feedback, verification, acceptance and recovery.
+```
+
+This does not change the top-level skeleton. It clarifies why the lifecycle of change is the right Theory cut: the change moves not through a model alone, but through a working obвязка around the model — project context, tools, filesystem, sandbox, browser/app feedback, memory, task state, traces, evals, permissions, review gates and recovery loops.
+
+Routing:
+
+- **Introduction** should introduce the shift from `model capability` to `model + harness + environment`.
+- **I** should say that the unit of analysis is not a prompt/run/output, but a change moving through this system.
+- **VI** should connect repository/project context to harness design.
+- **IX** should make tools, permissions, filesystem, sandbox, browser and command execution explicit as harness components.
+- **XI** should treat traces, diagnostics, tests, logs, browser feedback and evals as feedback/sensor parts of the harness.
+- **XII** should keep the boundary: harness can produce evidence and route a candidate, but acceptance remains a social-technical authority gate.
+- **XIII** should show how post-merge monitoring, rollback, cleanup, rule updates and memory update feed back into the future harness.
+- **Conclusion** can use Harness Engineering to state the practical thesis: progress comes from designing a minimal sufficient working obвязка around capable models, not from waiting for a stronger model alone.
+
+Do not add a separate Theory chapter called `Harness Engineering`. Do not replace internal concepts such as exoskeleton, protected process profiles or Persistent Work Graph. Treat Harness Engineering as a bridge term and as a check that the chapter does not attribute everything to model quality alone.
+
+New package gate: `harness-frame check` should run alongside `atlas-technical-grounding check`.
+
 ## Что не меняется
 
 1. Не нужно перестраивать Теорию по техническим слоям. Это был бы Атласный разрез.

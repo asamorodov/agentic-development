@@ -37,6 +37,7 @@ This registry is for corpus-level terms whose English/Russian mapping must stay 
 | concept.trace | след выполнения / трассировка | execution trace / trace | Distinguish broad trace of work from technical tracing. |
 | concept.translation_ready | готовность к будущему переводу | translation-readiness | Gate for public stabilization, not actual translation. |
 | concept.technical_payload | техническая фактура / technical payload | technical payload | For Atlas acceptance gate. |
+| concept.harness_engineering | Harness Engineering; рабочая обвязка агента / системная обвязка агента | Harness Engineering; agent harness; model-harness-environment system | Do not force `харнесс-инжиниринг` as public Russian | Use English term when naming the external discourse; use natural Russian explanation in prose. |
 
 ## Atlas Level 1 article IDs — working English titles
 

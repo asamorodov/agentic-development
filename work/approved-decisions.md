@@ -97,3 +97,25 @@ A10 должен явно покрывать Shotgun / shotgun_code. A11 не я
 Корпус пишется по-русски как текущая рабочая и редакционная база, но заранее готовится к будущей английской версии. Русский текст не нужно делать искусственным ради будущего перевода; вместо этого вводится translation-readiness слой: стабильные ID для статей/глав/историй, рабочие английские названия, двуязычный терминологический реестр, сохранение source provenance, translation notes для неочевидных русских формулировок и небольшой gate перед публичной стабилизацией.
 
 Английская версия должна переводить смысл, структуру и источниковую фактуру, а не механически калькировать русский текст. Claims из английских источников при переводе нужно сверять с оригинальными источниками, а не переводить обратно русский пересказ. Решение зафиксировано в `work/decisions/ADR-0017-multilingual-corpus-architecture.md`, `work/multilingual/MULTILINGUAL_CORPUS_PROTOCOL.md` и `work/multilingual/BILINGUAL_TERM_REGISTRY.md`.
+
+
+## 18. Harness Engineering в скелетоне Теории
+
+Harness Engineering принимается как сквозная рамка для Теории, но не как новая глава и не как замена внутренним понятиям проекта. Теория должна явно учитывать, что агентская разработка работает как `model + harness + environment`: модель действует через рабочую обвязку проекта — контекст, инструменты, filesystem, sandbox, browser/app feedback, orchestration, memory, task state, traces, evals, permissions, review gates and recovery loops.
+
+Это решение помогает не объяснять все успехи и сбои качеством модели и одновременно не превращать Теорию в технический Атлас. Future chapter packages должны добавлять `harness-frame check` рядом с `atlas-technical-grounding check`. Решение зафиксировано в `work/decisions/ADR-0018-harness-engineering-in-theory-skeleton.md` и `work/theory-writing/reports/HARNESS_ENGINEERING_THEORY_SKELETON_NOTE_2026_06_17.md`.
+
+
+## 19. Atlas V2 Skeleton, A17–A19 and additional Atlas articles
+
+Atlas Level 1 is expanded to A1–A19. New core layers: A17 `Структурированная обратная связь от программы`, A18 `Автономное тестирование и QA-артефакты`, A19 `Release, deployment, production monitoring and incident/remediation agents`.
+
+A19 is core, not merely a candidate. It covers release/deployment/runtime/incident/remediation/learning-back loops after engineering acceptance.
+
+A dedicated Atlas skeleton is created at `work/atlas/ATLAS_V2_SKELETON.md`. It defines Atlas composition and distinguishes Level 1 technical layer articles from additional profile/method/case articles.
+
+Atlas has additional articles beyond A1–A19. Kiro, SPDD, Persistent Work Graph, ADR, Spec Kit, TDAD, Constitutional SDD, BMAD/GSD/Open GSD, Gas Town/Beads and AgenticOps are not discarded. They should be routed as Level 2/3 profiles, method articles or dense case nodes and explicitly linked to the Level 1 layers they cross.
+
+`Dark matter of software` should be routed primarily to Cross-story synthesis, not to Atlas Level 1. It is a cross-story pattern about internal/personal/one-off/invisible software becoming economically viable.
+
+This decision is recorded in `work/decisions/ADR-0019-atlas-v2-skeleton-a17-a19-and-additional-articles.md`.

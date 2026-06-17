@@ -2392,3 +2392,32 @@ work/theory-writing/reports/MULTILINGUAL_READINESS_NOTE_2026_06_17.md
 ```
 
 The protocol explicitly says not to make Russian text artificial for future English. Translation readiness is a metadata/provenance/terminology layer, not a parallel translation task.
+
+
+## 2026-06-17 — Harness Engineering added as Theory skeleton frame
+
+The user asked whether Harness Engineering should be reflected in the Theory skeleton. Decision: yes, but as a cross-cutting frame, not as a standalone Theory chapter and not as a replacement for the existing internal terms. The useful formulation is that agentic development works as a `model + harness + environment` system: project context, tools, filesystem, sandbox, browser/app feedback, orchestration, memory, task state, traces, evals, permissions, review gates and recovery loops are the working obвязка through which the model can move a software change.
+
+This supports the corpus-cut decision. The Atlas decomposes harness components technically; Theory uses Harness Engineering to explain why the lifecycle of change is not a model-only phenomenon. Future chapter packages should include a `harness-frame check` alongside the `atlas-technical-grounding check`: do not attribute everything to model quality, but also do not turn a theory chapter into a catalog of harness components.
+
+New documents:
+
+```text
+work/decisions/ADR-0018-harness-engineering-in-theory-skeleton.md
+work/theory-writing/reports/HARNESS_ENGINEERING_THEORY_SKELETON_NOTE_2026_06_17.md
+```
+
+## 2026-06-17 — Harness retrofit should live in the Theory attachment map
+
+After the first attempt to record a future harness retrofit as a separate document, the user clarified that this would split the control surface incorrectly. There is already a living document for how Atlas layers, accepted fragments and other inputs attach to Theory chapters: `work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md`. All changes of this kind should be synchronized there.
+
+Accepted correction: do not add a separate `WRITTEN_THEORY_ARTICLES_HARNESS_RETROFIT_PATCH_MAP_2026_06_17.md`. The harness retrofit for already written chapters I–X should be folded into `THEORY_CHAPTER_ATTACHMENT_MAP.md`, alongside Atlas layers, ex-A3, old fragments, story anchors and future source attachments. Future patch packages should use that single map, first produce a precise patch list and stop for human review before editing chapter prose.
+
+
+## 2026-06-17 — Atlas skeleton, A17–A19 and additional Atlas articles
+
+The user accepted routing `dark matter of software` to Cross-story synthesis rather than to Atlas Level 1. The pattern is about AI making internal, one-off, private and workflow-specific software economically viable even when it does not show up as public products.
+
+A second coverage check of Atlas added three core Level 1 layers: A17 structured program feedback, A18 autonomous testing/QA artifacts and A19 release/deployment/production monitoring/incident-remediation agents. A19 is no longer merely a candidate: it is the production-facing continuation after A7 engineering acceptance gates.
+
+The user also clarified that Atlas has additional articles beyond A1–A19. A1–A19 are the Level 1 technical-layer backbone, while Kiro, SPDD, PWG, ADR, Spec Kit, Gas Town/Beads, AgenticOps and related product/method/case articles remain useful as Level 2/3 profiles. A dedicated Atlas skeleton has been added at `work/atlas/ATLAS_V2_SKELETON.md` to coordinate this structure.

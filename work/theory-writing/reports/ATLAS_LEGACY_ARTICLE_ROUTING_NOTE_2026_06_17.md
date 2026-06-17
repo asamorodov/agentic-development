@@ -29,3 +29,22 @@ Kiro should not be abandoned. It is valuable because it combines specs, steering
 ## Process implication
 
 Future packages for old articles should not use the same template as Level 1 layer articles. They need a profile template: what the method/product is, what layer(s) it touches, what artifacts it creates, what is distinctive, where it fits, and what should not be generalized from it.
+
+
+## AgenticOps as Level 2 profile
+
+AgenticOps / agent-facing platform engineering should be treated as an integrated Atlas profile, not as A20. It is valuable precisely because it assembles multiple Level 1 layers into a platform pattern: role-scoped CLI/API commands, discoverable tools, IaC/CaC, self-hosted infrastructure, deployment, monitoring, model gateway, observability, software catalog and incident/remediation loops.
+
+Likely links:
+
+```text
+A4  — tools, protocols, access and authority
+A6  — Git/change substrate
+A7  — engineering gates
+A9  — execution environments
+A15 — model/provider routing
+A16 — organizational catalog/developer portal
+A19 — release, monitoring and remediation
+```
+
+Kiro, AgenticOps, SPDD, PWG, ADR and Gas Town should be preserved as profile/method/case articles. They are additional Atlas articles beyond the A1–A19 layer backbone.

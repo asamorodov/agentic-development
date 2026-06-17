@@ -31,6 +31,8 @@ work/theory-writing/reports/POST_ATLAS_SKELETON_ANTI_DEGRADATION_AUDIT.md
 work/theory-writing/reports/CORPUS_PROJECTION_CUTS_UPDATE_2026_06_17.md
 work/theory-writing/reports/VERSION_CONTROL_AGENTIC_DEVELOPMENT_COVERAGE_NOTE_2026_06_17.md
 work/theory-writing/reports/THEORY_SKELETON_IMPLICATIONS_AFTER_ATLAS_CUTS_2026_06_17.md
+work/theory-writing/reports/HARNESS_ENGINEERING_THEORY_SKELETON_NOTE_2026_06_17.md
+work/atlas/ATLAS_V2_SKELETON.md
 work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md
 work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md
 work/decisions/ADR-0014-public-corpus-part-names-and-atlas-parity.md
@@ -103,6 +105,8 @@ work/theory-writing/reports/CORPUS_PROJECTION_CUTS_UPDATE_2026_06_17.md
 work/theory-writing/reports/ATLAS_V2_STRUCTURE_AND_ARTICLE_STATUS.md
 work/theory-writing/reports/VERSION_CONTROL_AGENTIC_DEVELOPMENT_COVERAGE_NOTE_2026_06_17.md
 work/theory-writing/reports/THEORY_SKELETON_IMPLICATIONS_AFTER_ATLAS_CUTS_2026_06_17.md
+work/theory-writing/reports/HARNESS_ENGINEERING_THEORY_SKELETON_NOTE_2026_06_17.md
+work/atlas/ATLAS_V2_SKELETON.md
 work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md
 work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md
 work/decisions/ADR-0014-public-corpus-part-names-and-atlas-parity.md
@@ -255,6 +259,8 @@ work/decisions/PROPOSED_ADR-0007-sdlc-artifact-and-framework-coverage.md
 ```text
 work/theory-writing/fragments/ex_a3_agent_run_to_accepted_change_theory_fragment.md
 work/theory-writing/reports/THEORY_SKELETON_IMPLICATIONS_AFTER_ATLAS_CUTS_2026_06_17.md
+work/theory-writing/reports/HARNESS_ENGINEERING_THEORY_SKELETON_NOTE_2026_06_17.md
+work/atlas/ATLAS_V2_SKELETON.md
 work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md
 work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md
 work/decisions/ADR-0014-public-corpus-part-names-and-atlas-parity.md
@@ -2834,3 +2840,33 @@ protocols/rules/terminology-and-translation.md
 ```
 
 Future Atlas and Theory packages should include a small translation-readiness check when stabilizing public-facing material. This is not a translation pass and should not make Russian prose less natural.
+
+
+## Harness Engineering as a cross-cutting frame
+
+ADR-0018 records that Harness Engineering should be reflected in the Theory skeleton without becoming a separate chapter. Future chapter packages should use `HARNESS_ENGINEERING_THEORY_SKELETON_NOTE_2026_06_17.md` to check whether the chapter over-attributes success/failure to the model and forgets the working obвязка around it: context, tools, filesystem, sandbox, browser/app feedback, memory, task state, traces, evals, permissions, review gates and recovery loops.
+
+This frame is a bridge between Theory and Atlas. The Theory uses it to explain why lifecycle-of-change is a model-harness-environment process; the Atlas decomposes the harness technically.
+
+## 2026-06-17 — Harness retrofit coordinated through attachment map
+
+User clarified that retrofit changes to already written Theory chapters should not create a separate patch-map document. The controlling synchronization document is `work/theory-writing/reports/THEORY_CHAPTER_ATTACHMENT_MAP.md`, because it coordinates Atlas layers, ex-A3, old fragments, story anchors, future source attachments and cross-cutting frames in one place.
+
+The attachment map now includes the minimal Harness Engineering retrofit rule for already written chapters I–X and the writing condition for future XI–XIII. Do not use `WRITTEN_THEORY_ARTICLES_HARNESS_RETROFIT_PATCH_MAP_2026_06_17.md`; that file is intentionally not included in the corrected overlay.
+
+
+## Atlas V2 Skeleton and A1–A19 layer map
+
+Atlas now has a dedicated skeleton document:
+
+```text
+work/atlas/ATLAS_V2_SKELETON.md
+```
+
+This is the composition-level document for Atlas. It defines Level 1 layer articles A1–A19 and Level 2/3 additional profile/method/case articles. The operational planning map for packages remains:
+
+```text
+work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md
+```
+
+Future Atlas packages must state whether they are building a Level 1 layer article or an additional profile/method/case article. Kiro, SPDD, PWG, ADR, Gas Town/Beads and AgenticOps should not be discarded just because they are not in A1–A19; they belong to additional Atlas levels and must link back to the Level 1 layers they cross.

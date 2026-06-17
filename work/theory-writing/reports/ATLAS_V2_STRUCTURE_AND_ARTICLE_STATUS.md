@@ -296,3 +296,32 @@ OpenHands и SWE-agent полезны не как очередные проду�
 Например, статья про рабочие поверхности агентов может подробно описывать CLI, IDE, cloud agent, sandbox/worktree и PR-agent. Теоретическая глава об execution environment не должна повторять всю статью. Она должна взять нужный срез: выбор среды исполнения является выбором прав, видимости, воспроизводимости, переносимости, стоимости review и ответственности.
 
 Статья про Git/PR/CI/review может подробно разобрать ветки, worktrees, PR, status checks, merge queue, review comments и rollback. Теоретическая глава о принятии изменения должна взять из неё другой срез: как рабочий результат получает форму, которую можно проверить, обсудить и принять, но не должна превращаться в справочник GitHub/GitLab workflow.
+
+
+## 2026-06-17 — A17–A19, AgenticOps and Atlas Skeleton
+
+After a second coverage check, Atlas Level 1 is expanded to A1–A19. New core layers:
+
+```text
+A17. Структурированная обратная связь от программы
+A18. Автономное тестирование и QA-артефакты
+A19. Release, deployment, production monitoring and incident/remediation agents
+```
+
+A19 is now core, not merely a candidate. It is the post-merge/production counterpart of A7. A7 answers how a change candidate passes engineering gates; A19 answers how an accepted change is released, observed, rolled back/remediated and fed back into future work.
+
+A new Atlas skeleton exists at:
+
+```text
+work/atlas/ATLAS_V2_SKELETON.md
+```
+
+The skeleton defines Atlas composition, Level 1 layer articles, Level 2 profiles/method articles/cases and package gates. The detailed operational map remains:
+
+```text
+work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md
+```
+
+Atlas contains more than A1–A19. A1–A19 are Level 1 technical layers; legacy and new integrated articles such as Kiro, SPDD, Persistent Work Graph, ADR, Spec Kit, Gas Town/Beads and AgenticOps should live as Level 2/3 profiles or method/case articles.
+
+`Dark matter of software` is routed to Cross-story synthesis rather than Atlas Level 1. It is useful for explaining why AI-assisted/internal/one-off software may expand without visible public-product output.

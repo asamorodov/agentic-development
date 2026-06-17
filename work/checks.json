@@ -51,6 +51,36 @@
       "name": "Terminology protocol multilingual note",
       "status": "pass",
       "details": "protocols/rules/terminology-and-translation.md includes future-English readiness guidance without degrading Russian prose."
+    },
+    {
+      "name": "Harness retrofit integrated into Theory attachment map",
+      "status": "pass",
+      "details": "No separate written-chapter retrofit map is added. THEORY_CHAPTER_ATTACHMENT_MAP now controls already-written-chapter harness retrofit together with Atlas/fragments/source attachments."
+    },
+    {
+      "name": "ADR-0019 created",
+      "status": "pass",
+      "details": "Records Atlas skeleton, A17-A19, additional Atlas article levels, AgenticOps as profile, and dark matter of software routing to Cross-story."
+    },
+    {
+      "name": "Atlas V2 Skeleton created",
+      "status": "pass",
+      "details": "work/atlas/ATLAS_V2_SKELETON.md defines Level 1 A1-A19, Level 2/3 profiles, acceptance gates and synchronization rules."
+    },
+    {
+      "name": "Atlas layer map expanded",
+      "status": "pass",
+      "details": "ATLAS_V2_LAYER_ARTICLE_MAP now includes A17 structured program feedback, A18 autonomous testing/QA artifacts, and A19 release/deployment/production monitoring/incident remediation."
+    },
+    {
+      "name": "Theory attachment map synchronized",
+      "status": "pass",
+      "details": "THEORY_CHAPTER_ATTACHMENT_MAP includes A17-A19 as technical grounding, without creating new Theory chapters."
+    },
+    {
+      "name": "Cross-story routing noted",
+      "status": "pass",
+      "details": "Dark matter of software is routed to Cross-story synthesis rather than Atlas Level 1."
     }
   ],
   "atlas_expanded_core_a1_a15_2026_06_17": {
@@ -64,5 +94,17 @@
   "multilingual_readiness_2026_06_17": {
     "status": "pass",
     "notes": "Future English version prepared through metadata/provenance/terminology layer, not immediate translation."
+  },
+  "harness_engineering_skeleton_2026_06_17": {
+    "status": "pass",
+    "notes": "ADR-0018 and HARNESS_ENGINEERING_THEORY_SKELETON_NOTE added; Theory skeleton treats Harness Engineering as cross-cutting frame, not as separate chapter."
+  },
+  "harness_retrofit_attachment_map_correction_2026_06_17": {
+    "status": "pass",
+    "notes": "Corrected the prior un-applied overlay design: use THEORY_CHAPTER_ATTACHMENT_MAP as the single synchronization document; do not add WRITTEN_THEORY_ARTICLES_HARNESS_RETROFIT_PATCH_MAP."
+  },
+  "atlas_v2_a19_skeleton_2026_06_17": {
+    "status": "pass",
+    "notes": "Atlas Level 1 expanded to A1-A19; Atlas skeleton added; additional articles beyond A1-A19 routed as Level 2/3 profiles; dark matter of software routed to Cross-story."
   }
 }

@@ -68,3 +68,10 @@ work/theory-writing/reports/ATLAS_V2_STRUCTURE_AND_ARTICLE_STATUS.md
 work/theory-writing/reports/VERSION_CONTROL_AGENTIC_DEVELOPMENT_COVERAGE_NOTE_2026_06_17.md
 work/discourse.md
 ```
+
+
+### Atlas after A19
+
+The Atlas cut remains `technical layers`, but the current Level 1 backbone is now A1–A19, not A1–A16. Additional Atlas articles exist outside the A-numbered Level 1 backbone as profile/method/case articles. This matters for genre control: a Kiro article or AgenticOps article is not invalid because it crosses several layers; it simply belongs to Level 2 as an integrated profile rather than to the Level 1 layer map.
+
+`Dark matter of software` belongs primarily to Cross-story synthesis, because it is a pattern across developer stories and possible usage modes rather than a technical layer.
