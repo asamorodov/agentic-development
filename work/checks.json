@@ -81,6 +81,26 @@
       "name": "Cross-story routing noted",
       "status": "pass",
       "details": "Dark matter of software is routed to Cross-story synthesis rather than Atlas Level 1."
+    },
+    {
+      "name": "Natural Russian pass for Atlas skeleton docs",
+      "status": "pass",
+      "details": "ATLAS_V2_SKELETON, ATLAS_V2_LAYER_ARTICLE_MAP, ADR-0019, Atlas status report and legacy routing note were rewritten in more natural Russian without changing accepted decisions."
+    },
+    {
+      "name": "ADR-0020 created",
+      "status": "pass",
+      "details": "Records stage checkpoint vs continuation package distinction and stop-state validation requirements."
+    },
+    {
+      "name": "Package protocols patched",
+      "status": "pass",
+      "details": "TASK_PACKAGE_CREATION_PROTOCOL and TASK_PACKAGE_MANUFACTORY_PROTOCOL now require saving stop-state before checkpoint packaging and validating unpacked checkpoint state."
+    },
+    {
+      "name": "Cumulative delta report added",
+      "status": "pass",
+      "details": "work/reports/CUMULATIVE_DELTA_SINCE_CHAT_START_2026_06_17.md summarizes all repo changes accumulated in this chat."
     }
   ],
   "atlas_expanded_core_a1_a15_2026_06_17": {
@@ -106,5 +126,13 @@
   "atlas_v2_a19_skeleton_2026_06_17": {
     "status": "pass",
     "notes": "Atlas Level 1 expanded to A1-A19; Atlas skeleton added; additional articles beyond A1-A19 routed as Level 2/3 profiles; dark matter of software routed to Cross-story."
+  },
+  "atlas_natural_russian_pass_2026_06_17": {
+    "status": "pass",
+    "notes": "Main Atlas skeleton/control documents rewritten for natural Russian. Technical terms are preserved where they are tool/protocol names or accepted layer labels."
+  },
+  "checkpoint_correctness_protocol_2026_06_17": {
+    "status": "pass",
+    "notes": "Stage checkpoint archive and continuation package are now distinct archive types; PACKAGING_VALIDATION must record archive type, expected command, current/next records and validation result."
   }
 }

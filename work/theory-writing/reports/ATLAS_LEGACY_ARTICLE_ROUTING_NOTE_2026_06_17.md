@@ -1,50 +1,55 @@
-# Atlas legacy article routing note — 2026-06-17
+# Старые статьи Атласа после перехода к карте слоёв — заметка о маршрутизации
 
-## Purpose
+Дата: 2026-06-17.  
+Статус: рабочая заметка.
 
-This note records how older concept-first Atlas articles should be treated after the Level 1 Atlas map moved to A1–A16 technical layers.
+## Зачем нужна эта заметка
 
-## Decision
+После перехода Атласа к статьям A1–A19 может показаться, что старые статьи больше не вписываются. Это неверно. Они не задают верхний каркас Атласа, но остаются полезными как профили методов, продуктов, платформенных сборок и плотных кейсов.
 
-Do not delete or discard old Atlas articles. They are useful, but they no longer define the top-level Atlas architecture.
+## Основное решение
 
-## Routing
+Старые статьи не удалять и не считать неудачными только потому, что они не являются статьями уровня A. Их нужно направить в уровни 2/3 и явно связать с техническими слоями, которые они пересекают.
 
-### Level 1 — technical layer map
+## Уровни
 
-A1–A16 are the primary Atlas layer articles. They answer: what technical layer exists, what technologies and formats implement it, what artifacts it produces, how approaches differ, how to choose, and where the layer fails.
+**Уровень 1.** A1–A19 — технические слои Атласа. Они отвечают на вопросы: какой слой существует, какие технологии его строят, какие артефакты он создаёт, как выбирать подход и где слой ломается.
 
-### Level 2 — concept/method articles
+**Уровень 2.** Методологические и продуктовые профили: SPDD, Persistent Work Graph, ADR, Spec Kit, Kiro Specs, TDAD, Constitutional SDD, BMAD, GSD и похожие статьи. Они могут быть самостоятельными, но должны ссылаться на слои A1–A19, а не конкурировать с ними.
 
-SPDD, Persistent Work Graph, ADR, Spec Kit, Kiro Specs, TDAD, Constitutional SDD, BMAD, GSD and similar articles should be treated as concept/method profiles. They can remain standalone, but they should link to the relevant layers instead of competing with them.
-
-### Level 3 — dense private/product/case forms
-
-Gas Town / Beads, Kiro as an integrated IDE/spec case, OpenHands/SWE-agent-style harnesses and similar forms should be routed as dense cases or product profiles.
+**Уровень 3.** Плотные кейсы, узлы источников и product profiles: Gas Town / Beads, Kiro как integrated IDE/spec case, OpenHands/SWE-agent-style harnesses и похожие формы.
 
 ## Kiro
 
-Kiro should not be abandoned. It is valuable because it combines specs, steering, hooks, IDE workflow and MCP integrations in one product surface. Future Kiro expansion should position it as a product-specific integrated case, not as the whole specification layer. It should link to A1, A2, A4, A8, A11 and A14.
+Kiro не нужно бросать. Его ценность в том, что он собирает несколько слоёв в одну продуктовую поверхность: specs, steering, hooks, IDE workflow и MCP integrations. Будущая статья о Kiro должна быть integrated profile, а не заменой статьи о спецификациях или IDE agents.
 
-## Process implication
+Связи: A1, A2, A4, A8, A11, A14.
 
-Future packages for old articles should not use the same template as Level 1 layer articles. They need a profile template: what the method/product is, what layer(s) it touches, what artifacts it creates, what is distinctive, where it fits, and what should not be generalized from it.
+## AgenticOps
 
+AgenticOps / platform engineering, рассчитанный на работу агентов тоже не должен становиться A20. Его смысл в сборке нескольких слоёв: CLI/API-команды с ограничением по роли, обнаруживаемые инструменты, IaC/CaC, self-hosted infrastructure, deployment, monitoring, model gateway, observability, software catalog, петли инцидентов и восстановления.
 
-## AgenticOps as Level 2 profile
-
-AgenticOps / agent-facing platform engineering should be treated as an integrated Atlas profile, not as A20. It is valuable precisely because it assembles multiple Level 1 layers into a platform pattern: role-scoped CLI/API commands, discoverable tools, IaC/CaC, self-hosted infrastructure, deployment, monitoring, model gateway, observability, software catalog and incident/remediation loops.
-
-Likely links:
+Связи:
 
 ```text
-A4  — tools, protocols, access and authority
+A4  — инструменты, протоколы, доступы и полномочия
 A6  — Git/change substrate
 A7  — engineering gates
 A9  — execution environments
-A15 — model/provider routing
+A15 — маршрутизация моделей и провайдеров
 A16 — organizational catalog/developer portal
 A19 — release, monitoring and remediation
 ```
 
-Kiro, AgenticOps, SPDD, PWG, ADR and Gas Town should be preserved as profile/method/case articles. They are additional Atlas articles beyond the A1–A19 layer backbone.
+## Как писать пакеты для старых статей
+
+Для таких статей нужен не шаблон статьи уровня 1, а шаблон профиля:
+
+```text
+что это за метод, продукт или кейс;
+какие слои A1–A19 он пересекает;
+какие артефакты создаёт;
+что в нём отличительное;
+какие выводы можно переносить на общий слой;
+какие выводы нельзя обобщать.
+```

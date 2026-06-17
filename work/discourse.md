@@ -2421,3 +2421,13 @@ The user accepted routing `dark matter of software` to Cross-story synthesis rat
 A second coverage check of Atlas added three core Level 1 layers: A17 structured program feedback, A18 autonomous testing/QA artifacts and A19 release/deployment/production monitoring/incident-remediation agents. A19 is no longer merely a candidate: it is the production-facing continuation after A7 engineering acceptance gates.
 
 The user also clarified that Atlas has additional articles beyond A1–A19. A1–A19 are the Level 1 technical-layer backbone, while Kiro, SPDD, PWG, ADR, Spec Kit, Gas Town/Beads, AgenticOps and related product/method/case articles remain useful as Level 2/3 profiles. A dedicated Atlas skeleton has been added at `work/atlas/ATLAS_V2_SKELETON.md` to coordinate this structure.
+
+
+## 2026-06-17 — Естественный русский для Скелетона Атласа
+
+После создания Скелетона Атласа была проведена отдельная языковая правка: `ATLAS_V2_SKELETON.md`, `ATLAS_V2_LAYER_ARTICLE_MAP.md`, ADR-0019, статусная карта Атласа и заметка о старых статьях переписаны более естественным русским языком. Смысл архитектурных решений не менялся: Атлас остаётся самостоятельной частью корпуса, A1–A19 — хребтом технических слоёв, а Kiro, AgenticOps, SPDD, PWG, ADR, Gas Town и другие материалы — дополнительными профилями и case nodes. Английские названия сохранены там, где они являются названиями инструментов, протоколов, форматов или рабочими layer labels.
+
+
+## 2026-06-17 — checkpoint/continuation package correction
+
+After the A2 final-stage continuation repair, the package protocol was corrected. The problem was narrowed to package state correctness, not long-chat limits: stage checkpoint archives must be packed from already-saved stop-state, while continuation packages are a separate type that starts directly from the next worksheet. ADR-0020 records the distinction and the required validation.

@@ -82,3 +82,46 @@ AgenticOps — Level 2 integrated platform profile, not A20.
 ```
 
 Public site navigation is not changed by this overlay.
+
+
+## 2026-06-17 — natural Russian pass for Atlas skeleton documents
+
+Переписаны естественным русским языком основные документы, которые задают устройство Атласа:
+
+```text
+work/atlas/ATLAS_V2_SKELETON.md
+work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md
+work/theory-writing/reports/ATLAS_V2_STRUCTURE_AND_ARTICLE_STATUS.md
+work/theory-writing/reports/ATLAS_LEGACY_ARTICLE_ROUTING_NOTE_2026_06_17.md
+work/decisions/ADR-0019-atlas-v2-skeleton-a17-a19-and-additional-articles.md
+```
+
+Смысл решений не менялся. Цель прохода — убрать протокольный и англоязычный каркас там, где он не нужен, сохранив точные английские названия инструментов, протоколов и артефактов.
+
+
+## 2026-06-17 — checkpoint correctness protocol patch
+
+This cumulative delta adds ADR-0020 and updates task package creation/manufactory protocols. The change is limited to package correctness, not chat length management.
+
+Key rule: a stage checkpoint archive must be built only after the runner state has been saved as stop-state. A continuation package is a different archive type and must start from the next worksheet with the ordinary runner command.
+
+Updated/added:
+
+```text
+work/decisions/ADR-0020-checkpoint-continuation-package-correctness.md
+work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md
+work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md
+work/approved-decisions.md
+work/theory-writing/WORKING_DOCUMENTS_MAP.md
+```
+
+
+## 2026-06-17 — cumulative delta since chat start
+
+Added a summary report for this full overlay:
+
+```text
+work/reports/CUMULATIVE_DELTA_SINCE_CHAT_START_2026_06_17.md
+```
+
+This overlay is intended to be applied to the initial `git.zip` baseline from the beginning of the chat.

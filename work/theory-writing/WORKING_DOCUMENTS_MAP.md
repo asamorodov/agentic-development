@@ -2870,3 +2870,41 @@ work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md
 ```
 
 Future Atlas packages must state whether they are building a Level 1 layer article or an additional profile/method/case article. Kiro, SPDD, PWG, ADR, Gas Town/Beads and AgenticOps should not be discarded just because they are not in A1–A19; they belong to additional Atlas levels and must link back to the Level 1 layers they cross.
+
+
+## Естественный русский для документов Атласа — 2026-06-17
+
+Основные управляющие документы Атласа были переписаны в более естественном русском стиле без изменения архитектурных решений. При будущих пакетах использовать:
+
+```text
+work/atlas/ATLAS_V2_SKELETON.md
+work/atlas/plans/ATLAS_V2_LAYER_ARTICLE_MAP.md
+```
+
+Скелетон отвечает за композицию Атласа, карта статей — за подготовку target-group plans.
+
+
+## 2026-06-17 — Checkpoint correctness for staged packages
+
+Package creation/manufactory protocols now distinguish `stage checkpoint archive` from `continuation package`. Stage checkpoints must contain already-saved stop-state and must be validated by unpacking the archive and checking the runner state. Continuation packages are separate archives that start from the next worksheet with the ordinary runner command and do not require `continue`.
+
+Relevant documents:
+
+```text
+work/decisions/ADR-0020-checkpoint-continuation-package-correctness.md
+work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md
+work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md
+```
+
+Future package builders should not issue a checkpoint archive until `PACKAGING_VALIDATION.md` records the archive type, expected command, current record, next record and validation result.
+
+
+## 2026-06-17 — Cumulative delta report
+
+The full overlay for this chat includes a compact report:
+
+```text
+work/reports/CUMULATIVE_DELTA_SINCE_CHAT_START_2026_06_17.md
+```
+
+Use it to see which architectural decisions and protocols were accumulated before applying the delta to the initial repository snapshot.

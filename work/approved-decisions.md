@@ -106,16 +106,23 @@ Harness Engineering принимается как сквозная рамка д
 Это решение помогает не объяснять все успехи и сбои качеством модели и одновременно не превращать Теорию в технический Атлас. Future chapter packages должны добавлять `harness-frame check` рядом с `atlas-technical-grounding check`. Решение зафиксировано в `work/decisions/ADR-0018-harness-engineering-in-theory-skeleton.md` и `work/theory-writing/reports/HARNESS_ENGINEERING_THEORY_SKELETON_NOTE_2026_06_17.md`.
 
 
-## 19. Atlas V2 Skeleton, A17–A19 and additional Atlas articles
+## 19. Скелетон Атласа, A17–A19 и дополнительные статьи
 
-Atlas Level 1 is expanded to A1–A19. New core layers: A17 `Структурированная обратная связь от программы`, A18 `Автономное тестирование и QA-артефакты`, A19 `Release, deployment, production monitoring and incident/remediation agents`.
+Атлас уровня 1 расширен до A1–A19. Новые основные слои: A17 `Структурированная обратная связь от программы`, A18 `Автономное тестирование и QA-артефакты`, A19 `Release, deployment, production monitoring and incident/remediation agents`.
 
-A19 is core, not merely a candidate. It covers release/deployment/runtime/incident/remediation/learning-back loops after engineering acceptance.
+A19 считается частью ядра, а не кандидатом: A7 отвечает за engineering acceptance gates, а A19 — за выпуск, наблюдение в эксплуатации, incident/remediation и возвращение уроков в будущую работу.
 
-A dedicated Atlas skeleton is created at `work/atlas/ATLAS_V2_SKELETON.md`. It defines Atlas composition and distinguishes Level 1 technical layer articles from additional profile/method/case articles.
+Создан `work/atlas/ATLAS_V2_SKELETON.md`. Он описывает композицию Атласа и разводит статьи уровня 1 с дополнительными профилями, методами и кейсами. Kiro, SPDD, Persistent Work Graph, ADR, Spec Kit, TDAD, Constitutional SDD, BMAD/GSD/Open GSD, Gas Town/Beads и AgenticOps не удаляются; они ведутся как Level 2/3 articles и должны явно ссылаться на слои A1–A19, которые пересекают.
 
-Atlas has additional articles beyond A1–A19. Kiro, SPDD, Persistent Work Graph, ADR, Spec Kit, TDAD, Constitutional SDD, BMAD/GSD/Open GSD, Gas Town/Beads and AgenticOps are not discarded. They should be routed as Level 2/3 profiles, method articles or dense case nodes and explicitly linked to the Level 1 layers they cross.
+`Тёмная материя софта` относится прежде всего к Cross-story synthesis. Это паттерн про внутренний, личный, одноразовый или плохо видимый AI-assisted software, а не технический слой Атласа.
 
-`Dark matter of software` should be routed primarily to Cross-story synthesis, not to Atlas Level 1. It is a cross-story pattern about internal/personal/one-off/invisible software becoming economically viable.
+Решение зафиксировано в `work/decisions/ADR-0019-atlas-v2-skeleton-a17-a19-and-additional-articles.md`.
 
-This decision is recorded in `work/decisions/ADR-0019-atlas-v2-skeleton-a17-a19-and-additional-articles.md`.
+
+## 20. Корректность checkpoint-архивов и continuation packages
+
+Для staged executor packages плановая остановка должна возвращать валидный `stage checkpoint archive`, а не просто архив файлов. Такой checkpoint обязан содержать уже сохранённое stop-state runner-а: текущая запись — stop-record, состояние остановки включено, следующий record после `continue` известен и существует.
+
+`Continuation package` — отдельный тип архива. Он используется, когда следующую стадию нужно начать в новом чате обычным запуском runner-а. Такой пакет не должен требовать `continue` и не должен называться checkpoint.
+
+Протоколы сборки обновлены: state сначала переводится в stop-state и сохраняется, только потом собирается checkpoint archive; после упаковки архив распаковывается во временную папку и проверяется. Решение зафиксировано в `work/decisions/ADR-0020-checkpoint-continuation-package-correctness.md`, `work/protocols/TASK_PACKAGE_CREATION_PROTOCOL.md` и `work/protocols/TASK_PACKAGE_MANUFACTORY_PROTOCOL.md`.

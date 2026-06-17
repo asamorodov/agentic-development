@@ -1,1 +1,7 @@
-docs: add atlas v2 skeleton and expand layer map to a19
+docs: update atlas skeleton and package checkpoint protocols
+
+- add Atlas V2 skeleton and expanded A1-A19 layer map
+- record corpus cuts, Atlas parity, multilingual readiness and harness frame
+- route legacy Atlas articles and Cross-story dark matter pattern
+- add ADR-0020 for checkpoint/continuation package correctness
+- update task package creation and manufactory protocols for stop-state validation
